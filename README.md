@@ -6,9 +6,9 @@ helm search repo wener/
 ```
 
 ## Mirror charts
+Collect a lot offcial charts for easy to find and use in one repo.
 
-* https://github.com/longhorn/longhorn
-* https://kubernetes.github.io/ingress-nginx
+* Auto update based on Github Action
 
 ## DEV
 
@@ -16,3 +16,15 @@ helm search repo wener/
 # Only clone charts
 git clone --depth=1 --single-branch --branch gh-pages https://github.com/wenerme/charts charts
 ```
+
+## Charts
+Name | Version | AppVersion
+-----|---------|-----------
+ |  | 
+ |  | 
+ |  | 
+ |  | 
+ |  | 
+ |  | 
+ |  | 
+ |  | 

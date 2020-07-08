@@ -3,7 +3,7 @@ entries:
   alpine:
   - apiVersion: v2
     appVersion: 3.12.0
-    created: "2020-07-08T12:09:51.000649508Z"
+    created: "2020-07-08T12:11:02.296569714Z"
     description: AlpineLinux work container
     digest: adf984e4427cf0033fab40a435bf58b1efd6578b6d25d8ca0191532e0cd67dd1
     home: https://github.com/wenerme/charts
@@ -25,7 +25,7 @@ entries:
   cert-manager:
   - apiVersion: v1
     appVersion: v0.15.2
-    created: "2020-07-08T12:09:51.005476425Z"
+    created: "2020-07-08T12:11:02.301122238Z"
     description: A Helm chart for cert-manager
     digest: 5d9780eb5a6ea37c399729c19bb2a1e3ef867928e916e4518e1672b278e5b421
     home: https://github.com/jetstack/cert-manager
@@ -44,10 +44,26 @@ entries:
     urls:
     - cert-manager-v0.15.2.tgz
     version: v0.15.2
+  consul:
+  - apiVersion: v1
+    appVersion: 1.8.0
+    created: "2020-07-08T12:11:02.306651445Z"
+    description: Official HashiCorp Consul Chart
+    digest: e9b5e9f5a0d64ccba1e3f7c9978cf773f7bab080510a6892220db69f8c67291b
+    home: https://www.consul.io
+    icon: https://raw.githubusercontent.com/hashicorp/consul-helm/master/assets/icon.png
+    name: consul
+    sources:
+    - https://github.com/hashicorp/consul
+    - https://github.com/hashicorp/consul-helm
+    - https://github.com/hashicorp/consul-k8s
+    urls:
+    - consul-0.22.0.tgz
+    version: 0.22.0
   haproxy-ingress:
   - apiVersion: v1
     appVersion: 0.7.2
-    created: "2020-07-08T12:09:51.007227031Z"
+    created: "2020-07-08T12:11:02.308180519Z"
     description: Ingress controller implementation for haproxy loadbalancer.
     digest: a26e2d0219022a7084c3cb1787b556418c32b8f348e25bb7fc57f1c747faf615
     home: https://github.com/jcmoraisjr/haproxy-ingress
@@ -67,7 +83,7 @@ entries:
   ingress-nginx:
   - apiVersion: v1
     appVersion: 0.33.0
-    created: "2020-07-08T12:09:51.010514842Z"
+    created: "2020-07-08T12:11:02.310731276Z"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: 420d6d465d9d92108f0340643cad2bad0b491a69a1e3eb0dc60e33119703d2b0
@@ -88,7 +104,7 @@ entries:
   longhorn:
   - apiVersion: v1
     appVersion: v1.0.0
-    created: "2020-07-08T12:09:51.011606546Z"
+    created: "2020-07-08T12:11:02.311760259Z"
     description: Longhorn is a distributed block storage system for Kubernetes powered
       by Rancher Labs.
     digest: 3a1e42e69516b062c6ee71e02a7d16609e66e809b81623687c7772454d0b3101
@@ -116,4 +132,52 @@ entries:
     urls:
     - longhorn-1.0.0.tgz
     version: 1.0.0
-generated: "2020-07-08T12:09:50.999576204Z"
+  traefik:
+  - apiVersion: v1
+    appVersion: 2.2.1
+    created: "2020-07-08T12:11:02.312982639Z"
+    description: A Traefik based Kubernetes ingress controller
+    digest: 357d7b7871534b53be4bc095f38b67b48f8f5e3c0cf46bfd8ff1bfddb293c79e
+    home: https://traefik.io/
+    icon: https://raw.githubusercontent.com/containous/traefik/v2.2/docs/content/assets/img/traefik.logo.png
+    keywords:
+    - traefik
+    - ingress
+    maintainers:
+    - email: emile@vauge.com
+      name: emilevauge
+    - email: daniel.tomcej@gmail.com
+      name: dtomcej
+    - email: ludovic@containo.us
+      name: ldez
+    name: traefik
+    sources:
+    - https://github.com/containous/traefik
+    urls:
+    - traefik-8.8.1.tgz
+    version: 8.8.1
+  vault:
+  - apiVersion: v2
+    appVersion: 1.4.2
+    created: "2020-07-08T12:11:02.315020204Z"
+    description: Official HashiCorp Vault Chart
+    digest: d2dd5296b1f96b87c840615f40bd8dacccf218e4cbdbc7ac9b07a50ae780490f
+    home: https://www.vaultproject.io
+    icon: https://github.com/hashicorp/vault/raw/f22d202cde2018f9455dec755118a9b84586e082/Vault_PrimaryLogo_Black.png
+    keywords:
+    - vault
+    - security
+    - encryption
+    - secrets
+    - management
+    - automation
+    - infrastructure
+    name: vault
+    sources:
+    - https://github.com/hashicorp/vault
+    - https://github.com/hashicorp/vault-helm
+    - https://github.com/hashicorp/vault-k8s
+    urls:
+    - vault-0.6.0.tgz
+    version: 0.6.0
+generated: "2020-07-08T12:11:02.295945125Z"
