@@ -3,7 +3,7 @@ entries:
   alpine:
   - apiVersion: v2
     appVersion: 3.12.0
-    created: "2020-07-08T11:58:56.811569607Z"
+    created: "2020-07-08T12:09:51.000649508Z"
     description: AlpineLinux work container
     digest: adf984e4427cf0033fab40a435bf58b1efd6578b6d25d8ca0191532e0cd67dd1
     home: https://github.com/wenerme/charts
@@ -25,7 +25,7 @@ entries:
   cert-manager:
   - apiVersion: v1
     appVersion: v0.15.2
-    created: "2020-07-08T11:58:56.816342922Z"
+    created: "2020-07-08T12:09:51.005476425Z"
     description: A Helm chart for cert-manager
     digest: 5d9780eb5a6ea37c399729c19bb2a1e3ef867928e916e4518e1672b278e5b421
     home: https://github.com/jetstack/cert-manager
@@ -47,7 +47,7 @@ entries:
   haproxy-ingress:
   - apiVersion: v1
     appVersion: 0.7.2
-    created: "2020-07-08T11:58:56.818325728Z"
+    created: "2020-07-08T12:09:51.007227031Z"
     description: Ingress controller implementation for haproxy loadbalancer.
     digest: a26e2d0219022a7084c3cb1787b556418c32b8f348e25bb7fc57f1c747faf615
     home: https://github.com/jcmoraisjr/haproxy-ingress
@@ -67,7 +67,7 @@ entries:
   ingress-nginx:
   - apiVersion: v1
     appVersion: 0.33.0
-    created: "2020-07-08T11:58:56.821423037Z"
+    created: "2020-07-08T12:09:51.010514842Z"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: 420d6d465d9d92108f0340643cad2bad0b491a69a1e3eb0dc60e33119703d2b0
@@ -88,7 +88,7 @@ entries:
   longhorn:
   - apiVersion: v1
     appVersion: v1.0.0
-    created: "2020-07-08T11:58:56.822480541Z"
+    created: "2020-07-08T12:09:51.011606546Z"
     description: Longhorn is a distributed block storage system for Kubernetes powered
       by Rancher Labs.
     digest: 3a1e42e69516b062c6ee71e02a7d16609e66e809b81623687c7772454d0b3101
@@ -116,4 +116,4 @@ entries:
     urls:
     - longhorn-1.0.0.tgz
     version: 1.0.0
-generated: "2020-07-08T11:58:56.810510004Z"
+generated: "2020-07-08T12:09:50.999576204Z"
