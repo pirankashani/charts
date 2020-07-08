@@ -3,7 +3,7 @@ entries:
   alpine:
   - apiVersion: v2
     appVersion: 3.12.0
-    created: "2020-07-08T10:37:15.767733813Z"
+    created: "2020-07-08T10:43:22.179434525Z"
     description: AlpineLinux work container
     digest: adf984e4427cf0033fab40a435bf58b1efd6578b6d25d8ca0191532e0cd67dd1
     home: https://github.com/wenerme/charts
@@ -25,7 +25,7 @@ entries:
   ingress-nginx:
   - apiVersion: v1
     appVersion: 0.33.0
-    created: "2020-07-08T10:37:15.770217374Z"
+    created: "2020-07-08T10:43:22.1822083Z"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: 420d6d465d9d92108f0340643cad2bad0b491a69a1e3eb0dc60e33119703d2b0
@@ -46,7 +46,7 @@ entries:
   longhorn:
   - apiVersion: v1
     appVersion: v1.0.0
-    created: "2020-07-08T10:37:15.771208659Z"
+    created: "2020-07-08T10:43:22.18327229Z"
     description: Longhorn is a distributed block storage system for Kubernetes powered
       by Rancher Labs.
     digest: 3a1e42e69516b062c6ee71e02a7d16609e66e809b81623687c7772454d0b3101
@@ -74,4 +74,4 @@ entries:
     urls:
     - longhorn-1.0.0.tgz
     version: 1.0.0
-generated: "2020-07-08T10:37:15.766680229Z"
+generated: "2020-07-08T10:43:22.178214837Z"
