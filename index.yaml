@@ -3,7 +3,7 @@ entries:
   alpine:
   - apiVersion: v2
     appVersion: 3.12.0
-    created: "2020-07-08T11:52:21.93929735Z"
+    created: "2020-07-08T11:58:56.811569607Z"
     description: AlpineLinux work container
     digest: adf984e4427cf0033fab40a435bf58b1efd6578b6d25d8ca0191532e0cd67dd1
     home: https://github.com/wenerme/charts
@@ -22,10 +22,52 @@ entries:
     urls:
     - alpine-1.0.0.tgz
     version: 1.0.0
+  cert-manager:
+  - apiVersion: v1
+    appVersion: v0.15.2
+    created: "2020-07-08T11:58:56.816342922Z"
+    description: A Helm chart for cert-manager
+    digest: 5d9780eb5a6ea37c399729c19bb2a1e3ef867928e916e4518e1672b278e5b421
+    home: https://github.com/jetstack/cert-manager
+    icon: https://raw.githubusercontent.com/jetstack/cert-manager/master/logo/logo.png
+    keywords:
+    - cert-manager
+    - kube-lego
+    - letsencrypt
+    - tls
+    maintainers:
+    - email: james@jetstack.io
+      name: munnerz
+    name: cert-manager
+    sources:
+    - https://github.com/jetstack/cert-manager
+    urls:
+    - cert-manager-v0.15.2.tgz
+    version: v0.15.2
+  haproxy-ingress:
+  - apiVersion: v1
+    appVersion: 0.7.2
+    created: "2020-07-08T11:58:56.818325728Z"
+    description: Ingress controller implementation for haproxy loadbalancer.
+    digest: a26e2d0219022a7084c3cb1787b556418c32b8f348e25bb7fc57f1c747faf615
+    home: https://github.com/jcmoraisjr/haproxy-ingress
+    icon: http://www.haproxy.org/img/HAProxyCommunityEdition_60px.png
+    keywords:
+    - ingress
+    - haproxy
+    maintainers:
+    - email: xianlubird@gmail.com
+      name: xianlubird
+    name: haproxy-ingress
+    sources:
+    - https://github.com/jcmoraisjr/haproxy-ingress
+    urls:
+    - haproxy-ingress-0.0.27.tgz
+    version: 0.0.27
   ingress-nginx:
   - apiVersion: v1
     appVersion: 0.33.0
-    created: "2020-07-08T11:52:21.942354041Z"
+    created: "2020-07-08T11:58:56.821423037Z"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: 420d6d465d9d92108f0340643cad2bad0b491a69a1e3eb0dc60e33119703d2b0
@@ -46,7 +88,7 @@ entries:
   longhorn:
   - apiVersion: v1
     appVersion: v1.0.0
-    created: "2020-07-08T11:52:21.943471038Z"
+    created: "2020-07-08T11:58:56.822480541Z"
     description: Longhorn is a distributed block storage system for Kubernetes powered
       by Rancher Labs.
     digest: 3a1e42e69516b062c6ee71e02a7d16609e66e809b81623687c7772454d0b3101
@@ -74,4 +116,4 @@ entries:
     urls:
     - longhorn-1.0.0.tgz
     version: 1.0.0
-generated: "2020-07-08T11:52:21.938096453Z"
+generated: "2020-07-08T11:58:56.810510004Z"
