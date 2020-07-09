@@ -3,7 +3,7 @@ entries:
   alpine:
   - apiVersion: v2
     appVersion: 3.12.0
-    created: "2020-07-09T17:32:54.844494595Z"
+    created: "2020-07-09T18:08:07.035537386Z"
     description: AlpineLinux work container
     digest: adf984e4427cf0033fab40a435bf58b1efd6578b6d25d8ca0191532e0cd67dd1
     home: https://github.com/wenerme/charts
@@ -25,7 +25,7 @@ entries:
   cert-manager:
   - apiVersion: v1
     appVersion: v0.15.2
-    created: "2020-07-09T17:32:54.848810963Z"
+    created: "2020-07-09T18:08:07.040474719Z"
     description: A Helm chart for cert-manager
     digest: 5d9780eb5a6ea37c399729c19bb2a1e3ef867928e916e4518e1672b278e5b421
     home: https://github.com/jetstack/cert-manager
@@ -47,7 +47,7 @@ entries:
   consul:
   - apiVersion: v1
     appVersion: 1.8.0
-    created: "2020-07-09T17:32:54.854059125Z"
+    created: "2020-07-09T18:08:07.046430539Z"
     description: Official HashiCorp Consul Chart
     digest: e9b5e9f5a0d64ccba1e3f7c9978cf773f7bab080510a6892220db69f8c67291b
     home: https://www.consul.io
@@ -63,7 +63,7 @@ entries:
   haproxy-ingress:
   - apiVersion: v1
     appVersion: 0.7.2
-    created: "2020-07-09T17:32:54.855369015Z"
+    created: "2020-07-09T18:08:07.04784712Z"
     description: Ingress controller implementation for haproxy loadbalancer.
     digest: a26e2d0219022a7084c3cb1787b556418c32b8f348e25bb7fc57f1c747faf615
     home: https://github.com/jcmoraisjr/haproxy-ingress
@@ -83,7 +83,7 @@ entries:
   ingress-nginx:
   - apiVersion: v1
     appVersion: 0.33.0
-    created: "2020-07-09T17:32:54.857694098Z"
+    created: "2020-07-09T18:08:07.050391485Z"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: 420d6d465d9d92108f0340643cad2bad0b491a69a1e3eb0dc60e33119703d2b0
@@ -104,7 +104,7 @@ entries:
   kubernetes-dashboard:
   - apiVersion: v1
     appVersion: 2.0.3
-    created: "2020-07-09T17:32:54.859427985Z"
+    created: "2020-07-09T18:08:07.052361559Z"
     dependencies:
     - condition: metrics-server.enabled
       name: metrics-server
@@ -130,7 +130,7 @@ entries:
   longhorn:
   - apiVersion: v1
     appVersion: v1.0.0
-    created: "2020-07-09T17:32:54.860341179Z"
+    created: "2020-07-09T18:08:07.05371344Z"
     description: Longhorn is a distributed block storage system for Kubernetes powered
       by Rancher Labs.
     digest: 3a1e42e69516b062c6ee71e02a7d16609e66e809b81623687c7772454d0b3101
@@ -161,7 +161,7 @@ entries:
   redis:
   - apiVersion: v1
     appVersion: 6.0.5
-    created: "2020-07-09T17:32:54.863447056Z"
+    created: "2020-07-09T18:08:07.05816898Z"
     description: Open source, advanced key-value store. It is often referred to as
       a data structure server since keys can contain strings, hashes, lists, sets
       and sorted sets.
@@ -185,7 +185,7 @@ entries:
     version: 10.7.11
   - apiVersion: v1
     appVersion: 6.0.5
-    created: "2020-07-09T17:32:54.867637325Z"
+    created: "2020-07-09T18:08:07.062708218Z"
     description: Open source, advanced key-value store. It is often referred to as
       a data structure server since keys can contain strings, hashes, lists, sets
       and sorted sets.
@@ -210,7 +210,7 @@ entries:
   traefik:
   - apiVersion: v1
     appVersion: 2.2.1
-    created: "2020-07-09T17:32:54.869930908Z"
+    created: "2020-07-09T18:08:07.065500381Z"
     description: A Traefik based Kubernetes ingress controller
     digest: 4fdf5b77acf5d68ef629341e571d57184109e6ea1e12893295a5bbe6f08dc097
     home: https://traefik.io/
@@ -233,7 +233,7 @@ entries:
     version: 8.9.0
   - apiVersion: v1
     appVersion: 2.2.1
-    created: "2020-07-09T17:32:54.868791217Z"
+    created: "2020-07-09T18:08:07.064168799Z"
     description: A Traefik based Kubernetes ingress controller
     digest: 357d7b7871534b53be4bc095f38b67b48f8f5e3c0cf46bfd8ff1bfddb293c79e
     home: https://traefik.io/
@@ -257,7 +257,7 @@ entries:
   vault:
   - apiVersion: v2
     appVersion: 1.4.2
-    created: "2020-07-09T17:32:54.871816294Z"
+    created: "2020-07-09T18:08:07.067614052Z"
     description: Official HashiCorp Vault Chart
     digest: d2dd5296b1f96b87c840615f40bd8dacccf218e4cbdbc7ac9b07a50ae780490f
     home: https://www.vaultproject.io
@@ -278,4 +278,4 @@ entries:
     urls:
     - vault-0.6.0.tgz
     version: 0.6.0
-generated: "2020-07-09T17:32:54.843529702Z"
+generated: "2020-07-09T18:08:07.034636499Z"
