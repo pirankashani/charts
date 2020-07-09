@@ -8,4 +8,4 @@ sources:
 - https://github.com/hashicorp/consul
 - https://github.com/hashicorp/consul-helm
 - https://github.com/hashicorp/consul-k8s
-version: 0.22.0
+version: 0.23.0

@@ -1,7 +1,7 @@
-# tls-init job generate Consul cluster CA and certificates for the Consul servers
-# and creates Kubernetes secrets for them.
 {{- if (or (and (ne (.Values.server.enabled | toString) "-") .Values.server.enabled) (and (eq (.Values.server.enabled | toString) "-") .Values.global.enabled)) }}
 {{- if .Values.global.tls.enabled }}
+# tls-init job generate Consul cluster CA and certificates for the Consul servers
+# and creates Kubernetes secrets for them.
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -84,8 +84,8 @@ spec:
                 {{- end }}
                 -additional-dnsname='{{ template "consul.fullname" . }}-server' \
                 -additional-dnsname='*.{{ template "consul.fullname" . }}-server' \
-                -additional-dnsname='*.{{ template "consul.fullname" . }}-server.{{ .Release.Namespace }}' \
-                -additional-dnsname='*.{{ template "consul.fullname" . }}-server.{{ .Release.Namespace }}.svc' \
+                -additional-dnsname="'*.{{ template "consul.fullname" . }}-server.${NAMESPACE}'" \
+                -additional-dnsname="'*.{{ template "consul.fullname" . }}-server.${NAMESPACE}.svc'" \
                 -additional-dnsname='*.server.{{ .Values.global.datacenter }}.{{ .Values.global.domain }}' \
                 {{- range .Values.global.tls.serverAdditionalIPSANs }}
                 -additional-ipaddress={{ . }} \

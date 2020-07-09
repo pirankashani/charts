@@ -1,5 +1,36 @@
 ## Unreleased
 
+## 0.23.0 (July 9, 2020)
+
+BREAKING CHANGES:
+
+* Connect: Resource limits have been set for ingress and terminating gateway containers and
+  bumped up for mesh gateways. See deployment definitions for new resource settings. [[GH-533](https://github.com/hashicorp/consul-helm/pull/533), [GH-534](https://github.com/hashicorp/consul-helm/pull/534)]
+
+IMPROVEMENTS:
+
+* Default version of `consul-k8s` has been set to `hashicorp/consul-k8s:0.17.0`.
+* ClusterRoles and ClusterRoleBindings have been converted to Roles and RoleBindings
+  for the following components because they only required access within their namespace:
+  * Enterprise License Job
+  * Server ACL Init
+  * Server Statefulset
+  * Client Daemonset
+  * Client Snapshot Agent
+
+   [Fixes [GH-403](https://github.com/hashicorp/consul-helm/issues/403)]
+
+* The volumes set by `client.extraVolumes` are now passed as the last `-config-dir` argument.
+  This means any settings there will override previous settings. This allows users to override
+  settings that Helm is setting automatically, for example the acl down policy. [[GH-531](https://github.com/hashicorp/consul-helm/pull/531)]
+
+BUG FIXES:
+
+* Connect: Resource settings for mesh, ingress and terminating gateway init containers
+ lifecycle sidecar containers have been changed to avoid out of memory errors and hitting CPU limits. [[GH-515](https://github.com/hashicorp/consul-helm/issues/515)]
+     * `copy-consul-bin` has its memory limit set to `150M` up from `25M`
+     * `lifecycle-sidecar` has its CPU request and limit set to `20m` up from `10m`.
+
 ## 0.22.0 (June 18, 2020)
 
 FEATURES:
@@ -29,6 +60,8 @@ FEATURES:
   defaults according to your usage. [[GH-466](https://github.com/hashicorp/consul-helm/pull/466)]
 
 BREAKING CHANGES:
+
+* If upgrading to Consul 1.8.0 and using Consul Connect, you will need to upgrade consul-k8s to 0.16.0 (by setting `global.imageK8S: hashicorp/consul-k8s:0.16.0`) and re-roll your Connect pods so they get re-injected, before upgrading consul. This is required because we were previously setting a health check incorrectly that now fails on Consul 1.8.0. If you upgrade to 1.8.0 without upgrading to consul-k8s 0.16.0 and re-rolling your connect pods first, the connect pods will fail their health checks and no traffic will be routed to them.
 
 * It is recommended to use the helm repository to install the helm chart instead of cloning this repo directly. Starting with this release
  the master branch may contain breaking changes.
