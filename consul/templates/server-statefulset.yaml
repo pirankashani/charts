@@ -38,8 +38,12 @@ spec:
         release: {{ .Release.Name }}
         component: server
         hasDNS: "true"
+        {{- if .Values.server.extraLabels }}
+          {{- toYaml .Values.server.extraLabels | nindent 8 }}
+        {{- end }}
       annotations:
         "consul.hashicorp.com/connect-inject": "false"
+        "consul.hashicorp.com/config-checksum": {{ .Values.server.extraConfig | sha256sum }}
         {{- if .Values.server.annotations }}
           {{- tpl .Values.server.annotations . | nindent 8 }}
         {{- end }}
@@ -54,8 +58,10 @@ spec:
     {{- end }}
       terminationGracePeriodSeconds: 30
       serviceAccountName: {{ template "consul.fullname" . }}-server
+      {{- if not .Values.server.disableFsGroupSecurityContext }}
       securityContext:
         fsGroup: 1000
+      {{- end }}
       volumes:
         - name: config
           configMap:
