@@ -16,4 +16,4 @@ maintainers:
 name: traefik
 sources:
 - https://github.com/containous/traefik
-version: 8.13.2
+version: 8.13.3
