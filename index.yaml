@@ -3,7 +3,7 @@ entries:
   alpine:
   - apiVersion: v2
     appVersion: 3.12.0
-    created: "2020-09-04T19:33:55.974299426Z"
+    created: "2020-09-05T07:16:58.427849224Z"
     description: AlpineLinux work container
     digest: adf984e4427cf0033fab40a435bf58b1efd6578b6d25d8ca0191532e0cd67dd1
     home: https://github.com/wenerme/charts
@@ -25,7 +25,7 @@ entries:
   ambassador:
   - apiVersion: v1
     appVersion: 1.7.0
-    created: "2020-09-04T19:33:55.98127806Z"
+    created: "2020-09-05T07:16:58.436081992Z"
     description: A Helm chart for Datawire Ambassador
     digest: 9d77cf85b30ab65c33141e25d979b1b2e11327282d0596ca92d66438c19c9bb0
     home: https://www.getambassador.io/
@@ -55,7 +55,7 @@ entries:
     version: 6.5.3
   - apiVersion: v1
     appVersion: 1.6.2
-    created: "2020-09-04T19:33:55.977861045Z"
+    created: "2020-09-05T07:16:58.43131951Z"
     description: A Helm chart for Datawire Ambassador
     digest: 2af3d6fbab4e008fcf0c671a8579789ad1686598ae6ef8deb3d07f2633f9c089
     home: https://www.getambassador.io/
@@ -86,7 +86,7 @@ entries:
   cert-manager:
   - apiVersion: v1
     appVersion: v1.0.1
-    created: "2020-09-04T19:33:56.02576085Z"
+    created: "2020-09-05T07:16:58.474962644Z"
     description: A Helm chart for cert-manager
     digest: 4c91025b38c775683ddae3ea824941acd74c2e46a5db93117a5382ff03c4423c
     home: https://github.com/jetstack/cert-manager
@@ -107,7 +107,7 @@ entries:
     version: v1.0.1
   - apiVersion: v1
     appVersion: v1.0.0
-    created: "2020-09-04T19:33:56.014949688Z"
+    created: "2020-09-05T07:16:58.467364073Z"
     description: A Helm chart for cert-manager
     digest: a6a69db6bf5d4ff7b76aa564edfb926c44ea1806f40efeebddbf23b16ecdd7f2
     home: https://github.com/jetstack/cert-manager
@@ -128,7 +128,7 @@ entries:
     version: v1.0.0
   - apiVersion: v1
     appVersion: v0.16.1
-    created: "2020-09-04T19:33:56.005727679Z"
+    created: "2020-09-05T07:16:58.458775105Z"
     description: A Helm chart for cert-manager
     digest: 2b12028617b09b1255cb5d2aa66ab8d1b07ec70158919a7f872dc1c8d9bed7ac
     home: https://github.com/jetstack/cert-manager
@@ -149,7 +149,7 @@ entries:
     version: v0.16.1
   - apiVersion: v1
     appVersion: v0.16.0
-    created: "2020-09-04T19:33:55.996637474Z"
+    created: "2020-09-05T07:16:58.450517437Z"
     description: A Helm chart for cert-manager
     digest: e9e5021814c1278b225acee9bf62b931e3af8edff170eb9f019925f59aa8fa7a
     home: https://github.com/jetstack/cert-manager
@@ -170,7 +170,7 @@ entries:
     version: v0.16.0
   - apiVersion: v1
     appVersion: v0.15.2
-    created: "2020-09-04T19:33:55.987599472Z"
+    created: "2020-09-05T07:16:58.441026573Z"
     description: A Helm chart for cert-manager
     digest: 5d9780eb5a6ea37c399729c19bb2a1e3ef867928e916e4518e1672b278e5b421
     home: https://github.com/jetstack/cert-manager
@@ -192,7 +192,7 @@ entries:
   consul:
   - apiVersion: v1
     appVersion: 1.8.2
-    created: "2020-09-04T19:33:56.056695186Z"
+    created: "2020-09-05T07:16:58.500750445Z"
     description: Official HashiCorp Consul Chart
     digest: b5c9772ba7300f5afd9ee6d84e453474c83ba9e18d3237ac58b73a5515a1a561
     home: https://www.consul.io
@@ -207,7 +207,7 @@ entries:
     version: 0.24.1
   - apiVersion: v1
     appVersion: 1.8.1
-    created: "2020-09-04T19:33:56.048301005Z"
+    created: "2020-09-05T07:16:58.495651465Z"
     description: Official HashiCorp Consul Chart
     digest: cd033adb4e33bd80512d6a8900610c98be5291aef3659a21343195c1ab925f69
     home: https://www.consul.io
@@ -222,7 +222,7 @@ entries:
     version: 0.24.0
   - apiVersion: v1
     appVersion: 1.8.0
-    created: "2020-09-04T19:33:56.041760886Z"
+    created: "2020-09-05T07:16:58.489970186Z"
     description: Official HashiCorp Consul Chart
     digest: 04ed333781e577f4dd63e80cb550b97dcbb5b6393a8f39e6d8048f57ea940ca7
     home: https://www.consul.io
@@ -237,7 +237,7 @@ entries:
     version: 0.23.1
   - apiVersion: v1
     appVersion: 1.8.0
-    created: "2020-09-04T19:33:56.036605013Z"
+    created: "2020-09-05T07:16:58.485273004Z"
     description: Official HashiCorp Consul Chart
     digest: 620697c40188c2789a2bf1a1cefa60e54af0456c174954135fd6a7a48e71916d
     home: https://www.consul.io
@@ -252,7 +252,7 @@ entries:
     version: 0.23.0
   - apiVersion: v1
     appVersion: 1.8.0
-    created: "2020-09-04T19:33:56.031601645Z"
+    created: "2020-09-05T07:16:58.479920625Z"
     description: Official HashiCorp Consul Chart
     digest: e9b5e9f5a0d64ccba1e3f7c9978cf773f7bab080510a6892220db69f8c67291b
     home: https://www.consul.io
@@ -268,7 +268,7 @@ entries:
   haproxy-ingress:
   - apiVersion: v1
     appVersion: 0.7.2
-    created: "2020-09-04T19:33:56.05829744Z"
+    created: "2020-09-05T07:16:58.50205034Z"
     description: Ingress controller implementation for haproxy loadbalancer.
     digest: a26e2d0219022a7084c3cb1787b556418c32b8f348e25bb7fc57f1c747faf615
     home: https://github.com/jcmoraisjr/haproxy-ingress
@@ -288,7 +288,7 @@ entries:
   harbor:
   - apiVersion: v1
     appVersion: 2.0.2
-    created: "2020-09-04T19:33:56.062305574Z"
+    created: "2020-09-05T07:16:58.506641123Z"
     description: An open source trusted cloud native registry that stores, signs,
       and scans content
     digest: 30b61d56dfb2a703b994b470799f81ad405fea41e2ba36803e63020be7649c39
@@ -315,7 +315,7 @@ entries:
   ingress-nginx:
   - apiVersion: v1
     appVersion: 0.35.0
-    created: "2020-09-04T19:33:56.090677324Z"
+    created: "2020-09-05T07:16:58.530559431Z"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: 88f71938c7f549e621e1edefceaf66769a34a1dc31990d53f242e053e6689281
@@ -335,7 +335,7 @@ entries:
     version: 2.15.0
   - apiVersion: v1
     appVersion: 0.35.0
-    created: "2020-09-04T19:33:56.088119038Z"
+    created: "2020-09-05T07:16:58.52812954Z"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: 74dea2ff239517f0ada3a1191a9a82aa057daec07222a6fab17686156b7e72eb
@@ -355,7 +355,7 @@ entries:
     version: 2.14.0
   - apiVersion: v1
     appVersion: 0.35.0
-    created: "2020-09-04T19:33:56.085604754Z"
+    created: "2020-09-05T07:16:58.52572815Z"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: 579b99c75091a81c14573a5597d45ddeacc127be618e013cfff87b566cea0c82
@@ -375,7 +375,7 @@ entries:
     version: 2.13.0
   - apiVersion: v1
     appVersion: 0.34.1
-    created: "2020-09-04T19:33:56.083148472Z"
+    created: "2020-09-05T07:16:58.523474758Z"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: eb76c0dcdc399de4bda99901a9bd9a9ed72457060e29e2978026c7e0f50d4ffe
@@ -395,7 +395,7 @@ entries:
     version: 2.12.1
   - apiVersion: v1
     appVersion: 0.34.1
-    created: "2020-09-04T19:33:56.079569352Z"
+    created: "2020-09-05T07:16:58.520684869Z"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: 0350f067f29d66ae7052e61f365a8ffb6b69ebdc1f4d73b8fd3409d0e53ba8a3
@@ -415,7 +415,7 @@ entries:
     version: 2.12.0
   - apiVersion: v1
     appVersion: 0.34.1
-    created: "2020-09-04T19:33:56.076625453Z"
+    created: "2020-09-05T07:16:58.518202178Z"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: 9e6e6e36acd36c7ca8a7d3169e387aebe9bff7976d56a7160e62e16d7d393fc0
@@ -435,7 +435,7 @@ entries:
     version: 2.11.3
   - apiVersion: v1
     appVersion: 0.34.1
-    created: "2020-09-04T19:33:56.074159971Z"
+    created: "2020-09-05T07:16:58.515888187Z"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: dfd58a049f4e3aa44f09abeb0a4eaa713ec99a0c53f13f45688b841216b8c5d1
@@ -455,7 +455,7 @@ entries:
     version: 2.11.2
   - apiVersion: v1
     appVersion: 0.34.1
-    created: "2020-09-04T19:33:56.071551684Z"
+    created: "2020-09-05T07:16:58.513955795Z"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: 4294b7f827c9080099ccf66b910d1ffde50f8261b09965d8e8c6559438e8f119
@@ -475,7 +475,7 @@ entries:
     version: 2.11.1
   - apiVersion: v1
     appVersion: 0.34.0
-    created: "2020-09-04T19:33:56.068909695Z"
+    created: "2020-09-05T07:16:58.511547304Z"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: 1bf6571a061123fb933fb666d14bb21aa30b91d994e4e367875d933895b87a53
@@ -495,7 +495,7 @@ entries:
     version: 2.11.0
   - apiVersion: v1
     appVersion: 0.33.0
-    created: "2020-09-04T19:33:56.064950062Z"
+    created: "2020-09-05T07:16:58.509128213Z"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: 420d6d465d9d92108f0340643cad2bad0b491a69a1e3eb0dc60e33119703d2b0
@@ -518,7 +518,7 @@ entries:
       category: Analytics
     apiVersion: v1
     appVersion: 0.41.1
-    created: "2020-09-04T19:33:56.112612359Z"
+    created: "2020-09-05T07:16:58.545980072Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -559,7 +559,7 @@ entries:
   kubernetes-dashboard:
   - apiVersion: v1
     appVersion: 2.0.3
-    created: "2020-09-04T19:33:56.116800399Z"
+    created: "2020-09-05T07:16:58.54926166Z"
     dependencies:
     - condition: metrics-server.enabled
       name: metrics-server
@@ -584,7 +584,7 @@ entries:
     version: 2.3.0
   - apiVersion: v1
     appVersion: 2.0.3
-    created: "2020-09-04T19:33:56.114814533Z"
+    created: "2020-09-05T07:16:58.547452167Z"
     dependencies:
     - condition: metrics-server.enabled
       name: metrics-server
@@ -610,7 +610,7 @@ entries:
   linkerd2:
   - apiVersion: v1
     appVersion: stable-2.8.1
-    created: "2020-09-04T19:33:56.119683396Z"
+    created: "2020-09-05T07:16:58.55176865Z"
     dependencies:
     - name: partials
       repository: file://../partials
@@ -644,7 +644,7 @@ entries:
   longhorn:
   - apiVersion: v1
     appVersion: v1.0.2
-    created: "2020-09-04T19:33:56.122006473Z"
+    created: "2020-09-05T07:16:58.553515043Z"
     description: Longhorn is a distributed block storage system for Kubernetes.
     digest: 44d172d694eda474dd2152b3ab31d7eb4bb1467e0eb7135f9665532e572e5d31
     home: https://github.com/longhorn/longhorn
@@ -675,7 +675,7 @@ entries:
     version: 1.0.2
   - apiVersion: v1
     appVersion: v1.0.0
-    created: "2020-09-04T19:33:56.120744231Z"
+    created: "2020-09-05T07:16:58.552670547Z"
     description: Longhorn is a distributed block storage system for Kubernetes powered
       by Rancher Labs.
     digest: 3a1e42e69516b062c6ee71e02a7d16609e66e809b81623687c7772454d0b3101
@@ -708,7 +708,7 @@ entries:
       category: Infrastructure
     apiVersion: v1
     appVersion: 0.9.3
-    created: "2020-09-04T19:33:56.123309117Z"
+    created: "2020-09-05T07:16:58.554547939Z"
     description: The Metal LB for Kubernetes
     digest: 930d3bfd2c9425b08df5f25d9159e4a7da7f9c23acbcf5e7e8fbd9c54bd07eae
     home: https://metallb.universe.tf
@@ -733,12 +733,33 @@ entries:
     urls:
     - metallb-0.1.21.tgz
     version: 0.1.21
+  minio:
+  - apiVersion: v1
+    appVersion: master
+    created: "2020-09-05T07:16:58.555911034Z"
+    description: High Performance, Kubernetes Native Object Storage
+    digest: f4e9f81e651ca69f9383906b2b7303128cd88c21d16eb4c66d035338892cc223
+    home: https://min.io
+    icon: https://min.io/resources/img/logo/MINIO_wordmark.png
+    keywords:
+    - storage
+    - object-storage
+    - S3
+    maintainers:
+    - email: dev@minio.io
+      name: Minio
+    name: minio
+    sources:
+    - https://github.com/minio/minio
+    urls:
+    - minio-6.0.5.tgz
+    version: 6.0.5
   redis:
   - annotations:
       category: Database
     apiVersion: v1
     appVersion: 6.0.7
-    created: "2020-09-04T19:33:56.159097916Z"
+    created: "2020-09-05T07:16:58.586465017Z"
     description: Open source, advanced key-value store. It is often referred to as
       a data structure server since keys can contain strings, hashes, lists, sets
       and sorted sets.
@@ -764,7 +785,7 @@ entries:
       category: Database
     apiVersion: v1
     appVersion: 6.0.6
-    created: "2020-09-04T19:33:56.15475007Z"
+    created: "2020-09-05T07:16:58.583315729Z"
     description: Open source, advanced key-value store. It is often referred to as
       a data structure server since keys can contain strings, hashes, lists, sets
       and sorted sets.
@@ -790,7 +811,7 @@ entries:
       category: Database
     apiVersion: v1
     appVersion: 6.0.6
-    created: "2020-09-04T19:33:56.146490493Z"
+    created: "2020-09-05T07:16:58.576614555Z"
     description: Open source, advanced key-value store. It is often referred to as
       a data structure server since keys can contain strings, hashes, lists, sets
       and sorted sets.
@@ -816,7 +837,7 @@ entries:
       category: Database
     apiVersion: v1
     appVersion: 6.0.6
-    created: "2020-09-04T19:33:56.142910074Z"
+    created: "2020-09-05T07:16:58.573098069Z"
     description: Open source, advanced key-value store. It is often referred to as
       a data structure server since keys can contain strings, hashes, lists, sets
       and sorted sets.
@@ -842,7 +863,7 @@ entries:
       category: Database
     apiVersion: v1
     appVersion: 6.0.6
-    created: "2020-09-04T19:33:56.138831037Z"
+    created: "2020-09-05T07:16:58.56997058Z"
     description: Open source, advanced key-value store. It is often referred to as
       a data structure server since keys can contain strings, hashes, lists, sets
       and sorted sets.
@@ -868,7 +889,7 @@ entries:
       category: Database
     apiVersion: v1
     appVersion: 6.0.6
-    created: "2020-09-04T19:33:56.134175981Z"
+    created: "2020-09-05T07:16:58.566762093Z"
     description: Open source, advanced key-value store. It is often referred to as
       a data structure server since keys can contain strings, hashes, lists, sets
       and sorted sets.
@@ -894,7 +915,7 @@ entries:
       category: Database
     apiVersion: v1
     appVersion: 6.0.6
-    created: "2020-09-04T19:33:56.130670764Z"
+    created: "2020-09-05T07:16:58.562511409Z"
     description: Open source, advanced key-value store. It is often referred to as
       a data structure server since keys can contain strings, hashes, lists, sets
       and sorted sets.
@@ -918,7 +939,7 @@ entries:
     version: 10.7.12
   - apiVersion: v1
     appVersion: 6.0.5
-    created: "2020-09-04T19:33:56.127072343Z"
+    created: "2020-09-05T07:16:58.558658424Z"
     description: Open source, advanced key-value store. It is often referred to as
       a data structure server since keys can contain strings, hashes, lists, sets
       and sorted sets.
@@ -942,7 +963,7 @@ entries:
     version: 10.7.11
   - apiVersion: v1
     appVersion: 6.0.5
-    created: "2020-09-04T19:33:56.150220718Z"
+    created: "2020-09-05T07:16:58.580160842Z"
     description: Open source, advanced key-value store. It is often referred to as
       a data structure server since keys can contain strings, hashes, lists, sets
       and sorted sets.
@@ -967,7 +988,7 @@ entries:
   traefik:
   - apiVersion: v2
     appVersion: 2.2.8
-    created: "2020-09-04T19:33:56.183779242Z"
+    created: "2020-09-05T07:16:58.604278749Z"
     description: A Traefik based Kubernetes ingress controller
     digest: c73cb06321be9d230b9263651541ec52a38f4d183db3cf81d7e919a75ff3e15d
     home: https://traefik.io/
@@ -991,7 +1012,7 @@ entries:
     version: 9.1.1
   - apiVersion: v2
     appVersion: 2.2.8
-    created: "2020-09-04T19:33:56.182111186Z"
+    created: "2020-09-05T07:16:58.603084354Z"
     description: A Traefik based Kubernetes ingress controller
     digest: 40027baf257257b67d3cc4f4ab37c77e440d3f96b27985645a92c8e3850f874c
     home: https://traefik.io/
@@ -1015,7 +1036,7 @@ entries:
     version: 9.1.0
   - apiVersion: v2
     appVersion: 2.2.8
-    created: "2020-09-04T19:33:56.180551134Z"
+    created: "2020-09-05T07:16:58.601821759Z"
     description: A Traefik based Kubernetes ingress controller
     digest: 423352173303a6019b57f436d2a5029b1ec5adbae848c7d19bf261682e339f6d
     home: https://traefik.io/
@@ -1039,7 +1060,7 @@ entries:
     version: 9.0.0
   - apiVersion: v1
     appVersion: 2.2.8
-    created: "2020-09-04T19:33:56.17265477Z"
+    created: "2020-09-05T07:16:58.595860682Z"
     description: A Traefik based Kubernetes ingress controller
     digest: c236de4e58e30cb2a304b05aa1e73badb96843ba526b35439ead1234e4f1cf76
     home: https://traefik.io/
@@ -1062,7 +1083,7 @@ entries:
     version: 8.13.3
   - apiVersion: v1
     appVersion: 2.2.8
-    created: "2020-09-04T19:33:56.168084517Z"
+    created: "2020-09-05T07:16:58.594672886Z"
     description: A Traefik based Kubernetes ingress controller
     digest: 82f750469bc53fddfcf6f44f0be064dc17437b90eb6c0dcd8e785658494f729c
     home: https://traefik.io/
@@ -1085,7 +1106,7 @@ entries:
     version: 8.13.2
   - apiVersion: v1
     appVersion: 2.2.8
-    created: "2020-09-04T19:33:56.166045748Z"
+    created: "2020-09-05T07:16:58.593169392Z"
     description: A Traefik based Kubernetes ingress controller
     digest: dff468dda315880f8885cb2071b3b045baf4d340e769df10ec05be9aacbd9b51
     home: https://traefik.io/
@@ -1108,7 +1129,7 @@ entries:
     version: 8.13.1
   - apiVersion: v1
     appVersion: 2.2.8
-    created: "2020-09-04T19:33:56.1645958Z"
+    created: "2020-09-05T07:16:58.591237099Z"
     description: A Traefik based Kubernetes ingress controller
     digest: f28c8a5421a563d0eb746227f7e7b1898a8c2b5f9352fc78001c5000ef703982
     home: https://traefik.io/
@@ -1131,7 +1152,7 @@ entries:
     version: 8.13.0
   - apiVersion: v1
     appVersion: 2.2.8
-    created: "2020-09-04T19:33:56.16309895Z"
+    created: "2020-09-05T07:16:58.589767605Z"
     description: A Traefik based Kubernetes ingress controller
     digest: 3064d099be0d7cdd68dfa40656574dd01a2723e788c771cf76de22f4c032dfb6
     home: https://traefik.io/
@@ -1154,7 +1175,7 @@ entries:
     version: 8.12.0
   - apiVersion: v1
     appVersion: 2.2.8
-    created: "2020-09-04T19:33:56.161752405Z"
+    created: "2020-09-05T07:16:58.588690309Z"
     description: A Traefik based Kubernetes ingress controller
     digest: c139301eaca9bcec331e48cea3ae621222d51afde0a2395a916cb5bebe74c05c
     home: https://traefik.io/
@@ -1177,7 +1198,7 @@ entries:
     version: 8.11.0
   - apiVersion: v1
     appVersion: 2.2.8
-    created: "2020-09-04T19:33:56.160393059Z"
+    created: "2020-09-05T07:16:58.587658213Z"
     description: A Traefik based Kubernetes ingress controller
     digest: 4f3d2b6927c0f1dab9d76f94dae2e63857768a1be1594e7eec7e678d6d9ff646
     home: https://traefik.io/
@@ -1200,7 +1221,7 @@ entries:
     version: 8.10.0
   - apiVersion: v1
     appVersion: 2.2.8
-    created: "2020-09-04T19:33:56.179115686Z"
+    created: "2020-09-05T07:16:58.600409764Z"
     description: A Traefik based Kubernetes ingress controller
     digest: c8695fe9876ca203500df7c0172dbfd3b14ef0f3b96f5e85db5b73a576117b66
     home: https://traefik.io/
@@ -1223,7 +1244,7 @@ entries:
     version: 8.9.2
   - apiVersion: v1
     appVersion: 2.2.5
-    created: "2020-09-04T19:33:56.177816043Z"
+    created: "2020-09-05T07:16:58.599315768Z"
     description: A Traefik based Kubernetes ingress controller
     digest: 86fb4d545d17e1fd40f1ea4ab024771552d591699c4186db3574ba40adb8f4e5
     home: https://traefik.io/
@@ -1246,7 +1267,7 @@ entries:
     version: 8.9.1
   - apiVersion: v1
     appVersion: 2.2.1
-    created: "2020-09-04T19:33:56.175245757Z"
+    created: "2020-09-05T07:16:58.598184773Z"
     description: A Traefik based Kubernetes ingress controller
     digest: 4fdf5b77acf5d68ef629341e571d57184109e6ea1e12893295a5bbe6f08dc097
     home: https://traefik.io/
@@ -1269,7 +1290,7 @@ entries:
     version: 8.9.0
   - apiVersion: v1
     appVersion: 2.2.1
-    created: "2020-09-04T19:33:56.173973114Z"
+    created: "2020-09-05T07:16:58.596929877Z"
     description: A Traefik based Kubernetes ingress controller
     digest: 357d7b7871534b53be4bc095f38b67b48f8f5e3c0cf46bfd8ff1bfddb293c79e
     home: https://traefik.io/
@@ -1293,7 +1314,7 @@ entries:
   vault:
   - apiVersion: v2
     appVersion: 1.5.2
-    created: "2020-09-04T19:33:56.190414865Z"
+    created: "2020-09-05T07:16:58.60940503Z"
     description: Official HashiCorp Vault Chart
     digest: e3c7fc78e459a6f092a95eb9a63f315394af9b0632a5701559f8732562704f3f
     home: https://www.vaultproject.io
@@ -1316,7 +1337,7 @@ entries:
     version: 0.7.0
   - apiVersion: v2
     appVersion: 1.4.2
-    created: "2020-09-04T19:33:56.185995017Z"
+    created: "2020-09-05T07:16:58.606889339Z"
     description: Official HashiCorp Vault Chart
     digest: d2dd5296b1f96b87c840615f40bd8dacccf218e4cbdbc7ac9b07a50ae780490f
     home: https://www.vaultproject.io
@@ -1337,4 +1358,4 @@ entries:
     urls:
     - vault-0.6.0.tgz
     version: 0.6.0
-generated: "2020-09-04T19:33:55.973663505Z"
+generated: "2020-09-05T07:16:58.427303226Z"
