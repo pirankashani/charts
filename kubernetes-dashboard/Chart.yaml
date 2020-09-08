@@ -13,4 +13,4 @@ maintainers:
 name: kubernetes-dashboard
 sources:
 - https://github.com/kubernetes/dashboard
-version: 2.3.0
+version: 2.5.0
