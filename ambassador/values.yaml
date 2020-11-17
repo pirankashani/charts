@@ -44,7 +44,7 @@ hostNetwork: false
 image:
   pullPolicy: IfNotPresent
   repository: docker.io/datawire/aes
-  tag: 1.7.1
+  tag: 1.9.0
 imagePullSecrets: []
 initContainers: []
 licenseKey:
@@ -60,6 +60,7 @@ metrics:
   serviceMonitor:
     enabled: false
 nameOverride: ""
+namespaceOverride: ""
 nodeSelector: {}
 podAnnotations: {}
 podDisruptionBudget: {}
@@ -82,12 +83,18 @@ readinessProbe:
   initialDelaySeconds: 30
   periodSeconds: 3
 redis:
+  affinity: {}
   annotations:
     deployment: {}
     service: {}
   create: true
+  image:
+    pullPolicy: IfNotPresent
+    repository: redis
+    tag: 5.0.1
   nodeSelector: {}
   resources: {}
+  tolerations: {}
 redisURL: null
 registry:
   create: false
@@ -142,6 +149,10 @@ servicePreview:
       tag: null
     serviceAccountName: traffic-manager
 sidecarContainers: []
+terminationGracePeriodSeconds: null
+test:
+  enabled: true
+  image: busybox
 tolerations: []
 volumeMounts: []
 volumes: []

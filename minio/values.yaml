@@ -4,12 +4,9 @@ DeploymentUpdate:
   type: RollingUpdate
 StatefulSetUpdate:
   updateStrategy: RollingUpdate
-accessKey: YOURACCESSKEY
+accessKey: ""
 affinity: {}
 azuregateway:
-  enabled: false
-  replicas: 4
-b2gateway:
   enabled: false
   replicas: 4
 bucketRoot: ""
@@ -23,8 +20,7 @@ defaultBucket:
   policy: none
   purge: false
 drivesPerNode: 1
-environment:
-  MINIO_API_READY_DEADLINE: 5s
+environment: null
 etcd:
   clientCert: ""
   clientCertKey: ""
@@ -46,7 +42,7 @@ helmKubectlJqImage:
 image:
   pullPolicy: IfNotPresent
   repository: minio/minio
-  tag: RELEASE.2020-08-08T04-50-06Z
+  tag: RELEASE.2020-10-18T21-54-12Z
 imagePullSecrets: []
 ingress:
   annotations: {}
@@ -56,18 +52,21 @@ ingress:
   labels: {}
   path: /
   tls: []
-livenessProbe:
-  failureThreshold: 1
-  initialDelaySeconds: 5
-  periodSeconds: 5
-  successThreshold: 1
-  timeoutSeconds: 1
 makeBucketJob:
   annotations: null
+  podAnnotations: null
+  resources:
+    requests:
+      memory: 128Mi
+  securityContext:
+    enabled: false
+    fsGroup: 1000
+    runAsGroup: 1000
+    runAsUser: 1000
 mcImage:
   pullPolicy: IfNotPresent
   repository: minio/mc
-  tag: RELEASE.2020-08-08T02-33-58Z
+  tag: RELEASE.2020-10-03T02-54-56Z
 metrics:
   serviceMonitor:
     additionalLabels: {}
@@ -83,10 +82,6 @@ networkPolicy:
   allowExternal: true
   enabled: false
 nodeSelector: {}
-ossgateway:
-  enabled: false
-  endpointURL: ""
-  replicas: 4
 persistence:
   VolumeName: ""
   accessMode: ReadWriteOnce
@@ -101,12 +96,6 @@ podDisruptionBudget:
   maxUnavailable: 1
 podLabels: {}
 priorityClassName: ""
-readinessProbe:
-  failureThreshold: 3
-  initialDelaySeconds: 30
-  periodSeconds: 5
-  successThreshold: 1
-  timeoutSeconds: 6
 replicas: 4
 resources:
   requests:
@@ -117,7 +106,7 @@ s3gateway:
   replicas: 4
   secretKey: ""
   serviceEndpoint: ""
-secretKey: YOURSECRETKEY
+secretKey: ""
 securityContext:
   enabled: true
   fsGroup: 1000
@@ -139,6 +128,13 @@ tls:
   privateKey: private.key
   publicCrt: public.crt
 tolerations: []
+trustedCertsSecret: ""
 updatePrometheusJob:
   annotations: null
+  podAnnotations: null
+  securityContext:
+    enabled: false
+    fsGroup: 1000
+    runAsGroup: 1000
+    runAsUser: 1000
 zones: 1

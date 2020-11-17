@@ -1,5 +1,8 @@
+annotations:
+  artifacthub.io/changes: |
+    - Update ingress-nginx image to v0.41.2
 apiVersion: v1
-appVersion: 0.35.0
+appVersion: 0.41.2
 description: Ingress controller for Kubernetes using NGINX as a reverse proxy and
   load balancer
 home: https://github.com/kubernetes/ingress-nginx
@@ -7,10 +10,10 @@ icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/5
 keywords:
 - ingress
 - nginx
-kubeVersion: '>=1.10.0-0'
+kubeVersion: '>=1.16.0-0'
 maintainers:
 - name: ChiefAlexander
 name: ingress-nginx
 sources:
 - https://github.com/kubernetes/ingress-nginx
-version: 2.16.0
+version: 3.10.1

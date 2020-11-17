@@ -1,6 +1,6 @@
 image:
   repository: cockroachdb/cockroach
-  tag: v20.1.5
+  tag: v20.2.0
   pullPolicy: IfNotPresent
   credentials: {}
     # registry: docker.io
@@ -78,7 +78,7 @@ conf:
   # temporary "disk" data is also kept in-memory.
   # A percentage value is interpreted as a percentage of the available internal
   # memory.
-  max-disk-temp-storage: 0
+  # max-disk-temp-storage: 0GB
 
   # Maximum allowed clock offset for the cluster. If observed clock offsets
   # exceed this limit, servers will crash to minimize the likelihood of
@@ -88,7 +88,7 @@ conf:
   # Note, that this value must be the same on all nodes in the cluster.
   # In order to change it, all nodes in the cluster must be stopped
   # simultaneously and restarted with the new value.
-  max-offset: 500ms
+  # max-offset: 500ms
 
   # Maximum memory capacity available to store temporary data for SQL clients,
   # including prepared queries and intermediate data rows during query
@@ -176,6 +176,9 @@ statefulset:
   # You may either toggle options below for default anti-affinity rules,
   # or specify the whole set of anti-affinity rules instead of them.
   podAntiAffinity:
+    # The topologyKey to be used.
+    # Can be used to spread across different nodes, AZs, regions etc.
+    topologyKey: kubernetes.io/hostname
     # Type of anti-affinity rules: either `soft`, `hard` or empty value (which
     # disables anti-affinity rules).
     type: soft
@@ -195,6 +198,11 @@ statefulset:
   # https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
   tolerations: []
 
+  # https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
+  topologySpreadConstraints:
+    maxSkew: 1
+    topologyKey: topology.kubernetes.io/zone
+    whenUnsatisfiable: ScheduleAnyway
 
   # Uncomment the following resources definitions or pass them from
   # command line to control the CPU and memory resources allocated
@@ -206,7 +214,6 @@ statefulset:
     # requests:
     #   cpu: 100m
     #   memory: 512Mi
-
 
 service:
   ports:
@@ -260,6 +267,14 @@ ingress:
   tls: []
   # - hosts: [cockroachlabs.com]
   #   secretName: cockroachlabs-tls
+
+# CockroachDB's Prometheus operator ServiceMonitor support
+serviceMonitor:
+  enabled: false
+  labels: {}
+  annotations: {}
+  interval: 10s
+  # scrapeTimeout: 10s
 
 # CockroachDB's data persistence.
 # If neither `persistentVolume` nor `hostPath` is used, then data will be

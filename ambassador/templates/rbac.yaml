@@ -7,7 +7,7 @@ kind: ClusterRole
 {{- end }}
 metadata:
   name: {{ include "ambassador.rbacName" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ include "ambassador.namespace" . }}
   labels:
     app.kubernetes.io/name: {{ include "ambassador.name" . }}
     app.kubernetes.io/part-of: {{ .Release.Name }}
@@ -55,7 +55,7 @@ rules:
 
   - apiGroups: [""]
     resources: [ "events" ]
-    verbs: ["get", "list", "watch", "create"]
+    verbs: ["get", "list", "watch", "create", "patch"]
 
   - apiGroups: ["coordination.k8s.io"]
     resources: [ "leases" ]
@@ -88,7 +88,7 @@ kind: ClusterRoleBinding
 {{- end }}
 metadata:
   name: {{ include "ambassador.rbacName" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ include "ambassador.namespace" . }}
   labels:
     app.kubernetes.io/name: {{ include "ambassador.name" . }}
     app.kubernetes.io/part-of: {{ .Release.Name }}
@@ -110,6 +110,6 @@ roleRef:
   name: {{ include "ambassador.rbacName" . }}
 subjects:
   - name: {{ include "ambassador.serviceAccountName" . }}
-    namespace: {{ .Release.Namespace }}
+    namespace: {{ include "ambassador.namespace" . }}
     kind: ServiceAccount
 {{- end -}}

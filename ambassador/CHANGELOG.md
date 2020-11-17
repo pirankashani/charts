@@ -5,6 +5,42 @@ numbering uses [semantic versioning](http://semver.org).
 
 ## Next Release
 
+## v6.5.12
+
+- Feature: Add ability to configure `terminationGracePeriodSeconds` for the Ambassador container
+- Update for Ambassador v1.9.0
+
+## v6.5.11
+
+- Feature: add affinity and tolerations support for redis pods
+
+## v6.5.10
+
+- Update Ambassador to version 1.8.1: [CHANGELOG](https://github.com/datawire/ambassador/blob/master/CHANGELOG.md)
+
+## v6.5.9
+
+- Update Ambassador to version 1.8.0: [CHANGELOG](https://github.com/datawire/ambassador/blob/master/CHANGELOG.md)
+- Bugfix: The RBAC for AES now grants permission to "patch" Events.v1.core.  Previously it granted "create" but not "patch".
+
+## v6.5.8
+
+- Update Ambassador to version 1.7.4: [CHANGELOG](https://github.com/datawire/ambassador/blob/master/CHANGELOG.md)
+
+## v6.5.7
+
+- Update Ambassador to version 1.7.3: [CHANGELOG](https://github.com/datawire/ambassador/blob/master/CHANGELOG.md)
+- The BusyBox image image used by `test-ready` is now configurable (thanks, [Alan Silva](https://github.com/OmegaVVeapon)!)
+
+## v6.5.6
+
+- Update Ambassador to version 1.7.2: [CHANGELOG](https://github.com/datawire/ambassador/blob/master/CHANGELOG.md)
+- Feature: Allow overriding the namespace for the release using the values file: [ambassador-chart/#122](https://github.com/datawire/ambassador-chart/pull/122)
+
+## v6.5.5
+
+- Allow hyphens in service annotations: [CHANGELOG](https://github.com/datawire/ambassador/blob/master/CHANGELOG.md)
+
 ## v6.5.4
 
 - Upgrade Ambassador to version 1.7.1: [CHANGELOG](https://github.com/datawire/ambassador/blob/master/CHANGELOG.md)

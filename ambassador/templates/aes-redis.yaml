@@ -4,7 +4,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "ambassador.fullname" . }}-redis
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ include "ambassador.namespace" . }}
   labels:
     app.kubernetes.io/name: {{ include "ambassador.fullname" . }}-redis
     app.kubernetes.io/part-of: {{ .Release.Name }}
@@ -30,7 +30,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "ambassador.fullname" . }}-redis
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ include "ambassador.namespace" . }}
   labels:
     app.kubernetes.io/name: {{ include "ambassador.fullname" . }}-redis
     app.kubernetes.io/part-of: {{ .Release.Name }}
@@ -58,12 +58,21 @@ spec:
     spec:
       containers:
       - name: redis
-        image: redis:5.0.1
+        image: "{{ .Values.redis.image.repository }}:{{ .Values.redis.image.tag }}"
+        imagePullPolicy: {{ .Values.redis.image.pullPolicy }}
         resources:
         {{- toYaml .Values.redis.resources | nindent 10 }}
       restartPolicy: Always
       {{- with .Values.redis.nodeSelector }}
       nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.redis.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.redis.tolerations }}
+      tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
 {{ end }}

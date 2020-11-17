@@ -123,8 +123,13 @@ for users looking to use this chart with Consul Helm.
 {{- define "vault.args" -}}
   {{ if or (eq .mode "standalone") (eq .mode "ha") }}
           - |
-            sed -E "s/HOST_IP/${HOST_IP?}/g" /vault/config/extraconfig-from-values.hcl > /tmp/storageconfig.hcl;
-            sed -Ei "s/POD_IP/${POD_IP?}/g" /tmp/storageconfig.hcl;
+            cp /vault/config/extraconfig-from-values.hcl /tmp/storageconfig.hcl;
+            [ -n "${HOST_IP}" ] && sed -Ei "s|HOST_IP|${HOST_IP?}|g" /tmp/storageconfig.hcl;
+            [ -n "${POD_IP}" ] && sed -Ei "s|POD_IP|${POD_IP?}|g" /tmp/storageconfig.hcl;
+            [ -n "${HOSTNAME}" ] && sed -Ei "s|HOSTNAME|${HOSTNAME?}|g" /tmp/storageconfig.hcl;
+            [ -n "${API_ADDR}" ] && sed -Ei "s|API_ADDR|${API_ADDR?}|g" /tmp/storageconfig.hcl;
+            [ -n "${TRANSIT_ADDR}" ] && sed -Ei "s|TRANSIT_ADDR|${TRANSIT_ADDR?}|g" /tmp/storageconfig.hcl;
+            [ -n "${RAFT_ADDR}" ] && sed -Ei "s|RAFT_ADDR|${RAFT_ADDR?}|g" /tmp/storageconfig.hcl;
             /usr/local/bin/docker-entrypoint.sh vault server -config=/tmp/storageconfig.hcl {{ .Values.server.extraArgs }}
   {{ end }}
 {{- end -}}
@@ -146,12 +151,12 @@ based on the mode configured.
 {{- define "vault.mounts" -}}
   {{ if eq (.Values.server.auditStorage.enabled | toString) "true" }}
             - name: audit
-              mountPath: /vault/audit
+              mountPath: {{ .Values.server.auditStorage.mountPath }}
   {{ end }}
   {{ if or (eq .mode "standalone") (and (eq .mode "ha") (eq (.Values.server.ha.raft.enabled | toString) "true"))  }}
     {{ if eq (.Values.server.dataStorage.enabled | toString) "true" }}
             - name: data
-              mountPath: /vault/data
+              mountPath: {{ .Values.server.dataStorage.mountPath }}
     {{ end }}
   {{ end }}
   {{ if and (ne .mode "dev") (or (.Values.server.standalone.config)  (.Values.server.ha.config)) }}
@@ -278,6 +283,21 @@ Sets extra pod annotations
           {{- tpl .Values.server.annotations . | nindent 8 }}
         {{- else }}
           {{- toYaml .Values.server.annotations | nindent 8 }}
+        {{- end }}
+  {{- end }}
+{{- end -}}
+
+{{/*
+Sets extra injector pod annotations
+*/}}
+{{- define "injector.annotations" -}}
+  {{- if .Values.injector.annotations }}
+      annotations:
+        {{- $tp := typeOf .Values.injector.annotations }}
+        {{- if eq $tp "string" }}
+          {{- tpl .Values.injector.annotations . | nindent 8 }}
+        {{- else }}
+          {{- toYaml .Values.injector.annotations | nindent 8 }}
         {{- end }}
   {{- end }}
 {{- end -}}

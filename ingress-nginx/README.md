@@ -8,13 +8,13 @@ This chart bootstraps an ingress-nginx deployment on a [Kubernetes](http://kuber
 
 ## Prerequisites
 
-- Kubernetes 1.6+
+- Kubernetes v1.16+
 
 ## Get Repo Info
 
 ```console
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm repo add stable https://charts.helm.sh/stable
 helm repo update
 ```
 
@@ -185,6 +185,17 @@ controller:
       annotations:
         # Create internal LB
         cloud.google.com/load-balancer-type: "Internal"
+        # Any other annotation can be declared here.
+```
+
+Example for Azure:
+
+```yaml
+controller:
+  service:
+      annotations:
+        # Create internal LB
+        service.beta.kubernetes.io/azure-load-balancer-internal: "true"
         # Any other annotation can be declared here.
 ```
 

@@ -1,5 +1,132 @@
 ## Unreleased
 
+## 0.26.0 (Nov 12, 2020)
+
+FEATURES:
+* Kubernetes health check synchronization with Consul for connect injected pods via `connectInject.healthChecks` [[GH-651](https://github.com/hashicorp/consul-helm/pull/651)].
+  The default behavior for this feature is `enabled: true`.
+  See [https://www.consul.io/docs/k8s/health](https://www.consul.io/docs/k8s/health) for more information.
+  In order to enable this feature for existing installations it is required to restart all connect injected deployments so that they are re-injected.
+  Until this is done, health checks for these deployments will not be synced to Consul.
+
+  **It is recommended to enable TLS with this setting enabled because it requires making calls to Consul clients across the cluster.
+    Without TLS enabled, these calls could leak ACL tokens should the cluster network become compromised.**
+* Support for custom resource definitions (CRDs) is now generally available.
+  CRDs require Consul >= 1.8.4. If you wish to use `ServiceIntentions`
+  custom resources then this requires Consul >= 1.9.0 (which is still in beta as of this release).
+
+  To enable, set `controller.enabled: true` in your Helm configuration:
+
+  ```yaml
+  controller:
+    enabled: true
+  ```
+
+  See [https://www.consul.io/docs/k8s/crds](https://www.consul.io/docs/k8s/crds)
+  for more information. **NOTE:** Using CRDs with an existing cluster may require additional steps to migrate previously created
+  config entries so they can be managed by CRDs. See [https://www.consul.io/docs/k8s/crds/upgrade-to-crds](https://www.consul.io/docs/k8s/crds/upgrade-to-crds)
+  for full details.
+
+BREAKING CHANGES:
+* This helm release only supports consul-k8s versions 0.20+
+* With the addition of the connect-inject health checks controller, any connect services which have failing Kubernetes readiness
+  probes will no longer be routable through connect until their Kubernetes health probes are passing.
+  Previously, if any connect services were failing their Kubernetes readiness checks they were still routable through connect.
+  Users should verify that their connect services are passing Kubernetes readiness probes prior to using health checks synchronization.
+* When health checks are enabled, Consul clients will have `check_update_interval` set to `0s`. Previously,
+  it was set to its default of `5m`. This change ensures the output of the check will show up in the Consul UI immediately. [[GH-674](https://github.com/hashicorp/consul-helm/pull/674)]
+* CRDs: controller default `limits.memory` increased from `30Mi` to `50Mi` and `requests.memory` increased from `20Mi` to `50Mi`
+  based on observed usage. [[GH-649](https://github.com/hashicorp/consul-helm/pull/649)]
+
+BUG FIXES:
+* Fix issue where Consul enterprise license job would fail for Consul versions >= 1.8.1. [[GH-647](https://github.com/hashicorp/consul-helm/issues/647)]
+
+IMPROVEMENTS:
+* Connect: support passing extra arguments to the injected envoy sidecar. [[GH-675](https://github.com/hashicorp/consul-helm/pull/675)]
+
+  To pass extra arguments to envoy, set `connectInject.envoyExtraArgs` in your
+  Helm configuration:
+
+  ```yaml
+  connectInject:
+    enabled: true
+    envoyExtraArgs: "--log-level debug --disable-hot-restart"
+  ```
+* Connect: update MutatingWebhook resource version to `admissionregistration.k8s.io/v1` from `admissionregistration.k8s.io/v1beta1`
+  for clusters where it is supported. [[GH-658](https://github.com/hashicorp/consul-helm/pull/658)]
+* Updated the default Consul image to `consul:1.8.5`.
+* Updated the default consul-k8s image to `hashicorp/consul-k8s:0.20.0`.
+
+## 0.25.0 (Oct 12, 2020)
+
+FEATURES:
+
+* Support deploying this Helm chart to OpenShift 4.x. [[GH-600](https://github.com/hashicorp/consul-helm/pull/600)]
+
+  To install on OpenShift, set `global.openshift.enabled` to `true`:
+
+  ```sh
+  helm install consul hashicorp/consul \
+    --set global.name=consul \
+    --set global.openshift.enabled=true
+  ```
+
+* Beta support for custom resource definitions. [[GH-636](https://github.com/hashicorp/consul-helm/pull/636)]
+
+  **Requires Consul >= 1.8.4.**
+  
+  The currently supported CRDs can be used to manage Consul's [Configuration Entries](https://www.consul.io/docs/agent/config-entries),
+  specifically:
+    * `ProxyDefaults` - https://www.consul.io/docs/agent/config-entries/proxy-defaults
+    * `ServiceDefaults` - https://www.consul.io/docs/agent/config-entries/service-defaults
+    * `ServiceSplitter` - https://www.consul.io/docs/agent/config-entries/service-splitter
+    * `ServiceRouter` - https://www.consul.io/docs/agent/config-entries/service-router
+    * `ServiceResolver` - https://www.consul.io/docs/agent/config-entries/service-resolver
+    * `ServiceIntentions` (requires Consul >= 1.9.0) - https://www.consul.io/docs/agent/config-entries/service-intentions
+
+  An example use looks like:
+
+  ```yaml
+  apiVersion: consul.hashicorp.com/v1alpha1
+  kind: ServiceDefaults
+  metadata:
+    name: defaults
+  spec:
+    protocol: "http"
+  ```
+
+  See [https://www.consul.io/docs/k8s/crds](https://www.consul.io/docs/k8s/crds)
+  for more information on the CRD schemas.
+
+  To enable, set `controller.enabled: true` in your Helm configuration:
+
+  ```yaml
+  controller:
+    enabled: true
+  ```
+
+  This will install the CRDs, the controller that watches for CR creation, and
+  a webhook certificate manager that manages the certificates for the controller's
+  webhooks.
+
+* Add acceptance test framework and automated acceptance tests to the Helm chart.
+  Please see Contributing docs for more info on how to [run](https://github.com/hashicorp/consul-helm/blob/master/CONTRIBUTING.md#acceptance-tests)
+  and [add](https://github.com/hashicorp/consul-helm/blob/master/CONTRIBUTING.md#writing-acceptance-tests) acceptance tests. [[GH-551](https://github.com/hashicorp/consul-helm/pull/551)]
+
+IMPROVEMENTS:
+
+* Add `dns.type` and `dns.additionalSpec` settings for changing the DNS service type and adding additional spec. [[GH-555](https://github.com/hashicorp/consul-helm/pull/555)]
+* Catalog Sync: Can now be run when Consul clients are disabled. It will make API calls to the Consul servers instead. [[GH-570](https://github.com/hashicorp/consul-helm/pull/570)]
+* Catalog Sync: Add support for changing the Consul node name where services are sync'd. [[GH-580](https://github.com/hashicorp/consul-helm/pull/580)]
+* Support for setting `priorityClassName` for sync-catalog and connect-inject deployments. [[GH-609](https://github.com/hashicorp/consul-helm/pull/609)]
+* Updated the default Consul image to `consul:1.8.4`.
+* Updated the default Envoy image to `envoyproxy/envoy-alpine:v1.14.4`.
+
+BREAKING CHANGES:
+* `connectInject.imageEnvoy` and `meshGateway.imageEnvoy` have been removed and now inherit from `global.imageEnvoy`
+  which is now standardized across terminating/ingress/mesh gateways and connectInject.
+  `global.imageEnvoy` is now a required parameter. [GH-585](https://github.com/hashicorp/consul-helm/pull/585)
+
 ## 0.24.1 (Aug 10, 2020)
 
 BUG FIXES:

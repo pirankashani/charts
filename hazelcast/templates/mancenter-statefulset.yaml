@@ -4,7 +4,7 @@ kind: StatefulSet
 metadata:
   name: {{ template "mancenter.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ template "hazelcast.name" . }}
+    app.kubernetes.io/name: {{ template "mancenter.name" . }}
     helm.sh/chart: {{ template "hazelcast.chart" . }}
     app.kubernetes.io/instance: "{{ .Release.Name }}"
     app.kubernetes.io/managed-by: "{{ .Release.Service }}"
@@ -13,17 +13,20 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ template "hazelcast.name" . }}
+      app.kubernetes.io/name: {{ template "mancenter.name" . }}
       app.kubernetes.io/instance: "{{ .Release.Name }}"
       role: mancenter
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ template "hazelcast.name" . }}
+        app.kubernetes.io/name: {{ template "mancenter.name" . }}
         helm.sh/chart: {{ template "hazelcast.chart" . }}
         app.kubernetes.io/instance: "{{ .Release.Name }}"
         app.kubernetes.io/managed-by: "{{ .Release.Service }}"
         role: mancenter
+        {{- if .Values.mancenter.podLabels }}
+{{ toYaml .Values.mancenter.podLabels | indent 8 }}
+        {{- end }}
       {{- if .Values.mancenter.annotations }}
       annotations:
 {{ toYaml .Values.mancenter.annotations | indent 8 }}
@@ -151,7 +154,11 @@ spec:
       securityContext:
         fsGroup: {{ .Values.securityContext.fsGroup }}
       {{- end }}
+      {{- if .Values.mancenter.priorityClassName }}
+      priorityClassName: "{{ .Values.mancenter.priorityClassName }}"
+      {{- end }}
       serviceAccountName: {{ template "hazelcast.serviceAccountName" . }}
+      automountServiceAccountToken: {{ .Values.serviceAccount.automountToken }}
       volumes:
       - name: config
         configMap:
@@ -181,7 +188,7 @@ spec:
   - metadata:
       name: mancenter-storage
       labels:
-        app.kubernetes.io/name: {{ template "hazelcast.name" . }}
+        app.kubernetes.io/name: {{ template "mancenter.name" . }}
         helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
         app.kubernetes.io/instance: "{{ .Release.Name }}"
         app.kubernetes.io/managed-by: "{{ .Release.Service }}"

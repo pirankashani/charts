@@ -76,13 +76,23 @@ spec:
                   key: "token"
             {{- end}}
             {{- if .Values.global.tls.enabled }}
+            {{- if .Values.client.enabled }}
             - name: CONSUL_HTTP_ADDR
               value: https://$(HOST_IP):8501
+            {{- else }}
+            - name: CONSUL_HTTP_ADDR
+              value: https://{{ template "consul.fullname" . }}-server:8501
+            {{- end }}
             - name: CONSUL_CACERT
               value: /consul/tls/ca/tls.crt
             {{- else }}
+            {{- if .Values.client.enabled }}
             - name: CONSUL_HTTP_ADDR
               value: http://$(HOST_IP):8500
+            {{- else }}
+            - name: CONSUL_HTTP_ADDR
+              value: http://{{ template "consul.fullname" . }}-server:8500
+            {{- end }}
             {{- end }}
           {{- if .Values.global.tls.enabled }}
           volumeMounts:
@@ -134,6 +144,9 @@ spec:
                 {{- end }}
                 {{- if .Values.syncCatalog.k8sTag }}
                 -consul-k8s-tag={{ .Values.syncCatalog.k8sTag }} \
+                {{- end }}
+                {{- if .Values.syncCatalog.consulNodeName }}
+                -consul-node-name={{ .Values.syncCatalog.consulNodeName }} \
                 {{- end }}
                 {{- if .Values.syncCatalog.consulPrefix}}
                 -consul-service-prefix="{{ .Values.syncCatalog.consulPrefix}}" \
@@ -203,6 +216,9 @@ spec:
       {{- if (and .Values.global.tls.enabled .Values.global.tls.enableAutoEncrypt) }}
       {{- include "consul.getAutoEncryptClientCA" . | nindent 6 }}
       {{- end }}
+      {{- end }}
+      {{- if .Values.syncCatalog.priorityClassName }}
+      priorityClassName: {{ .Values.syncCatalog.priorityClassName | quote }}
       {{- end }}
       {{- if .Values.syncCatalog.nodeSelector }}
       nodeSelector:
