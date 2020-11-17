@@ -71,7 +71,7 @@ The following table lists the configurable parameters of the kubernetes-dashboar
 Parameter                                       | Description                                                                                                                      | Default
 ------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------
 `image.repository`                              | Repository for container image                                                                                                   | `kubernetesui/dashboard`
-`image.tag`                                     | Image tag                                                                                                                        | `v2.0.3`
+`image.tag`                                     | Image tag                                                                                                                        | `v2.0.4`
 `image.pullPolicy`                              | Image pull policy                                                                                                                | `IfNotPresent`
 `image.pullSecrets`                             | Image pull secrets                                                                                                               | `[]`
 `replicaCount`                                  | Number of replicas                                                                                                               | `1`
@@ -102,10 +102,11 @@ Parameter                                       | Description                   
 `ingress.customPaths`                           | Override the default ingress paths                                                                                               | `[]`
 `ingress.hosts`                                 | Dashboard Hostnames                                                                                                              | `nil`
 `ingress.tls`                                   | Ingress TLS configuration                                                                                                        | `[]`
-`settings`                                      | Global dashboard settings | `{}`
+`settings`                                      | Global dashboard settings                                                                                                        | `{}`
+`pinnedCRDs`                                    | Pinned CRDs that will be displayed in dashboard's menu                                                                           | `[]`
 `metricsScraper.enabled`                        | Wether to enable dashboard-metrics-scraper                                                                                       | `false`
 `metricsScraper.image.repository`               | Repository for metrics-scraper image                                                                                             | `kubernetesui/metrics-scraper`
-`metricsScraper.image.tag`                      | Repository for metrics-scraper image tag                                                                                         | `v1.0.4`
+`metricsScraper.image.tag`                      | Repository for metrics-scraper image tag                                                                                         | `v1.0.6`
 `metricsScraper.containerSecurityContext`       | SecurityContext for the kubernetes dashboard metrics scraper container                                                           | `{allowPrivilegeEscalation:false, readOnlyRootFilesystem: true, runAsUser: 1001, runAsGroup: 2001}`
 `metrics-server.enabled`                        | Wether to enable metrics-server                                                                                                  | `false`
 `rbac.create`                                   | Create & use RBAC resources                                                                                                      | `true`
@@ -121,6 +122,7 @@ Parameter                                       | Description                   
 `securityContext`                               | PodSecurityContext for pod level securityContext                                                                                 | `nil`
 `containerSecurityContext`                      | SecurityContext for the kubernetes dashboard container                                                                           | `{allowPrivilegeEscalation:false, readOnlyRootFilesystem: true, runAsUser: 1001, runAsGroup: 2001}`
 `networkPolicy.enabled`                         | Whether to create a network policy that allows access to the service                                                             | `false`
+`podSecurityPolicy.enabled`                     | Whether to create a pod security policy that allows fine-grained authorization of pod creation and updates                       | `false`
 
 
 
