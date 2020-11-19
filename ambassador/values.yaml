@@ -44,7 +44,7 @@ hostNetwork: false
 image:
   pullPolicy: IfNotPresent
   repository: docker.io/datawire/aes
-  tag: 1.9.0
+  tag: 1.9.1
 imagePullSecrets: []
 initContainers: []
 licenseKey:
