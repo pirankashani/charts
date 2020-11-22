@@ -42,7 +42,7 @@ helmKubectlJqImage:
 image:
   pullPolicy: IfNotPresent
   repository: minio/minio
-  tag: RELEASE.2020-10-18T21-54-12Z
+  tag: RELEASE.2020-11-19T23-48-16Z
 imagePullSecrets: []
 ingress:
   annotations: {}
@@ -66,7 +66,7 @@ makeBucketJob:
 mcImage:
   pullPolicy: IfNotPresent
   repository: minio/mc
-  tag: RELEASE.2020-10-03T02-54-56Z
+  tag: RELEASE.2020-11-17T00-39-14Z
 metrics:
   serviceMonitor:
     additionalLabels: {}
