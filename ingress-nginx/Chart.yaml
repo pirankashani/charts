@@ -1,10 +1,9 @@
 annotations:
   artifacthub.io/changes: |
-    - Reorder HPA resource list to work with GitOps tooling
-apiVersion: v1
+    - Remove helm2 support and update docs
+apiVersion: v2
 appVersion: 0.41.2
-description: Ingress controller for Kubernetes using NGINX as a reverse proxy and
-  load balancer
+description: Ingress controller for Kubernetes using NGINX as a reverse proxy and load balancer
 home: https://github.com/kubernetes/ingress-nginx
 icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
 keywords:
@@ -16,4 +15,5 @@ maintainers:
 name: ingress-nginx
 sources:
 - https://github.com/kubernetes/ingress-nginx
-version: 3.11.1
+type: application
+version: 3.12.0
