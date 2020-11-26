@@ -1,11 +1,20 @@
 ## Unreleased
 
+## 0.27.0 (Nov 25, 2020)
+
+IMPROVEMENTS:
+* Connect: support `connectInject.logLevel` setting. [[GH-699](https://github.com/hashicorp/consul-helm/pull/699)]
+* Connect: **(Consul Enterprise only)** error out if `connectInject.consulNamespaces.mirroringK8S: true` but `global.enableConsulNamespaces: false`. [[GH-695](https://github.com/hashicorp/consul-helm/pull/695)]
+* Updated the default Consul image to `hashicorp/consul:1.9.0`.
+* Updated the default consul-k8s image to `hashicorp/consul-k8s:0.21.0`.
+* Updated the default envoy image to `envoyproxy/envoy-alpine:v1.16.0`.
+
 ## 0.26.0 (Nov 12, 2020)
 
 FEATURES:
 * Kubernetes health check synchronization with Consul for connect injected pods via `connectInject.healthChecks` [[GH-651](https://github.com/hashicorp/consul-helm/pull/651)].
   The default behavior for this feature is `enabled: true`.
-  See [https://www.consul.io/docs/k8s/health](https://www.consul.io/docs/k8s/health) for more information.
+  See [https://www.consul.io/docs/k8s/connect/health](https://www.consul.io/docs/k8s/connect/health) for more information.
   In order to enable this feature for existing installations it is required to restart all connect injected deployments so that they are re-injected.
   Until this is done, health checks for these deployments will not be synced to Consul.
 
