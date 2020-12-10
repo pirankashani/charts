@@ -14,7 +14,7 @@ ignoreOutboundPorts: "25,443,587,3306,11211"
 
 createdByAnnotation: linkerd.io/created-by
 cniPluginImage: "ghcr.io/linkerd/cni-plugin"
-cniPluginVersion: stable-2.9.0
+cniPluginVersion: stable-2.9.1
 logLevel: info
 portsToRedirect: ""
 proxyUID: 2102
