@@ -6,7 +6,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.4.1
   creationTimestamp: null
-  name: servicesplitters.consul.hashicorp.com
+  name: terminatinggateways.consul.hashicorp.com
   labels:
     app: {{ template "consul.name" . }}
     chart: {{ template "consul.chart" . }}
@@ -25,16 +25,16 @@ spec:
     type: date
   group: consul.hashicorp.com
   names:
-    kind: ServiceSplitter
-    listKind: ServiceSplitterList
-    plural: servicesplitters
-    singular: servicesplitter
+    kind: TerminatingGateway
+    listKind: TerminatingGatewayList
+    plural: terminatinggateways
+    singular: terminatinggateway
   scope: Namespaced
   subresources:
     status: {}
   validation:
     openAPIV3Schema:
-      description: ServiceSplitter is the Schema for the servicesplitters API
+      description: TerminatingGateway is the Schema for the terminatinggateways API
       properties:
         apiVersion:
           description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
@@ -45,24 +45,31 @@ spec:
         metadata:
           type: object
         spec:
-          description: ServiceSplitterSpec defines the desired state of ServiceSplitter
+          description: TerminatingGatewaySpec defines the desired state of TerminatingGateway
           properties:
-            splits:
-              description: Splits defines how much traffic to send to which set of service instances during a traffic split. The sum of weights across all splits must add up to 100.
+            services:
+              description: Services is a list of service names represented by the terminating gateway.
               items:
+                description: A LinkedService is a service represented by a terminating gateway
                 properties:
+                  caFile:
+                    description: CAFile is the optional path to a CA certificate to use for TLS connections from the gateway to the linked service.
+                    type: string
+                  certFile:
+                    description: CertFile is the optional path to a client certificate to use for TLS connections from the gateway to the linked service.
+                    type: string
+                  keyFile:
+                    description: KeyFile is the optional path to a private key to use for TLS connections from the gateway to the linked service.
+                    type: string
+                  name:
+                    description: Name is the name of the service, as defined in Consul's catalog.
+                    type: string
                   namespace:
-                    description: The namespace to resolve the service from instead of the current namespace. If empty the current namespace is assumed.
+                    description: The namespace the service is registered in.
                     type: string
-                  service:
-                    description: Service is the service to resolve instead of the default.
+                  sni:
+                    description: SNI is the optional name to specify during the TLS handshake with a linked service.
                     type: string
-                  serviceSubset:
-                    description: ServiceSubset is a named subset of the given service to resolve instead of one defined as that service's DefaultSubset. If empty the default subset is used.
-                    type: string
-                  weight:
-                    description: Weight is a value between 0 and 100 reflecting what portion of traffic should be directed to this split. The smallest representable weight is 1/10000 or .01%.
-                    type: number
                 type: object
               type: array
           type: object

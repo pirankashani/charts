@@ -92,10 +92,14 @@ Below is the list of available flags:
     The consul-k8s image to use for all tests.
 -debug-directory
     The directory where to write debug information about failed test runs, such as logs and pod definitions. If not provided, a temporary directory will be created by the tests.
--enable-multi-cluster
-    If true, the tests that require multiple Kubernetes clusters will be run. At least one of -secondary-kubeconfig or -secondary-kubecontext is required when this flag is used.
 -enable-enterprise
     If true, the test suite will run tests for enterprise features. Note that some features may require setting the enterprise license flags below.
+-enable-multi-cluster
+    If true, the tests that require multiple Kubernetes clusters will be run. At least one of -secondary-kubeconfig or -secondary-kubecontext is required when this flag is used.
+-enable-openshift
+    If true, the tests will automatically add Openshift Helm value for each Helm install.
+-enable-pod-security-policies
+    If true, the test suite will run tests with pod security policies enabled.
 -enterprise-license-secret-name
     The name of the Kubernetes secret containing the enterprise license.
 -enterprise-license-secret-key
@@ -379,3 +383,78 @@ Here are some things to consider before adding a test:
   For example, we don't expect acceptance tests to include all the permutations of the consul-k8s commands
   and their respective flags. Something like that should be tested in the consul-k8s repository.
  
+## Helm Reference Docs
+ 
+The helm reference docs (https://www.consul.io/docs/k8s/helm) are automatically
+generated from our `values.yaml` file.
+
+### Generating Helm Reference Docs
+ 
+To generate the docs and update the `helm.mdx` file:
+
+1. Fork `hashicorp/consul` (https://github.com/hashicorp/consul) on GitHub
+1. Clone your fork:
+   ```shell-session
+   git clone https://github.com/your-username/consul.git
+   ```
+1. Change directory into your `consul-helm` repo: 
+   ```shell-session
+   cd /path/to/consul-helm
+   ```
+1. Run `make gen-docs` using the path to your consul (not consul-helm) repo:
+   ```shell-session
+   make gen-docs consul=<path-to-consul-repo>
+   # Examples:
+   # make gen-docs consul=/Users/my-name/code/hashicorp/consul
+   # make gen-docs consul=../consul
+   ```
+1. Open up a pull request to `hashicorp/consul` (in addition to your `hashicorp/consul-helm` pull request)
+
+### values.yaml Annotations
+
+The code generation will attempt to parse the `values.yaml` file and extract all
+the information needed to create the documentation but depending on the yaml
+you may need to add some annotations.
+
+#### @type
+If the type is unknown because the field is `null` or you wish to override
+the type, use `@type`:
+
+```yaml
+# My docs
+# @type: string
+myKey: null
+```
+
+#### @default
+The default will be set to the current value but you may want to override
+it for specific use cases:
+
+```yaml
+server:
+  # My docs
+  # @default: global.enabled
+  enabled: "-"
+```
+
+#### @recurse
+In rare cases, we don't want the documentation generation to recurse deeper
+into the object. To stop the recursion, set `@recurse: false`.
+For example, the ingress gateway ports config looks like:
+
+```yaml
+# Port docs
+# @type: array<map>
+# @default: [{port: 8080, port: 8443}]
+# @recurse: false
+ports:
+- port: 8080
+  nodePort: null
+- port: 8443
+  nodePort: null
+```
+
+So that the documentation can look like:
+```markdown
+- `ports` ((#v-ingressgateways-defaults-service-ports)) (`array<map>: [{port: 8080, port: 8443}]`) - Port docs
+```

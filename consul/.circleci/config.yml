@@ -31,7 +31,7 @@ jobs:
           name: Run Unit Tests
           command: bats ./test/unit
 
-  go-fmt-and-vet:
+  go-fmt-and-vet-acceptance:
     executor: go
     steps:
       - checkout
@@ -39,7 +39,7 @@ jobs:
       # Restore go module cache if there is one
       - restore_cache:
           keys:
-            - consul-helm-modcache-v1-{{ checksum "test/acceptance/go.mod" }}
+            - consul-helm-acceptance-modcache-v1-{{ checksum "test/acceptance/go.mod" }}
 
       - run:
           name: go mod download
@@ -48,7 +48,7 @@ jobs:
 
       # Save go module cache if the go.mod file has changed
       - save_cache:
-          key: consul-helm-modcache-v1-{{ checksum "test/acceptance/go.mod" }}
+          key: consul-helm-acceptance-modcache-v1-{{ checksum "test/acceptance/go.mod" }}
           paths:
             - "/go/pkg/mod"
 
@@ -76,7 +76,7 @@ jobs:
       # Restore go module cache if there is one
       - restore_cache:
           keys:
-            - consul-helm-modcache-v1-{{ checksum "test/acceptance/go.mod" }}
+            - consul-helm-acceptance-modcache-v1-{{ checksum "test/acceptance/go.mod" }}
 
       - run: mkdir -p $TEST_RESULTS
 
@@ -92,6 +92,84 @@ jobs:
           path: /tmp/test-results
 
   acceptance:
+    environment:
+      - TEST_RESULTS: /tmp/test-results
+    machine:
+      image: ubuntu-2004:202010-01
+    parallelism: 6
+    steps:
+      - checkout
+      - run:
+          name: Install gotestsum, kind, kubectl, and helm
+          command: |
+            go get gotest.tools/gotestsum
+
+            curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.9.0/kind-linux-amd64
+            chmod +x ./kind
+            sudo mv ./kind /usr/local/bin/kind
+
+            curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+            chmod +x ./kubectl
+            sudo mv ./kubectl /usr/local/bin/kubectl
+
+            curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
+            sudo apt-get install apt-transport-https --yes
+            echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+            sudo apt-get update
+            sudo apt-get install helm
+      - run:
+          name: Create kind clusters
+          command: |
+            kind create cluster --name dc1 --image kindest/node:v1.18.4
+            kind create cluster --name dc2 --image kindest/node:v1.18.4
+      - restore_cache:
+          keys:
+            - consul-helm-modcache-v2-{{ checksum "test/acceptance/go.mod" }}
+      - run:
+          name: go mod download
+          working_directory: test/acceptance
+          command: go mod download
+      - save_cache:
+          key: consul-helm-modcache-v2-{{ checksum "test/acceptance/go.mod" }}
+          paths:
+            - ~/.go_workspace/pkg/mod
+      - run: mkdir -p $TEST_RESULTS
+      - run:
+          name: Run acceptance tests
+          working_directory: test/acceptance/tests
+          no_output_timeout: 1h
+          command: |
+            # We have to run the tests for each package separately so that we can
+            # exit early if any test fails (-failfast only works within a single
+            # package).
+            exit_code=0
+            pkgs=$(go list ./... | circleci tests split)
+            echo "Running $pkgs"
+            for pkg in $pkgs
+            do
+              if ! gotestsum --no-summary=all --jsonfile=jsonfile-${pkg////-} -- $pkg -p 1 -timeout 30m -failfast \
+                    -use-kind \
+                    -enable-multi-cluster \
+                    -enable-enterprise \
+                    -kubecontext="kind-dc1" \
+                    -secondary-kubecontext="kind-dc2" \
+                    -debug-directory="$TEST_RESULTS/debug" \
+                    -consul-k8s-image=hashicorpdev/consul-k8s:latest
+              then
+                echo "Tests in ${pkg} failed, aborting early"
+                exit_code=1
+                break
+              fi
+            done
+            gotestsum --raw-command --junitfile "$TEST_RESULTS/gotestsum-report.xml" -- cat jsonfile*
+            exit $exit_code
+
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+
+  acceptance-gke-1-16:
     environment:
       - TEST_RESULTS: /tmp/test-results
     docker:
@@ -121,7 +199,7 @@ jobs:
       # Restore go module cache if there is one
       - restore_cache:
           keys:
-            - consul-helm-modcache-v1-{{ checksum "test/acceptance/go.mod" }}
+            - consul-helm-acceptance-modcache-v1-{{ checksum "test/acceptance/go.mod" }}
 
       - run: mkdir -p $TEST_RESULTS
 
@@ -148,6 +226,7 @@ jobs:
                     -enable-enterprise \
                     -enterprise-license-secret-name=ent-license \
                     -enterprise-license-secret-key=key \
+                    -enable-pod-security-policies \
                     -enable-multi-cluster \
                     -kubeconfig="$primary_kubeconfig" \
                     -secondary-kubeconfig="$secondary_kubeconfig" \
@@ -195,7 +274,7 @@ jobs:
       # Restore go module cache if there is one
       - restore_cache:
           keys:
-            - consul-helm-modcache-v1-{{ checksum "test/acceptance/go.mod" }}
+            - consul-helm-acceptance-modcache-v1-{{ checksum "test/acceptance/go.mod" }}
 
       - run: mkdir -p $TEST_RESULTS
 
@@ -277,7 +356,7 @@ jobs:
       # Restore go module cache if there is one
       - restore_cache:
           keys:
-            - consul-helm-modcache-v1-{{ checksum "test/acceptance/go.mod" }}
+            - consul-helm-acceptance-modcache-v1-{{ checksum "test/acceptance/go.mod" }}
 
       - run: mkdir -p $TEST_RESULTS
 
@@ -362,7 +441,7 @@ jobs:
       # Restore go module cache if there is one
       - restore_cache:
           keys:
-            - consul-helm-modcache-v1-{{ checksum "test/acceptance/go.mod" }}
+            - consul-helm-acceptance-modcache-v1-{{ checksum "test/acceptance/go.mod" }}
 
       - run: mkdir -p $TEST_RESULTS
 
@@ -387,6 +466,84 @@ jobs:
       - slack/status:
           fail_only: true
           failure_message: "OpenShift acceptance tests failed. Check the logs at: ${CIRCLE_BUILD_URL}"
+
+  go-fmt-and-vet-helm-gen:
+    executor: go
+    steps:
+      - checkout
+
+      # Restore go module cache if there is one
+      - restore_cache:
+          keys:
+            - consul-helm-helm-gen-modcache-v1-{{ checksum "hack/helm-reference-gen/go.mod" }}
+
+      - run:
+          name: go mod download
+          working_directory: hack/helm-reference-gen
+          command: go mod download
+
+      # Save go module cache if the go.mod file has changed
+      - save_cache:
+          key: consul-helm-helm-gen-modcache-v1-{{ checksum "hack/helm-reference-gen/go.mod" }}
+          paths:
+            - "/go/pkg/mod"
+
+      # check go fmt output because it does not report non-zero when there are fmt changes
+      - run:
+          name: check go fmt
+          command: |
+            files=$(go fmt ./...)
+            if [ -n "$files" ]; then
+              echo "The following file(s) do not conform to go fmt:"
+              echo "$files"
+              exit 1
+            fi
+
+      - run:
+          name: go vet
+          working_directory: hack/helm-reference-gen
+          command: go vet ./...
+
+  unit-helm-gen:
+    executor: go
+    steps:
+      - checkout
+
+      # Restore go module cache if there is one
+      - restore_cache:
+          keys:
+            - consul-helm-helm-gen-modcache-v1-{{ checksum "hack/helm-reference-gen/go.mod" }}
+
+      - run: mkdir -p $TEST_RESULTS
+
+      - run:
+          name: Run tests
+          working_directory: hack/helm-reference-gen
+          command: |
+            gotestsum --junitfile $TEST_RESULTS/gotestsum-report.xml ./... -- -p 4
+
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+
+  test-helm-gen:
+    executor: go
+    steps:
+      - checkout
+
+      # Restore go module cache if there is one
+      - restore_cache:
+          keys:
+            - consul-helm-helm-gen-modcache-v1-{{ checksum "hack/helm-reference-gen/go.mod" }}
+
+      - run: mkdir -p $TEST_RESULTS
+
+      - run:
+          name: Run tests
+          working_directory: hack/helm-reference-gen
+          command: |
+            go run ./... -validate
 
   update-helm-charts-index:
     docker:
@@ -420,10 +577,15 @@ workflows:
   version: 2
   test:
     jobs:
-      - go-fmt-and-vet
+      - go-fmt-and-vet-acceptance
+      - go-fmt-and-vet-helm-gen
       - unit-acceptance-framework:
           requires:
-            - go-fmt-and-vet
+            - go-fmt-and-vet-acceptance
+      - unit-helm-gen:
+          requires:
+            - go-fmt-and-vet-helm-gen
+      - test-helm-gen
       - unit-helm2
       - unit-helm3
       - acceptance:
@@ -440,9 +602,12 @@ workflows:
               only:
                 - master
     jobs:
-      - acceptance-openshift
-      - acceptance-aks-1-19
+      # OpenShift temporarily disabled until we get a new mirror.
+      # - acceptance-openshift
+      - acceptance-gke-1-16
       - acceptance-eks-1-17
+      # AKS temporarily disabled until we get a new mirror.
+      # - acceptance-aks-1-19
   update-helm-charts-index:
     jobs:
       - update-helm-charts-index:

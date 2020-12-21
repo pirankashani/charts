@@ -2,7 +2,7 @@
 
 # Holds values that affect multiple components of the chart.
 global:
-  # The main enabled/disabled setting. If true, servers,
+  # The master enabled/disabled setting. If true, servers,
   # clients, Consul DNS and the Consul UI will be enabled. Each component can override
   # this default via its component-specific "enabled" config. If false, no components
   # will be installed by default and per-component opt-in is required, such as by
@@ -31,7 +31,7 @@ global:
   # # Consul Enterprise 1.5.0
   # image: "hashicorp/consul-enterprise:1.5.0-ent"
   # ```
-  image: "hashicorp/consul:1.9.1"
+  image: "hashicorp/consul:1.9.0"
 
   # Array of objects containing image pull secret names that will be applied to each service account.
   # This can be used to reference image pull secrets if using a custom consul or consul-k8s Docker image.
@@ -50,7 +50,7 @@ global:
   # The name (and tag) of the consul-k8s (https://github.com/hashicorp/consul-k8s)
   # Docker image that is used for functionality such the catalog sync.
   # This can be overridden per component.
-  imageK8S: "hashicorp/consul-k8s:0.22.0"
+  imageK8S: "hashicorp/consul-k8s:0.21.0"
 
   # The name of the datacenter that the agents should
   # register as. This can't be changed once the Consul cluster is up and running
@@ -63,7 +63,7 @@ global:
   enablePodSecurityPolicies: false
 
   # Configures which Kubernetes secret to retrieve Consul's
-  # gossip encryption key from (see `-encrypt` (https://consul.io/docs/agent/options#_encrypt)). If secretName or
+  # gossip encryption key from (see [-encrypt](/docs/agent/options#_encrypt)). If secretName or
   # secretKey are not set, gossip encryption will not be enabled. The secret must
   # be in the same namespace that Consul is installed into.
   #
@@ -89,7 +89,7 @@ global:
     # encryption key.
     secretKey: ""
 
-  # Enables TLS (https://learn.hashicorp.com/tutorials/consul/tls-encryption-secure)
+  # Enables TLS (https://learn.hashicorp.com/tutorials/consul/gossip-encryption-secure)
   # across the cluster to verify authenticity of the Consul servers and clients.
   # Requires Consul v1.4.1+ and consul-k8s v0.16.2+
   tls:
@@ -214,7 +214,7 @@ global:
     # via mesh gateways is supported.
     # Mesh gateways and servers will be configured to allow federation.
     # Requires `global.tls.enabled`, `meshGateway.enabled` and `connectInject.enabled`
-    # to be true. Requires Consul 1.8+.
+    # to be true.
     enabled: false
 
     # If true, the chart will create a Kubernetes secret that can be imported
@@ -272,15 +272,11 @@ server:
   # for more information.
   replicas: 3
 
-  # The number of servers that are expected to be running.
-  # It defaults to server.replicas.
-  # In most cases the default should be used, however if there are more
-  # servers in this datacenter than server.replicas it might make sense
-  # to override the default. This would be the case if two kube clusters
-  # were joined into the same datacenter and each cluster ran a certain number
-  # of servers.
-  # @type: int
-  bootstrapExpect: null
+  # For new clusters, this is the number of servers to wait for before performing
+  # the initial leader election and bootstrap of the cluster. This must be less
+  # than or equal to `server.replicas`. This value is only used
+  # when bootstrapping new clusters, it has no effect during ongoing cluster maintenance.
+  bootstrapExpect: 3
 
   # [Enterprise Only] This value refers to a Kubernetes secret that you have created
   # that contains your enterprise license. It is required if you are using an
@@ -294,28 +290,6 @@ server:
     secretName: null
     # The key within the Kubernetes secret that holds the enterprise license.
     secretKey: null
-
-  # Exposes the servers' gossip and RPC ports as hostPorts. To enable a client
-  # agent outside of the k8s cluster to join the datacenter, you would need to
-  # enable `server.exposeGossipAndRPCPorts`, `client.exposeGossipPorts`, and
-  # set `server.ports.serflan.port` to a port not being used on the host. Since
-  # `client.exposeGossipPorts` uses the hostPort 8301,
-  # `server.ports.serflan.port` must be set to something other than 8301.
-  exposeGossipAndRPCPorts: false
-
-  # Configures ports for the consul servers.
-  ports:
-    # Configures the LAN gossip port for the consul servers. If you choose to
-    # enable `server.exposeGossipAndRPCPorts` and `client.exposeGossipPorts`,
-    # that will configure the LAN gossip ports on the servers and clients to be
-    # hostPorts, so if you are running clients and servers on the same node the
-    # ports will conflict if they are both 8301.  When you enable
-    # `server.exposeGossipAndRPCPorts` and `client.exposeGossipPorts`, you must
-    # change this from the default to an unused port on the host, e.g. 9301. By
-    # default the LAN gossip port is 8301 and configured as a containerPort on
-    # the consul server Pods.
-    serflan:
-      port: 8301
 
   # This defines the disk size for configuring the
   # servers' StatefulSet storage. For dynamically provisioned storage classes, this is the
@@ -333,7 +307,7 @@ server:
   # @type: string
   storageClass: null
 
-  # This will enable/disable Connect (https://consul.io/docs/connect). Setting this to true
+  # This will enable/disable [Connect](/docs/connect). Setting this to true
   # _will not_ automatically secure pod communication, this
   # setting will only enable usage of the feature. Consul will automatically initialize
   # a new CA and set of certificates. Additional Connect settings can be configured
@@ -364,25 +338,11 @@ server:
       memory: "100Mi"
       cpu: "100m"
 
-  # The security context for the server pods. This should be a YAML map corresponding to a
-  # Kubernetes [SecurityContext](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) object.
-  # By default, servers will run as non-root, with user ID `100` and group ID `1000`,
-  # which correspond to the consul user and group created by the Consul docker image.
-  # Note: if running on OpenShift, this setting is ignored because the user and group are set automatically
-  # by the OpenShift platform.
-  # @type: map
-  # @recurse: false
-  securityContext:
-    runAsNonRoot: true
-    runAsGroup: 1000
-    runAsUser: 100
-    fsGroup: 1000
-
   # This value is used to carefully
   # control a rolling update of Consul server agents. This value specifies the
   # partition (https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#partitions)
   # for performing a rolling update. Please read the linked Kubernetes documentation
-  # and https://www.consul.io/docs/k8s/upgrade#upgrading-consul-servers for more information.
+  # for more information.
   updatePartition: 0
 
   # This configures the PodDisruptionBudget (https://kubernetes.io/docs/tasks/run-application/configure-pdb/)
@@ -432,11 +392,10 @@ server:
   #
   # ```yaml
   # extraVolumes:
-  #   - type: secret
-  #     name: consul-certs
-  #     load: false
+  # - type: 'secret'
+  #   name: 'consul-certs'
+  #   load: false
   # ```
-  #
   # Each object supports the following keys:
   #
   # - `type` - Type of the volume, must be one of "configMap" or "secret". Case sensitive.
@@ -452,7 +411,7 @@ server:
   extraVolumes: []
 
   # This value defines the affinity (https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity)
-  # for server pods. It defaults to allowing only a single server pod on each node, which
+  # for server pods. It defaults to allowing only a single pod on each node, which
   # minimizes risk of the cluster becoming unusable if a node is lost. If you need
   # to run more pods per node (for example, testing on Minikube), set this value
   # to `null`.
@@ -489,7 +448,6 @@ server:
   # labels for server pod assignment, formatted as a multi-line string.
   #
   # Example:
-  #
   # ```yaml
   # nodeSelector: |
   #   beta.kubernetes.io/arch: amd64
@@ -506,18 +464,17 @@ server:
   # Extra labels to attach to the server pods. This should be a YAML map.
   #
   # Example:
-  #
   # ```yaml
   # extraLabels:
-  #   labelKey: label-value
-  #   anotherLabelKey: another-label-value
+  #   labelKey: "label-value"
+  #   anotherLabelKey: "another-label-value"
   # ```
   #
   # @type: map
   extraLabels: null
 
   # This value defines additional annotations for
-  # server pods. This should be formatted as a multi-line string.
+  # server pods. This should be a formatted as a multi-line string.
   #
   # ```yaml
   # annotations: |
@@ -540,7 +497,7 @@ server:
     # @type: string
     annotations: null
 
-  # A list of extra environment variables to set within the stateful set.
+  # extraEnvironmentVars is a list of extra environment variables to set within the stateful set.
   # These could be used to include proxy settings required for cloud auto-join
   # feature, in case kubernetes cluster is behind egress http proxies. Additionally,
   # it could be used to configure custom consul parameters.
@@ -553,7 +510,7 @@ server:
 # or `global.acls.manageSystemACLs` to true (requires consul-k8s >= 0.14.0).
 externalServers:
   # If true, the Helm chart will be configured to talk to the external servers.
-  # If setting this to true, you must also set `server.enabled` to false.
+  #  If setting this to true, you must also set `server.enabled` to false.
   enabled: false
 
   # An array of external Consul server hosts that are used to make
@@ -655,27 +612,12 @@ client:
       memory: "100Mi"
       cpu: "100m"
 
-  # The security context for the client pods. This should be a YAML map corresponding to a
-  # Kubernetes [SecurityContext](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) object.
-  # By default, servers will run as non-root, with user ID `100` and group ID `1000`,
-  # which correspond to the consul user and group created by the Consul docker image.
-  # Note: if running on OpenShift, this setting is ignored because the user and group are set automatically
-  # by the OpenShift platform.
-  # @type: map
-  # @recurse: false
-  securityContext:
-    runAsNonRoot: true
-    runAsGroup: 1000
-    runAsUser: 100
-    fsGroup: 1000
-
   # A raw string of extra JSON configuration (https://consul.io/docs/agent/options) for Consul
   # clients. This will be saved as-is into a ConfigMap that is read by the Consul
   # client agents. This can be used to add additional configuration that
   # isn't directly exposed by the chart.
   #
   # Example:
-  #
   # ```yaml
   # extraConfig: |
   #   {
@@ -700,11 +642,10 @@ client:
   #
   # ```yaml
   # extraVolumes:
-  #   - type: secret
-  #     name: consul-certs
-  #     load: false
+  # - type: 'secret'
+  #   name: 'consul-certs'
+  #   load: false
   # ```
-  #
   # Each object supports the following keys:
   #
   # - `type` - Type of the volume, must be one of "configMap" or "secret". Case sensitive.
@@ -724,18 +665,14 @@ client:
   # in a PodSpec.
   # The example below will allow Client pods to run on every node
   # regardless of taints
-  #
-  # ```yaml
   # tolerations: |
-  #   - operator: Exists
-  # ```
+  #   - operator: "Exists"
   tolerations: ""
 
   # nodeSelector labels for client pod assignment, formatted as a multi-line string.
   # ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector
   #
   # Example:
-  #
   # ```yaml
   # nodeSelector: |
   #   beta.kubernetes.io/arch: amd64
@@ -747,7 +684,6 @@ client:
   # ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
   #
   # Example:
-  #
   # ```yaml
   # affinity: |
   #   nodeAffinity:
@@ -766,7 +702,7 @@ client:
   priorityClassName: ""
 
   # This value defines additional annotations for
-  # client pods. This should be formatted as a multi-line string.
+  # client pods. This should be a formatted as a multi-line string.
   #
   # ```yaml
   # annotations: |
@@ -777,7 +713,7 @@ client:
   # @type: string
   annotations: null
 
-  # A list of extra environment variables to set within the stateful set.
+  # extraEnvironmentVars is a list of extra environment variables to set within the stateful set.
   # These could be used to include proxy settings required for cloud auto-join
   # feature, in case kubernetes cluster is behind egress http proxies. Additionally,
   # it could be used to configure custom consul parameters.
@@ -801,14 +737,12 @@ client:
   # This should be a multi-line string mapping directly to the updateStrategy
   #
   # Example:
-  #
   # ```yaml
-  # updateStrategy: |
-  #   rollingUpdate:
-  #     maxUnavailable: 5
-  #   type: RollingUpdate
+  #  updateStrategy: |
+  #    rollingUpdate:
+  #      maxUnavailable: 5
+  #    type: RollingUpdate
   # ```
-  #
   # @type: string
   updateStrategy: null
 
@@ -847,7 +781,6 @@ client:
     # Useful if using an S3-compatible storage exposing a self-signed certificate.
     #
     # Example:
-    #
     # ```yaml
     # caCert: |
     #   -----BEGIN CERTIFICATE-----
@@ -867,7 +800,7 @@ dns:
   # @type: boolean
   enabled: "-"
 
-  # Used to control the type of service created. For
+  # type can be used to control the type of service created. For
   # example, setting this to "LoadBalancer" will create an external load
   # balancer (for supported K8S installations)
   type: ClusterIP
@@ -901,7 +834,11 @@ ui:
   # @type: boolean
   enabled: "-"
 
-  # Configure the service for the Consul UI.
+  # True if you want to create a Service entry for the Consul UI.
+  #
+  # serviceType can be used to control the type of service created. For
+  # example, setting this to "LoadBalancer" will create an external load
+  # balancer (for supported K8S installations) to access the UI.
   service:
     # This will enable/disable registering a
     # Kubernetes Service for the Consul UI. This value only takes effect if `ui.enabled` is
@@ -915,10 +852,9 @@ ui:
     # Annotations to apply to the UI service.
     #
     # Example:
-    #
     # ```yaml
-    # annotations: |
-    #   'annotation-key': annotation-value
+    #   annotations: |
+    #     "annotation-key": "annotation-value"
     # ```
     # @type: string
     annotations: null
@@ -929,7 +865,7 @@ ui:
     # @type: string
     additionalSpec: null
 
-# Configure the catalog sync process to sync K8S with Consul
+# syncCatalog will run the catalog sync process to sync K8S with Consul
 # services. This can run bidirectional (default) or unidirectionally (Consul
 # to K8S or K8S to Consul only).
 #
@@ -956,22 +892,22 @@ syncCatalog:
   # Optional priorityClassName.
   priorityClassName: ""
 
-  # If true, will sync Kubernetes services to Consul. This can be disabled to
-  # have a one-way sync.
+  # toConsul and toK8S control whether syncing is enabled to Consul or K8S
+  # as a destination. If both of these are disabled, the sync will do nothing.
   toConsul: true
 
   # If true, will sync Consul services to Kubernetes. This can be disabled to
   # have a one-way sync.
   toK8S: true
 
-  # Service prefix to prepend to services before registering
+  # k8sPrefix is the service prefix to prepend to services before registering
   # with Kubernetes. For example "consul-" will register all services
   # prepended with "consul-". (Consul -> Kubernetes sync)
   # @type: string
   k8sPrefix: null
 
-  # List of k8s namespaces to sync the k8s services from.
-  # If a k8s namespace is not included in this list or is listed in `k8sDenyNamespaces`,
+  # k8sAllowNamespaces is a list of k8s namespaces to sync the k8s services from.
+  # If a k8s namespace is not included  in this list or is listed in `k8sDenyNamespaces`,
   # services in that k8s namespace will not be synced even if they are explicitly
   # annotated. Use `["*"]` to automatically allow all k8s namespaces.
   #
@@ -986,7 +922,7 @@ syncCatalog:
   # @type: array<string>
   k8sAllowNamespaces: ["*"]
 
-  # List of k8s namespaces that should not have their
+  # k8sDenyNamespaces is a list of k8s namespaces that should not have their
   # services synced. This list takes precedence over `k8sAllowNamespaces`.
   # `*` is not supported because then nothing would be allowed to sync.
   # Requires consul-k8s v0.12+.
@@ -1010,12 +946,12 @@ syncCatalog:
   # Consul namespaces (requires consul-ent v1.7+ and consul-k8s v0.12+).
   # Also, `global.enableConsulNamespaces` must be true.
   consulNamespaces:
-    # Name of the Consul namespace to register all
+    # consulDestinationNamespace is the name of the Consul namespace to register all
     # k8s services into. If the Consul namespace does not already exist,
     # it will be created. This will be ignored if `mirroringK8S` is true.
     consulDestinationNamespace: "default"
 
-    # If true, k8s services will be registered into a Consul namespace
+    # mirroringK8S causes k8s services to be registered into a Consul namespace
     # of the same name as their k8s namespace, optionally prefixed if
     # `mirroringK8SPrefix` is set below. If the Consul namespace does not
     # already exist, it will be created. Turning this on overrides the
@@ -1029,7 +965,7 @@ syncCatalog:
     # `k8s-staging` Consul namespace.
     mirroringK8SPrefix: ""
 
-  # Appends Kubernetes namespace suffix to
+  # addK8SNamespaceSuffix appends Kubernetes namespace suffix to
   # each service name synced to Consul, separated by a dash.
   # For example, for a service 'foo' in the default namespace,
   # the sync process will create a Consul service named 'foo-default'.
@@ -1038,7 +974,7 @@ syncCatalog:
   # Namespace suffix is not added if 'annotationServiceName' is provided.
   addK8SNamespaceSuffix: true
 
-  # Service prefix which prepends itself
+  # consulPrefix is the service prefix which prepends itself
   # to Kubernetes services registered within Consul
   # For example, "k8s-" will register all services prepended with "k8s-".
   # (Kubernetes -> Consul sync)
@@ -1048,13 +984,13 @@ syncCatalog:
   # @type: string
   consulPrefix: null
 
-  # Optional tag that is applied to all of the Kubernetes services
+  # k8sTag is an optional tag that is applied to all of the Kubernetes services
   # that are synced into Consul. If nothing is set, defaults to "k8s".
   # (Kubernetes -> Consul sync)
   # @type: string
   k8sTag: null
 
-  # Defines the Consul synthetic node that all services
+  # consulNodeName defines the Consul synthetic node that all services
   # will be registered to.
   # NOTE: Changing the node name and upgrading the Helm chart will leave
   # all of the previously sync'd services registered with Consul and
@@ -1062,12 +998,12 @@ syncCatalog:
   # registrations will need to be explicitly removed.
   consulNodeName: "k8s-sync"
 
-  # Syncs services of the ClusterIP type, which may
+  # syncClusterIPServices syncs services of the ClusterIP type, which may
   # or may not be broadly accessible depending on your Kubernetes cluster.
   # Set this to false to skip syncing ClusterIP services.
   syncClusterIPServices: true
 
-  # Configures the type of syncing that happens for NodePort
+  # nodePortSyncType configures the type of syncing that happens for NodePort
   # services. The valid options are: ExternalOnly, InternalOnly, ExternalFirst.
   #
   # - ExternalOnly will only use a node's ExternalIP address for the sync
@@ -1076,7 +1012,7 @@ syncCatalog:
   #   if it doesn't exist, it will use the node's InternalIP address instead.
   nodePortSyncType: ExternalFirst
 
-  # Refers to a Kubernetes secret that you have created that contains
+  # aclSyncToken refers to a Kubernetes secret that you have created that contains
   # an ACL token for your Consul cluster which allows the sync process the correct
   # permissions. This is only needed if ACLs are enabled on the Consul cluster.
   aclSyncToken:
@@ -1089,7 +1025,6 @@ syncCatalog:
   # labels for catalog sync pod assignment, formatted as a multi-line string.
   #
   # Example:
-  #
   # ```yaml
   # nodeSelector: |
   #   beta.kubernetes.io/arch: amd64
@@ -1125,13 +1060,13 @@ syncCatalog:
   # @type: string
   consulWriteInterval: null
 
-# Configures the automatic Connect sidecar injector.
+# ConnectInject will enable the automatic Connect sidecar injector.
 connectInject:
   # True if you want to enable connect injection. Set to "-" to inherit from
   # global.enabled.
   enabled: false
 
-  # Image for consul-k8s that contains the injector
+  # image for consul-k8s that contains the injector
   # @type: string
   image: null
 
@@ -1142,7 +1077,7 @@ connectInject:
   # to explicitly opt-out of injection.
   default: false
 
-  # Enables synchronization of Kubernetes health probe status with Consul.
+  # healthChecks enables synchronization of Kubernetes health probe status with Consul.
   # NOTE: It is highly recommended to enable TLS with this feature because it requires
   # making calls to Consul clients across the cluster. Without TLS enabled, these calls
   # could leak ACL tokens should the cluster network become compromised.
@@ -1154,7 +1089,7 @@ connectInject:
     # reconcile is done after the initial reconcile at startup is completed.
     reconcilePeriod: "1m"
 
-  # Used to pass arguments to the injected envoy sidecar.
+  # envoyExtraArgs is used to pass arguments to the injected envoy sidecar.
   # Valid arguments to pass to envoy can be found here: https://www.envoyproxy.io/docs/envoy/latest/operations/cli
   # e.g "--log-level debug --disable-hot-restart"
   # @type: string
@@ -1180,13 +1115,12 @@ connectInject:
       memory: "50Mi"
       cpu: "50m"
 
-  # Selector for restricting the webhook to only
+  # namespaceSelector is the selector for restricting the webhook to only
   # specific namespaces. This should be set to a multiline string.
   # See https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#matching-requests-namespaceselector
   # for more details.
   #
   # Example:
-  #
   # ```yaml
   # namespaceSelector: |
   #   matchLabels:
@@ -1195,7 +1129,7 @@ connectInject:
   # @type: string
   namespaceSelector: null
 
-  # List of k8s namespaces to allow Connect sidecar
+  # k8sAllowNamespaces is a list of k8s namespaces to allow Connect sidecar
   # injection in. If a k8s namespace is not included or is listed in `k8sDenyNamespaces`,
   # pods in that k8s namespace will not be injected even if they are explicitly
   # annotated. Use `["*"]` to automatically allow all k8s namespaces.
@@ -1213,7 +1147,7 @@ connectInject:
   # @type: array<string>
   k8sAllowNamespaces: ["*"]
 
-  # List of k8s namespaces that should not allow Connect
+  # k8sDenyNamespaces is a list of k8s namespaces that should not allow Connect
   # sidecar injection. This list takes precedence over `k8sAllowNamespaces`.
   # `*` is not supported because then nothing would be allowed to be injected.
   #
@@ -1231,12 +1165,12 @@ connectInject:
   # Consul namespaces (requires consul-ent v1.7+ and consul-k8s v0.12+).
   # Also, `global.enableConsulNamespaces` must be true.
   consulNamespaces:
-    # Name of the Consul namespace to register all
+    # consulDestinationNamespace is the name of the Consul namespace to register all
     # k8s pods into. If the Consul namespace does not already exist,
     # it will be created. This will be ignored if `mirroringK8S` is true.
     consulDestinationNamespace: "default"
 
-    # Causes k8s pods to be registered into a Consul namespace
+    # mirroringK8S causes k8s pods to be registered into a Consul namespace
     # of the same name as their k8s namespace, optionally prefixed if
     # `mirroringK8SPrefix` is set below. If the Consul namespace does not
     # already exist, it will be created. Turning this on overrides the
@@ -1256,28 +1190,25 @@ connectInject:
   # MutatingWebhookConfiguration. In a production environment, custom certs
   # should probably be used. Configure the values below to enable this.
   certs:
-    # Name of the secret that has the TLS certificate and
+    # secretName is the name of the secret that has the TLS certificate and
     # private key to serve the injector webhook. If this is null, then the
     # injector will default to its automatic management mode that will assign
     # a service account to the injector to generate its own certificates.
     secretName: null
 
-    # Base64-encoded PEM-encoded certificate bundle for the
+    # caBundle is a base64-encoded PEM-encoded certificate bundle for the
     # CA that signed the TLS certificate that the webhook serves. This must
     # be set if secretName is non-null.
     caBundle: ""
 
-    # Name of the file within the secret for
-    # the TLS cert.
+    # certName and keyName are the names of the files within the secret for
+    # the TLS cert and private key, respectively. These have reasonable
+    # defaults but can be customized if necessary.
     certName: tls.crt
-
-    # Name of the file within the secret for
-    # the private TLS key.
     keyName: tls.key
 
-  # Selector labels for connectInject pod assignment, formatted as a multi-line string.
+  # nodeSelector labels for connectInject pod assignment, formatted as a multi-line string.
   # ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector
-  #
   # Example:
   #
   # ```yaml
@@ -1298,7 +1229,7 @@ connectInject:
   # @type: string
   tolerations: null
 
-  # Query that defines which Service Accounts
+  # aclBindingRuleSelector accepts a query that defines which Service Accounts
   # can authenticate to Consul and receive an ACL token during Connect injection.
   # The default setting, i.e. serviceaccount.name!=default, prevents the
   # 'default' Service Account from logging in.
@@ -1315,7 +1246,7 @@ connectInject:
   # auth method for Connect inject, set this to the name of your auth method.
   overrideAuthMethodName: ""
 
-  # Refers to a Kubernetes secret that you have created that contains
+  # aclInjectToken refers to a Kubernetes secret that you have created that contains
   # an ACL token for your Consul cluster which allows the Connect injector the correct
   # permissions. This is only needed if Consul namespaces [Enterprise Only] and ACLs
   # are enabled on the Consul cluster and you are not setting
@@ -1328,23 +1259,23 @@ connectInject:
 
   # Requires Consul >= v1.5 and consul-k8s >= v0.8.1.
   centralConfig:
-    # Controls whether central config is enabled on all servers and clients.
+    # enabled controls whether central config is enabled on all servers and clients.
     # See https://www.consul.io/docs/agent/options.html#enable_central_service_config.
     # If changing this after installation, servers and clients must be restarted
     # for the change to take effect.
     enabled: true
 
-    # Allows you to specify a convenience default protocol if
+    # defaultProtocol allows you to specify a convenience default protocol if
     # most of your services are of the same protocol type. The individual annotation
     # on any given pod will override this value.
     # Valid values are "http", "http2", "grpc" and "tcp".
     # @type: string
     defaultProtocol: null
 
-    # Raw json string that will be written as the value of
+    # proxyDefaults is a raw json string that will be written as the value of
     # the "config" key of the global proxy-defaults config entry.
     # See: https://www.consul.io/docs/agent/config-entries/proxy-defaults.html
-    # NOTE: Changes to this value after the chart is first installed have _no_
+    # NOTE: Changes to this value after the chart is first installed have *no*
     # effect. In order to change the proxy-defaults config after installation,
     # you must use the Consul API.
     proxyDefaults: |
@@ -1354,7 +1285,6 @@ connectInject:
     # Set default resources for sidecar proxy. If null, that resource won't
     # be set.
     # These settings can be overridden on a per-pod basis via these annotations:
-    #
     # - `consul.hashicorp.com/sidecar-proxy-cpu-limit`
     # - `consul.hashicorp.com/sidecar-proxy-cpu-request`
     # - `consul.hashicorp.com/sidecar-proxy-memory-limit`
@@ -1446,28 +1376,28 @@ meshGateway:
   wanAddress:
     # source configures where to retrieve the WAN address (and possibly port)
     # for the mesh gateway from.
-    # Can be set to either: `Service`, `NodeIP`, `NodeName` or `Static`.
+    # Can be set to either: Service, NodeIP, NodeName or Static.
     #
-    # - `Service` - Determine the address based on the service type.
+    # Service - Determine the address based on the service type.
     #
-    #   - If `service.type=LoadBalancer` use the external IP or hostname of
-    #     the service. Use the port set by `service.port`.
+    #   If service.type=LoadBalancer use the external IP or hostname of
+    #   the service. Use the port set by service.port.
     #
-    #   - If `service.type=NodePort` use the Node IP. The port will be set to
-    #     `service.nodePort` so `service.nodePort` cannot be null.
+    #   If service.type=NodePort use the Node IP. The port will be set to
+    #   service.nodePort so service.nodePort cannot be null.
     #
-    #   - If `service.type=ClusterIP` use the `ClusterIP`. The port will be set to
-    #     `service.port`.
+    #   If service.type=ClusterIP use the ClusterIP. The port will be set to
+    #   service.port.
     #
-    #   - `service.type=ExternalName` is not supported.
+    #   service.type=ExternalName is not supported.
     #
-    # - `NodeIP` - The node IP as provided by the Kubernetes downward API.
+    # NodeIP - The node IP as provided by the Kubernetes downward API.
     #
-    # - `NodeName` - The name of the node as provided by the Kubernetes downward
+    # NodeName - The name of the node as provided by the Kubernetes downward
     #   API. This is useful if the node names are DNS entries that
     #   are routable from other datacenters.
     #
-    # - `Static` - Use the address hardcoded in `meshGateway.wanAddress.static`.
+    # Static - Use the address hardcoded in meshGateway.wanAddress.static.
     source: "Service"
 
     # Port that gets registered for WAN traffic.
@@ -1500,12 +1430,11 @@ meshGateway:
     nodePort: null
 
     # Annotations to apply to the mesh gateway service.
-    #
     # Example:
     #
     # ```yaml
-    # annotations: |
-    #   'annotation-key': annotation-value
+    #   annotations: |
+    #     "annotation-key": "annotation-value"
     # ```
     # @type: string
     annotations: null
@@ -1586,12 +1515,11 @@ meshGateway:
   priorityClassName: ""
 
   # Annotations to apply to the mesh gateway deployment.
-  #
   # Example:
   #
   # ```yaml
-  # annotations: |
-  #   'annotation-key': annotation-value
+  #   annotations: |
+  #     "annotation-key": "annotation-value"
   # ```
   # @type: string
   annotations: null
@@ -1603,7 +1531,7 @@ meshGateway:
 # include both the default annotations and any additional ones defined
 # for a specific gateway.
 # Requirements: consul >= 1.8.0 and consul-k8s >= 0.16.0 if using
-# global.acls.manageSystemACLs and consul-k8s >= 0.10.0 if not.
+# global.acls.manageSystemACLs and consul-k8s  >= 0.10.0 if not.
 ingressGateways:
   # Enable ingress gateway deployment. Requires `connectInject.enabled=true`
   # and `client.enabled=true`.
@@ -1642,13 +1570,11 @@ ingressGateways:
       # Annotations to apply to the ingress gateway service. Annotations defined
       # here will be applied to all ingress gateway services in addition to any
       # service annotations defined for a specific gateway in `ingressGateways.gateways`.
-      #
       # Example:
-      #
       # ```yaml
-      # annotations: |
-      #   'annotation-key': annotation-value
-      # ```
+      #   annotations: |
+      #     "annotation-key": "annotation-value"
+      # ````
       # @type: string
       annotations: null
 
@@ -1702,18 +1628,16 @@ ingressGateways:
     # Annotations to apply to the ingress gateway deployment. Annotations defined
     # here will be applied to all ingress gateway deployments in addition to any
     # annotations defined for a specific gateway in `ingressGateways.gateways`.
-    #
     # Example:
-    #
     # ```yaml
-    # annotations: |
-    #   "annotation-key": 'annotation-value'
+    #   annotations: |
+    #     "annotation-key": "annotation-value"
     # ```
     # @type: string
     annotations: null
 
     # [Enterprise Only] `consulNamespace` defines the Consul namespace to register
-    # the gateway into. Requires `global.enableConsulNamespaces` to be true and
+    # the gateway into.  Requires `global.enableConsulNamespaces` to be true and
     # Consul Enterprise v1.7+ with a valid Consul Enterprise license.
     # Note: The Consul namespace MUST exist before the gateway is deployed.
     consulNamespace: "default"
@@ -1733,7 +1657,7 @@ ingressGateways:
 # include both the default annotations and any additional ones defined
 # for a specific gateway.
 # Requirements: consul >= 1.8.0 and consul-k8s >= 0.16.0 if using
-# global.acls.manageSystemACLs and consul-k8s >= 0.10.0 if not.
+# global.acls.manageSystemACLs and consul-k8s  >= 0.10.0 if not.
 terminatingGateways:
   # Enable terminating gateway deployment. Requires `connectInject.enabled=true`
   # and `client.enabled=true`.
@@ -1751,14 +1675,13 @@ terminatingGateways:
     # A list of extra volumes to mount. These will be exposed to Consul in the path `/consul/userconfig/<name>/`.
     #
     # Example:
-    #
     # ```yaml
     # extraVolumes:
-    #   - type: secret
-    #     name: my-secret
-    #     items: # optional items array
-    #       - key: key
-    #         path: path # secret will now mount to /consul/userconfig/my-secret/path
+    # - type: 'secret'
+    #   name: 'my-secret'
+    #   items: # optional items array
+    #     - key: key
+    #       path: path # secret will now mount to /consul/userconfig/my-secret/path
     # ```
     # @type: array<map>
     extraVolumes: []
@@ -1810,18 +1733,16 @@ terminatingGateways:
     # Annotations to apply to the terminating gateway deployment. Annotations defined
     # here will be applied to all terminating gateway deployments in addition to any
     # annotations defined for a specific gateway in `terminatingGateways.gateways`.
-    #
     # Example:
-    #
     # ```yaml
-    # annotations: |
-    #   'annotation-key': annotation-value
+    #   annotations: |
+    #     "annotation-key": "annotation-value"
     # ```
     # @type: string
     annotations: null
 
     # [Enterprise Only] `consulNamespace` defines the Consul namespace to register
-    # the gateway into. Requires `global.enableConsulNamespaces` to be true and
+    # the gateway into.  Requires `global.enableConsulNamespaces` to be true and
     # Consul Enterprise v1.7+ with a valid Consul Enterprise license.
     # Note: The Consul namespace MUST exist before the gateway is deployed.
     consulNamespace: "default"
