@@ -44,7 +44,7 @@ hostNetwork: false
 image:
   pullPolicy: IfNotPresent
   repository: docker.io/datawire/aes
-  tag: 1.9.1
+  tag: 1.10.0
 imagePullSecrets: []
 initContainers: []
 licenseKey:
@@ -126,6 +126,8 @@ service:
   - name: https
     port: 443
     targetPort: 8443
+  sessionAffinity: null
+  sessionAffinityConfig: null
   type: LoadBalancer
 serviceAccount:
   create: true
