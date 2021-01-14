@@ -1,6 +1,7 @@
 annotations:
   artifacthub.io/changes: |
-    - Do not create HPA for defaultbackend if not enabled.
+    - Do not create KEDA in case of DaemonSets.
+    - Fix KEDA v2 definition
 apiVersion: v2
 appVersion: 0.43.0
 description: Ingress controller for Kubernetes using NGINX as a reverse proxy and load balancer
@@ -16,4 +17,4 @@ name: ingress-nginx
 sources:
 - https://github.com/kubernetes/ingress-nginx
 type: application
-version: 3.20.0
+version: 3.20.1
