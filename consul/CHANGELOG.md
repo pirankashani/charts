@@ -1,5 +1,51 @@
 ## Unreleased
 
+## 0.30.0 (Feb 16, 2021)
+
+BREAKING CHANGES:
+* The following Helm settings are no longer supported and will cause errors on `helm upgrade`.
+  See [Upgrade to CRDs](https://www.consul.io/docs/k8s/crds/upgrade-to-crds)
+  for more information on how to upgrade. [[GH-763](https://github.com/hashicorp/consul-helm/pull/763)]
+  * `connectInject.centralConfig.defaultProtocol`
+  * `connectInject.centralConfig.proxyDefaults`
+  * `connectInject.centralConfig.enabled`
+  * `meshGateway.globalMode`
+* The `consul.hashicorp.com/connect-service-protocol` annotation on Connect pods is
+  no longer supported with this version of `consul-k8s` (0.23.0).
+
+  Current deployments that have the annotation should remove it, otherwise they
+  will get an error if a pod from that deployment is rescheduled.
+
+  See [Upgrade to CRDs](https://www.consul.io/docs/k8s/crds/upgrade-to-crds)
+  for more information on how to upgrade.
+* The lifecycle-sidecar command and container has been renamed to
+  consul-sidecar. The Helm value `global.lifecycleSidecarContainer` has been
+  renamed to `global.consulSidecarContainer`.
+  `global.lifecycleSidecarContainer` is no longer supported and will cause
+  errors on `helm upgrade`. Please use `global.consulSidecarContainer` instead.
+  [[GH-810](https://github.com/hashicorp/consul-helm/pull/810)]
+* Ingress Gateways: when running on platforms that use hostnames instead of IPs for LoadBalancers (e.g. EKS)
+  the hostname will now be used as the address of the ingress gateway. Previously the first IP was
+  used, however, the IP could be recycled or go stale whereas the hostname will always work. [[GH-813](https://github.com/hashicorp/consul-helm/pull/813]
+* Helm 2 is no longer supported. It may still work, however the chart is no longer unit tested against Helm 2. [[GH-807](https://github.com/hashicorp/consul-helm/pull/807)]
+
+IMPROVEMENTS:
+* Add ability to set extra labels on Consul client pods. [[GH-612](https://github.com/hashicorp/consul-helm/pull/612)]
+* CRDs: add value `controller.aclToken` to support manually passing in an ACL token to the CRD controller if independently managing ACLs. [[GH-783](https://github.com/hashicorp/consul-helm/pull/783)]
+* TLS: Consul client certificates now include their pod IPs in the IP SANs. This applies to auto-encrypt enabled and disabled. [[GH-805](https://github.com/hashicorp/consul-helm/pull/805)]
+* Consul client nodes have a new meta key called "host-ip" set to the IP of the Kubernetes node they're running on. [[GH-805](https://github.com/hashicorp/consul-helm/pull/805)]
+* Connect: the latest version of consul-k8s cleans up Consul connect service mesh instances whose pods are no longer running.
+  This could happen if the pod's `preStop` hook failed to execute for some reason. [[GH-806](https://github.com/hashicorp/consul-helm/pull/806)]
+* Updated the default Consul image to `hashicorp/consul:1.9.3`.
+* Updated the default consul-k8s image to `hashicorp/consul-k8s:0.24.0`.
+
+BUG FIXES:
+* Use `rbac.authorization.k8s.io/v1` instead of `rbac.authorization.k8s.io/v1beta1` API version for the `roles` and `rolebindings` used by the `tls-init`
+  and `tls-init-cleanup` jobs. [[GH-789](https://github.com/hashicorp/consul-helm/issues/789)]
+* Fix API version of Ingress resource for Consul UI. [[GH-786](https://github.com/hashicorp/consul-helm/pull/786)]
+* Provide a deterministic host-based node ID for the Consul clients to fix an error when a client is terminated without a graceful shutdown.
+  [[GH-791](https://github.com/hashicorp/consul-helm/pull/791)]
+
 ## 0.29.0 (Jan 22, 2021)
 
 IMPROVEMENTS:
