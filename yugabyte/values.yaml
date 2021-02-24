@@ -4,7 +4,7 @@
 Component: "yugabytedb"
 Image:
   repository: "yugabytedb/yugabyte"
-  tag: 2.5.1.0-b153
+  tag: 2.5.2.0-b104
   pullPolicy: IfNotPresent
 
 storage:
@@ -196,3 +196,5 @@ authCredentials:
     user: ""
     password: ""
     keyspace: ""
+
+oldNamingStyle: true
