@@ -30,6 +30,7 @@ spec:
 {{- end }}
     spec:
       securityContext:
+        runAsUser: 10000
         fsGroup: 10000
 {{- if .Values.core.serviceAccountName }}
       serviceAccountName: {{ .Values.core.serviceAccountName }}
@@ -38,6 +39,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      automountServiceAccountToken: false
       containers:
       - name: core
         image: {{ .Values.core.image.repository }}:{{ .Values.core.image.tag }}
