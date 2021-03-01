@@ -36,9 +36,11 @@ Common labels
 */}}
 {{- define "gitea.labels" -}}
 helm.sh/chart: {{ include "gitea.chart" . }}
+app: {{ include "gitea.name" . }}
 {{ include "gitea.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
@@ -103,6 +105,14 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- else -}}
 {{- printf "--%s %s " ($key | kebabcase) ($val | quote) -}}
 {{- end -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+
+{{- define "gitea.oauth_settings" -}}
+{{- range $key, $val := .Values.gitea.oauth -}}
+{{- if ne $key "enabled" -}}
+{{- printf "--%s %s " ($key | kebabcase) ($val | quote) -}}
 {{- end -}}
 {{- end -}}
 {{- end -}}

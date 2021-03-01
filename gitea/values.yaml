@@ -13,6 +13,8 @@ image:
 
 imagePullSecrets: []
 
+securityContext: {}
+
 service:
   http:
     type: ClusterIP
@@ -112,6 +114,7 @@ gitea:
     enabled: false
     serviceMonitor:
       enabled: false
+      # prometheusSelector: default
 
   ldap:
     enabled: false
@@ -127,6 +130,19 @@ gitea:
     #bindPassword: 
     #usernameAttribute: 
     #sshPublicKeyAttribute:
+
+  oauth:
+    enabled: false
+    #name:
+    #provider:
+    #key: 
+    #secret: 
+    #autoDiscoverUrl:
+    #useCustomUrls:
+    #customAuthUrl:
+    #customTokenUrl:
+    #customProfileUrl:
+    #customEmailUrl:
 
   config: {}
   #  APP_NAME: "Gitea: Git with a cup of tea"
@@ -152,6 +168,52 @@ gitea:
   cache:
     builtIn:
       enabled: true
+
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 200
+    timeoutSeconds: 1
+    periodSeconds: 10
+    successThreshold: 1
+    failureThreshold: 10
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 5
+    timeoutSeconds: 1
+    periodSeconds: 10
+    successThreshold: 1
+    failureThreshold: 3
+  startupProbe:
+    enabled: false
+    initialDelaySeconds: 60
+    periodSeconds: 10
+    successThreshold: 1
+    failureThreshold: 10
+
+  # customLivenessProbe:
+  #   httpGet:
+  #     path: /user/login
+  #     port: http
+  #   initialDelaySeconds: 60
+  #   periodSeconds: 10
+  #   successThreshold: 1
+  #   failureThreshold: 10
+  # customReadinessProbe:
+  #   httpGet:
+  #     path: /user/login
+  #     port: http
+  #   initialDelaySeconds: 5
+  #   periodSeconds: 10
+  #   successThreshold: 1
+  #   failureThreshold: 3
+  # customStartupProbe:
+  #   httpGet:
+  #     path: /user/login
+  #     port: http
+  #   initialDelaySeconds: 60
+  #   periodSeconds: 10
+  #   successThreshold: 1
+  #   failureThreshold: 10
 
 memcached:
   service:

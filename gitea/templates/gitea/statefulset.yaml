@@ -15,11 +15,12 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/gitea/config.yaml") . | sha256sum }}
         checksum/ldap: {{ include "gitea.ldap_settings" . | sha256sum }}
+        checksum/oauth: {{ include "gitea.oauth_settings" . | sha256sum }}
         {{- with .Values.gitea.podAnnotations }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
       labels:
-        {{- include "gitea.selectorLabels" . | nindent 8 }}
+        {{- include "gitea.labels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -66,27 +67,53 @@ spec:
               containerPort: {{ .Values.gitea.config.server.SSH_LISTEN_PORT }}
             - name: http
               containerPort: {{ .Values.gitea.config.server.HTTP_PORT }}
-            {{- if .Values.gitea.config.server.PPROF_ENABLED }}
+            {{- if .Values.gitea.config.server.ENABLE_PPROF }}
             - name: profiler
               containerPort: 6060
             {{- end }}
+          {{- if .Values.gitea.livenessProbe.enabled }}
           livenessProbe:
             tcpSocket:
               port: http
-            initialDelaySeconds: 200
-            timeoutSeconds: 1
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 10
+            initialDelaySeconds: {{ .Values.gitea.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.gitea.livenessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.gitea.livenessProbe.timeoutSeconds }}
+            successThreshold: {{ .Values.gitea.livenessProbe.successThreshold }}
+            failureThreshold: {{ .Values.gitea.livenessProbe.failureThreshold }}
+          {{- else if .Values.gitea.customLivenessProbe }}
+          livenessProbe:
+            {{- toYaml .Values.gitea.customLivenessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.gitea.readinessProbe.enabled }}
           readinessProbe:
             tcpSocket:
               port: http
-            initialDelaySeconds: 5
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 3
+            initialDelaySeconds: {{ .Values.gitea.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.gitea.readinessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.gitea.readinessProbe.timeoutSeconds }}
+            successThreshold: {{ .Values.gitea.readinessProbe.successThreshold }}
+            failureThreshold: {{ .Values.gitea.readinessProbe.failureThreshold }}
+          {{- else if .Values.gitea.customReadinessProbe }}
+          readinessProbe:
+            {{- toYaml .Values.gitea.customReadinessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.gitea.startupProbe.enabled }}
+          startupProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: {{ .Values.gitea.startupProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.gitea.startupProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.gitea.startupProbe.timeoutSeconds }}
+            successThreshold: {{ .Values.gitea.startupProbe.successThreshold }}
+            failureThreshold: {{ .Values.gitea.startupProbe.failureThreshold }}
+          {{- else if .Values.gitea.customStartupProbe }}
+          startupProbe:
+            {{- toYaml .Values.gitea.customStartupProbe | nindent 12 }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
           volumeMounts:
             - name: data
               mountPath: /data
