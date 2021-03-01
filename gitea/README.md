@@ -288,6 +288,47 @@ kebab-case:
       bind-password: JustAnotherBindPw
       username-attribute: CN
 ```
+### OAuth2 Settings
+
+Like the admin user the OAuth2 settings can be updated but also disabled or deleted.
+All OAuth2 values from <https://docs.gitea.io/en-us/command-line/#admin> are available.
+You can either use them in camel case or kebab case.
+
+camelCase:
+
+```yaml
+  gitea:
+    oauth:
+      enabled: true
+      name: 'MyAwesomeGiteaOAuth'
+      provider: 'openidConnect'
+      key: 'hello'
+      secret: 'world'
+      autoDiscoverUrl: 'https://gitea.example.com/.well-known/openid-configuration'
+      #useCustomUrls:
+      #customAuthUrl:
+      #customTokenUrl:
+      #customProfileUrl:
+      #customEmailUrl:
+```
+
+kebab-case:
+
+```yaml
+  gitea:
+    oauth:
+      enabled: true
+      name: 'MyAwesomeGiteaOAuth'
+      provider: 'openidConnect'
+      key: 'hello'
+      secret: 'world'
+      auto-discover-url: 'https://gitea.example.com/.well-known/openid-configuration'
+      #use-custom-urls:
+      #custom-auth-url:
+      #custom-token-url:
+      #custom-profile-url:
+      #custom-email-url:
+```
 
 ### Metrics and profiling
 
@@ -304,7 +345,7 @@ gitea:
 
   config:
     server:
-      PPROF_ENABLED: true
+      ENABLE_PPROF: true
 ```
 
 ### Pod Annotations
@@ -327,6 +368,7 @@ Annotations can be added to the Gitea pod.
 | extraVolumes                              | Additional volumes to mount to the Gitea statefulset   | {}          |
 | extraVolumeMounts                         | Additional volumes mounts for the Gitea containers     | {}          |
 | initPreScript                             | Bash script copied verbatim to start of init container |             |
+| securityContext                           | Run as a specific securityContext                      | {}          |
 
 ### Image
 
@@ -374,6 +416,34 @@ Annotations can be added to the Gitea pod.
 | Parameter           | Description                       | Default                      |
 |---------------------|-----------------------------------|------------------------------|
 |gitea.config | Everything in app.ini can be configured with this dict. See Examples for more details | {} |
+
+### Gitea Probes
+
+Configure Liveness, Readiness and Startup [Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
+
+| Parameter           | Description                       | Default                      |
+|---------------------|-----------------------------------|------------------------------|
+|gitea.livenessProbe.enabled | Enable liveness probe | true |
+|gitea.livenessProbe.initialDelaySeconds | Delay before probe start| 200 |
+|gitea.livenessProbe.timeoutSeconds | probe timeout | 1 |
+|gitea.livenessProbe.periodSeconds | period between probes | 10 |
+|gitea.livenessProbe.successThreshold | Minimum consecutive success probes | 1 |
+|gitea.livenessProbe.failureThreshold | Minimum consecutive error probes | 10 |
+|gitea.readinessProbe.enabled | Enable readiness probe | true |
+|gitea.readinessProbe.initialDelaySeconds | Delay before probe start| 200 |
+|gitea.readinessProbe.timeoutSeconds | probe timeout | 1 |
+|gitea.readinessProbe.periodSeconds | period between probes | 10 |
+|gitea.readinessProbe.successThreshold | Minimum consecutive success probes | 1 |
+|gitea.readinessProbe.failureThreshold | Minimum consecutive error probes | 10 |
+|gitea.startupProbe.enabled | Enable startup probe | false |
+|gitea.startupProbe.initialDelaySeconds | Delay before probe start| 200 |
+|gitea.startupProbe.timeoutSeconds | probe timeout | 1 |
+|gitea.startupProbe.periodSeconds | period between probes | 10 |
+|gitea.startupProbe.successThreshold | Minimum consecutive success probes | 1 |
+|gitea.startupProbe.failureThreshold | Minimum consecutive error probes | 10 |
+|gitea.customLivenessProbe | Custom liveness probe (needs `gitea.livenessProbe.enabled: false`) |  |
+|gitea.customReadinessProbe | Custom readiness probe (needs `gitea.readinessProbe.enabled: false`) |  |
+|gitea.customStartupProbe | Custom startup probe (needs `gitea.startupProbe.enabled: false`) |  |
 
 ### Memcached BuiltIn
 
