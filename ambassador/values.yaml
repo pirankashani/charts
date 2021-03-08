@@ -2,8 +2,16 @@ adminService:
   annotations: {}
   create: true
   port: 8877
+  snapshotPort: 8005
   type: ClusterIP
 affinity: {}
+agent:
+  cloudConnectToken: ""
+  enabled: true
+  image:
+    repository: null
+    tag: null
+  rpcAddress: https://app.getambassador.io/
 ambassadorConfig: ""
 authService:
   create: true
@@ -44,7 +52,7 @@ hostNetwork: false
 image:
   pullPolicy: IfNotPresent
   repository: docker.io/datawire/aes
-  tag: 1.11.2
+  tag: 1.12.0
 imagePullSecrets: []
 initContainers: []
 licenseKey:
