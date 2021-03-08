@@ -14,4 +14,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 2.14.9
+version: 2.15.0
