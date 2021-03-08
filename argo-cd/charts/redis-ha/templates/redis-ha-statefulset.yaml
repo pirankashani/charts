@@ -261,7 +261,7 @@ spec:
             command:
               - sh
               - -c
-              - /health/redis_liveness.sh {{ .Values.redis.livenessProbe.timeoutSeconds }}
+              - /health/redis_liveness.sh
         resources:
 {{ toYaml .Values.redis.resources | indent 10 }}
         ports:
@@ -324,7 +324,7 @@ spec:
             command:
               - sh
               - -c
-              - /health/sentinel_liveness.sh {{ .Values.sentinel.livenessProbe.timeoutSeconds }}
+              - /health/sentinel_liveness.sh
         resources:
 {{ toYaml .Values.sentinel.resources | indent 10 }}
         ports:
@@ -382,6 +382,8 @@ spec:
             value: /tls-certs/{{ .Values.tls.keyFile }}
           - name: REDIS_EXPORTER_TLS_CLIENT_CERT_FILE
             value: /tls-certs/{{ .Values.tls.certFile }}
+          - name: REDIS_EXPORTER_TLS_CA_CERT_FILE
+            value: /tls-certs/{{ .Values.tls.caCertFile }}
         {{- end }}
         livenessProbe:
           httpGet:
