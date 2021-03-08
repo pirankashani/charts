@@ -4,7 +4,7 @@
 Component: "yugabytedb"
 Image:
   repository: "yugabytedb/yugabyte"
-  tag: 2.5.2.0-b104
+  tag: 2.5.3.0-b30
   pullPolicy: IfNotPresent
 
 storage:
@@ -45,6 +45,8 @@ partition:
 tls:
   # Set to true to enable the TLS.
   enabled: false
+  nodeToNode: true
+  clientToServer: true
   # Set to false to disallow any service with unencrypted communication from joining this cluster
   insecure: false
   rootCA:

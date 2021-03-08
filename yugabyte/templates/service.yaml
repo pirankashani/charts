@@ -234,6 +234,10 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        {{- if and $root.Values.tls.enabled $root.Values.tls.clientToServer (ne .name "yb-masters") }}
+        - name: SSL_CERTFILE
+          value: /root/.yugabytedb/root.crt
+        {{- end }}
         resources:
         {{ if eq .name "yb-masters" }}
 {{ toYaml $root.Values.resource.master | indent 10 }}
@@ -293,7 +297,7 @@ spec:
           {{- end}}
           {{ if $root.Values.tls.enabled }}
           - "--certs_dir=/opt/certs/yugabyte"
-          - "--use_node_to_node_encryption=true"
+          - "--use_node_to_node_encryption={{ $root.Values.tls.nodeToNode }}"
           - "--allow_insecure_connections={{ $root.Values.tls.insecure }}"
           {{- end }}
         {{ else }}
@@ -357,9 +361,9 @@ spec:
           {{- end }}
           {{ if $root.Values.tls.enabled }}
           - "--certs_dir=/opt/certs/yugabyte"
-          - "--use_node_to_node_encryption=true"
+          - "--use_node_to_node_encryption={{ $root.Values.tls.nodeToNode }}"
           - "--allow_insecure_connections={{ $root.Values.tls.insecure }}"
-          - "--use_client_to_server_encryption=true"
+          - "--use_client_to_server_encryption={{ $root.Values.tls.clientToServer }}"
           - "--certs_for_client_dir=/opt/certs/yugabyte"
           {{- end }}
         {{ end }}
