@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - Update ingress-nginx v0.44.0
+    - Add volumes to default-backend deployment
 apiVersion: v2
 appVersion: 0.44.0
 description: Ingress controller for Kubernetes using NGINX as a reverse proxy and load balancer
@@ -16,4 +16,4 @@ name: ingress-nginx
 sources:
 - https://github.com/kubernetes/ingress-nginx
 type: application
-version: 3.23.0
+version: 3.24.0
