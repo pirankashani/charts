@@ -1,0 +1,57 @@
+{{- if .Values.ingress.enabled }}
+{{- $serviceName := include "verdaccio.fullname" . -}}
+{{- $servicePort := .Values.service.port -}}
+{{- $paths := .Values.ingress.paths -}}
+{{- $ingressExtraPaths := .Values.ingress.extraPaths -}}
+{{- if .Values.ingress.useExtensionsApi }}
+apiVersion: extensions/v1beta1
+{{- else }}
+apiVersion: networking.k8s.io/v1beta1
+{{- end }}
+kind: Ingress
+metadata:
+  name: {{ template "verdaccio.fullname" . }}
+  labels:
+    app: {{ template "verdaccio.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+    {{- range $key, $value := .Values.ingress.annotations }}
+      {{ $key }}: {{ $value | quote }}
+    {{- end }}
+spec:
+  rules:
+    {{- if .Values.ingress.hosts }}
+    {{- range $host := .Values.ingress.hosts }}
+    - host: {{ $host }}
+      http:
+        paths:
+          {{- range $ingressExtraPaths }}
+          - path: {{ default "/" .path | quote }}
+            backend:
+              serviceName: {{ default $serviceName .service }}
+              servicePort: {{ default $servicePort .port }}
+          {{- end }}
+          {{- range $p := $paths }}
+          - path: {{ $p }}
+            backend:
+              serviceName: {{ $serviceName }}
+              servicePort: {{ $servicePort }}
+          {{- end -}}
+    {{- end -}}
+    {{- else }}
+    - http:
+        paths:
+    {{- range $p := $paths }}
+          - path: {{ $p }}
+            backend:
+              serviceName: {{ $serviceName }}
+              servicePort: {{ $servicePort }}
+    {{- end -}}
+    {{- end -}}
+  {{- if .Values.ingress.tls }}
+  tls:
+{{ toYaml .Values.ingress.tls | indent 4 }}
+  {{- end -}}
+{{- end}}
