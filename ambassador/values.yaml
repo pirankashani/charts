@@ -7,7 +7,7 @@ adminService:
 affinity: {}
 agent:
   cloudConnectToken: ""
-  enabled: true
+  enabled: false
   image:
     repository: null
     tag: null
@@ -43,6 +43,7 @@ deploymentAnnotations: {}
 deploymentLabels: {}
 deploymentStrategy:
   type: RollingUpdate
+deploymentTool: ""
 dnsPolicy: ClusterFirst
 enableAES: true
 env: {}
@@ -107,6 +108,14 @@ redisURL: null
 registry:
   create: false
 replicaCount: 3
+resolvers:
+  consul:
+    create: false
+    name: consul-dc1
+    spec: {}
+  endpoint:
+    create: false
+    name: endpoint
 resources:
   limits:
     cpu: 1000m
@@ -127,6 +136,7 @@ service:
   annotations: {}
   externalIPs: []
   externalTrafficPolicy: null
+  nameOverride: null
   ports:
   - name: http
     port: 80
