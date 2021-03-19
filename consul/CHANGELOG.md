@@ -1,5 +1,38 @@
 ## Unreleased
 
+BREAKING CHANGES:
+* Helm 2 is no longer supported as of the previous release, 0.30.0. the `apiVersion` for the `Chart.yaml` is now correctly set to `v2` to properly indicate that the chart is now only supported for Helm 3 [[GH-868](https://github.com/hashicorp/consul-helm/pull/868)]
+
+FEATURES:
+* Metrics: add support for metrics in Consul. This enables support for Consul Agent metrics,
+  Consul Gateway metrics, metrics merging to serve both application and sidecar metrics and support to configure a metrics provider for the Consul UI.
+  Additionally, adds templates for a demo installation of Prometheus and Grafana.
+	* If you have these Prometheus annotations on your Connect-inject Pods and enable Connect-Inject metrics (via `connectInject.metrics.defaultEnabled` or `consul.hashicorp.com/enable-metrics`), they will be overridden:
+		* `prometheus.io/scrape`
+		* `prometheus.io/port`
+		* `prometheus.io/path`
+
+*Note* Metrics merging is supported in Consul version 1.10+
+
+IMPROVEMENTS:
+* CRDs: add field Last Synced Time to CRD status and add printer column on CRD to display time since when the
+  resource was last successfully synced with Consul. [[GH-849](https://github.com/hashicorp/consul-helm/pull/849)]
+* Specify `kubeVersion` in `Chart.yaml` to denote that this chart is tested with Kubernetes 1.13+ [[GH-870](https://github.com/hashicorp/consul-helm/pull/870)]
+* Updated the default Consul image to `hashicorp/consul:1.9.4`.
+* Updated the default consul-k8s image to `hashicorp/consul-k8s:0.25.0`.
+
+BUG FIXES:
+* Increase Consul client daemonset's memory from `25Mi` to `50Mi` for its `client-tls-init`
+  init container that runs when TLS is enabled and auto-encrypt is disabled. [[GH-832](https://github.com/hashicorp/consul-helm/pull/832)]
+* Add UDP port specification for server's serf WAN. Previously there was only one
+  port specification that defaulted to TCP. However in some cases (like when exposing as a host port)
+  UDP traffic would not be routed properly.
+
+  In addition, if `server.exposeGossipAndRPCPorts` is true, expose the WAN port
+  (`8302`) as a host port. [[GH-839](https://github.com/hashicorp/consul-helm/pull/839)]
+* Fix a warning when running `helm template` and overriding `client.affinity` setting with a string.
+  [[GH-854](https://github.com/hashicorp/consul-helm/pull/854)]
+
 ## 0.30.0 (Feb 16, 2021)
 
 BREAKING CHANGES:
