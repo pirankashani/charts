@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -e
 
 CURR_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 [ -d "$CURR_DIR" ] || { echo "FATAL: no current dir (maybe running in zsh?)";  exit 1; }
@@ -9,14 +10,12 @@ TOP_DIR=$CURR_DIR/..
 source "$CURR_DIR/common.sh"
 
 #########################################################################################
-
-# Check for update to version of Chart.yaml
-
-if ! git diff $TRAVIS_COMMIT_RANGE Chart.yaml | grep -q +version; then
-  info "The version was not changed in Chart.yaml: the chart will not be pushed..."
-  exit 0
+if ! command -v helm 2> /dev/null ; then
+    info "Helm doesn't exist, installing helm"
+    curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+    chmod 700 get_helm.sh
+    ./get_helm.sh --version v3.4.1
 fi
-
 
 info "Pushing Helm Chart"
 helm package $TOP_DIR
@@ -26,16 +25,21 @@ export CHART_PACKAGE=$(ls *.tgz)
 
 curl -o tmp.yaml -k -L https://getambassador.io/helm/index.yaml
 
+thisversion=$(grep version charts/ambassador/Chart.yaml | awk ' { print $2 }')
+
+if [[ $(grep -c "version: $thisversion" tmp.yaml || true) != 0 ]]; then
+	failed "Chart version $thisversion is already in the index"
+	exit 1
+fi
+
 helm repo index . --url https://getambassador.io/helm --merge tmp.yaml
+
+if [ -z "$AWS_BUCKET" ] ; then
+    AWS_BUCKET=datawire-static-files
+fi
 
 [ -n "$AWS_ACCESS_KEY_ID"     ] || abort "AWS_ACCESS_KEY_ID is not set"
 [ -n "$AWS_SECRET_ACCESS_KEY" ] || abort "AWS_SECRET_ACCESS_KEY is not set"
-[ -n "$AWS_BUCKET"            ] || abort "AWS_BUCKET is not set"
-
-if [ -z "$PUSH_CHART" ] || [ "$PUSH_CHART" = "false" ] ; then
-  info "PUSH_CHART is undefined (or defined as false) in environment: the chart will not be pushed..."
-  exit 0
-fi
 
 info "Pushing chart to S3 bucket $AWS_BUCKET"
 for f in "$CHART_PACKAGE" "index.yaml" ; do
