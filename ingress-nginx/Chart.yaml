@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - Update ingress-nginx v0.45.0
+    - Add ability to specify jobLabel for ServiceMonitor
 apiVersion: v2
 appVersion: 0.45.0
 description: Ingress controller for Kubernetes using NGINX as a reverse proxy and load balancer
@@ -16,4 +16,4 @@ name: ingress-nginx
 sources:
 - https://github.com/kubernetes/ingress-nginx
 type: application
-version: 3.28.0
+version: 3.29.0
