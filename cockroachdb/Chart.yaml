@@ -9,4 +9,4 @@ maintainers:
 name: cockroachdb
 sources:
 - https://github.com/cockroachdb/cockroach
-version: 5.1.0
+version: 5.1.1
