@@ -29,6 +29,9 @@ injector:
 
   replicas: 1
 
+  # Configures the port the injector should listen on
+  port: 8080
+
   # If multiple replicas are specified, by default a leader-elector side-car
   # will be created so that only one injector attempts to create TLS certificates.
   leaderElector:
@@ -49,7 +52,7 @@ injector:
   # image sets the repo and tag of the vault-k8s image to use for the injector.
   image:
     repository: "hashicorp/vault-k8s"
-    tag: "0.9.0"
+    tag: "0.10.0"
     pullPolicy: IfNotPresent
 
   # agentImage sets the repo and tag of the Vault image to use for the Vault Agent
@@ -59,10 +62,24 @@ injector:
     repository: "vault"
     tag: "1.7.0"
 
+  # The default values for the injected Vault Agent containers.
+  agentDefaults:
+    # For more information on configuring resources, see the K8s documentation:
+    # https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+    cpuLimit: "500m"
+    cpuRequest: "250m"
+    memLimit: "128Mi"
+    memRequest: "64Mi"
+
+    # Default template type for secrets when no custom template is specified.
+    # Possible values include: "json" and "map".
+    template: "map"
+
   # Mount Path of the Vault Kubernetes Auth Method.
   authPath: "auth/kubernetes"
 
-  # Configures the log verbosity of the injector. Supported log levels: Trace, Debug, Error, Warn, Info
+  # Configures the log verbosity of the injector.
+  # Supported log levels include: trace, debug, info, warn, error
   logLevel: "info"
 
   # Configures the log format of the injector. Supported log formats: "standard", "json".
@@ -168,12 +185,19 @@ injector:
   # This should be a YAML map of the labels to apply to the injector
   extraLabels: {}
 
+  # Should the injector pods run on the host network (useful when using
+  # an alternate CNI in EKS)
+  hostNetwork: false
+
   # Injector service specific config
   service:
     # Extra annotations to attach to the injector service
     annotations: {}
 
 server:
+  # If not set to true, Vault server will not be installed. See vault.mode in _helpers.tpl for implementation details
+  enabled: true
+
   # Resource requests, limits, etc. for the server cluster placement. This
   # should map directly to the value of the resources field for a PodSpec.
   # By default no direct resource request is made.
@@ -187,6 +211,14 @@ server:
   # Configure the Update Strategy Type for the StatefulSet
   # See https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies
   updateStrategyType: "OnDelete"
+
+  # Configure the logging verbosity for the Vault server.
+  # Supported log levels include: trace, debug, info, warn, error
+  logLevel: ""
+
+  # Configure the logging format for the Vault server.
+  # Supported log formats include: standard, json
+  logFormat: ""
 
   resources: {}
   # resources:
@@ -215,7 +247,12 @@ server:
     hosts:
       - host: chart-example.local
         paths: []
-
+    ## Extra paths to prepend to the host configuration. This is useful when working with annotation based services.
+    extraPaths: []
+    # - path: /*
+    #   backend:
+    #     serviceName: ssl-redirect
+    #     servicePort: use-annotation
     tls: []
     #  - secretName: chart-example-tls
     #    hosts:
@@ -654,7 +691,7 @@ csi:
 
   image:
     repository: "hashicorp/vault-csi-provider"
-    tag: "0.1.0"
+    tag: "0.2.0"
     pullPolicy: IfNotPresent
 
   # volumes is a list of volumes made available to all containers. These are rendered
