@@ -22,7 +22,7 @@ controlPlaneTracing: false
 # -- namespace to send control plane traces to
 controlPlaneTracingNamespace: linkerd-jaeger
 # -- control plane version. See Proxy section for proxy version
-linkerdVersion: stable-2.10.0
+linkerdVersion: stable-2.10.1
 # -- Control plane namespace
 namespace: linkerd
 # -- enables the use of EndpointSlice informers for the destination service;
@@ -119,7 +119,7 @@ proxyInit:
     # @default -- imagePullPolicy
     pullPolicy: ""
     # -- Tag for the proxy-init container Docker image
-    version: v1.3.9
+    version: v1.3.11
   resources:
     cpu:
       # -- Maximum amount of CPU units that the proxy-init container can use
@@ -211,7 +211,7 @@ identity:
 # disableHeartBeat -- Set to true to not start the heartbeat cronjob
 disableHeartBeat: false
 # -- Config for the heartbeat cronjob
-heartbeatSchedule: "0 0 * * *"
+# heartbeatSchedule: "0 0 * * *"
 
 # proxy injector configuration
 proxyInjector:

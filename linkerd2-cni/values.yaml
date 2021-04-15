@@ -13,7 +13,7 @@ ignoreOutboundPorts: ""
 # -- Docker image for the CNI plugin
 cniPluginImage:   "cr.l5d.io/linkerd/cni-plugin"
 # -- Tag for the CNI container Docker image
-cniPluginVersion: stable-2.10.0
+cniPluginVersion: stable-2.10.1
 # -- Log level for the CNI plugin
 logLevel:         info
 # -- Ports to redirect to proxy
