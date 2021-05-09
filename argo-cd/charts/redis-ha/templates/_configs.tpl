@@ -117,7 +117,7 @@
 
     identify_master() {
         echo "Identifying redis master (get-master-addr-by-name).."
-        echo "  using sentinel ({{ template "redis-ha.fullname" . }}), sentinel group name ({{ .Values.redis.masterGroupName }})"
+        echo "  using sentinel ({{ template "redis-ha.fullname" . }}), sentinel group name ({{ template "redis-ha.masterGroupName" . }})"
         echo "  $(date).."
         MASTER="$(sentinel_get_master_retry 3)"
         if [ -n "${MASTER}" ]; then
@@ -235,7 +235,7 @@
         if [ "$(redis_ping_retry 3)" != "PONG" ]; then
             echo "  $(date) Can't ping redis master (${MASTER})"
             echo "Attempting to force failover (sentinel failover).."
-            
+
             if [ "$SENTINEL_PORT" -eq 0 ]; then
                 echo "  on sentinel (${SERVICE}:${SENTINEL_TLS_PORT}), sentinel grp (${MASTER_GROUP})"
                 echo "  $(date).."
@@ -254,8 +254,8 @@
                     setup_defaults
                     return 0
                 fi
-            fi    
-                       
+            fi
+
             echo "Hold on for 10sec"
             sleep 10
             echo "We should get redis master's ip now. Asking (get-master-addr-by-name).."
@@ -335,7 +335,7 @@
         ESCAPED_AUTH=$(echo "${AUTH}" | sed -e 's/[\/&]/\\&/g');
         sed -i "s/replace-default-auth/${ESCAPED_AUTH}/" "${REDIS_CONF}" "${SENTINEL_CONF}"
     fi
-    
+
     if [ "${SENTINELAUTH:-}" ]; then
         echo "Setting sentinel auth values"
         ESCAPED_AUTH_SENTINEL=$(echo "$SENTINELAUTH" | sed -e 's/[\/&]/\\&/g');
@@ -383,7 +383,7 @@
       tcp-check send QUIT\r\n
       tcp-check expect string +OK
       {{- range $i := until $replicas }}
-      server R{{ $i }} {{ $fullName }}-announce-{{ $i }}:26379 check inter 1s
+      server R{{ $i }} {{ $fullName }}-announce-{{ $i }}:26379 check inter {{ $root.Values.haproxy.checkInterval }}
       {{- end }}
     {{- end }}
 
@@ -419,7 +419,7 @@
       tcp-check expect string +OK
       {{- range $i := until $replicas }}
       use-server R{{ $i }} if { srv_is_up(R{{ $i }}) } { nbsrv(check_if_redis_is_master_{{ $i }}) ge 2 }
-      server R{{ $i }} {{ $fullName }}-announce-{{ $i }}:{{ $root.Values.redis.port }} check inter 1s fall 1 rise 1
+      server R{{ $i }} {{ $fullName }}-announce-{{ $i }}:{{ $root.Values.redis.port }} check inter {{ $root.Values.haproxy.checkInterval }} fall 1 rise 1
       {{- end }}
     {{- if .Values.haproxy.readOnly.enabled }}
     backend bk_redis_slave
@@ -441,7 +441,7 @@
       tcp-check send QUIT\r\n
       tcp-check expect string +OK
       {{- range $i := until $replicas }}
-      server R{{ $i }} {{ $fullName }}-announce-{{ $i }}:{{ $root.Values.redis.port }} check inter 1s fall 1 rise 1
+      server R{{ $i }} {{ $fullName }}-announce-{{ $i }}:{{ $root.Values.redis.port }} check inter {{ $root.Values.haproxy.checkInterval }} fall 1 rise 1
       {{- end }}
     {{- end }}
     {{- if .Values.haproxy.metrics.enabled }}
@@ -501,7 +501,31 @@
       {{- end}}
         ping
     )
-    if [ "$response" != "PONG" ]; then
+    if [ "$response" != "PONG" ] && [ "${response:0:7}" != "LOADING" ] ; then
+      echo "$response"
+      exit 1
+    fi
+    echo "response=$response"
+{{- end }}
+
+{{- define "redis_readiness.sh" }}
+    {{- if not (ne (int .Values.sentinel.port) 0) }}
+    TLS_CLIENT_OPTION="--tls --cacert /tls-certs/{{ .Values.tls.caCertFile }} --cert /tls-certs/{{ .Values.tls.certFile }} --key /tls-certs/{{ .Values.tls.keyFile }}"
+    {{- end }}
+    response=$(
+      redis-cli \
+      {{- if .Values.auth }}
+        -a "${AUTH}" --no-auth-warning \
+      {{- end }}
+        -h localhost \
+      {{- if ne (int .Values.redis.port) 0 }}
+        -p {{ .Values.redis.port }} \
+      {{- else }}
+        -p {{ .Values.redis.tlsPort }} ${TLS_CLIENT_OPTION} \
+      {{- end}}
+        ping
+    )
+    if [ "$response" != "PONG" ] ; then
       echo "$response"
       exit 1
     fi
