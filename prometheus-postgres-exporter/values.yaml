@@ -94,7 +94,7 @@ config:
     host:
     user: postgres
     # Only one of password and passwordSecret can be specified
-    password: somepassword
+    password:
     # Specify passwordSecret if DB password is stored in secret.
     passwordSecret: {}
     # Secret name
@@ -408,9 +408,12 @@ podLabels: {}
 # Configurable health checks
 livenessProbe:
   initialDelaySeconds: 0
+  timeoutSeconds: 1
 
 readinessProbe:
   initialDelaySeconds: 0
+  timeoutSeconds: 1
+
 
 # Init containers, e. g. for secrets creation before the exporter
 initContainers: []
