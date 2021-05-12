@@ -9,4 +9,4 @@ maintainers:
   name: mkmik
 name: sealed-secrets
 type: application
-version: 1.16.0
+version: 1.16.1
