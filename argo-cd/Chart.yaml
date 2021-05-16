@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: 2.0.0
+appVersion: 2.0.1
 dependencies:
 - condition: redis-ha.enabled
   name: redis-ha
@@ -19,4 +19,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.2.4
+version: 3.3.0
