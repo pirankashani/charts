@@ -1,0 +1,75 @@
+apiVersion: v1
+entries:
+  filebrowser:
+  - apiVersion: v2
+    appVersion: v2.13.0
+    created: "2021-05-22T09:32:43.305961656Z"
+    description: A Helm chart for filebrowser
+    digest: 5dd2a93a1f74de488c54c347d14b40638428149d06f15b764a6953d81fec3471
+    name: filebrowser
+    type: application
+    urls:
+    - filebrowser-1.0.0.tgz
+    version: 1.0.0
+  frpc:
+  - apiVersion: v2
+    created: "2021-05-22T09:32:43.306519666Z"
+    description: A Helm chart for frp client
+    digest: d7ead0002d9b342614cb624f0bc5210e205e8af02b639201358894c915dbb952
+    name: frpc
+    type: application
+    urls:
+    - frpc-1.0.0.tgz
+    version: 1.0.0
+  frps:
+  - apiVersion: v2
+    created: "2021-05-22T09:32:43.307092276Z"
+    description: A Helm chart for frp server
+    digest: d92ea308218edeeed9696a643dbb5d99865cd18316e077a61d2cfac66a612c23
+    name: frps
+    type: application
+    urls:
+    - frps-1.0.0.tgz
+    version: 1.0.0
+  ingresses:
+  - apiVersion: v2
+    created: "2021-05-22T09:32:43.30729928Z"
+    description: Generate ingresses
+    digest: 672a2a8275248dac5d16f3fe5a64986055b09b347d8899b04e3f787cb8e3584e
+    name: ingresses
+    urls:
+    - ingresses-1.0.0.tgz
+    version: 1.0.0
+  oauth2-proxy:
+  - apiVersion: v2
+    appVersion: v7.0.1
+    created: "2021-05-22T09:32:43.307758988Z"
+    description: OAuth2 Proxy
+    digest: 8d6def6d522b10954b479f981e361560597e37ded23de08b2568a7818ccdbc35
+    name: oauth2-proxy
+    type: application
+    urls:
+    - oauth2-proxy-1.0.0.tgz
+    version: 1.0.0
+  prometheus-target:
+  - apiVersion: v2
+    created: "2021-05-22T09:32:43.307966092Z"
+    description: A Helm chart for Kubernetes
+    digest: 67f8ee41d017e42dd8404fbfab170cb227e1a452eb4c7d8f5d090c2cf6c9d39a
+    name: prometheus-target
+    type: application
+    urls:
+    - prometheus-target-1.0.0.tgz
+    version: 1.0.0
+  samba:
+  - apiVersion: v2
+    appVersion: 4.13.3
+    created: "2021-05-22T09:32:43.308466501Z"
+    description: A Helm chart for Samba
+    digest: 7789e19e205224aafb9ff9f763661936fdea023ba19485063fd20ee3d8749c8c
+    name: samba
+    type: application
+    urls:
+    - samba-1.0.0.tgz
+    version: 1.0.0
+generated: "2021-05-22T09:32:43.304830636Z"
