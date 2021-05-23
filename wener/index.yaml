@@ -3,9 +3,9 @@ entries:
   filebrowser:
   - apiVersion: v2
     appVersion: v2.13.0
-    created: "2021-05-23T13:07:01.968188248Z"
+    created: "2021-05-23T13:52:59.41907214Z"
     description: A Helm chart for filebrowser
-    digest: 0f4fafb1eae2aaa26f812569cc6bef04c24f9d767c1670c116a85b37b02cb6eb
+    digest: 3012d8581bdb82da86b0277cf97eb3772ae698f773c42010f1e71d6874fd26f4
     name: filebrowser
     type: application
     urls:
@@ -13,9 +13,9 @@ entries:
     version: 1.0.0
   frpc:
   - apiVersion: v2
-    created: "2021-05-23T13:07:01.968697854Z"
+    created: "2021-05-23T13:52:59.41983524Z"
     description: A Helm chart for frp client
-    digest: 3198c9e19d4c8a5563c3d12b263b172f3731b2a480ec9ae1f1305a189eb89488
+    digest: c134cce15bd73eba03d8053d82c7a375232dcab7cc47f2dbe973dee9fcb75935
     name: frpc
     type: application
     urls:
@@ -23,9 +23,9 @@ entries:
     version: 1.0.0
   frps:
   - apiVersion: v2
-    created: "2021-05-23T13:07:01.969323562Z"
+    created: "2021-05-23T13:52:59.420550539Z"
     description: A Helm chart for frp server
-    digest: cde6d1727efafe163953e0d3606722fb0613d8d892488a4920207f14d7e912da
+    digest: 34ab5c60364e0cafe582880545d51e8d9bb1b278c42ed867d8591368b65a82fb
     name: frps
     type: application
     urls:
@@ -33,9 +33,9 @@ entries:
     version: 1.0.0
   ingresses:
   - apiVersion: v2
-    created: "2021-05-23T13:07:01.969569265Z"
+    created: "2021-05-23T13:52:59.420831439Z"
     description: Generate ingresses
-    digest: cda1bcc4bc8a1ee0ca704b0f567bd76c8d16548b686e6feaa3552ca2d1f688b2
+    digest: 9db821a500688ac5297f424fb314b15aee8a83fc666bd131009f87a5296aaa32
     name: ingresses
     urls:
     - ingresses-1.0.0.tgz
@@ -43,9 +43,9 @@ entries:
   minio-console:
   - apiVersion: v2
     appVersion: v0.7.1
-    created: "2021-05-23T13:07:01.970145672Z"
+    created: "2021-05-23T13:52:59.421542338Z"
     description: A Helm chart for MinIO console
-    digest: aeb903c1d0d4a0c7c6c16669b6610de3908e61bfd0df67c9dcaeaca2fa06e7fb
+    digest: 21a510b38c8ce8656895006343c5d3abebe5b9f31b9ca8865c06eec1ffb9b80b
     name: minio-console
     type: application
     urls:
@@ -54,9 +54,9 @@ entries:
   minio-standalone:
   - apiVersion: v2
     appVersion: RELEASE.2021-04-06T23-11-00Z.hotfix.f3cd60697
-    created: "2021-05-23T13:07:01.970641579Z"
+    created: "2021-05-23T13:52:59.422191238Z"
     description: A Helm chart for MinIO standalone
-    digest: 9706c7e3f309f94c16476e05eeeb69387f74460365c379584d81d3d976ceff66
+    digest: e724f29495527ff31f087cb840ab434a93960d0897c337c689d21d1a47bc406e
     name: minio-standalone
     type: application
     urls:
@@ -65,9 +65,9 @@ entries:
   oauth2-proxy:
   - apiVersion: v2
     appVersion: v7.0.1
-    created: "2021-05-23T13:07:01.971117685Z"
+    created: "2021-05-23T13:52:59.422793337Z"
     description: OAuth2 Proxy
-    digest: 245159bebc4c576770b44ef767382ec196b5215caab02b8b400f1a07a0330ccb
+    digest: 2b65defd0bd6e635ab3de15695bfc47478e181a7996f44b211765da8df012101
     name: oauth2-proxy
     type: application
     urls:
@@ -75,9 +75,9 @@ entries:
     version: 1.0.0
   prometheus-target:
   - apiVersion: v2
-    created: "2021-05-23T13:07:01.971348788Z"
+    created: "2021-05-23T13:52:59.423089337Z"
     description: A Helm chart for Kubernetes
-    digest: 261503e63f0104ae2aa8678fe5523173d42e27c0a8ebd632923725bf885735fe
+    digest: 8f0aa1e7a930d0fe1c212d6fa9436843aaba995079bd258f550930851b8595a8
     name: prometheus-target
     type: application
     urls:
@@ -86,12 +86,12 @@ entries:
   samba:
   - apiVersion: v2
     appVersion: 4.13.3
-    created: "2021-05-23T13:07:01.971888294Z"
+    created: "2021-05-23T13:52:59.423712736Z"
     description: A Helm chart for Samba
-    digest: f82fa5f35b95b2299ad79f083a0e5c1cc91df274d260b41343ecba3d3cad5542
+    digest: 73b7276e8fe929ca9a4f9909573050d30d83e781bd4a25e89b662f1f510a3f65
     name: samba
     type: application
     urls:
     - samba-1.0.0.tgz
     version: 1.0.0
-generated: "2021-05-23T13:07:01.967048233Z"
+generated: "2021-05-23T13:52:59.417692741Z"
