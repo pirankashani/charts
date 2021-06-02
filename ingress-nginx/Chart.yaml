@@ -16,4 +16,4 @@ name: ingress-nginx
 sources:
 - https://github.com/kubernetes/ingress-nginx
 type: application
-version: 3.31.0
+version: 3.32.0
