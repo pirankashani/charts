@@ -5572,6 +5572,30 @@ entries:
   ingress-nginx:
   - annotations:
       artifacthub.io/changes: |
+        - Update nginx to v1.20.1
+    apiVersion: v2
+    appVersion: 0.47.0
+    created: "2021-06-06T16:50:48.655483416Z"
+    description: Ingress controller for Kubernetes using NGINX as a reverse proxy
+      and load balancer
+    digest: e226ea1acf4da43bfa8f1afa208c56416410ffdb5ac55949d480062d847e1ce6
+    home: https://github.com/kubernetes/ingress-nginx
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
+    keywords:
+    - ingress
+    - nginx
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: ChiefAlexander
+    name: ingress-nginx
+    sources:
+    - https://github.com/kubernetes/ingress-nginx
+    type: application
+    urls:
+    - ingress-nginx-3.33.0.tgz
+    version: 3.33.0
+  - annotations:
+      artifacthub.io/changes: |
         - Removes the possibility of using localhost in ExternalNames as endpoints
     apiVersion: v2
     appVersion: 0.46.0
@@ -13555,22 +13579,6 @@ entries:
     - seaweedfs-2.5.tgz
     version: "2.5"
   - apiVersion: v1
-    created: "2021-06-05T12:09:22.50683739Z"
-    description: SeaweedFS
-    digest: ca041e5ec80de88a3976fb66ee1acecd5b3e7e52332a922d894a0e240d0b30d3
-    name: seaweedfs
-    urls:
-    - seaweedfs-2.05.tgz
-    version: "2.05"
-  - apiVersion: v1
-    created: "2021-06-05T12:09:22.505623671Z"
-    description: SeaweedFS
-    digest: a8b159c20d74993ed6679713963b03a1d2ad2bd8f5f7e8985975f1768829d427
-    name: seaweedfs
-    urls:
-    - seaweedfs-2.04.tgz
-    version: "2.04"
-  - apiVersion: v1
     appVersion: "2.40"
     created: "2021-06-05T12:09:22.558187104Z"
     description: SeaweedFS
@@ -13589,14 +13597,6 @@ entries:
     - seaweedfs-2.3.tgz
     version: "2.3"
   - apiVersion: v1
-    created: "2021-06-05T12:09:22.503902844Z"
-    description: SeaweedFS
-    digest: 90caa8b0fbba0dc6430fed0948780afd9271cb3ad4d7178b6cea29650b5fca05
-    name: seaweedfs
-    urls:
-    - seaweedfs-2.03.tgz
-    version: "2.03"
-  - apiVersion: v1
     created: "2021-06-05T12:09:22.501709209Z"
     description: SeaweedFS
     digest: 861655888fd4d0d4246acce938f14a6243aeb61aee88231efa27308690fd6d01
@@ -13612,22 +13612,6 @@ entries:
     urls:
     - seaweedfs-2.1.tgz
     version: "2.1"
-  - apiVersion: v1
-    created: "2021-06-05T12:09:22.500457989Z"
-    description: SeaweedFS
-    digest: d7c1f86a6cb8df8ed70c15becc7d0b6d1ff358b90d8a07fb5b6c26caaadbf6e0
-    name: seaweedfs
-    urls:
-    - seaweedfs-2.01.tgz
-    version: "2.01"
-  - apiVersion: v1
-    created: "2021-06-05T12:09:22.576708797Z"
-    description: SeaweedFS
-    digest: bb93756de96602975c595a23def1d5cac34706de43823130899ebd1aade6726b
-    name: seaweedfs
-    urls:
-    - seaweedfs-2.tgz
-    version: "2"
   - apiVersion: v1
     created: "2021-06-05T12:09:22.499003666Z"
     description: SeaweedFS
@@ -14570,4 +14554,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-06-05T12:09:20.424783707Z"
+generated: "2021-06-06T16:50:48.651853569Z"
