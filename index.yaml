@@ -3159,6 +3159,54 @@ entries:
   gitea:
   - apiVersion: v2
     appVersion: 1.14.1
+    created: "2021-06-07T19:10:58.957499072Z"
+    dependencies:
+    - condition: gitea.cache.builtIn.enabled
+      name: memcached
+      repository: https://charts.bitnami.com/bitnami
+      version: 4.2.20
+    - condition: gitea.database.builtIn.mysql.enabled
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: 6.14.10
+    - condition: gitea.database.builtIn.postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.7.2
+    - condition: gitea.database.builtIn.mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.0.0
+    description: Gitea Helm chart for Kubernetes
+    digest: 75a82c0c3414ba29eb525110518a937f7d5aa04abd13898a31c0c96db2104904
+    icon: https://docs.gitea.io/images/gitea.png
+    keywords:
+    - git
+    - issue tracker
+    - code review
+    - wiki
+    - gitea
+    - gogs
+    maintainers:
+    - email: charlie@charliedrage.com
+      name: Charlie Drage
+    - email: maintainers@gitea.io
+      name: Gitea Authors
+    - email: konrad.lother@novum-rgi.de
+      name: Konrad Lother
+    - email: lucas.hahn@novum-rgi.de
+      name: Lucas Hahn
+    name: gitea
+    sources:
+    - https://gitea.com/gitea/helm-chart
+    - https://github.com/go-gitea/gitea
+    - https://hub.docker.com/r/gitea/gitea/
+    type: application
+    urls:
+    - gitea-3.1.2.tgz
+    version: 3.1.2
+  - apiVersion: v2
+    appVersion: 1.14.1
     created: "2021-06-05T12:09:21.288869995Z"
     dependencies:
     - condition: gitea.cache.builtIn.enabled
@@ -6477,6 +6525,48 @@ entries:
     - wener/ingresses-1.0.0.tgz
     version: 1.0.0
   kube-prometheus:
+  - annotations:
+      category: Analytics
+    apiVersion: v2
+    appVersion: 0.48.1
+    created: "2021-06-07T19:10:58.979220427Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    - condition: exporters.enabled,exporters.node-exporter.enabled
+      name: node-exporter
+      repository: https://charts.bitnami.com/bitnami
+      version: 2.x.x
+    - condition: exporters.enabled,exporters.kube-state-metrics.enabled
+      name: kube-state-metrics
+      repository: https://charts.bitnami.com/bitnami
+      version: 2.x.x
+    description: kube-prometheus collects Kubernetes manifests to provide easy to
+      operate end-to-end Kubernetes cluster monitoring with Prometheus using the Prometheus
+      Operator.
+    digest: 1d8ae8df4f31fb0d35f562267d4adf8190c40723599db01ea82636c018cdbba5
+    home: https://github.com/bitnami/charts/tree/master/bitnami/kube-prometheus
+    icon: https://bitnami.com/assets/stacks/prometheus-operator/img/prometheus-operator-stack-220x234.png
+    keywords:
+    - prometheus
+    - alertmanager
+    - operator
+    - monitoring
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    name: kube-prometheus
+    sources:
+    - https://github.com/bitnami/bitnami-docker-prometheus-operator
+    - https://github.com/bitnami/bitnami-docker-prometheus
+    - https://github.com/bitnami/bitnami-docker-alertmanager
+    - https://github.com/prometheus-operator/kube-prometheus
+    urls:
+    - kube-prometheus-6.0.0.tgz
+    version: 6.0.0
   - annotations:
       category: Analytics
     apiVersion: v2
@@ -14705,4 +14795,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-06-07T14:23:21.851765075Z"
+generated: "2021-06-07T19:10:58.934123297Z"
