@@ -1087,6 +1087,32 @@ entries:
   argo-cd:
   - apiVersion: v2
     appVersion: 2.0.3
+    created: "2021-06-07T09:56:04.650513241Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.12.14
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: c024e3ea2947d629590c10c32e1c09ce4d7c4d1967ac8a29b388f151c2cca428
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo/master/docs/assets/argo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: seanson
+    name: argo-cd
+    urls:
+    - argo-cd-3.6.8.tgz
+    version: 3.6.8
+  - apiVersion: v2
+    appVersion: 2.0.3
     created: "2021-06-07T09:18:49.287595666Z"
     dependencies:
     - condition: redis-ha.enabled
@@ -4283,6 +4309,27 @@ entries:
     urls:
     - gitea-2.0.3.tgz
     version: 2.0.3
+  gitlab-runner:
+  - apiVersion: v1
+    appVersion: 13.12.0
+    created: "2021-06-07T09:56:04.651994568Z"
+    description: GitLab Runner
+    digest: 3f73954fa7af4996eb3b60997c4ed752dfd615c0178a6c8bcf5110787aba6c91
+    icon: https://gitlab.com/uploads/-/system/project/avatar/250833/runner_logo.png
+    keywords:
+    - git
+    - ci
+    - deploy
+    maintainers:
+    - email: support@gitlab.com
+      name: GitLab Inc.
+    name: gitlab-runner
+    sources:
+    - https://hub.docker.com/r/gitlab/gitlab-runner/
+    - https://docs.gitlab.com/runner/
+    urls:
+    - gitlab-runner-0.29.0.tgz
+    version: 0.29.0
   grafana:
   - apiVersion: v2
     appVersion: 7.5.5
@@ -13289,6 +13336,15 @@ entries:
     version: 1.13.2
   seaweedfs:
   - apiVersion: v1
+    appVersion: "2.51"
+    created: "2021-06-07T09:56:04.653866402Z"
+    description: SeaweedFS
+    digest: b1dd949af6443b6a31695351cd3b407219cf81575c55c34174548df18385d53a
+    name: seaweedfs
+    urls:
+    - seaweedfs-2.51.tgz
+    version: "2.51"
+  - apiVersion: v1
     appVersion: "2.49"
     created: "2021-06-05T12:09:22.574040155Z"
     description: SeaweedFS
@@ -14580,4 +14636,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-06-07T09:18:49.278673176Z"
+generated: "2021-06-07T09:56:04.639597341Z"
