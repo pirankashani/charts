@@ -2076,6 +2076,25 @@ entries:
   argo-workflows:
   - apiVersion: v2
     appVersion: v3.0.2
+    created: "2021-06-08T14:00:14.211621192Z"
+    description: A Helm chart for Argo Workflows
+    digest: 09b6f38ed32f411de3e5b145b4445f0d8856be023c20a0e8d15006b5582514a9
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo-workflows/master/docs/assets/argo.png
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: benjaminws
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - argo-workflows-0.2.5.tgz
+    version: 0.2.5
+  - apiVersion: v2
+    appVersion: v3.0.2
     created: "2021-06-05T12:09:20.819331357Z"
     description: A Helm chart for Argo Workflows
     digest: f6da0fcf65467d33447337db4b8c55b12b6ad4c43b300a5d615a57e16c36da21
@@ -14921,4 +14940,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-06-08T07:55:51.086351902Z"
+generated: "2021-06-08T14:00:14.209200779Z"
