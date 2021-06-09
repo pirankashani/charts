@@ -16,10 +16,17 @@ stringData:
     # END: initPreScript
     {{- end }}
 
+    {{- if not .Values.image.rootless }}
     chown 1000:1000 /data
+    {{- end }}
     mkdir -p /data/git/.ssh
     chmod -R 700 /data/git/.ssh
     mkdir -p /data/gitea/conf
+
+    # prepare temp directory structure
+    mkdir -p "${GITEA_TEMP}"
+    chown 1000:1000 "${GITEA_TEMP}"
+    chmod ug+rwx "${GITEA_TEMP}"
 
     # Copy config file to writable volume
     cp /etc/gitea/conf/app.ini /data/gitea/conf/app.ini
