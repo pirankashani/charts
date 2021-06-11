@@ -8242,6 +8242,31 @@ entries:
   kubernetes-dashboard:
   - apiVersion: v2
     appVersion: 2.3.0
+    created: "2021-06-11T13:47:57.321729721Z"
+    dependencies:
+    - condition: metrics-server.enabled
+      name: metrics-server
+      repository: https://charts.helm.sh/stable/
+      version: 2.11.1
+    description: General-purpose web UI for Kubernetes clusters
+    digest: bf5c40e877d674ad22c1ecd307cb831ecf8e9c61fe7b9440c98fbaa296186271
+    home: https://github.com/kubernetes/dashboard
+    icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg
+    keywords:
+    - kubernetes
+    - dashboard
+    kubeVersion: '>=1.14.0-0'
+    maintainers:
+    - email: cdesaintmartin@wiremind.fr
+      name: desaintmartin
+    name: kubernetes-dashboard
+    sources:
+    - https://github.com/kubernetes/dashboard
+    urls:
+    - kubernetes-dashboard-4.3.1.tgz
+    version: 4.3.1
+  - apiVersion: v2
+    appVersion: 2.3.0
     created: "2021-06-10T14:43:59.600936422Z"
     dependencies:
     - condition: metrics-server.enabled
@@ -15255,4 +15280,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-06-11T06:52:35.194207066Z"
+generated: "2021-06-11T13:47:57.318631037Z"
