@@ -2388,6 +2388,29 @@ entries:
     - argocd-notifications-1.3.1.tgz
     version: 1.3.1
   cert-manager:
+  - annotations:
+      artifacthub.io/prerelease: "false"
+    apiVersion: v1
+    appVersion: v1.4.0
+    created: "2021-06-15T13:03:58.163018341Z"
+    description: A Helm chart for cert-manager
+    digest: f8568bf4d47699007db0eb6e40039f0d7303288d12c9b5f3de15049fd422fe91
+    home: https://github.com/jetstack/cert-manager
+    icon: https://raw.githubusercontent.com/jetstack/cert-manager/master/logo/logo.png
+    keywords:
+    - cert-manager
+    - kube-lego
+    - letsencrypt
+    - tls
+    maintainers:
+    - email: cert-manager-maintainers@googlegroups.com
+      name: cert-manager-maintainers
+    name: cert-manager
+    sources:
+    - https://github.com/jetstack/cert-manager
+    urls:
+    - cert-manager-v1.4.0.tgz
+    version: v1.4.0
   - apiVersion: v1
     appVersion: v1.3.1
     created: "2021-06-05T12:09:20.902162169Z"
@@ -15421,4 +15444,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-06-14T18:51:38.526771047Z"
+generated: "2021-06-15T13:03:58.152721451Z"
