@@ -16,6 +16,7 @@ A Helm chart for openebs lvm localpv provisioner. This chart bootstraps OpenEBS 
 | ---- | ------ | --- |
 | pawanpraka1 | pawan@mayadata.io |  |
 | prateekpandey14 | prateek.pandey@mayadata.io |  |
+| iyashu | yashpal.c1995@gmail.com |  |
 
 
 ## Get Repo Info
@@ -77,7 +78,7 @@ The following table lists the configurable parameters of the OpenEBS LVM Localpv
 | `lvmPlugin.image.registry`| Registry for openebs-lvm-plugin image| `""`|
 | `lvmPlugin.image.repository`| Image repository for openebs-lvm-plugin| `openebs/lvm-driver`|
 | `lvmPlugin.image.pullPolicy`| Image pull policy for openebs-lvm-plugin| `IfNotPresent`|
-| `lvmPlugin.image.tag`| Image tag for openebs-lvm-plugin| `0.5.0`|
+| `lvmPlugin.image.tag`| Image tag for openebs-lvm-plugin| `0.6.0`|
 | `lvmNode.driverRegistrar.image.registry`| Registry for csi-node-driver-registrar image| `k8s.gcr.io/`|
 | `lvmNode.driverRegistrar.image.repository`| Image repository for csi-node-driver-registrar| `sig-storage/csi-node-driver-registrar`|
 | `lvmNode.driverRegistrar.image.pullPolicy`| Image pull policy for csi-node-driver-registrar| `IfNotPresent`|
