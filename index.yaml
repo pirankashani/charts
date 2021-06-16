@@ -3174,6 +3174,15 @@ entries:
     version: 0.22.0
   dapr:
   - apiVersion: v1
+    appVersion: 1.2.1
+    created: "2021-06-16T22:14:07.854827637Z"
+    description: A Helm chart for Dapr on Kubernetes
+    digest: c59a058ffbc339f1af145f2fb322f25bedf914264ce4204873bb3b445f91712a
+    name: dapr
+    urls:
+    - dapr-1.2.1.tgz
+    version: 1.2.1
+  - apiVersion: v1
     appVersion: 1.2.0
     created: "2021-06-05T12:09:21.033064543Z"
     description: A Helm chart for Dapr on Kubernetes
@@ -15539,4 +15548,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-06-16T17:57:23.314185372Z"
+generated: "2021-06-16T22:14:07.852724936Z"
