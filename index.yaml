@@ -10872,6 +10872,54 @@ entries:
     version: 1.0.0
   openebs:
   - apiVersion: v2
+    appVersion: 2.10.0
+    created: "2021-06-16T17:57:23.350624612Z"
+    dependencies:
+    - condition: openebs-ndm.enabled
+      name: openebs-ndm
+      repository: https://openebs.github.io/node-disk-manager
+      version: 1.5.0
+    - condition: localpv-provisioner.enabled
+      name: localpv-provisioner
+      repository: https://openebs.github.io/dynamic-localpv-provisioner
+      version: 2.10.0
+    - condition: cstor.enabled
+      name: cstor
+      repository: https://openebs.github.io/cstor-operators
+      version: 2.10.0
+    - condition: jiva.enabled
+      name: jiva
+      repository: https://openebs.github.io/jiva-operator
+      version: 2.10.0
+    - condition: zfs-localpv.enabled
+      name: zfs-localpv
+      repository: https://openebs.github.io/zfs-localpv
+      version: 1.8.0
+    - condition: lvm-localpv.enabled
+      name: lvm-localpv
+      repository: https://openebs.github.io/lvm-localpv
+      version: 0.6.0
+    description: Containerized Storage for Containers
+    digest: 53f7b304bb9b1aaf9d2c4b003a4ed0ab9aaf79e326242ac05e0ec8e820ab7a8e
+    home: http://www.openebs.io/
+    icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/openebs/icon/color/openebs-icon-color.png
+    keywords:
+    - cloud-native-storage
+    - block-storage
+    - iSCSI
+    - storage
+    maintainers:
+    - email: kiran.mova@openebs.io
+      name: kmova
+    - email: prateek.pandey@openebs.io
+      name: prateekpandey14
+    name: openebs
+    sources:
+    - https://github.com/openebs/openebs
+    urls:
+    - openebs-2.10.0.tgz
+    version: 2.10.0
+  - apiVersion: v2
     appVersion: 2.9.0
     created: "2021-06-08T06:31:28.305250142Z"
     dependencies:
@@ -15491,4 +15539,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-06-16T15:15:54.168072313Z"
+generated: "2021-06-16T17:57:23.314185372Z"
