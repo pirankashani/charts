@@ -26,4 +26,4 @@ name: cstor
 sources:
 - https://github.com/openebs/cstor-operators
 type: application
-version: 2.10.0
+version: 2.10.1

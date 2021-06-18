@@ -24,4 +24,4 @@ name: jiva
 sources:
 - https://github.com/openebs/jiva-operator
 type: application
-version: 2.10.0
+version: 2.10.1
