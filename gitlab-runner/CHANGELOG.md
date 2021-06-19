@@ -1,3 +1,18 @@
+## v0.30.0 (2021-06-19)
+
+### New features
+
+- Update GitLab Runner version to 14.0.0
+
+### Bug fixes
+
+- Resolve runner ignores request_concurrency !296
+
+### Maintenance
+
+- refactor: change default brach references to main !298
+- Add support for specifying schedulerName on deployment podspec. !284 (Dominic Bevacqua @dbevacqua)
+
 ## v0.29.0 (2021-05-20)
 
 ### New features
