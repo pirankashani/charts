@@ -6137,6 +6137,30 @@ entries:
   ingress-nginx:
   - annotations:
       artifacthub.io/changes: |
+        - Add namespace field in the namespace scoped resource templates
+    apiVersion: v2
+    appVersion: 0.47.0
+    created: "2021-06-22T12:21:04.769931195Z"
+    description: Ingress controller for Kubernetes using NGINX as a reverse proxy
+      and load balancer
+    digest: 9b30299dff0b0bd8d6bce94212aa40b51eb089f368aae41f7ab920f1493a9017
+    home: https://github.com/kubernetes/ingress-nginx
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
+    keywords:
+    - ingress
+    - nginx
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: ChiefAlexander
+    name: ingress-nginx
+    sources:
+    - https://github.com/kubernetes/ingress-nginx
+    type: application
+    urls:
+    - ingress-nginx-3.34.0.tgz
+    version: 3.34.0
+  - annotations:
+      artifacthub.io/changes: |
         - Update nginx to v1.20.1
     apiVersion: v2
     appVersion: 0.47.0
@@ -15909,4 +15933,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-06-22T01:57:50.728186034Z"
+generated: "2021-06-22T12:21:04.766042791Z"
