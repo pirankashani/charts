@@ -3007,6 +3007,41 @@ entries:
     - cockroachdb-4.1.6.tgz
     version: 4.1.6
   consul:
+  - annotations:
+      artifacthub.io/images: |
+        - name: consul
+          image: hashicorp/consul:1.10.0
+        - name: consul-k8s
+          image: hashicorp/consul-k8s:0.26.0
+        - name: envoy
+          image: envoyproxy/envoy-alpine:v1.18.3
+      artifacthub.io/license: MPL-2.0
+      artifacthub.io/links: |
+        - name: Documentation
+          url: https://www.consul.io/docs/k8s
+        - name: hashicorp/consul-helm
+          url: https://github.com/hashicorp/consul-helm
+        - name: hashicorp/consul
+          url: https://github.com/hashicorp/consul
+        - name: hashicorp/consul-k8s
+          url: https://github.com/hashicorp/consul-k8s
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 1.10.0
+    created: "2021-06-22T23:38:20.817956722Z"
+    description: Official HashiCorp Consul Chart
+    digest: 852bb6807ed994cc061fd698f317087222a7119a904c37fb8c8bf9ff7bd6b480
+    home: https://www.consul.io
+    icon: https://raw.githubusercontent.com/hashicorp/consul-helm/master/assets/icon.png
+    kubeVersion: '>=1.16.0-0'
+    name: consul
+    sources:
+    - https://github.com/hashicorp/consul
+    - https://github.com/hashicorp/consul-helm
+    - https://github.com/hashicorp/consul-k8s
+    urls:
+    - consul-0.32.0.tgz
+    version: 0.32.0
   - apiVersion: v2
     appVersion: 1.9.4
     created: "2021-06-05T12:09:21.021751264Z"
@@ -15966,4 +16001,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-06-22T19:34:57.623278667Z"
+generated: "2021-06-22T23:38:20.807621995Z"
