@@ -127,6 +127,12 @@ spec:
         {{- if .Values.global.acls.manageSystemACLs }}
         - name: aclconfig
           emptyDir: {}
+        {{- else }}
+        {{- if (and .Values.server.enterpriseLicense.secretName .Values.server.enterpriseLicense.secretKey .Values.server.enterpriseLicense.enableLicenseAutoload) }}
+        - name: consul-license
+          secret:
+            secretName: {{ .Values.server.enterpriseLicense.secretName }}
+        {{- end }}
         {{- end }}
       containers:
         - name: consul
@@ -165,6 +171,10 @@ spec:
                   name: {{ .Values.global.gossipEncryption.secretName }}
                   key: {{ .Values.global.gossipEncryption.secretKey }}
             {{- end }}
+            {{- if (and .Values.server.enterpriseLicense.secretName .Values.server.enterpriseLicense.secretKey .Values.server.enterpriseLicense.enableLicenseAutoload (not .Values.global.acls.manageSystemACLs)) }}
+            - name: CONSUL_LICENSE_PATH
+              value: /consul/license/{{ .Values.server.enterpriseLicense.secretKey }}
+            {{- end }}
             {{- if .Values.global.tls.enabled }}
             - name: CONSUL_HTTP_ADDR
               value: https://localhost:8501
@@ -191,7 +201,6 @@ spec:
                 -node-meta=pod-name:${HOSTNAME} \
                 -node-meta=host-ip:${HOST_IP} \
                 -hcl='leave_on_terminate = true' \
-                -disable-host-node-id=false \
                 {{- if .Values.global.tls.enabled }}
                 -hcl='ca_file = "/consul/tls/ca/tls.crt"' \
                 {{- if .Values.global.tls.enableAutoEncrypt }}
@@ -248,6 +257,9 @@ spec:
                 {{- end }}
                 {{- end }}
                 {{- end }}
+                {{- range $value := .Values.global.recursors }}
+                -recursor={{ quote $value }} \
+                {{- end }}
                 -domain={{ .Values.global.domain }}
           volumeMounts:
             - name: data
@@ -272,6 +284,12 @@ spec:
             {{- if .Values.global.acls.manageSystemACLs }}
             - name: aclconfig
               mountPath: /consul/aclconfig
+            {{- else }}
+            {{- if (and .Values.server.enterpriseLicense.secretName .Values.server.enterpriseLicense.secretKey .Values.server.enterpriseLicense.enableLicenseAutoload) }}
+            - name: consul-license
+              mountPath: /consul/license
+              readOnly: true
+            {{- end }}
             {{- end }}
           ports:
             {{- if (or (not .Values.global.tls.enabled) (not .Values.global.tls.httpsOnly)) }}

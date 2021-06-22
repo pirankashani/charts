@@ -8,6 +8,96 @@ executors:
     environment:
       - TEST_RESULTS: /tmp/test-results
 
+commands:
+  install-prereqs:
+    steps:
+      - run:
+          name: Install gotestsum, kind, kubectl, and helm
+          command: |
+            go get gotest.tools/gotestsum
+
+            curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.0/kind-linux-amd64
+            chmod +x ./kind
+            sudo mv ./kind /usr/local/bin/kind
+
+            curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+            chmod +x ./kubectl
+            sudo mv ./kubectl /usr/local/bin/kubectl
+
+            curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
+            sudo apt-get install apt-transport-https --yes
+            echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+            sudo apt-get update
+            sudo apt-get install helm
+  create-kind-clusters:
+    parameters:
+      version:
+        type: string
+    steps:
+      - run:
+          name: Create kind clusters
+          command: |
+            kind create cluster --name dc1 --image kindest/node:<< parameters.version >>
+            kind create cluster --name dc2 --image kindest/node:<< parameters.version >>
+  run-acceptance-tests:
+    parameters:
+      failfast:
+        type: boolean
+        default: false
+      additional-flags:
+        type: string
+      consul-k8s-image:
+        type: string
+        default: "docker.mirror.hashicorp.services/hashicorpdev/consul-k8s:latest"
+    steps:
+      - when:
+          condition: << parameters.failfast >>
+          steps:
+          - run:
+              name: Run acceptance tests
+              working_directory: test/acceptance/tests
+              no_output_timeout: 2h
+              command: |
+                # We have to run the tests for each package separately so that we can
+                # exit early if any test fails (-failfast only works within a single
+                # package).
+                exit_code=0
+                pkgs=$(go list ./... | circleci tests split --split-by=timings --timings-type=classname)
+                echo "Running $(echo $pkgs | wc -w) packages:"
+                echo $pkgs
+                for pkg in $pkgs
+                do
+                  if ! gotestsum --no-summary=all --jsonfile=jsonfile-${pkg////-} -- $pkg -p 1 -timeout 2h -failfast \
+                        << parameters.additional-flags >> \
+                        -enable-enterprise \
+                        -enable-multi-cluster \
+                        -debug-directory="$TEST_RESULTS/debug" \
+                        -consul-k8s-image=<< parameters.consul-k8s-image >>
+                  then
+                    echo "Tests in ${pkg} failed, aborting early"
+                    exit_code=1
+                    break
+                  fi
+                done
+                gotestsum --raw-command --junitfile "$TEST_RESULTS/gotestsum-report.xml" -- cat jsonfile*
+                exit $exit_code
+
+      - unless:
+          condition: << parameters.failfast >>
+          steps:
+            - run:
+                name: Run acceptance tests
+                working_directory: test/acceptance/tests
+                no_output_timeout: 2h
+                command: |
+                  pkgs=$(go list ./... | circleci tests split --split-by=timings --timings-type=classname)
+                  echo "Running $pkgs"
+                  gotestsum --junitfile "$TEST_RESULTS/gotestsum-report.xml" -- $pkgs -p 1 -timeout 2h -failfast \
+                      << parameters.additional-flags >> \
+                      -enable-multi-cluster \
+                      -enable-enterprise \
+                      -debug-directory="$TEST_RESULTS/debug" \
+                      -consul-k8s-image=<< parameters.consul-k8s-image >>
 jobs:
   unit-helm:
     docker:
@@ -89,29 +179,9 @@ jobs:
     parallelism: 6
     steps:
       - checkout
-      - run:
-          name: Install gotestsum, kind, kubectl, and helm
-          command: |
-            go get gotest.tools/gotestsum
-
-            curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.9.0/kind-linux-amd64
-            chmod +x ./kind
-            sudo mv ./kind /usr/local/bin/kind
-
-            curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
-            chmod +x ./kubectl
-            sudo mv ./kubectl /usr/local/bin/kubectl
-
-            curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
-            sudo apt-get install apt-transport-https --yes
-            echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
-            sudo apt-get update
-            sudo apt-get install helm
-      - run:
-          name: Create kind clusters
-          command: |
-            kind create cluster --name dc1 --image kindest/node:v1.19.4
-            kind create cluster --name dc2 --image kindest/node:v1.19.4
+      - install-prereqs
+      - create-kind-clusters:
+          version: "v1.20.7"
       - restore_cache:
           keys:
             - consul-helm-modcache-v2-{{ checksum "test/acceptance/go.mod" }}
@@ -124,46 +194,51 @@ jobs:
           paths:
             - ~/.go_workspace/pkg/mod
       - run: mkdir -p $TEST_RESULTS
-      - run:
-          name: Run acceptance tests
-          working_directory: test/acceptance/tests
-          no_output_timeout: 1h
-          command: |
-            # We have to run the tests for each package separately so that we can
-            # exit early if any test fails (-failfast only works within a single
-            # package).
-            exit_code=0
-            pkgs=$(go list ./... | circleci tests split)
-            echo "Running $pkgs"
-            for pkg in $pkgs
-            do
-              if ! gotestsum --no-summary=all --jsonfile=jsonfile-${pkg////-} -- $pkg -p 1 -timeout 30m -failfast \
-                    -use-kind \
-                    -enable-multi-cluster \
-                    -enable-enterprise \
-                    -kubecontext="kind-dc1" \
-                    -secondary-kubecontext="kind-dc2" \
-                    -debug-directory="$TEST_RESULTS/debug" \
-                    -consul-k8s-image=docker.mirror.hashicorp.services/hashicorpdev/consul-k8s:latest
-              then
-                echo "Tests in ${pkg} failed, aborting early"
-                exit_code=1
-                break
-              fi
-            done
-            gotestsum --raw-command --junitfile "$TEST_RESULTS/gotestsum-report.xml" -- cat jsonfile*
-            exit $exit_code
-
+      - run-acceptance-tests:
+          failfast: true
+          additional-flags: -use-kind -kubecontext="kind-dc1" -secondary-kubecontext="kind-dc2"
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
           path: /tmp/test-results
 
-  acceptance-gke-1-16:
+  acceptance-tproxy:
+    environment:
+      - TEST_RESULTS: /tmp/test-results
+    machine:
+      image: ubuntu-2004:202010-01
+    resource_class: xlarge
+    parallelism: 6
+    steps:
+      - checkout
+      - install-prereqs
+      - create-kind-clusters:
+          version: "v1.20.7"
+      - restore_cache:
+          keys:
+            - consul-helm-modcache-v2-{{ checksum "test/acceptance/go.mod" }}
+      - run:
+          name: go mod download
+          working_directory: test/acceptance
+          command: go mod download
+      - save_cache:
+          key: consul-helm-modcache-v2-{{ checksum "test/acceptance/go.mod" }}
+          paths:
+            - ~/.go_workspace/pkg/mod
+      - run: mkdir -p $TEST_RESULTS
+      - run-acceptance-tests:
+          failfast: true
+          additional-flags: -use-kind -kubecontext="kind-dc1" -secondary-kubecontext="kind-dc2" -enable-transparent-proxy
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+
+  acceptance-gke-1-17:
     environment:
       - TEST_RESULTS: /tmp/test-results
     docker:
-      # This image is build from test/docker/Test.dockerfile
+      # This image is built from test/docker/Test.dockerfile
       - image: docker.mirror.hashicorp.services/hashicorpdev/consul-helm-test:0.9.0
 
     steps:
@@ -193,6 +268,12 @@ jobs:
               -var labels="{\"build_number\": \"$CIRCLE_BUILD_NUM\"}" \
               -auto-approve
 
+            primary_kubeconfig=$(terraform output -json | jq -r .kubeconfigs.value[0])
+            secondary_kubeconfig=$(terraform output -json | jq -r .kubeconfigs.value[1])
+
+            echo "export primary_kubeconfig=$primary_kubeconfig" >> $BASH_ENV
+            echo "export secondary_kubeconfig=$secondary_kubeconfig" >> $BASH_ENV
+
       # Restore go module cache if there is one
       - restore_cache:
           keys:
@@ -200,29 +281,8 @@ jobs:
 
       - run: mkdir -p $TEST_RESULTS
 
-      - run:
-          name: Run acceptance tests
-          working_directory: test/acceptance/tests
-          no_output_timeout: 1h
-          command: |
-            eval "$(echo export primary_kubeconfig=$(terraform output -state ../../terraform/gke/terraform.tfstate -json | jq -r .kubeconfigs.value[0]))"
-            eval "$(echo export secondary_kubeconfig=$(terraform output -state ../../terraform/gke/terraform.tfstate -json | jq -r .kubeconfigs.value[1]))"
-
-            # Create an enterprise license secret in the primary cluster.
-            # This license is set as a CircleCI project env variable.
-            # The license expires 15-Oct-2025.
-            KUBECONFIG=$primary_kubeconfig kubectl create secret generic ent-license --from-literal=key="${CONSUL_ENT_LICENSE}"
-
-            gotestsum --junitfile "$TEST_RESULTS/gotestsum-report.xml" -- ./... -p 1 -timeout 40m -failfast \
-              -enable-enterprise \
-              -enterprise-license-secret-name=ent-license \
-              -enterprise-license-secret-key=key \
-              -enable-pod-security-policies \
-              -enable-multi-cluster \
-              -kubeconfig="$primary_kubeconfig" \
-              -secondary-kubeconfig="$secondary_kubeconfig" \
-              -debug-directory="$TEST_RESULTS/debug" \
-              -consul-k8s-image=docker.mirror.hashicorp.services/hashicorpdev/consul-k8s:latest
+      - run-acceptance-tests:
+          additional-flags: -kubeconfig="$primary_kubeconfig" -secondary-kubeconfig="$secondary_kubeconfig" -enable-pod-security-policies -enable-transparent-proxy
 
       - store_test_results:
           path: /tmp/test-results
@@ -240,11 +300,11 @@ jobs:
           fail_only: true
           failure_message: "GKE acceptance tests failed. Check the logs at: ${CIRCLE_BUILD_URL}"
 
-  acceptance-aks-1-18:
+  acceptance-aks-1-19:
     environment:
       - TEST_RESULTS: /tmp/test-results
     docker:
-      # This image is build from test/docker/Test.dockerfile
+      # This image is built from test/docker/Test.dockerfile
       - image: docker.mirror.hashicorp.services/hashicorpdev/consul-helm-test:0.9.0
 
     steps:
@@ -263,6 +323,12 @@ jobs:
               -var tags="{\"build_url\": \"$CIRCLE_BUILD_URL\"}" \
               -auto-approve
 
+            primary_kubeconfig=$(terraform output -json | jq -r .kubeconfigs.value[0])
+            secondary_kubeconfig=$(terraform output -json | jq -r .kubeconfigs.value[1])
+
+            echo "export primary_kubeconfig=$primary_kubeconfig" >> $BASH_ENV
+            echo "export secondary_kubeconfig=$secondary_kubeconfig" >> $BASH_ENV
+
       # Restore go module cache if there is one
       - restore_cache:
           keys:
@@ -270,21 +336,8 @@ jobs:
 
       - run: mkdir -p $TEST_RESULTS
 
-      - run:
-          name: Run acceptance tests
-          working_directory: test/acceptance/tests
-          no_output_timeout: 1h
-          command: |
-            export primary_kubeconfig=$(terraform output -state ../../terraform/aks/terraform.tfstate -json | jq -r .kubeconfigs.value[0])
-            export secondary_kubeconfig=$(terraform output -state ../../terraform/aks/terraform.tfstate -json | jq -r .kubeconfigs.value[1])
-
-            gotestsum --junitfile "$TEST_RESULTS/gotestsum-report.xml" -- ./... -p 1 -timeout 40m -failfast \
-              -enable-enterprise \
-              -enable-multi-cluster \
-              -kubeconfig="$primary_kubeconfig" \
-              -secondary-kubeconfig="$secondary_kubeconfig" \
-              -debug-directory="$TEST_RESULTS/debug" \
-              -consul-k8s-image=docker.mirror.hashicorp.services/hashicorpdev/consul-k8s:latest
+      - run-acceptance-tests:
+          additional-flags: -kubeconfig="$primary_kubeconfig" -secondary-kubeconfig="$secondary_kubeconfig" -enable-transparent-proxy
 
       - store_test_results:
           path: /tmp/test-results
@@ -302,11 +355,11 @@ jobs:
           fail_only: true
           failure_message: "AKS acceptance tests failed. Check the logs at: ${CIRCLE_BUILD_URL}"
 
-  acceptance-eks-1-17:
+  acceptance-eks-1-18:
     environment:
       - TEST_RESULTS: /tmp/test-results
     docker:
-      # This image is build from test/docker/Test.dockerfile
+      # This image is built from test/docker/Test.dockerfile
       - image: docker.mirror.hashicorp.services/hashicorpdev/consul-helm-test:0.9.0
 
     steps:
@@ -331,6 +384,17 @@ jobs:
 
             terraform apply -var cluster_count=2 -var tags="{\"build_url\": \"$CIRCLE_BUILD_URL\"}" -auto-approve
 
+            primary_kubeconfig=$(terraform output -json | jq -r .kubeconfigs.value[0])
+            secondary_kubeconfig=$(terraform output -json | jq -r .kubeconfigs.value[1])
+
+            echo "export primary_kubeconfig=$primary_kubeconfig" >> $BASH_ENV
+            echo "export secondary_kubeconfig=$secondary_kubeconfig" >> $BASH_ENV
+
+            # Change file permissions of the kubecofig files to avoid warnings by helm.
+            # TODO: remove when https://github.com/terraform-aws-modules/terraform-aws-eks/pull/1114 is merged.
+            chmod 600 "$primary_kubeconfig"
+            chmod 600 "$secondary_kubeconfig"
+
       # Restore go module cache if there is one
       - restore_cache:
           keys:
@@ -338,26 +402,8 @@ jobs:
 
       - run: mkdir -p $TEST_RESULTS
 
-      - run:
-          name: Run acceptance tests
-          working_directory: test/acceptance/tests
-          no_output_timeout: 1h
-          command: |
-            export primary_kubeconfig=$(terraform output -state ../../terraform/eks/terraform.tfstate -json | jq -r .kubeconfigs.value[0])
-            export secondary_kubeconfig=$(terraform output -state ../../terraform/eks/terraform.tfstate -json | jq -r .kubeconfigs.value[1])
-
-            # Change file permissions of the kubecofig files to avoid warnings by helm.
-            # TODO: remove when https://github.com/terraform-aws-modules/terraform-aws-eks/pull/1114 is merged.
-            chmod 600 "$primary_kubeconfig"
-            chmod 600 "$secondary_kubeconfig"
-
-            gotestsum --junitfile "$TEST_RESULTS/gotestsum-report.xml" -- ./... -p 1 -timeout 40m -failfast \
-              -enable-enterprise \
-              -enable-multi-cluster \
-              -kubeconfig="$primary_kubeconfig" \
-              -secondary-kubeconfig="$secondary_kubeconfig" \
-              -debug-directory="$TEST_RESULTS/debug" \
-              -consul-k8s-image=docker.mirror.hashicorp.services/hashicorpdev/consul-k8s:latest
+      - run-acceptance-tests:
+          additional-flags: -kubeconfig="$primary_kubeconfig" -secondary-kubeconfig="$secondary_kubeconfig" -enable-transparent-proxy
 
       - store_test_results:
           path: /tmp/test-results
@@ -377,30 +423,31 @@ jobs:
 
   acceptance-openshift:
     environment:
-      - TEST_RESULTS: /tmp/test-results
-      # Primary and secondary Azure OpenShift clusters (created manually) that are used to run acceptance tests.
-      - OC_PRIMARY_NAME: consul-helm-test-2757871175
-      - OC_SECONDARY_NAME: consul-helm-test-3737660519
+      TEST_RESULTS: /tmp/test-results
+    parallelism: 3
     docker:
-      # This image is build from test/docker/Test.dockerfile
+      # This image is built from test/docker/Test.dockerfile
       - image: docker.mirror.hashicorp.services/hashicorpdev/consul-helm-test:0.9.0
 
     steps:
       - checkout
-
       - run:
-          name: openshift login
+          name: terraform init & apply
+          working_directory: test/terraform/openshift
           command: |
+            terraform init
+
             az login --service-principal -u "$ARM_CLIENT_ID" -p "$ARM_CLIENT_SECRET" --tenant "$ARM_TENANT_ID" > /dev/null
+            terraform apply \
+              -var cluster_count=2 \
+              -var tags="{\"build_url\": \"$CIRCLE_BUILD_URL\"}" \
+              -auto-approve
 
-            for cluster_name in "$OC_PRIMARY_NAME" "$OC_SECONDARY_NAME"; do
-              apiServer=$(az aro show -g "$cluster_name" -n "$cluster_name" --query apiserverProfile.url -o tsv)
-              kubeUser=$(az aro list-credentials -g "$cluster_name" -n "$cluster_name" | jq -r .kubeadminUsername)
-              kubePassword=$(az aro list-credentials -g "$cluster_name" -n "$cluster_name" | jq -r .kubeadminPassword)
+            primary_kubeconfig=$(terraform output -json | jq -r .kubeconfigs.value[0])
+            secondary_kubeconfig=$(terraform output -json | jq -r .kubeconfigs.value[1])
 
-              KUBECONFIG="$HOME/.kube/$cluster_name" oc login "$apiServer" -u "$kubeUser" -p "$kubePassword"
-              KUBECONFIG="$HOME/.kube/$cluster_name" oc project consul
-            done
+            echo "export primary_kubeconfig=$primary_kubeconfig" >> $BASH_ENV
+            echo "export secondary_kubeconfig=$secondary_kubeconfig" >> $BASH_ENV
 
       # Restore go module cache if there is one
       - restore_cache:
@@ -409,29 +456,24 @@ jobs:
 
       - run: mkdir -p $TEST_RESULTS
 
-      - run:
-          name: Run acceptance tests
-          working_directory: test/acceptance/tests
-          no_output_timeout: 1h
-          command: |
-            gotestsum --junitfile "$TEST_RESULTS/gotestsum-report.xml" -- ./... -p 1 -timeout 40m -failfast \
-              -enable-openshift \
-              -enable-enterprise \
-              -enable-multi-cluster \
-              -kubeconfig="$HOME/.kube/$OC_PRIMARY_NAME" \
-              -secondary-kubeconfig="$HOME/.kube/$OC_SECONDARY_NAME" \
-              -debug-directory="$TEST_RESULTS/debug" \
-              -consul-k8s-image=docker.mirror.hashicorp.services/hashicorpdev/consul-k8s:latest
+      - run-acceptance-tests:
+          additional-flags: -kubeconfig="$primary_kubeconfig" -secondary-kubeconfig="$secondary_kubeconfig" -enable-openshift -enable-transparent-proxy
 
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
           path: /tmp/test-results
+      - run:
+          name: terraform destroy
+          working_directory: test/terraform/openshift
+          command: |
+            terraform destroy -auto-approve
+          when: always
       - slack/status:
           fail_only: true
           failure_message: "OpenShift acceptance tests failed. Check the logs at: ${CIRCLE_BUILD_URL}"
 
-  acceptance-kind-1-20:
+  acceptance-kind-1-21:
     environment:
       - TEST_RESULTS: /tmp/test-results
     machine:
@@ -439,29 +481,9 @@ jobs:
     resource_class: xlarge
     steps:
       - checkout
-      - run:
-          name: Install gotestsum, kind, kubectl, and helm
-          command: |
-            go get gotest.tools/gotestsum
-
-            curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.9.0/kind-linux-amd64
-            chmod +x ./kind
-            sudo mv ./kind /usr/local/bin/kind
-
-            curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
-            chmod +x ./kubectl
-            sudo mv ./kubectl /usr/local/bin/kubectl
-
-            curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
-            sudo apt-get install apt-transport-https --yes
-            echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
-            sudo apt-get update
-            sudo apt-get install helm
-      - run:
-          name: Create kind clusters
-          command: |
-            kind create cluster --name dc1 --image kindest/node:v1.20.2
-            kind create cluster --name dc2 --image kindest/node:v1.20.2
+      - install-prereqs
+      - create-kind-clusters:
+          version: "v1.21.1"
       - restore_cache:
           keys:
             - consul-helm-modcache-v2-{{ checksum "test/acceptance/go.mod" }}
@@ -474,27 +496,15 @@ jobs:
           paths:
             - ~/.go_workspace/pkg/mod
       - run: mkdir -p $TEST_RESULTS
-      - run:
-          name: Run acceptance tests
-          working_directory: test/acceptance/tests
-          no_output_timeout: 1h
-          command: |
-            gotestsum --junitfile "$TEST_RESULTS/gotestsum-report.xml" -- ./... -p 1 -timeout 30m -failfast \
-              -use-kind \
-              -enable-multi-cluster \
-              -enable-enterprise \
-              -kubecontext="kind-dc1" \
-              -secondary-kubecontext="kind-dc2" \
-              -debug-directory="$TEST_RESULTS/debug" \
-              -consul-k8s-image=docker.mirror.hashicorp.services/hashicorpdev/consul-k8s:latest
-
+      - run-acceptance-tests:
+          additional-flags: -use-kind -kubecontext="kind-dc1" -secondary-kubecontext="kind-dc2" -enable-transparent-proxy
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
           path: /tmp/test-results
       - slack/status:
           fail_only: true
-          failure_message: "Acceptance tests against Kind with Kubernetes v1.20 failed. Check the logs at: ${CIRCLE_BUILD_URL}"
+          failure_message: "Acceptance tests against Kind with Kubernetes v1.21 failed. Check the logs at: ${CIRCLE_BUILD_URL}"
 
   go-fmt-and-vet-helm-gen:
     executor: go
@@ -602,6 +612,34 @@ jobs:
           fail_only: true
           failure_message: "Failed to trigger an update to the helm charts index. Check the logs at: ${CIRCLE_BUILD_URL}"
 
+  cleanup-azure-resources:
+    docker:
+      - image: docker.mirror.hashicorp.services/hashicorpdev/consul-helm-test:0.9.0
+    steps:
+      - run:
+          name: cleanup leftover resources
+          command: |
+            az login --service-principal -u "$ARM_CLIENT_ID" -p "$ARM_CLIENT_SECRET" --tenant "$ARM_TENANT_ID" > /dev/null
+            resource_groups=$(az group list -o json  | jq -r '.[] | select(.name | test("^consul-k8s-\\d+$")) | .name')
+            for group in $resource_groups; do
+              echo "Deleting $group resource group"
+              az group delete -n $group --yes
+            done
+
+  cleanup-gcp-resources:
+    docker:
+      - image: docker.mirror.hashicorp.services/hashicorpdev/consul-helm-test:0.9.0
+    steps:
+      - run:
+          name: cleanup leftover resources
+          command: |
+            echo "${GOOGLE_CREDENTIALS}" | gcloud auth activate-service-account --key-file=-
+            clusters=$(gcloud container clusters list --zone us-central1-a --project ${CLOUDSDK_CORE_PROJECT} --format json  | jq -r '.[] | select(.name | test("^consul-k8s-\\d+$")) | .name')
+            for cluster in $clusters; do
+              echo "Deleting $cluster GKE cluster"
+              gcloud container clusters delete $cluster --zone us-central1-a --project ${CLOUDSDK_CORE_PROJECT} --quiet
+            done
+
 workflows:
   version: 2
   test:
@@ -620,6 +658,10 @@ workflows:
           requires:
             - unit-helm
             - unit-acceptance-framework
+      - acceptance-tproxy:
+          requires:
+            - unit-helm
+            - unit-acceptance-framework
   nightly-acceptance-tests:
     triggers:
       - schedule:
@@ -629,15 +671,23 @@ workflows:
               only:
                 - master
     jobs:
-    # - acceptance-openshift >> disabled because OpenShift 4.4 was too flaky. Can possibly re-enable when latest OpenShift version is released.
-      - acceptance-gke-1-16
-      - acceptance-eks-1-17
-      - acceptance-aks-1-18
-      - acceptance-kind-1-20
+      - cleanup-gcp-resources
+      - cleanup-azure-resources
+      - acceptance-openshift:
+          requires:
+          - cleanup-azure-resources
+      - acceptance-gke-1-17:
+          requires:
+            - cleanup-gcp-resources
+      - acceptance-eks-1-18
+      - acceptance-aks-1-19:
+          requires:
+            - cleanup-azure-resources
+      - acceptance-kind-1-21
   update-helm-charts-index:
     jobs:
       - update-helm-charts-index:
-          context: helm-charts-trigger
+          context: helm-charts-trigger-consul
           filters:
             tags:
               only: /^v.*/

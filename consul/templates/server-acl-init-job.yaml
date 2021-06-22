@@ -139,9 +139,6 @@ spec:
                 {{- if and .Values.externalServers.enabled .Values.externalServers.k8sAuthMethodHost }}
                 -inject-auth-method-host={{ .Values.externalServers.k8sAuthMethodHost }} \
                 {{- end }}
-                {{- if .Values.connectInject.healthChecks.enabled }}
-                -enable-health-checks \
-                {{- end }}
                 {{- end }}
 
                 {{- if .Values.meshGateway.enabled }}
@@ -200,6 +197,10 @@ spec:
 
                 {{- if .Values.global.acls.createReplicationToken }}
                 -create-acl-replication-token=true \
+                {{- end }}
+
+                {{- if .Values.global.federation.enabled }}
+                -federation=true \
                 {{- end }}
 
                 {{- if (and .Values.global.acls.bootstrapToken.secretName .Values.global.acls.bootstrapToken.secretKey) }}

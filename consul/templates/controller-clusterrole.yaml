@@ -16,6 +16,7 @@ rules:
   - servicedefaults
   - serviceresolvers
   - proxydefaults
+  - meshes
   - servicerouters
   - servicesplitters
   - serviceintentions
@@ -35,6 +36,7 @@ rules:
   - servicedefaults/status
   - serviceresolvers/status
   - proxydefaults/status
+  - meshes/status
   - servicerouters/status
   - servicesplitters/status
   - serviceintentions/status
@@ -43,6 +45,15 @@ rules:
   verbs:
   - get
   - patch
+  - update
+- apiGroups:
+  - coordination.k8s.io
+  resources:
+  - leases
+  verbs:
+  - create
+  - get
+  - list
   - update
 {{- if .Values.global.acls.manageSystemACLs }}
 - apiGroups: [""]

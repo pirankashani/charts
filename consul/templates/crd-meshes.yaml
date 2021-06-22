@@ -6,7 +6,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.6.0
   creationTimestamp: null
-  name: servicesplitters.consul.hashicorp.com
+  name: meshes.consul.hashicorp.com
   labels:
     app: {{ template "consul.name" . }}
     chart: {{ template "consul.chart" . }}
@@ -16,10 +16,10 @@ metadata:
 spec:
   group: consul.hashicorp.com
   names:
-    kind: ServiceSplitter
-    listKind: ServiceSplitterList
-    plural: servicesplitters
-    singular: servicesplitter
+    kind: Mesh
+    listKind: MeshList
+    plural: meshes
+    singular: mesh
   scope: Namespaced
   versions:
   - additionalPrinterColumns:
@@ -38,7 +38,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ServiceSplitter is the Schema for the servicesplitters API
+        description: Mesh is the Schema for the mesh API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -53,35 +53,20 @@ spec:
           metadata:
             type: object
           spec:
-            description: ServiceSplitterSpec defines the desired state of ServiceSplitter
+            description: MeshSpec defines the desired state of Mesh
             properties:
-              splits:
-                description: Splits defines how much traffic to send to which set
-                  of service instances during a traffic split. The sum of weights
-                  across all splits must add up to 100.
-                items:
-                  properties:
-                    namespace:
-                      description: The namespace to resolve the service from instead
-                        of the current namespace. If empty the current namespace is
-                        assumed.
-                      type: string
-                    service:
-                      description: Service is the service to resolve instead of the
-                        default.
-                      type: string
-                    serviceSubset:
-                      description: ServiceSubset is a named subset of the given service
-                        to resolve instead of one defined as that service's DefaultSubset.
-                        If empty the default subset is used.
-                      type: string
-                    weight:
-                      description: Weight is a value between 0 and 100 reflecting
-                        what portion of traffic should be directed to this split.
-                        The smallest representable weight is 1/10000 or .01%.
-                      type: number
-                  type: object
-                type: array
+              transparentProxy:
+                description: TransparentProxyMeshConfig controls configuration specific
+                  to proxies in "transparent" mode. Added in v1.10.0.
+                properties:
+                  meshDestinationsOnly:
+                    description: MeshDestinationsOnly determines whether sidecar proxies
+                      operating in "transparent" mode can proxy traffic to IP addresses
+                      not registered in Consul's catalog. If enabled, traffic will
+                      only be proxied to upstreams with service registrations in the
+                      catalog.
+                    type: boolean
+                type: object
             type: object
           status:
             properties:

@@ -64,6 +64,14 @@ spec:
       tolerations:
         {{ tpl .Values.server.tolerations . | nindent 8 | trim }}
     {{- end }}
+    {{- if .Values.server.topologySpreadConstraints }}
+    {{- if and (ge .Capabilities.KubeVersion.Major "1") (ge .Capabilities.KubeVersion.Minor "18") }}
+      topologySpreadConstraints:
+        {{ tpl .Values.server.topologySpreadConstraints . | nindent 8 | trim }}
+    {{- else }}
+    {{- fail "`topologySpreadConstraints` requires Kubernetes 1.18 and above." }}
+    {{- end }}
+    {{- end }}
       terminationGracePeriodSeconds: 30
       serviceAccountName: {{ template "consul.fullname" . }}-server
       {{- if not .Values.global.openshift.enabled }}
@@ -88,6 +96,11 @@ spec:
         - name: consul-server-cert
           secret:
             secretName: {{ template "consul.fullname" . }}-server-cert
+        {{- end }}
+        {{- if (and .Values.server.enterpriseLicense.secretName .Values.server.enterpriseLicense.secretKey .Values.server.enterpriseLicense.enableLicenseAutoload) }}
+        - name: consul-license
+          secret:
+            secretName: {{ .Values.server.enterpriseLicense.secretName }}
         {{- end }}
         {{- range .Values.server.extraVolumes }}
         - name: userconfig-{{ .name }}
@@ -144,6 +157,10 @@ spec:
               value: https://localhost:8501
             - name: CONSUL_CACERT
               value: /consul/tls/ca/tls.crt
+            {{- end }}
+            {{- if (and .Values.server.enterpriseLicense.secretName .Values.server.enterpriseLicense.secretKey .Values.server.enterpriseLicense.enableLicenseAutoload) }}
+            - name: CONSUL_LICENSE_PATH
+              value: /consul/license/{{ .Values.server.enterpriseLicense.secretKey }}
             {{- end }}
             {{- if (and .Values.global.acls.replicationToken.secretName .Values.global.acls.replicationToken.secretKey) }}
             - name: ACL_REPLICATION_TOKEN
@@ -216,6 +233,9 @@ spec:
                 -retry-join="${CONSUL_FULLNAME}-server-{{ $index }}.${CONSUL_FULLNAME}-server.${NAMESPACE}.svc:{{ $serverSerfLANPort }}" \
                 {{- end }}
                 -serf-lan-port={{ .Values.server.ports.serflan.port }} \
+                {{- range $value := .Values.global.recursors }}
+                -recursor={{ quote $value }} \
+                {{- end }}
                 -server
           volumeMounts:
             - name: data-{{ .Release.Namespace }}
@@ -228,6 +248,11 @@ spec:
               readOnly: true
             - name: consul-server-cert
               mountPath: /consul/tls/server
+              readOnly: true
+            {{- end }}
+            {{- if (and .Values.server.enterpriseLicense.secretName .Values.server.enterpriseLicense.secretKey .Values.server.enterpriseLicense.enableLicenseAutoload) }}
+            - name: consul-license
+              mountPath: /consul/license
               readOnly: true
             {{- end }}
             {{- range .Values.server.extraVolumes }}
