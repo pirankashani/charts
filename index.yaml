@@ -12080,6 +12080,28 @@ entries:
   prometheus-postgres-exporter:
   - apiVersion: v2
     appVersion: 0.9.0
+    created: "2021-06-23T19:10:19.26788382Z"
+    description: A Helm chart for prometheus postgres-exporter
+    digest: e837fab1b867ce752e6f9a1fefc63239e2442422ba1a6a37a1d71c0a000f551b
+    home: https://github.com/prometheus-community/postgres_exporter
+    keywords:
+    - postgresql
+    - prometheus
+    - exporter
+    maintainers:
+    - email: gianrubio@gmail.com
+      name: gianrubio
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    name: prometheus-postgres-exporter
+    sources:
+    - https://github.com/prometheus-community/postgres_exporter
+    type: application
+    urls:
+    - prometheus-postgres-exporter-2.3.5.tgz
+    version: 2.3.5
+  - apiVersion: v2
+    appVersion: 0.9.0
     created: "2021-06-05T12:09:22.20193456Z"
     description: A Helm chart for prometheus postgres-exporter
     digest: caa0b42d8b0610da0b2dad6e1ebbe87e33020ae13115004c03a7ff979f991ddb
@@ -12276,6 +12298,27 @@ entries:
     - prometheus-postgres-exporter-1.10.0.tgz
     version: 1.10.0
   prometheus-redis-exporter:
+  - apiVersion: v2
+    appVersion: 1.11.1
+    created: "2021-06-23T19:10:19.26857463Z"
+    description: Prometheus exporter for Redis metrics
+    digest: 3bb5ff73871676f72a87c80b87c487f45a40d44da998843d2ab4477516196825
+    home: https://github.com/oliver006/redis_exporter
+    keywords:
+    - prometheus
+    - redis
+    maintainers:
+    - email: arcadie.condrat@gmail.com
+      name: acondrat
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    name: prometheus-redis-exporter
+    sources:
+    - https://github.com/oliver006/redis_exporter
+    type: application
+    urls:
+    - prometheus-redis-exporter-4.1.0.tgz
+    version: 4.1.0
   - apiVersion: v2
     appVersion: 1.11.1
     created: "2021-06-05T12:09:22.204139195Z"
@@ -16081,4 +16124,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-06-23T11:12:07.255563026Z"
+generated: "2021-06-23T19:10:19.266130796Z"
