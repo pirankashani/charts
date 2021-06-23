@@ -45,7 +45,8 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      automountServiceAccountToken: false
+      automountServiceAccountToken: {{ .Values.registry.automountServiceAccountToken | default false }}
+      terminationGracePeriodSeconds: 120
       containers:
       - name: registry
         image: {{ .Values.registry.registry.image.repository }}:{{ .Values.registry.registry.image.tag }}
@@ -213,7 +214,7 @@ spec:
       volumes:
       - name: registry-htpasswd
         secret:
-          secretName: {{ template "harbor.registry" . }}
+          secretName: {{ template "harbor.registry" . }}-htpasswd
           items:
             - key: REGISTRY_HTPASSWD
               path: passwd
@@ -269,4 +270,7 @@ spec:
     {{- with .Values.registry.tolerations }}
       tolerations:
 {{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- if .Values.registry.priorityClassName }}
+      priorityClassName: {{ .Values.registry.priorityClassName }}
     {{- end }}

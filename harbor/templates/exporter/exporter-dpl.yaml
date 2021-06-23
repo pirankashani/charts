@@ -32,6 +32,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      automountServiceAccountToken: {{ .Values.exporter.automountServiceAccountToken | default false }}
       containers:
       - name: exporter
         image: {{ .Values.exporter.image.repository }}:{{ .Values.exporter.image.tag }}
@@ -93,5 +94,8 @@ spec:
     {{- with .Values.exporter.tolerations }}
       tolerations:
 {{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- if .Values.exporter.priorityClassName }}
+      priorityClassName: {{ .Values.exporter.priorityClassName }}
     {{- end }}
 {{ end }}

@@ -19,11 +19,11 @@
   {{- $_ := set . "notary_path" "/.*" -}}
 {{- else }}
   {{- $_ := set . "portal_path" "/" -}}
-  {{- $_ := set . "api_path" "/api" -}}
-  {{- $_ := set . "service_path" "/service" -}}
+  {{- $_ := set . "api_path" "/api/" -}}
+  {{- $_ := set . "service_path" "/service/" -}}
   {{- $_ := set . "v2_path" "/v2" -}}
-  {{- $_ := set . "chartrepo_path" "/chartrepo" -}}
-  {{- $_ := set . "controller_path" "/c" -}}
+  {{- $_ := set . "chartrepo_path" "/chartrepo/" -}}
+  {{- $_ := set . "controller_path" "/c/" -}}
   {{- $_ := set . "notary_path" "/" -}}
 {{- end }}
 
@@ -50,6 +50,9 @@ metadata:
     {{- if $tls.enabled }}
     ncp/http-redirect: "true"
     {{- end }}
+{{- end }}
+{{- if $ingress.harbor.annotations }}
+{{ toYaml $ingress.harbor.annotations | indent 4 }}
 {{- end }}
 spec:
   {{- if $tls.enabled }}
@@ -157,6 +160,9 @@ metadata:
     {{- if $tls.enabled }}
     ncp/http-redirect: "true"
     {{- end }}
+{{- end }}
+{{- if $ingress.notary.annotations }}
+{{ toYaml $ingress.notary.annotations | indent 4 }}
 {{- end }}
 spec:
   {{- if $tls.enabled }}
