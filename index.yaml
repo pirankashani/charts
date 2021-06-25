@@ -1115,6 +1115,32 @@ entries:
   argo-cd:
   - apiVersion: v2
     appVersion: 2.0.3
+    created: "2021-06-25T06:17:48.337656098Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.12.14
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: b8d6c7486d4a95fd8ff664b0f386ad13a09d3a137c981c39eb820463c71fd061
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo/master/docs/assets/argo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: seanson
+    name: argo-cd
+    urls:
+    - argo-cd-3.6.9.tgz
+    version: 3.6.9
+  - apiVersion: v2
+    appVersion: 2.0.3
     created: "2021-06-07T09:56:04.650513241Z"
     dependencies:
     - condition: redis-ha.enabled
@@ -2102,6 +2128,25 @@ entries:
     - argo-cd-2.14.7.tgz
     version: 2.14.7
   argo-workflows:
+  - apiVersion: v2
+    appVersion: v3.0.7
+    created: "2021-06-25T06:17:48.340018307Z"
+    description: A Helm chart for Argo Workflows
+    digest: e2918ac45692eba00c1d4eee38331c246f245785e5dd736a9451ee905a76bac7
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo-workflows/master/docs/assets/argo.png
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: benjaminws
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - argo-workflows-0.2.6.tgz
+    version: 0.2.6
   - apiVersion: v2
     appVersion: v3.0.2
     created: "2021-06-08T14:00:14.211621192Z"
@@ -16199,4 +16244,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-06-24T03:17:00.107063848Z"
+generated: "2021-06-25T06:17:48.329056966Z"
