@@ -14,6 +14,9 @@ operator:
     runAsGroup: 1000
     runAsNonRoot: true
     fsGroup: 1000
+  nodeSelector: {}
+  affinity: {}
+  tolerations: []
   resources:
     requests:
       cpu: 200m
@@ -27,7 +30,17 @@ console:
     pullPolicy: IfNotPresent
   imagePullSecrets: []
   replicaCount: 1
+  nodeSelector: {}
+  affinity: {}
+  tolerations: []
   resources: {}
+  ingress:
+    enabled: false
+    labels: {}
+    annotations: {}
+    tls: []
+    host: console.local
+    path: /
 
 ## MinIO Tenant Definition
 tenants:
