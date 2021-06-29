@@ -4,7 +4,7 @@ dependencies:
 - condition: gitea.cache.builtIn.enabled
   name: memcached
   repository: https://charts.bitnami.com/bitnami
-  version: 4.2.20
+  version: 5.9.0
 - condition: gitea.database.builtIn.mysql.enabled
   name: mysql
   repository: https://charts.bitnami.com/bitnami
@@ -12,11 +12,11 @@ dependencies:
 - condition: gitea.database.builtIn.postgresql.enabled
   name: postgresql
   repository: https://charts.bitnami.com/bitnami
-  version: 9.7.2
+  version: 10.3.17
 - condition: gitea.database.builtIn.mariadb.enabled
   name: mariadb
   repository: https://charts.bitnami.com/bitnami
-  version: 8.0.0
+  version: 9.3.6
 description: Gitea Helm chart for Kubernetes
 icon: https://docs.gitea.io/images/gitea.png
 keywords:
@@ -35,10 +35,12 @@ maintainers:
   name: Konrad Lother
 - email: lucas.hahn@novum-rgi.de
   name: Lucas Hahn
+- email: sk.bunsenbrenner@gmail.com
+  name: Steven Kriegler
 name: gitea
 sources:
 - https://gitea.com/gitea/helm-chart
 - https://github.com/go-gitea/gitea
 - https://hub.docker.com/r/gitea/gitea/
 type: application
-version: 3.1.4
+version: 3.2.0

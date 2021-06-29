@@ -23,6 +23,7 @@ Dependencies:
 
 ```sh
   helm repo add gitea-charts https://dl.gitea.io/charts/
+  helm repo update
   helm install gitea gitea-charts/gitea
 ```
 
@@ -38,6 +39,17 @@ Previously the ROOT folder for the gitea repositories was located at /data/git/g
 1.14 changed this to /data/gitea-repositories.
 
 This chart will set the gitea.config.repository.ROOT value default to /data/git/gitea-repositories
+
+## Configure Commit Signing
+
+When using the rootless image the gpg key folder was is not persistent by default. If you consider using signed commits for internal Gitea activities (e.g. initial commit), you'd need to provide a signing key. Prior to [PR 186](https://gitea.com/gitea/helm-chart/pulls/186), imported keys had to be re-imported once the container got replaced by another.  
+The mentioned PR introduced a new configuration object `signing` allowing you to configure prerequisites for commit signing. By default this section is disabled to maintain backwards compatibility.
+
+```yaml
+  signing:
+    enabled: false
+    gpgHome: /data/git/.gnupg
+```
 
 ## Examples
 
@@ -147,7 +159,7 @@ By default port 3000 is used for web traffic and 22 for ssh. Those can be change
       port: 22
 ```
 
-This helm chart automatically configures the clone urls to use the correct ports. You can change these ports by hand using the gitea.config dict. However you should know what you're doing.
+This helm chart automatically configures the clone urls to use the correct ports. You can change these ports by hand using the `gitea.config` dict. However you should know what you're doing.
 
 ### ClusterIP
 
@@ -213,7 +225,6 @@ If you want to use your own storageClass define it as followed:
 persistence:
   enabled: true
   storageClass: myOwnStorageClass
-
 ```
 
 When using Postgresql as dependency, this will also be deployed as a statefulset by default.
@@ -345,9 +356,17 @@ gitea:
       existingSecret: gitea-ldap-secret
 ```
 
+:warning: Some options are just flags and therefore don't any values. If they are defined in `gitea.ldap` configuration, they will be passed to the gitea cli without any value. Affected options:
+
+- notActive | not-active
+- skipTlsVerify | skip-tls-verify
+- allowDeactivateAll | allow-deactivate-all
+- synchronizeUsers | synchronize-users
+- attributesInBind | attributes-in-bind
+
 ### OAuth2 Settings
 
-Like the admin user the OAuth2 settings can be updated but also disabled or deleted.
+Like the admin user, OAuth2 settings can be updated and disabled but not deleted. Deleting OAuth2 settings has to be done in the ui.
 All OAuth2 values from <https://docs.gitea.io/en-us/command-line/#admin> are available.
 You can either use them in camel case or kebab case.
 
@@ -420,10 +439,10 @@ Annotations can be added to the Gitea pod.
 
 | Parameter                                 | Description                                            | Default     |
 |-------------------------------------------|--------------------------------------------------------|-------------|
-| statefulset.terminationGracePeriodSeconds | Image to start for this pod                            | gitea/gitea |
+| statefulset.terminationGracePeriodSeconds | How long to wait until forcefully kill the pod         | 60          |
 | statefulset.env                           | Additional environment variables to pass to containers | []          |
 | extraVolumes                              | Additional volumes to mount to the Gitea statefulset   | {}          |
-| extraVolumeMounts                         | Additional volumes mounts for the Gitea containers     | {}          |
+| extraVolumeMounts                         | Additional volume mounts for the Gitea containers      | {}          |
 | initPreScript                             | Bash script copied verbatim to start of init container |             |
 | securityContext                           | Run as a specific securityContext                      | {}          |
 | schedulerName                             | Use an alternate scheduler, e.g. "stork"               |             |
@@ -455,10 +474,14 @@ Annotations can be added to the Gitea pod.
 |---------------------|-----------------------------------|------------------------------|
 |ingress.enabled| enable ingress | false|
 |ingress.annotations| add ingress annotations | |
-|ingress.hosts| add hosts for ingress as string list | git.example.com |
+|ingress.hosts[0].host | add hosts for ingress | git.example.com |
+|ingress.hosts[0].paths[0].path | add path for each ingress host | / |
+|ingress.hosts[0].paths[0].pathType | add ingress path type | Prefix |
 |ingress.tls|add ingress tls settings|[]|
 
 ### Service
+
+#### Web
 
 | Parameter           | Description                       | Default                      |
 |---------------------|-----------------------------------|------------------------------|
@@ -468,16 +491,20 @@ Annotations can be added to the Gitea pod.
 |service.http.loadBalancerIP| LoadBalancer Ip setting | |
 |service.http.nodePort| NodePort for http service | |
 |service.http.externalTrafficPolicy| If `service.http.type` is `NodePort` or `LoadBalancer`, set this to `Local` to enable source IP preservation | |
-|service.http.externalIPs| http service external IP addresses | 3000 |
+|service.http.externalIPs| http service external IP addresses | |
 |service.http.loadBalancerSourceRanges| Source range filter for http loadbalancer | [] |
 |service.http.annotations| http service annotations | |
 
+#### SSH
+
+| Parameter           | Description                       | Default                      |
+|---------------------|-----------------------------------|------------------------------|
 |service.ssh.type| Kubernetes service type for ssh traffic | ClusterIP |
 |service.ssh.port| Port for ssh traffic | 22 |
 |service.ssh.loadBalancerIP| LoadBalancer Ip setting | |
 |service.ssh.nodePort| NodePort for ssh service | |
 |service.ssh.externalTrafficPolicy| If `service.ssh.type` is `NodePort` or `LoadBalancer`, set this to `Local` to enable source IP preservation | |
-|service.ssh.externalIPs| ssh service external IP addresses | 3000 |
+|service.ssh.externalIPs| ssh service external IP addresses | |
 |service.ssh.loadBalancerSourceRanges| Source range filter for ssh loadbalancer | [] |
 |service.ssh.annotations| ssh service annotations | |
 
@@ -485,7 +512,7 @@ Annotations can be added to the Gitea pod.
 
 | Parameter           | Description                       | Default                      |
 |---------------------|-----------------------------------|------------------------------|
-|gitea.config | Everything in app.ini can be configured with this dict. See Examples for more details | {} |
+|gitea.config | Everything in `app.ini` can be configured with this dict. See [Examples](#examples) for more details | {} |
 
 ### Gitea Probes
 
@@ -500,13 +527,13 @@ Configure Liveness, Readiness and Startup [Probes](https://kubernetes.io/docs/ta
 |gitea.livenessProbe.successThreshold | Minimum consecutive success probes | 1 |
 |gitea.livenessProbe.failureThreshold | Minimum consecutive error probes | 10 |
 |gitea.readinessProbe.enabled | Enable readiness probe | true |
-|gitea.readinessProbe.initialDelaySeconds | Delay before probe start| 200 |
+|gitea.readinessProbe.initialDelaySeconds | Delay before probe start| 5 |
 |gitea.readinessProbe.timeoutSeconds | probe timeout | 1 |
 |gitea.readinessProbe.periodSeconds | period between probes | 10 |
 |gitea.readinessProbe.successThreshold | Minimum consecutive success probes | 1 |
-|gitea.readinessProbe.failureThreshold | Minimum consecutive error probes | 10 |
+|gitea.readinessProbe.failureThreshold | Minimum consecutive error probes | 3 |
 |gitea.startupProbe.enabled | Enable startup probe | false |
-|gitea.startupProbe.initialDelaySeconds | Delay before probe start| 200 |
+|gitea.startupProbe.initialDelaySeconds | Delay before probe start| 60 |
 |gitea.startupProbe.timeoutSeconds | probe timeout | 1 |
 |gitea.startupProbe.periodSeconds | period between probes | 10 |
 |gitea.startupProbe.successThreshold | Minimum consecutive success probes | 1 |
@@ -527,22 +554,22 @@ The following parameters are the defaults set by this chart
 
 ### Mysql BuiltIn
 
-Mysql is loaded as a dependency from stable. Configuration can be found from this [website](https://github.com/helm/charts/tree/master/stable/mysql)
+Mysql is loaded as a dependency from stable. Configuration can be found on this [website](https://github.com/helm/charts/tree/master/stable/mysql).
 
 The following parameters are the defaults set by this chart
 
 | Parameter           | Description                       | Default                      |
 |---------------------|-----------------------------------|------------------------------|
-|mysql.mysqlRootPassword|Password for the root user. Ignored if existing secret is provided|gitea|
-|mysql.mysqlUser|Username of new user to create.|gitea|
-|mysql.mysqlPassword|Password for the new user. Ignored if existing secret is provided|gitea|
-|mysql.mysqlDatabase|Name for new database to create.|gitea|
+|mysql.root.password|Password for the root user. Ignored if existing secret is provided|gitea|
+|mysql.db.user|Username of new user to create.|gitea|
+|mysql.db.password|Password for the new user. Ignored if existing secret is provided|gitea|
+|mysql.db.name|Name for new database to create.|gitea|
 |mysql.service.port|Port to connect to mysql service|3306|
 |mysql.persistence.size|Persistence size for mysql |10Gi|
 
 ### Postgresql BuiltIn
 
-Postgresql is loaded as a dependency from Bitnami. The chart configuration can be found from this [Bitnami](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) repository.
+Postgresql is loaded as a dependency from Bitnami. The chart configuration can be found in this [Bitnami](https://github.com/bitnami/charts/tree/master/bitnami/postgresql) repository.
 
 The following parameters are the defaults set by this chart
 
@@ -556,7 +583,7 @@ The following parameters are the defaults set by this chart
 
 ### MariaDB BuiltIn
 
-MariaDB is loaded as a dependency from bitnami. Configuration can be found from this [Bitnami](https://github.com/bitnami/charts/tree/master/bitnami/mariadb)
+MariaDB is loaded as a dependency from bitnami. Configuration can be found in this [Bitnami](https://github.com/bitnami/charts/tree/master/bitnami/mariadb) repository.
 
 The following parameters are the defaults set by this chart
 

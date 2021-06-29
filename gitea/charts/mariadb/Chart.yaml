@@ -1,7 +1,13 @@
 annotations:
   category: Database
-apiVersion: v1
-appVersion: 10.5.5
+apiVersion: v2
+appVersion: 10.5.9
+dependencies:
+- name: common
+  repository: https://charts.bitnami.com/bitnami
+  tags:
+  - bitnami-common
+  version: 1.x.x
 description: Fast, reliable, scalable, and easy to use open-source relational database
   system. MariaDB Server is intended for mission-critical, heavy-load production systems
   as well as for embedding into mass-deployed software. Highly available MariaDB cluster.
@@ -21,4 +27,4 @@ sources:
 - https://github.com/bitnami/bitnami-docker-mariadb
 - https://github.com/prometheus/mysqld_exporter
 - https://mariadb.org
-version: 8.0.0
+version: 9.3.6
