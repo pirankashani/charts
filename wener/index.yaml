@@ -40,6 +40,17 @@ entries:
     urls:
     - ingresses-1.0.0.tgz
     version: 1.0.0
+  keycloak:
+  - apiVersion: v2
+    appVersion: 13.0.1
+    created: "2021-07-02T15:32:10.564673039Z"
+    description: Keycloak chart
+    digest: c5e60dcf7898a9e18568a32882e373787274ebfca179e6996e30c5af3663bead
+    name: keycloak
+    type: application
+    urls:
+    - keycloak-13.0.1.tgz
+    version: 13.0.1
   minio-console:
   - apiVersion: v2
     appVersion: v0.7.1
@@ -94,4 +105,4 @@ entries:
     urls:
     - samba-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-05T12:09:19.6163926Z"
+generated: "2021-07-02T15:32:10.563655626Z"
