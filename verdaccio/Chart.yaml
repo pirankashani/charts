@@ -19,4 +19,4 @@ name: verdaccio
 sources:
 - https://verdaccio.org
 - https://github.com/verdaccio/verdaccio
-version: 4.1.1
+version: 4.2.0
