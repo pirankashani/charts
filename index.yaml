@@ -4892,6 +4892,67 @@ entries:
     urls:
     - gitea-2.0.3.tgz
     version: 2.0.3
+  gitlab:
+  - apiVersion: v1
+    appVersion: 14.0.5
+    created: "2021-07-08T16:58:09.041207242Z"
+    dependencies:
+    - name: gitlab
+      repository: ""
+      version: '*.*.*'
+    - name: certmanager-issuer
+      repository: ""
+      version: '*.*.*'
+    - name: minio
+      repository: ""
+      version: '*.*.*'
+    - name: registry
+      repository: ""
+      version: '*.*.*'
+    - alias: certmanager
+      condition: certmanager.install
+      name: cert-manager
+      repository: https://charts.jetstack.io/
+      version: 1.2.0
+    - condition: prometheus.install
+      name: prometheus
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 11.16.9
+    - condition: postgresql.install
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.9.4
+    - condition: gitlab-runner.install
+      name: gitlab-runner
+      repository: https://charts.gitlab.io/
+      version: 0.30.0
+    - condition: global.grafana.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 6.9.1
+    - condition: redis.install
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.3.4
+    - condition: nginx-ingress.enabled
+      name: nginx-ingress
+      repository: ""
+      version: '*.*.*'
+    description: Web-based Git-repository manager with wiki and issue-tracking features.
+    digest: 59048219aef903c1e798822ac1b36356acca1bf47f36f94f4660cc63d3478ba1
+    home: https://about.gitlab.com/
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    keywords:
+    - gitlab
+    maintainers:
+    - email: support@gitlab.com
+      name: GitLab Inc.
+    name: gitlab
+    sources:
+    - https://gitlab.com/gitlab-org/charts/gitlab
+    urls:
+    - gitlab-5.0.5.tgz
+    version: 5.0.5
   gitlab-runner:
   - apiVersion: v1
     appVersion: 14.0.0
@@ -15562,6 +15623,40 @@ entries:
     urls:
     - reflector-5.4.17.tgz
     version: 5.4.17
+  reloader:
+  - apiVersion: v1
+    appVersion: v0.0.95
+    created: "2021-07-08T16:58:09.042147304Z"
+    description: Reloader chart that runs on kubernetes
+    digest: 222146757f2faf6383cb7de03151a17a4e3cfb694fe09de4825979f4083c4a3c
+    home: https://github.com/stakater/Reloader
+    icon: https://raw.githubusercontent.com/stakater/Reloader/master/assets/web/reloader-round-100px.png
+    keywords:
+    - Reloader
+    - kubernetes
+    maintainers:
+    - email: hello@stakater.com
+      name: Stakater
+    - email: rasheed@aurorasolutions.io
+      name: rasheedamir
+    - email: waseemhassan@stakater.com
+      name: waseem-h
+    - email: faizan.ahmad55@outlook.com
+      name: faizanahmad055
+    - email: ali.kahoot@aurorasolutions.io
+      name: kahootali
+    - email: ahmad@aurorasolutions.io
+      name: ahmadiq
+    - email: ahsanmuhammad1@outlook.com
+      name: ahsan-storm
+    - email: waleed@stakater.com
+      name: ahmedwaleedmalik
+    name: reloader
+    sources:
+    - https://github.com/stakater/IngressMonitorController
+    urls:
+    - reloader-v0.0.95.tgz
+    version: v0.0.95
   samba:
   - apiVersion: v2
     appVersion: 4.13.3
@@ -17054,4 +17149,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-07-08T14:40:37.20049802Z"
+generated: "2021-07-08T16:58:08.957525452Z"
