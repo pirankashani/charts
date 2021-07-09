@@ -52,10 +52,10 @@ reloader:
     labels:
       provider: stakater
       group: com.stakater.platform
-      version: v0.0.95
+      version: v0.0.96
     image:
       name: stakater/reloader
-      tag: v0.0.95
+      tag: v0.0.96
       pullPolicy: IfNotPresent
     # Support for extra environment variables.
     env:
@@ -65,6 +65,18 @@ reloader:
       secret:
       # field supports Key value pair as environment variables. It gets the values from other fields of pod.
       field:
+
+    # Liveness and readiness probe timeout values.
+    livenessProbe: {}
+    #  timeoutSeconds: 5
+    #  failureThreshold: 5
+    #  periodSeconds: 10
+    #  successThreshold: 1
+    readinessProbe: {}
+    #  timeoutSeconds: 15
+    #  failureThreshold: 5
+    #  periodSeconds: 10
+    #  successThreshold: 1
 
     # Specify resource requests/limits for the deployment.
     # Example:
