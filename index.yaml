@@ -1141,6 +1141,35 @@ entries:
     - argo-0.16.2.tgz
     version: 0.16.2
   argo-cd:
+  - annotations:
+      artifacthub.io/changes: |
+        - "[Added]: Ability to override API versions"
+    apiVersion: v2
+    appVersion: 2.0.4
+    created: "2021-07-09T12:57:38.47546284Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.12.14
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: b39f6465ff718dd70479f6e0f520d8a40c1f0041b9a6f835ea7ec272715bbf1e
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo/master/docs/assets/argo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: seanson
+    name: argo-cd
+    urls:
+    - argo-cd-3.8.0.tgz
+    version: 3.8.0
   - apiVersion: v2
     appVersion: 2.0.4
     created: "2021-07-09T11:11:56.168783821Z"
@@ -5086,6 +5115,32 @@ entries:
     - gitlab-runner-0.29.0.tgz
     version: 0.29.0
   grafana:
+  - apiVersion: v2
+    appVersion: 8.0.5
+    created: "2021-07-09T12:57:38.479700409Z"
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: d0dc711edeab7e35798647541675a23f272c0a7b56ccaf5f82bade6262009108
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    type: application
+    urls:
+    - grafana-6.13.9.tgz
+    version: 6.13.9
   - apiVersion: v2
     appVersion: 8.0.3
     created: "2021-07-08T10:15:42.084628458Z"
@@ -17273,4 +17328,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-07-09T11:11:56.160536457Z"
+generated: "2021-07-09T12:57:38.46741461Z"
