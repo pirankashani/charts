@@ -1,3 +1,6 @@
+annotations:
+  artifacthub.io/changes: |
+    - "[Added]: Ability to override API versions"
 apiVersion: v2
 appVersion: 2.0.4
 dependencies:
@@ -19,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.7.2
+version: 3.8.0
