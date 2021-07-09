@@ -1,3 +1,6 @@
+annotations:
+  artifacthub.io/changes: |
+    - "[Added]: Initialize Changelog"
 apiVersion: v2
 appVersion: v0.1.0
 description: A Helm chart for installing ArgoCD ApplicationSet
@@ -11,4 +14,4 @@ maintainers:
 - name: maruina
 name: argocd-applicationset
 type: application
-version: 0.1.6
+version: 0.1.7
