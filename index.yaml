@@ -1143,6 +1143,32 @@ entries:
   argo-cd:
   - apiVersion: v2
     appVersion: 2.0.4
+    created: "2021-07-09T11:11:56.168783821Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.12.14
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 8a55b8ec38ba924ff957b217e8bd406224690a04bcd45de246d468fd1d93fa65
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo/master/docs/assets/argo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: seanson
+    name: argo-cd
+    urls:
+    - argo-cd-3.7.2.tgz
+    version: 3.7.2
+  - apiVersion: v2
+    appVersion: 2.0.4
     created: "2021-07-05T10:15:24.930681475Z"
     dependencies:
     - condition: redis-ha.enabled
@@ -2234,6 +2260,28 @@ entries:
     - argo-cd-2.14.7.tgz
     version: 2.14.7
   argo-workflows:
+  - annotations:
+      artifacthub.io/changes: |
+        - "[Added]: Initialize Changelog"
+    apiVersion: v2
+    appVersion: v3.0.7
+    created: "2021-07-09T11:11:56.171179868Z"
+    description: A Helm chart for Argo Workflows
+    digest: a1ad83daa476378baef5ed40bcb30240a9896c1b77b533235a74415f81865132
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo-workflows/master/docs/assets/argo.png
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: benjaminws
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - argo-workflows-0.2.7.tgz
+    version: 0.2.7
   - apiVersion: v2
     appVersion: v3.0.7
     created: "2021-06-25T06:17:48.340018307Z"
@@ -2444,6 +2492,27 @@ entries:
     - argo-workflows-0.1.2.tgz
     version: 0.1.2
   argocd-applicationset:
+  - annotations:
+      artifacthub.io/changes: |
+        - "[Added]: Initialize Changelog"
+    apiVersion: v2
+    appVersion: v0.1.0
+    created: "2021-07-09T11:11:56.172155787Z"
+    description: A Helm chart for installing ArgoCD ApplicationSet
+    digest: c9823aed0c12244fd27b4bfc6f079e3c46d1dfff5409b77c219797e76c0761c0
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo/master/docs/assets/argo.png
+    keywords:
+    - argoproj
+    - appset
+    - gitops
+    maintainers:
+    - name: maruina
+    name: argocd-applicationset
+    type: application
+    urls:
+    - argocd-applicationset-0.1.7.tgz
+    version: 0.1.7
   - apiVersion: v2
     appVersion: v0.1.0
     created: "2021-06-05T12:09:20.821091185Z"
@@ -2481,6 +2550,28 @@ entries:
     - argocd-applicationset-0.1.5.tgz
     version: 0.1.5
   argocd-notifications:
+  - annotations:
+      artifacthub.io/changes: |
+        - "[Added]: Initialize Changelog"
+    apiVersion: v2
+    appVersion: 1.1.1
+    created: "2021-07-09T11:11:56.17330981Z"
+    description: A Helm chart for ArgoCD notifications, an add-on to ArgoCD.
+    digest: 4471c236a45e45e53b45b27bfda8be1de9695854169e3c767b7bead787315bea
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo/master/docs/assets/argo.png
+    keywords:
+    - argoproj
+    - argocd
+    - argocd-notifications
+    maintainers:
+    - name: alexmt
+    - name: andyfeller
+    name: argocd-notifications
+    type: application
+    urls:
+    - argocd-notifications-1.4.1.tgz
+    version: 1.4.1
   - apiVersion: v2
     appVersion: 1.1.1
     created: "2021-06-05T12:09:20.823204118Z"
@@ -17182,4 +17273,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-07-09T08:15:46.236859054Z"
+generated: "2021-07-09T11:11:56.160536457Z"
