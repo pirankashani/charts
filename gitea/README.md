@@ -33,6 +33,62 @@ Dependencies:
 * Helm 3.0+
 * PV provisioner for persistent data support
 
+## Chart upgrade from 3.x.x to 4.0.0
+
+:warning: The most recent 4.0.0 update brings some breaking changes. Please note the following changes in the Chart to upgrade successfully. :warning:
+
+### Ingress changes
+
+To provide a more flexible Ingress configuration we now support not only host settings but also provide configuration for the path and pathType. So this change changes the hosts from a simple string list, to a list containing a more complex object for more configuration.
+
+
+```diff
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+-  hosts:
+-    - git.example.com
++  hosts:
++    - host: git.example.com
++      paths:
++        - path: /
++          pathType: Prefix
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - git.example.com
+```
+
+If you want everything as it was before, you can simply add the following code to all your host entries.
+
+```yaml
+paths:
+  - path: /
+    pathType: Prefix
+```
+
+### Dropped kebab-case support
+
+In 3.x.x it was possible to provide an ldap configuration via kebab-case, this support has now been dropped and only camel case is supported.
+See [LDAP section](#ldap-settings) for more information.
+
+### Dependency update
+
+The chart comes with multiple databases and memcached as dependency, the latest release updated the dependencies.
+
+- memcached: 4.2.20 -> 5.9.0
+- postgresql: 9.7.2 -> 10.3.17
+- mariadb: 8.0.0 -> 9.3.6
+
+If you're using the builtin databases you will most likely redeploy the chart in order to update the database correctly.
+
+### Execution of initPreScript
+
+Generally spoken, this might not be a breaking change, but it is worth to be mentioned.  
+Prior to 4.0.0 only one init container was used to both setup directories and configure Gitea. As of now the actual Gitea configuration is separated from the other pre-execution. This also includes the execution of _initPreScript_. If you have such script, please be aware of this. Dynamically prepare the Gitea setup during execution by e.g. adding environment variables to the execution context won't work anymore.
+
 ## Gitea Version 1.14.X repository ROOT
 
 Previously the ROOT folder for the gitea repositories was located at /data/git/gitea-repositories
@@ -153,7 +209,7 @@ By default port 3000 is used for web traffic and 22 for ssh. Those can be change
 
 ```yaml
   service:
-    http: 
+    http:
       port: 3000
     ssh:
       port: 22
@@ -188,6 +244,24 @@ service:
     annotations:
       metallb.universe.tf/allow-shared-ip: test
 ```
+
+### SSH on crio based kubernetes cluster
+
+If you use crio as container runtime it is not possible to read from a remote
+repository. You should get an error message like this:
+
+```bash
+$ git clone git@k8s-demo.internal:admin/test.git
+Cloning into 'test'...
+Connection reset by 192.168.179.217 port 22
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+```
+
+To solve this problem add the capability `SYS_CHROOT` to the `securityContext`.
+More about this issue [here](https://gitea.com/gitea/helm-chart/issues/161).
 
 ### Cache
 
@@ -296,9 +370,6 @@ gitea:
 
 Like the admin user the LDAP settings can be updated, but also disabled or deleted.
 All LDAP values from <https://docs.gitea.io/en-us/command-line/#admin> are available.
-You can either use them in camel case or kebab case.
-
-camelCase:
 
 ```yaml
   gitea:
@@ -316,25 +387,6 @@ camelCase:
       bindPassword: JustAnotherBindPw
       usernameAttribute: CN
       sshPublicKeyAttribute: sshPublicKey
-```
-
-kebab-case:
-
-```yaml
-  gitea:
-    ldap:
-      enabled: true
-      name: 'MyAwesomeGiteaLdap'
-      security-protocol: unencrypted
-      host: "127.0.0.1"
-      port: "389"
-      user-search-base: ou=Users,dc=example,dc=com
-      user-filter: sAMAccountName=%s
-      admin-filter: CN=Admin,CN=Group,DC=example,DC=com
-      email-attribute: mail
-      bind-dn: CN=ldap read,OU=Spezial,DC=example,DC=com
-      bind-password: JustAnotherBindPw
-      username-attribute: CN
 ```
 
 You can also use an existing secret to set the bindDn and bindPassword:
@@ -358,19 +410,16 @@ gitea:
 
 :warning: Some options are just flags and therefore don't any values. If they are defined in `gitea.ldap` configuration, they will be passed to the gitea cli without any value. Affected options:
 
-- notActive | not-active
-- skipTlsVerify | skip-tls-verify
-- allowDeactivateAll | allow-deactivate-all
-- synchronizeUsers | synchronize-users
-- attributesInBind | attributes-in-bind
+- notActive
+- skipTlsVerify
+- allowDeactivateAll
+- synchronizeUsers
+- attributesInBind
 
 ### OAuth2 Settings
 
 Like the admin user, OAuth2 settings can be updated and disabled but not deleted. Deleting OAuth2 settings has to be done in the ui.
 All OAuth2 values from <https://docs.gitea.io/en-us/command-line/#admin> are available.
-You can either use them in camel case or kebab case.
-
-camelCase:
 
 ```yaml
   gitea:
@@ -386,24 +435,6 @@ camelCase:
       #customTokenUrl:
       #customProfileUrl:
       #customEmailUrl:
-```
-
-kebab-case:
-
-```yaml
-  gitea:
-    oauth:
-      enabled: true
-      name: 'MyAwesomeGiteaOAuth'
-      provider: 'openidConnect'
-      key: 'hello'
-      secret: 'world'
-      auto-discover-url: 'https://gitea.example.com/.well-known/openid-configuration'
-      #use-custom-urls:
-      #custom-auth-url:
-      #custom-token-url:
-      #custom-profile-url:
-      #custom-email-url:
 ```
 
 ### Metrics and profiling
@@ -452,7 +483,7 @@ Annotations can be added to the Gitea pod.
 | Parameter           | Description                       | Default                      |
 |---------------------|-----------------------------------|------------------------------|
 |image.repository| Image to start for this pod | gitea/gitea |
-|image.tag| [Image tag](https://hub.docker.com/r/gitea/gitea/tags?page=1&ordering=last_updated) | 1.14.2 |
+|image.tag| [Image tag](https://hub.docker.com/r/gitea/gitea/tags?page=1&ordering=last_updated) | 1.14.3 |
 |image.pullPolicy| Image pull policy | Always |
 |image.rootless | Wether or not to pull the rootless version of gitea, only works on gitea 1.14.x or higher | false |
 
