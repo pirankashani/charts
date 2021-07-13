@@ -1,6 +1,7 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Fixed]: Cannot create a service account for redis"
+    - "[Added]: Ability to create network policies"
+    - "[Changed]: Fix icon url"
 apiVersion: v2
 appVersion: 2.0.4
 dependencies:
@@ -11,7 +12,7 @@ dependencies:
 description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery tool
   for Kubernetes.
 home: https://github.com/argoproj/argo-helm
-icon: https://raw.githubusercontent.com/argoproj/argo/master/docs/assets/argo.png
+icon: https://argoproj.github.io/argo-cd/assets/logo.png
 keywords:
 - argoproj
 - argocd
@@ -22,4 +23,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.8.1
+version: 3.9.0
