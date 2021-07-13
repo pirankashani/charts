@@ -1143,6 +1143,36 @@ entries:
   argo-cd:
   - annotations:
       artifacthub.io/changes: |
+        - "[Added]: Ability to create network policies"
+        - "[Changed]: Fix icon url"
+    apiVersion: v2
+    appVersion: 2.0.4
+    created: "2021-07-13T06:49:56.664092915Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.12.14
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 60acb33318132ba848526ecf5a909a3fa89905213fb11e294a230473e7e05d23
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argoproj.github.io/argo-cd/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: seanson
+    name: argo-cd
+    urls:
+    - argo-cd-3.9.0.tgz
+    version: 3.9.0
+  - annotations:
+      artifacthub.io/changes: |
         - "[Fixed]: Cannot create a service account for redis"
     apiVersion: v2
     appVersion: 2.0.4
@@ -17508,4 +17538,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-07-12T18:17:13.502505469Z"
+generated: "2021-07-13T06:49:56.655528601Z"
