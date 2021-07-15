@@ -13548,6 +13548,25 @@ entries:
     version: 1.0.0
   rancher:
   - apiVersion: v1
+    appVersion: v2.5.9
+    created: "2021-07-15T01:58:39.326250074Z"
+    description: Install Rancher Server to manage Kubernetes clusters across providers.
+    digest: ae0d150cbd7bd6dfb77344faa53b1da80003cf5ac196d0e41277b14f91162ebb
+    home: https://rancher.com
+    icon: https://github.com/rancher/ui/blob/master/public/assets/images/logos/welcome-cow.svg
+    keywords:
+    - rancher
+    maintainers:
+    - email: charts@rancher.com
+      name: Rancher Labs
+    name: rancher
+    sources:
+    - https://github.com/rancher/rancher
+    - https://github.com/rancher/server-chart
+    urls:
+    - rancher-2.5.9.tgz
+    version: 2.5.9
+  - apiVersion: v1
     appVersion: v2.5.8
     created: "2021-06-05T12:09:22.21264463Z"
     description: Install Rancher Server to manage Kubernetes clusters across providers.
@@ -17588,4 +17607,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-07-14T18:47:32.548533477Z"
+generated: "2021-07-15T01:58:39.324109932Z"
