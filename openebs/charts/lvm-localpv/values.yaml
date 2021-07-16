@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 release:
-  version: "0.6.0"
+  version: "0.7.0"
 
 imagePullSecrets:
 # - name: "image-pull-secret"
@@ -33,7 +33,7 @@ lvmNode:
     type: RollingUpdate
   annotations: {}
   podAnnotations: {}
-  # This can be configured to run on various different k8s ditributions like
+  # This can be configured to run on various different k8s distributions like
   # microk8s where kubelet dir is different
   kubeletDir: "/var/lib/kubelet/"
   resources: {}
@@ -126,12 +126,15 @@ lvmPlugin:
     repository: openebs/lvm-driver
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: 0.6.0
+    tag: 0.7.0
   ioLimits:
     enabled: false
     containerRuntime: containerd
     readIopsPerGB: ""
     writeIopsPerGB: ""
+  # The TCP port number used for exposing lvm-metrics.
+  # If not set, service will not be created to expose metrics endpoint to serviceMonitor and listen-address flag will not be set.
+  metricsPort: 9500
 
 role: openebs-lvm
 
