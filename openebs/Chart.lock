@@ -7,7 +7,7 @@ dependencies:
   version: 2.11.0
 - name: cstor
   repository: https://openebs.github.io/cstor-operators
-  version: 2.11.0
+  version: 2.11.2
 - name: jiva
   repository: https://openebs.github.io/jiva-operator
   version: 2.11.0
@@ -16,6 +16,6 @@ dependencies:
   version: 1.9.0
 - name: lvm-localpv
   repository: https://openebs.github.io/lvm-localpv
-  version: 0.7.0
-digest: sha256:1ebff382d4bd81d067ecc6ca4ce844cd91fa0b389532a7235f18d566cef2d003
-generated: "2021-07-16T10:56:06.524924204Z"
+  version: 0.7.1
+digest: sha256:cf043af0b9431c09680de07315822e3961d940f4b8c9f531428e170e94187558
+generated: "2021-07-17T05:57:24.615737668Z"
