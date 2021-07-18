@@ -13059,6 +13059,33 @@ entries:
     - postgres-operator-ui-1.6.1.tgz
     version: 1.6.1
   prometheus-blackbox-exporter:
+  - apiVersion: v2
+    appVersion: 0.19.0
+    created: "2021-07-18T11:36:01.820942032Z"
+    description: Prometheus Blackbox Exporter
+    digest: 04f4cbf7079a9d606e24aaa66417e0a0ef235d797e8f546daf1c4a7f0977fb5f
+    home: https://github.com/prometheus/blackbox_exporter
+    keywords:
+    - prometheus
+    - blackbox
+    - monitoring
+    maintainers:
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    - email: gianrubio@gmail.com
+      name: gianrubio
+    - email: me@sota.sh
+      name: rsotnychenko
+    - email: monotek23@gmail.com
+      name: monotek
+    name: prometheus-blackbox-exporter
+    sources:
+    - https://github.com/prometheus/blackbox_exporter
+    - https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-blackbox-exporter
+    type: application
+    urls:
+    - prometheus-blackbox-exporter-5.0.0.tgz
+    version: 5.0.0
   - apiVersion: v1
     appVersion: 0.19.0
     created: "2021-06-29T18:17:27.789629976Z"
@@ -17823,4 +17850,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-07-17T06:16:41.94463842Z"
+generated: "2021-07-18T11:36:01.81942811Z"
