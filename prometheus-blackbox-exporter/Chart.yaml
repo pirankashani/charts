@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: v2
 appVersion: 0.19.0
 description: Prometheus Blackbox Exporter
 home: https://github.com/prometheus/blackbox_exporter
@@ -18,4 +18,6 @@ maintainers:
 name: prometheus-blackbox-exporter
 sources:
 - https://github.com/prometheus/blackbox_exporter
-version: 4.15.0
+- https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-blackbox-exporter
+type: application
+version: 5.0.0
