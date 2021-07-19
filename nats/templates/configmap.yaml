@@ -3,6 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ include "nats.fullname" . }}-config
+  namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "nats.labels" . | nindent 4 }}
 data:
@@ -379,6 +380,12 @@ data:
       {{- toRawJson . | nindent 4 }},
       {{- end }}
       ]
+    }
+    {{- end }}
+
+    {{- if .token }}
+    authorization {
+      token: "{{ .token }}"
     }
     {{- end }}
 
