@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Fixed]: Removed init.serviceAccount unused fields"
+    - "[Fixed]: Pods stuck in pending phase due to workflow update timeouts."
 apiVersion: v2
 appVersion: v3.0.7
 description: A Helm chart for Argo Workflows
@@ -15,4 +15,4 @@ name: argo-workflows
 sources:
 - https://github.com/argoproj/argo-workflows
 type: application
-version: 0.2.10
+version: 0.2.11
