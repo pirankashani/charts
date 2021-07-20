@@ -5299,6 +5299,32 @@ entries:
   grafana:
   - apiVersion: v2
     appVersion: 8.0.5
+    created: "2021-07-20T10:15:18.128827911Z"
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 246a9b1c3bbd06c47ee7ed8e1f4724b6a6316448a2f077d06e89052e74a71d3f
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    type: application
+    urls:
+    - grafana-6.14.1.tgz
+    version: 6.14.1
+  - apiVersion: v2
+    appVersion: 8.0.5
     created: "2021-07-19T14:12:57.430455933Z"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: cb5a2e886cd3117b6e0ba0a84415a29c55e74f72aa2c6f1c8f6bde3f2e9600db
@@ -6593,6 +6619,33 @@ entries:
     - harbor-1.4.2.tgz
     version: 1.4.2
   hazelcast:
+  - apiVersion: v1
+    appVersion: "4.2"
+    created: "2021-07-20T10:15:18.130246321Z"
+    description: Hazelcast IMDG is the most widely used in-memory data grid with hundreds
+      of thousands of installed clusters around the world. It offers caching solutions
+      ensuring that data is in the right place when it’s needed for optimal performance.
+    digest: 63ea551131e71a6191ea9ad91e85cd215042d321d5ac13fc119e33d80e1eddf3
+    home: http://hazelcast.org/
+    icon: http://hazelcast.com/images/logos/Hazelcast-IMDG-Logo-Orange_Dark_Icon_200px.png
+    keywords:
+    - hazelcast
+    - keyvalue
+    - in-memory
+    - database
+    - caching
+    kubeVersion: '>=1.14.0-0'
+    maintainers:
+    - email: rafal@hazelcast.com
+      name: leszko
+    - email: hasan@hazelcast.com
+      name: hasancelik
+    name: hazelcast
+    sources:
+    - https://github.com/hazelcast/hazelcast
+    urls:
+    - hazelcast-3.7.5.tgz
+    version: 3.7.5
   - apiVersion: v1
     appVersion: "4.2"
     created: "2021-06-23T11:12:07.257250236Z"
@@ -18060,4 +18113,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-07-19T17:02:51.238766215Z"
+generated: "2021-07-20T10:15:18.125804691Z"
