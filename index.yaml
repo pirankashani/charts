@@ -2379,6 +2379,28 @@ entries:
   argo-workflows:
   - annotations:
       artifacthub.io/changes: |
+        - "[Fixed]: Removed init.serviceAccount unused fields"
+    apiVersion: v2
+    appVersion: v3.0.7
+    created: "2021-07-20T18:47:19.518011535Z"
+    description: A Helm chart for Argo Workflows
+    digest: 7a4aacf0fb696b96ec8c23b1bb80e5b7b6d2f6081676e17a7259fe8e89b9b0e5
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo-workflows/master/docs/assets/argo.png
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: benjaminws
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - argo-workflows-0.2.10.tgz
+    version: 0.2.10
+  - annotations:
+      artifacthub.io/changes: |
         - "[Added]: Initialize Changelog"
     apiVersion: v2
     appVersion: v3.0.7
@@ -18229,4 +18251,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-07-20T17:02:18.075645629Z"
+generated: "2021-07-20T18:47:19.516358922Z"
