@@ -2379,6 +2379,28 @@ entries:
   argo-workflows:
   - annotations:
       artifacthub.io/changes: |
+        - "[Fixed]: Pods stuck in pending phase due to workflow update timeouts."
+    apiVersion: v2
+    appVersion: v3.0.7
+    created: "2021-07-20T22:13:54.079314163Z"
+    description: A Helm chart for Argo Workflows
+    digest: 916b2f95e79b1ee143da555d6f507a6981c54d14afc6d274185ce5a8fc8c9bfc
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo-workflows/master/docs/assets/argo.png
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: benjaminws
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - argo-workflows-0.2.11.tgz
+    version: 0.2.11
+  - annotations:
+      artifacthub.io/changes: |
         - "[Fixed]: Removed init.serviceAccount unused fields"
     apiVersion: v2
     appVersion: v3.0.7
@@ -3026,6 +3048,22 @@ entries:
     - cert-manager-v0.15.2.tgz
     version: v0.15.2
   cockroachdb:
+  - apiVersion: v1
+    appVersion: 21.1.6
+    created: "2021-07-20T22:13:54.089148019Z"
+    description: CockroachDB is a scalable, survivable, strongly-consistent SQL database.
+    digest: 84742d9eef9d906e0b359559ec43d2a57648ce8a7da3666638fe64b4c9bbc716
+    home: https://www.cockroachlabs.com
+    icon: https://raw.githubusercontent.com/cockroachdb/cockroach/master/docs/media/cockroach_db.png
+    maintainers:
+    - email: helm-charts@cockroachlabs.com
+      name: cockroachlabs
+    name: cockroachdb
+    sources:
+    - https://github.com/cockroachdb/cockroach
+    urls:
+    - cockroachdb-6.0.7.tgz
+    version: 6.0.7
   - apiVersion: v1
     appVersion: 21.1.5
     created: "2021-07-02T19:36:46.982032815Z"
@@ -18251,4 +18289,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-07-20T18:47:19.516358922Z"
+generated: "2021-07-20T22:13:54.076690814Z"
