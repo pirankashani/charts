@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Fixed]: Pods stuck in pending phase due to workflow update timeouts."
+    - "[Changed]: Argo workflows values file no longer has examples referencing ArgoCD"
 apiVersion: v2
 appVersion: v3.0.7
 description: A Helm chart for Argo Workflows
@@ -15,4 +15,4 @@ name: argo-workflows
 sources:
 - https://github.com/argoproj/argo-workflows
 type: application
-version: 0.2.11
+version: 0.2.12
