@@ -15,9 +15,8 @@ metadata:
   namespace: {{ $.Release.Namespace }}
   labels:
     {{- include "gitlab.standardLabels" $ | nindent 4 }}
-    {{- include "gitlab.commonLabels" $ | nindent 4 }}
     {{- include "webservice.labels" . | nindent 4 }}
-    {{- include "webservice.commonLabels" (dict "deployment" .common.labels "webservice" $.Values.common.labels) | nindent 4 }}
+    {{- include "webservice.commonLabels" . | nindent 4 }}
     {{- if .deployment.labels -}}
     {{-   toYaml .deployment.labels | nindent 4 }}
     {{- end }}
@@ -33,8 +32,7 @@ spec:
   replicas: {{ .hpa.minReplicas }}
   selector:
     matchLabels:
-      app: {{ template "name" $ }}
-      release: {{ $.Release.Name }}
+      {{- include "gitlab.selectorLabels" $ | nindent 6 }}
       {{ include "webservice.labels" . | nindent 6 }}
   {{- if .deployment.strategy }}
   strategy:
@@ -44,10 +42,9 @@ spec:
     metadata:
       labels:
         {{- include "gitlab.standardLabels" $ | nindent 8 }}
-        {{- include "gitlab.commonLabels" $ | nindent 8 }}
         {{- include "webservice.labels" . | nindent 8 }}
         {{- include "gitlab.podLabels" $ | nindent 8 }}
-        {{- include "webservice.commonLabels" (dict "deployment" .common.labels "webservice" $.Values.common.labels) | nindent 8 }}
+        {{- include "webservice.commonLabels" . | nindent 8 }}
         {{- include "webservice.podLabels" . | nindent 8 }}
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yml") $ | sha256sum }}
@@ -78,8 +75,7 @@ spec:
             - topologyKey: "kubernetes.io/hostname"
               labelSelector:
                 matchLabels:
-                  app: {{ template "name" $ }}
-                  release: {{ $.Release.Name }}
+                  {{- include "gitlab.selectorLabels" $ | nindent 18 }}
                   {{- include "webservice.labels" . | nindent 18}}
       {{- else if eq (default $.Values.global.antiAffinity $.Values.antiAffinity) "soft" }}
       affinity:
@@ -90,13 +86,13 @@ spec:
               topologyKey: kubernetes.io/hostname
               labelSelector:
                 matchLabels:
-                  app: {{ template "name" $ }}
-                  release: {{ $.Release.Name }}
+                  {{- include "gitlab.selectorLabels" $ | nindent 18 }}
                   {{- include "webservice.labels" . | nindent 18}}
       {{- end }}
       {{- if or $.Values.serviceAccount.enabled $.Values.global.serviceAccount.enabled }}
       serviceAccountName: {{ include "gitlab.serviceAccount.name" $ }}
       {{- end }}
+      automountServiceAccountToken: false
       initContainers:
         {{- include "gitlab.extraInitContainers" $ | nindent 8 }}
         {{- include "gitlab.certificates.initContainer" $ | nindent 8 }}
