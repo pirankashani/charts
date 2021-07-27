@@ -2,7 +2,7 @@ annotations:
   artifacthub.io/changes: |
     - "[Added]: Support AWS ALB Ingress with gRPC"
 apiVersion: v2
-appVersion: 2.0.4
+appVersion: 2.0.5
 dependencies:
 - condition: redis-ha.enabled
   name: redis-ha
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.10.0
+version: 3.10.1
