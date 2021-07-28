@@ -6753,6 +6753,32 @@ entries:
     version: 0.0.27
   harbor:
   - apiVersion: v1
+    appVersion: 2.3.1
+    created: "2021-07-28T06:50:59.078667101Z"
+    description: An open source trusted cloud native registry that stores, signs,
+      and scans content
+    digest: 18ac24eef15909938c58fb85ffa083162ea119c279516eaf59914def0c32f7ef
+    home: https://goharbor.io
+    icon: https://raw.githubusercontent.com/goharbor/website/master/static/img/logos/harbor-icon-color.png
+    keywords:
+    - docker
+    - registry
+    - harbor
+    maintainers:
+    - email: yinw@vmware.com
+      name: Wenkai Yin
+    - email: hweiwei@vmware.com
+      name: Weiwei He
+    - email: dengq@vmware.com
+      name: Qian Deng
+    name: harbor
+    sources:
+    - https://github.com/goharbor/harbor
+    - https://github.com/goharbor/harbor-helm
+    urls:
+    - harbor-1.7.1.tgz
+    version: 1.7.1
+  - apiVersion: v1
     appVersion: 2.3.0
     created: "2021-06-23T10:15:47.906471947Z"
     description: An open source trusted cloud native registry that stores, signs,
@@ -18866,4 +18892,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-07-27T23:14:16.637744424Z"
+generated: "2021-07-28T06:50:59.073085Z"
