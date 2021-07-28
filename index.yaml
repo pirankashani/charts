@@ -24,6 +24,34 @@ entries:
     version: 1.0.0
   ambassador:
   - apiVersion: v1
+    appVersion: 1.13.10
+    created: "2021-07-28T16:21:44.596430093Z"
+    description: A Helm chart for Datawire Ambassador
+    digest: 3cb760110a16fcd280273fa8427a6774e80e197528c269e5903141c6634fc599
+    home: https://www.getambassador.io/
+    icon: https://www.getambassador.io/images/logo.png
+    keywords:
+    - api gateway
+    - ambassador
+    - datawire
+    - envoy
+    maintainers:
+    - email: markus@maga.se
+      name: flydiverny
+    - email: flynn@datawire.io
+      name: kflynn
+    - email: nkrause@datawire.io
+      name: nbkrause
+    - email: lukeshu@datawire.io
+      name: lukeshu
+    name: ambassador
+    sources:
+    - https://github.com/datawire/ambassador
+    - https://github.com/prometheus/statsd_exporter
+    urls:
+    - ambassador-6.7.13.tgz
+    version: 6.7.13
+  - apiVersion: v1
     appVersion: 1.13.9
     created: "2021-06-30T17:05:04.270909928Z"
     description: A Helm chart for Datawire Ambassador
@@ -19081,4 +19109,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-07-28T15:46:30.911383888Z"
+generated: "2021-07-28T16:21:44.591764255Z"
