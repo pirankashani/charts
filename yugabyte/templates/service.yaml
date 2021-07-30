@@ -181,6 +181,11 @@ spec:
                 operator: In
                 values:
                 - {{ $root.Values.AZ }}
+            - matchExpressions:
+              - key: topology.kubernetes.io/zone
+                operator: In
+                values:
+                - {{ $root.Values.AZ }}
         {{ end }}
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -270,7 +275,7 @@ spec:
           {{- $webserverPreflight := include "yugabyte.preflight_check" (set $serviceValues "Preflight" $webserverDict) -}}
           {{- if $webserverPreflight -}}{{ $webserverPreflight | nindent 12 }}{{ end -}}
           {{- if eq .name "yb-masters" }}
-            /home/yugabyte/bin/yb-master \
+            exec /home/yugabyte/bin/yb-master \
             {{- if not $root.Values.storage.ephemeral }}
               --fs_data_dirs={{ template "yugabyte.fs_data_dirs" $storageInfo }} \
             {{- else }}
@@ -297,7 +302,7 @@ spec:
               --num_cpus={{ ceil $root.Values.resource.master.requests.cpu }} \
               --undefok=num_cpus,enable_ysql \
             {{- range $flag, $override := $root.Values.gflags.master }}
-              --{{ $flag }}={{ $override }} \
+              --{{ $flag }}={{ quote $override }} \
             {{- end }}
             {{- if $root.Values.tls.enabled }}
               --certs_dir=/opt/certs/yugabyte \
@@ -320,7 +325,7 @@ spec:
               {{- $ysqlPreflight := include "yugabyte.preflight_check" (set $serviceValues "Preflight" $ysqlDict) -}}
               {{- if $ysqlPreflight -}}{{ $ysqlPreflight | nindent 12 }}{{ end -}}
             {{- end }}
-            /home/yugabyte/bin/yb-tserver \
+            exec /home/yugabyte/bin/yb-tserver \
             {{- if not $root.Values.storage.ephemeral }}
               --fs_data_dirs={{ template "yugabyte.fs_data_dirs" $storageInfo }} \
             {{- else }}
@@ -346,7 +351,7 @@ spec:
               --use_cassandra_authentication=true \
             {{- end }}
             {{- range $flag, $override := $root.Values.gflags.tserver }}
-              --{{ $flag }}={{ $override }} \
+              --{{ $flag }}={{ quote $override }} \
             {{- end }}
             {{- if $root.Values.tls.enabled }}
               --certs_dir=/opt/certs/yugabyte \
@@ -406,7 +411,7 @@ spec:
           - name: {{ $root.Values.oldNamingStyle | ternary "datadir0" (printf "%s0" (include "yugabyte.volume_name" $root)) }}
             mountPath: /home/yugabyte/
             subPath: yb-data
-          - name: datadir0
+          - name: {{ $root.Values.oldNamingStyle | ternary "datadir0" (printf "%s0" (include "yugabyte.volume_name" $root)) }}
             mountPath: /var/yugabyte/cores
             subPath: cores
       {{- end }}
