@@ -13224,6 +13224,26 @@ entries:
     urls:
     - nats-0.7.5.tgz
     version: 0.7.5
+  nfs-subdir-external-provisioner:
+  - apiVersion: v1
+    appVersion: 4.0.2
+    created: "2021-08-01T16:34:23.458512943Z"
+    description: nfs-subdir-external-provisioner is an automatic provisioner that
+      used your *already configured* NFS server, automatically creating Persistent
+      Volumes.
+    digest: 79a8ec5a8e34c829a811c04e7827aceb3814f427ac45a322728bf78888ff5cbf
+    home: https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner
+    keywords:
+    - nfs
+    - storage
+    - provisioner
+    kubeVersion: '>=1.9.0-0'
+    name: nfs-subdir-external-provisioner
+    sources:
+    - https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner
+    urls:
+    - nfs-subdir-external-provisioner-4.0.12.tgz
+    version: 4.0.12
   oauth2-proxy:
   - apiVersion: v2
     appVersion: v7.0.1
@@ -19333,4 +19353,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-07-30T09:41:52.106826349Z"
+generated: "2021-08-01T16:34:23.457304143Z"
