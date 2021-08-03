@@ -1,19 +1,20 @@
 annotations:
   artifacthub.io/changes: |
-    - Add namespace field in the namespace scoped resource templates
+    - Drop support for extensions/v1beta1, networking.k8s.io/v1beta1
+  artifacthub.io/prerelease: "true"
 apiVersion: v2
-appVersion: 0.48.1
+appVersion: 1.0.0-beta.1
 description: Ingress controller for Kubernetes using NGINX as a reverse proxy and load balancer
 home: https://github.com/kubernetes/ingress-nginx
 icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
 keywords:
 - ingress
 - nginx
-kubeVersion: '>=1.16.0-0'
+kubeVersion: '>=1.19.0-0'
 maintainers:
 - name: ChiefAlexander
 name: ingress-nginx
 sources:
 - https://github.com/kubernetes/ingress-nginx
 type: application
-version: 3.35.0
+version: 4.0.0
