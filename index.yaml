@@ -5812,6 +5812,32 @@ entries:
   grafana:
   - apiVersion: v2
     appVersion: 8.0.5
+    created: "2021-08-03T15:15:29.808161065Z"
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 132aeaca8a3907a01c8468aa8cc1416dbf39755a8dff7ccbe95235990cdcd8fa
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    type: application
+    urls:
+    - grafana-6.14.2.tgz
+    version: 6.14.2
+  - apiVersion: v2
+    appVersion: 8.0.5
     created: "2021-07-20T10:15:18.128827911Z"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: 246a9b1c3bbd06c47ee7ed8e1f4724b6a6316448a2f077d06e89052e74a71d3f
@@ -7645,6 +7671,30 @@ entries:
     - hazelcast-3.4.9.tgz
     version: 3.4.9
   ingress-nginx:
+  - annotations:
+      artifacthub.io/changes: |
+        - Add namespace field in the namespace scoped resource templates
+    apiVersion: v2
+    appVersion: 0.48.1
+    created: "2021-08-03T15:15:29.811003416Z"
+    description: Ingress controller for Kubernetes using NGINX as a reverse proxy
+      and load balancer
+    digest: f6973e44b8620cba49140c329f713e1ef2ae741e4f6f77a594643a47635f0e8b
+    home: https://github.com/kubernetes/ingress-nginx
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
+    keywords:
+    - ingress
+    - nginx
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: ChiefAlexander
+    name: ingress-nginx
+    sources:
+    - https://github.com/kubernetes/ingress-nginx
+    type: application
+    urls:
+    - ingress-nginx-3.35.0.tgz
+    version: 3.35.0
   - annotations:
       artifacthub.io/changes: |
         - Add namespace field in the namespace scoped resource templates
@@ -19385,4 +19435,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-02T14:36:26.799723968Z"
+generated: "2021-08-03T15:15:29.805182212Z"
