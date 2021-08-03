@@ -7673,6 +7673,31 @@ entries:
   ingress-nginx:
   - annotations:
       artifacthub.io/changes: |
+        - Drop support for extensions/v1beta1, networking.k8s.io/v1beta1
+      artifacthub.io/prerelease: "true"
+    apiVersion: v2
+    appVersion: 1.0.0-beta.1
+    created: "2021-08-03T18:16:59.468172503Z"
+    description: Ingress controller for Kubernetes using NGINX as a reverse proxy
+      and load balancer
+    digest: 3b6f0ca13ab1863541fbba84a0cb80ae8b165a09145d76041792d1ad7d24734a
+    home: https://github.com/kubernetes/ingress-nginx
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
+    keywords:
+    - ingress
+    - nginx
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - name: ChiefAlexander
+    name: ingress-nginx
+    sources:
+    - https://github.com/kubernetes/ingress-nginx
+    type: application
+    urls:
+    - ingress-nginx-4.0.0.tgz
+    version: 4.0.0
+  - annotations:
+      artifacthub.io/changes: |
         - Add namespace field in the namespace scoped resource templates
     apiVersion: v2
     appVersion: 0.48.1
@@ -19435,4 +19460,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-03T15:15:29.805182212Z"
+generated: "2021-08-03T18:16:59.464796135Z"
