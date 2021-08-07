@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Changed]: Set server.staticAssets.enabled=true since Argo CD 2.0.5 still needs it"
+    - "[Added]: Add server.service.sessionAffinity setting of the Service into account when deciding which backend Pod to use"
 apiVersion: v2
 appVersion: 2.0.5
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.11.1
+version: 3.11.2
