@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Added]: Add server.service.sessionAffinity setting of the Service into account when deciding which backend Pod to use"
+    - "[Fix]: Set type of service for grpc as NodePort because this is the default of ALB ingress Controller"
 apiVersion: v2
 appVersion: 2.0.5
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.11.2
+version: 3.11.3
