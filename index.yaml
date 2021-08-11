@@ -1171,6 +1171,35 @@ entries:
   argo-cd:
   - annotations:
       artifacthub.io/changes: |
+        - "[Fixed]: Can't login when using configs.secret.argocdServerAdminPassword"
+    apiVersion: v2
+    appVersion: 2.0.5
+    created: "2021-08-11T07:35:38.343147907Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.12.17
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: aa0c3a893278234413301d08186e5c0b58ed9dfca4ca6ee0abed194d46101431
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argoproj.github.io/argo-cd/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: seanson
+    name: argo-cd
+    urls:
+    - argo-cd-3.11.4.tgz
+    version: 3.11.4
+  - annotations:
+      artifacthub.io/changes: |
         - "[Fix]: Set type of service for grpc as NodePort because this is the default of ALB ingress Controller"
     apiVersion: v2
     appVersion: 2.0.5
@@ -2582,6 +2611,28 @@ entries:
     - argo-cd-2.14.7.tgz
     version: 2.14.7
   argo-workflows:
+  - annotations:
+      artifacthub.io/changes: |
+        - "[Added]: Support for extraContainers in controller/server"
+    apiVersion: v2
+    appVersion: v3.0.7
+    created: "2021-08-11T07:35:38.345383952Z"
+    description: A Helm chart for Argo Workflows
+    digest: 920f424dd8ea2906a106283ce13e9b87abe8d44302cd0bc99be97a17a88e9bc0
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo-workflows/master/docs/assets/argo.png
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: benjaminws
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - argo-workflows-0.3.0.tgz
+    version: 0.3.0
   - annotations:
       artifacthub.io/changes: |
         - "[Added]: pathType variable now available for ingress template"
@@ -19993,4 +20044,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-10T14:14:16.954272003Z"
+generated: "2021-08-11T07:35:38.334047126Z"
