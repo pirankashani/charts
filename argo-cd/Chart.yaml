@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Fix]: Set type of service for grpc as NodePort because this is the default of ALB ingress Controller"
+    - "[Fixed]: Can't login when using configs.secret.argocdServerAdminPassword"
 apiVersion: v2
 appVersion: 2.0.5
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.11.3
+version: 3.11.4

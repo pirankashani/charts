@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Added]: pathType variable now available for ingress template"
+    - "[Added]: Support for extraContainers in controller/server"
 apiVersion: v2
 appVersion: v3.0.7
 description: A Helm chart for Argo Workflows
@@ -15,4 +15,4 @@ name: argo-workflows
 sources:
 - https://github.com/argoproj/argo-workflows
 type: application
-version: 0.2.13
+version: 0.3.0
