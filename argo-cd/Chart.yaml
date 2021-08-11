@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.11.4
+version: 3.11.5
