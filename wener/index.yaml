@@ -74,6 +74,16 @@ entries:
   minio-console:
   - apiVersion: v2
     appVersion: v0.7.1
+    created: "2021-08-11T17:29:36.597987564Z"
+    description: A Helm chart for MinIO console
+    digest: 0eca04eb48df5270369cc4241a14f118a9fb098998f6195b0f30afe524813aaf
+    name: minio-console
+    type: application
+    urls:
+    - minio-console-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
+    appVersion: v0.7.1
     created: "2021-06-05T12:09:19.618660936Z"
     description: A Helm chart for MinIO console
     digest: 82199b66266603274056e0fcc9fdc2897034cf210eaaac103f35312ab5f55bf5
@@ -135,4 +145,4 @@ entries:
     urls:
     - samba-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-01T10:25:56.77409344Z"
+generated: "2021-08-11T17:29:36.596926452Z"
