@@ -1,3 +1,4 @@
+# Originally from consul-helm
 version: 2.1
 orbs:
   slack: circleci/slack@3.4.2
@@ -65,6 +66,12 @@ commands:
               working_directory: test/acceptance/tests
               no_output_timeout: 2h
               command: |
+                # Enterprise tests can't run on fork PRs because they require
+                # a secret.
+                if [ -z "$CIRCLE_PR_NUMBER" ]; then
+                  ENABLE_ENTERPRISE=true
+                fi
+
                 # We have to run the tests for each package separately so that we can
                 # exit early if any test fails (-failfast only works within a single
                 # package).
@@ -76,7 +83,7 @@ commands:
                 do
                   if ! gotestsum --no-summary=all --jsonfile=jsonfile-${pkg////-} -- $pkg -p 1 -timeout 2h -failfast \
                         << parameters.additional-flags >> \
-                        -enable-enterprise \
+                        ${ENABLE_ENTERPRISE:+-enable-enterprise} \
                         -enable-multi-cluster \
                         -debug-directory="$TEST_RESULTS/debug" \
                         -consul-k8s-image=<< parameters.consul-k8s-image >>
@@ -97,12 +104,18 @@ commands:
                 working_directory: test/acceptance/tests
                 no_output_timeout: 2h
                 command: |
+                  # Enterprise tests can't run on fork PRs because they require
+                  # a secret.
+                  if [ -z "$CIRCLE_PR_NUMBER" ]; then
+                    ENABLE_ENTERPRISE=true
+                  fi
+
                   pkgs=$(go list ./... | circleci tests split --split-by=timings --timings-type=classname)
                   echo "Running $pkgs"
                   gotestsum --junitfile "$TEST_RESULTS/gotestsum-report.xml" -- $pkgs -p 1 -timeout 2h -failfast \
                       << parameters.additional-flags >> \
                       -enable-multi-cluster \
-                      -enable-enterprise \
+                      ${ENABLE_ENTERPRISE:+-enable-enterprise} \
                       -debug-directory="$TEST_RESULTS/debug" \
                       -consul-k8s-image=<< parameters.consul-k8s-image >>
 jobs:
@@ -635,6 +648,10 @@ jobs:
               az group delete -n $group --yes
             done
 
+      - slack/status:
+          fail_only: true
+          failure_message: "AKS cleanup failed"
+
   cleanup-gcp-resources:
     docker:
       - image: docker.mirror.hashicorp.services/hashicorpdev/consul-helm-test:0.10.0
@@ -648,6 +665,31 @@ jobs:
               echo "Deleting $cluster GKE cluster"
               gcloud container clusters delete $cluster --zone us-central1-a --project ${CLOUDSDK_CORE_PROJECT} --quiet
             done
+
+      - slack/status:
+          fail_only: true
+          failure_message: "GKE cleanup failed"
+
+  cleanup-eks-resources:
+    docker:
+      - image: docker.mirror.hashicorp.services/hashicorpdev/consul-helm-test:0.9.0
+    steps:
+      - checkout
+      - run:
+          name: cleanup eks resources
+          command: |
+            # Assume the role and set environment variables.
+            aws sts assume-role --role-arn "$AWS_ROLE_ARN" --role-session-name "consul-helm-$CIRCLE_BUILD_NUM" --duration-seconds 10800 > assume-role.json
+            export AWS_ACCESS_KEY_ID="$(jq -r .Credentials.AccessKeyId assume-role.json)"
+            export AWS_SECRET_ACCESS_KEY="$(jq -r .Credentials.SecretAccessKey assume-role.json)"
+            export AWS_SESSION_TOKEN="$(jq -r .Credentials.SessionToken assume-role.json)"
+
+            cd hack/aws-acceptance-test-cleanup
+            go run ./... -auto-approve
+
+      - slack/status:
+          fail_only: true
+          failure_message: "EKS cleanup failed"
 
 workflows:
   version: 2
@@ -682,13 +724,16 @@ workflows:
     jobs:
       - cleanup-gcp-resources
       - cleanup-azure-resources
-      - acceptance-openshift:
-          requires:
-          - cleanup-azure-resources
+      - cleanup-eks-resources
+#      - acceptance-openshift: <-- Disabled until we can make them less flakey.
+#          requires:
+#          - cleanup-azure-resources
       - acceptance-gke-1-17:
           requires:
             - cleanup-gcp-resources
-      - acceptance-eks-1-18
+      - acceptance-eks-1-18:
+          requires:
+            - cleanup-eks-resources
       - acceptance-aks-1-19:
           requires:
             - cleanup-azure-resources

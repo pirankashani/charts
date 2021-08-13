@@ -38,7 +38,7 @@ spec:
           - "/bin/sh"
           - "-ec"
           - |
-            consul-k8s acl-init \
+            consul-k8s-control-plane acl-init \
               -secret-name="{{ template "consul.fullname" . }}-controller-acl-token" \
               -k8s-namespace={{ .Release.Namespace }}
         resources:
@@ -58,11 +58,12 @@ spec:
         - "/bin/sh"
         - "-ec"
         - |
-          consul-k8s controller \
+          consul-k8s-control-plane controller \
+            -log-level={{ default .Values.global.logLevel .Values.controller.logLevel }} \
+            -log-json={{ .Values.global.logJSON }} \
             -webhook-tls-cert-dir=/tmp/controller-webhook/certs \
             -datacenter={{ .Values.global.datacenter }} \
             -enable-leader-election \
-            -log-level={{ .Values.controller.logLevel | quote }} \
             {{- if .Values.global.enableConsulNamespaces }}
             -enable-namespaces=true \
             {{- if .Values.connectInject.consulNamespaces.consulDestinationNamespace }}
