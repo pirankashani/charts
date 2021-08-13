@@ -1,8 +1,7 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Removed]: CRD installation via templates folder. CRDs are now only handled via the '/crds' folder in the same way like the ArgoCD chart."
-    - "[Removed]: Exclude '/ci' folder from being packaged into the final chart archive."
-    - "[Changed]: Fix icon url"
+    - "[Added]: /tmp is an emptyDir now (enables users to use readOnlyRootFilesystem)"
+    - "[Added]: Ability to add extraVolumes and extraVolumeMounts"
 apiVersion: v2
 appVersion: v0.1.0
 description: A Helm chart for installing ArgoCD ApplicationSet
@@ -16,4 +15,4 @@ maintainers:
 - name: maruina
 name: argocd-applicationset
 type: application
-version: 1.0.0
+version: 1.1.0
