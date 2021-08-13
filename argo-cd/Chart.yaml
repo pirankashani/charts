@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Fixed]: Can't login when using configs.secret.argocdServerAdminPassword"
+    - "[Added]: Support for aggregation clusterroles"
 apiVersion: v2
 appVersion: 2.0.5
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.11.5
+version: 3.12.0
