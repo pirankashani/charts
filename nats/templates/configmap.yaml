@@ -157,6 +157,30 @@ data:
       no_advertise: {{ . }}
       {{- end }}
 
+      {{- with .Values.leafnodes.authorization }}
+      authorization: {
+        {{- with .user }}
+        user: {{ . }}
+        {{- end }}
+        {{- with .password }}
+        password: {{ . }}
+        {{- end }}
+        {{- with .account }}
+        account: {{ . | quote }}
+        {{- end }}
+        {{- with .timeout }}
+        timeout: {{ . }}
+        {{- end }}
+        {{- with .users }}
+        users: [
+        {{- range . }}
+        {{- toRawJson . | nindent 10 }},
+        {{- end }}
+        ]
+        {{- end }}
+      }
+      {{- end }}
+
       {{- with .Values.leafnodes.tls }}
       {{-  $leafnode_tls := merge (dict) . }}
       {{- $_ := set $leafnode_tls "secretPath" "/etc/nats-certs/leafnodes" }}
@@ -167,7 +191,15 @@ data:
       {{- range .Values.leafnodes.remotes }}
       {
         {{- with .url }}
-        url: {{ . }}
+        url: {{ . | quote }}
+        {{- end }}
+
+        {{- with .urls }}
+        urls: {{ toRawJson . }}
+        {{- end }}
+
+        {{- with .account }}
+        account: {{ . | quote }}
         {{- end }}
 
         {{- with .credentials }}
@@ -293,7 +325,7 @@ data:
     ##################
     websocket {
       port: {{ .Values.websocket.port }}
-      {{- if .Values.websocket.tls }}
+      {{- with .Values.websocket.tls }}
         {{ $secretName := .secret.name }}
         tls {
         {{- with .cert }}
