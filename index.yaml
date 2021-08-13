@@ -13714,6 +13714,32 @@ entries:
     version: 1.0.0
   nats:
   - apiVersion: v2
+    appVersion: 2.3.4
+    created: "2021-08-13T14:13:07.760417315Z"
+    description: A Helm chart for the NATS.io High Speed Cloud Native Distributed
+      Communications Technology.
+    digest: 9c8d818b7be1512835a11b8255b526966a23381e770fe82422d44571c83dd2b1
+    home: http://github.com/nats-io/k8s
+    icon: https://nats.io/img/nats-icon-color.png
+    keywords:
+    - nats
+    - messaging
+    - cncf
+    maintainers:
+    - email: wally@nats.io
+      name: Waldemar Quevedo
+      url: https://github.com/wallyqs
+    - email: colin@nats.io
+      name: Colin Sullivan
+      url: https://github.com/ColinSullivan1
+    - email: jaime@nats.io
+      name: Jaime Piña
+      url: https://github.com/variadico
+    name: nats
+    urls:
+    - nats-0.8.6.tgz
+    version: 0.8.6
+  - apiVersion: v2
     appVersion: 2.3.2
     created: "2021-07-19T17:02:51.240942321Z"
     description: A Helm chart for the NATS.io High Speed Cloud Native Distributed
@@ -20146,4 +20172,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-12T20:38:03.536999457Z"
+generated: "2021-08-13T14:13:07.758800725Z"
