@@ -2984,6 +2984,28 @@ entries:
   argocd-applicationset:
   - annotations:
       artifacthub.io/changes: |
+        - "[Added]: /tmp is an emptyDir now (enables users to use readOnlyRootFilesystem)"
+        - "[Added]: Ability to add extraVolumes and extraVolumeMounts"
+    apiVersion: v2
+    appVersion: v0.1.0
+    created: "2021-08-13T17:00:32.794473197Z"
+    description: A Helm chart for installing ArgoCD ApplicationSet
+    digest: 1602bd61427d5a6efe181c5a77a40eb13df664a5dc2d55db7c532e2a22df8566
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argocd-applicationset.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - appset
+    - gitops
+    maintainers:
+    - name: maruina
+    name: argocd-applicationset
+    type: application
+    urls:
+    - argocd-applicationset-1.1.0.tgz
+    version: 1.1.0
+  - annotations:
+      artifacthub.io/changes: |
         - "[Removed]: CRD installation via templates folder. CRDs are now only handled via the '/crds' folder in the same way like the ArgoCD chart."
         - "[Removed]: Exclude '/ci' folder from being packaged into the final chart archive."
         - "[Changed]: Fix icon url"
@@ -20204,4 +20226,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-13T15:15:35.520832225Z"
+generated: "2021-08-13T17:00:32.793182081Z"
