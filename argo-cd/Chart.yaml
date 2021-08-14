@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Added]: Support for aggregation clusterroles"
+    - "[Fixed]: redis-ha.nameOverride / redis-ha.fullnameOverride breaks the ArgoCD helm chart"
 apiVersion: v2
 appVersion: 2.0.5
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.12.0
+version: 3.12.1
