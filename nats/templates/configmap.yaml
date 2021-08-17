@@ -39,6 +39,13 @@ data:
     #                                 #
     ###################################
     jetstream {
+      {{- if .Values.nats.jetstream.encryption }}
+      {{- if .Values.nats.jetstream.encryption.key }}
+      key: {{ .Values.nats.jetstream.encryption.key | quote }}
+      {{- else if .Values.nats.jetstream.encryption.secret }}
+      key: $JS_KEY
+      {{- end}}
+
       {{- if .Values.nats.jetstream.memStorage.enabled }}
       max_mem: {{ .Values.nats.jetstream.memStorage.size }}
       {{- end }}
@@ -53,6 +60,7 @@ data:
       {{- .Values.nats.jetstream.fileStorage.size }}
       {{- end }}
 
+      {{- end }}
       {{- end }}
     }
     {{- end }}
@@ -132,7 +140,7 @@ data:
 
       connect_retries: {{ .Values.nats.connectRetries }}
     }
-    {{ end }}
+    {{- end }}
 
     {{- if and .Values.nats.advertise .Values.nats.externalAccess }}
     include "advertise/client_advertise.conf"
@@ -149,9 +157,9 @@ data:
       listen: "0.0.0.0:7422"
       {{- end }}
 
-      {{ if and .Values.nats.advertise .Values.nats.externalAccess }}
+      {{- if and .Values.nats.advertise .Values.nats.externalAccess }}
       include "advertise/gateway_advertise.conf"
-      {{ end }}
+      {{- end }}
 
       {{- with .Values.leafnodes.noAdvertise }}
       no_advertise: {{ . }}
@@ -226,7 +234,7 @@ data:
       {{- end }}
       ]
     }
-    {{ end }}
+    {{- end }}
 
     {{- if .Values.gateway.enabled }}
     #################
@@ -238,13 +246,13 @@ data:
       name: {{ .Values.gateway.name }}
       port: 7522
 
-      {{ if and .Values.nats.advertise .Values.nats.externalAccess }}
+      {{- if and .Values.nats.advertise .Values.nats.externalAccess }}
       include "advertise/gateway_advertise.conf"
-      {{ end }}
+      {{- end }}
 
       {{- with .Values.gateway.tls }}
       {{-  $gateway_tls := merge (dict) . }}
-      {{- $_ := set $gateway_tls "secretPath" "/etc/nats-certs/gateway" }}
+      {{- $_ := set $gateway_tls "secretPath" "/etc/nats-certs/gateways" }}
       {{- include "nats.tlsConfig" $gateway_tls | nindent 6}}
       {{- end }}
 
@@ -267,7 +275,7 @@ data:
         {{- end }}
       ]
     }
-    {{ end }}
+    {{- end }}
 
     {{- with .Values.nats.logging.debug }}
     debug: {{ . }}
