@@ -1,11 +1,11 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Added]: Example for 'defaultTriggers'"
+    - "[Fixed]: Use correct chart icon url"
 apiVersion: v2
 appVersion: 1.1.1
 description: A Helm chart for ArgoCD notifications, an add-on to ArgoCD.
 home: https://github.com/argoproj/argo-helm
-icon: https://raw.githubusercontent.com/argoproj/argo/master/docs/assets/argo.png
+icon: https://argocd-notifications.readthedocs.io/en/stable/assets/logo.png
 keywords:
 - argoproj
 - argocd
@@ -15,4 +15,4 @@ maintainers:
 - name: andyfeller
 name: argocd-notifications
 type: application
-version: 1.4.2
+version: 1.4.3
