@@ -3167,6 +3167,28 @@ entries:
   argocd-notifications:
   - annotations:
       artifacthub.io/changes: |
+        - "[Fixed]: Use correct chart icon url"
+    apiVersion: v2
+    appVersion: 1.1.1
+    created: "2021-08-18T10:15:26.18315226Z"
+    description: A Helm chart for ArgoCD notifications, an add-on to ArgoCD.
+    digest: 72eeabe3171ebc32fee58e71449abb4926d9c590d96a7e5cb40a26d9adad8e1d
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argocd-notifications.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - argocd-notifications
+    maintainers:
+    - name: alexmt
+    - name: andyfeller
+    name: argocd-notifications
+    type: application
+    urls:
+    - argocd-notifications-1.4.3.tgz
+    version: 1.4.3
+  - annotations:
+      artifacthub.io/changes: |
         - "[Added]: Example for 'defaultTriggers'"
     apiVersion: v2
     appVersion: 1.1.1
@@ -20611,4 +20633,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-17T22:14:25.095220148Z"
+generated: "2021-08-18T10:15:26.182187866Z"
