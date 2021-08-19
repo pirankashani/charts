@@ -3288,6 +3288,27 @@ entries:
     urls:
     - argocd-notifications-1.3.1.tgz
     version: 1.3.1
+  athens-proxy:
+  - apiVersion: v1
+    appVersion: 0.11.0
+    created: "2021-08-19T08:41:41.895337446Z"
+    description: The proxy server for Go modules
+    digest: dcf9d643f7f560c00ae4ed52d6a4e912f504dd98ab9289d254b13ce78e0ae85e
+    home: https://github.com/gomods/athens
+    icon: https://raw.githubusercontent.com/gomods/athens/main/docs/static/banner.png
+    keywords:
+    - Golang
+    - Package Management
+    - Goproxy
+    maintainers:
+    - email: rmocius@gmail.com
+      name: rimusz
+    - email: aaron@ecomaz.net
+      name: arschles
+    name: athens-proxy
+    urls:
+    - athens-proxy-0.5.0.tgz
+    version: 0.5.0
   cert-manager:
   - annotations:
       artifacthub.io/prerelease: "false"
@@ -20708,4 +20729,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-18T21:13:00.672532519Z"
+generated: "2021-08-19T08:41:41.894326994Z"
