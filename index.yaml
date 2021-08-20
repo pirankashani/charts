@@ -3369,6 +3369,29 @@ entries:
   - annotations:
       artifacthub.io/prerelease: "false"
     apiVersion: v1
+    appVersion: v1.5.2
+    created: "2021-08-20T11:11:48.715813169Z"
+    description: A Helm chart for cert-manager
+    digest: 1134d7e1eec3cb02d92ededa77ed2389e992099271e48cd981fb2271be6248db
+    home: https://github.com/jetstack/cert-manager
+    icon: https://raw.githubusercontent.com/jetstack/cert-manager/master/logo/logo.png
+    keywords:
+    - cert-manager
+    - kube-lego
+    - letsencrypt
+    - tls
+    maintainers:
+    - email: cert-manager-maintainers@googlegroups.com
+      name: cert-manager-maintainers
+    name: cert-manager
+    sources:
+    - https://github.com/jetstack/cert-manager
+    urls:
+    - cert-manager-v1.5.2.tgz
+    version: v1.5.2
+  - annotations:
+      artifacthub.io/prerelease: "false"
+    apiVersion: v1
     appVersion: v1.5.1
     created: "2021-08-16T15:16:38.28751459Z"
     description: A Helm chart for cert-manager
@@ -20837,4 +20860,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-20T01:53:05.053283028Z"
+generated: "2021-08-20T11:11:48.706874601Z"
