@@ -42,6 +42,16 @@ entries:
     version: 1.0.0
   keycloak:
   - apiVersion: v2
+    appVersion: 15.0.1
+    created: "2021-08-21T09:47:17.310935678Z"
+    description: Keycloak chart
+    digest: b6a889d74e13d2b1a010dd59c8679745d81198feb74a01d08cdd03ad69881f89
+    name: keycloak
+    type: application
+    urls:
+    - keycloak-15.0.1.tgz
+    version: 15.0.1
+  - apiVersion: v2
     appVersion: 15.0.0
     created: "2021-08-01T10:25:56.775036045Z"
     description: Keycloak chart
@@ -145,4 +155,4 @@ entries:
     urls:
     - samba-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-11T17:29:36.596926452Z"
+generated: "2021-08-21T09:47:17.309772934Z"
