@@ -3,7 +3,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![Chart Lint and Test](https://github.com/openebs/zfs-localpv/workflows/Chart%20Lint%20and%20Test/badge.svg)
-![Release Charts](https://github.com/openebs/zfs-localpv/workflows/Release%20Charts/badge.svg?branch=develop)
+![Release Charts](https://github.com/openebs/zfs-localpv/workflows/Release%20Charts/badge.svg?branch=master)
 
 A Helm chart for openebs zfs localpv provisioner. This chart bootstraps OpenEBS ZFS LocalPV provisioner deployment on a [Kubernetes](http://kubernetes.io) cluster using the  [Helm](https://helm.sh) package manager.
 
@@ -78,7 +78,7 @@ The following table lists the configurable parameters of the OpenEBS ZFS Localpv
 | `zfsPlugin.image.registry`| Registry for openebs-zfs-plugin image| `""`|
 | `zfsPlugin.image.repository`| Image repository for openebs-zfs-plugin| `openebs/zfs-driver`|
 | `zfsPlugin.image.pullPolicy`| Image pull policy for openebs-zfs-plugin| `IfNotPresent`|
-| `zfsPlugin.image.tag`| Image tag for openebs-zfs-plugin| `1.9.0`|
+| `zfsPlugin.image.tag`| Image tag for openebs-zfs-plugin| `1.9.1`|
 | `zfsNode.driverRegistrar.image.registry`| Registry for csi-node-driver-registrar image| `k8s.gcr.io/`|
 | `zfsNode.driverRegistrar.image.repository`| Image repository for csi-node-driver-registrar| `sig-storage/csi-node-driver-registrar`|
 | `zfsNode.driverRegistrar.image.pullPolicy`| Image pull policy for csi-node-driver-registrar| `IfNotPresent`|

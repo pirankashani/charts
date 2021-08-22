@@ -1,6 +1,7 @@
 apiVersion: v2
-appVersion: 1.9.0
-description: CSI Driver for dynamic provisioning of ZFS Persistent Local Volumes.
+appVersion: 1.9.1
+description: Helm chart for CSI Driver for dynamic provisioning of ZFS Persistent
+  Local Volumes. For instructions on how to use this helm chart, see - https://openebs.github.io/zfs-localpv/
 home: http://www.openebs.io/
 icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/openebs/icon/color/openebs-icon-color.png
 keywords:
@@ -20,4 +21,4 @@ maintainers:
 name: zfs-localpv
 sources:
 - https://github.com/openebs/zfs-localpv
-version: 1.9.0
+version: 1.9.3
