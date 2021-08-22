@@ -6575,6 +6575,26 @@ entries:
     version: 5.0.5
   gitlab-runner:
   - apiVersion: v1
+    appVersion: 14.2.0
+    created: "2021-08-22T20:14:13.445206151Z"
+    description: GitLab Runner
+    digest: 731740dcbcdc619927692b4845bb7e29f1f2832c5e5d7c94205f060beeb05d4f
+    icon: https://gitlab.com/uploads/-/system/project/avatar/250833/runner_logo.png
+    keywords:
+    - git
+    - ci
+    - deploy
+    maintainers:
+    - email: support@gitlab.com
+      name: GitLab Inc.
+    name: gitlab-runner
+    sources:
+    - https://hub.docker.com/r/gitlab/gitlab-runner/
+    - https://docs.gitlab.com/runner/
+    urls:
+    - gitlab-runner-0.32.0.tgz
+    version: 0.32.0
+  - apiVersion: v1
     appVersion: 14.1.0
     created: "2021-07-23T09:14:43.026922012Z"
     description: GitLab Runner
@@ -14089,6 +14109,27 @@ entries:
     version: 1.0.0
   minio-operator:
   - apiVersion: v2
+    appVersion: v4.2.0
+    created: "2021-08-22T20:14:13.447292152Z"
+    description: A Helm chart for MinIO Operator
+    digest: cce029c9230f5a67f968d391fb96b629fe92c1397f3598231c4ce70eb3556fee
+    home: https://min.io
+    icon: https://min.io/resources/img/logo/MINIO_wordmark.png
+    keywords:
+    - storage
+    - object-storage
+    - S3
+    maintainers:
+    - email: dev@minio.io
+      name: MinIO, Inc
+    name: minio-operator
+    sources:
+    - https://github.com/minio/operator
+    type: application
+    urls:
+    - minio-operator-4.1.8.tgz
+    version: 4.1.8
+  - apiVersion: v2
     appVersion: v4.1.3
     created: "2021-07-08T08:15:45.532257715Z"
     description: A Helm chart for MinIO Operator
@@ -21019,4 +21060,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-22T14:12:11.630606196Z"
+generated: "2021-08-22T20:14:13.44315305Z"
