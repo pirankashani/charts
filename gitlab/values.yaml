@@ -26,6 +26,11 @@
 global:
   common:
     labels: {}
+
+  image: {}
+    # pullPolicy: IfNotPresent
+    # pullSecrets: []
+
   ## GitLab operator is DEPRECATED. DO NOT USE.
   operator:
     enabled: false
@@ -629,6 +634,8 @@ global:
     image:
       repository: registry.gitlab.com/gitlab-org/build/cng/alpine-certificates
       tag: 20191127-r2
+      # pullPolicy: IfNotPresent
+      # pullSecrets: []
     customCAs: []
     # - secret: custom-CA
     # - secret: more-custom-CAs
@@ -638,15 +645,18 @@ global:
     image:
       repository: registry.gitlab.com/gitlab-org/build/cng/kubectl
       tag: 1.16.15
-      pullSecrets: []
+      # pullPolicy: IfNotPresent
+      # pullSecrets: []
     securityContext:
       # in most base images, this is `nobody:nogroup`
       runAsUser: 65534
       fsGroup: 65534
   busybox:
     image:
-      repository: busybox
+      repository: registry.gitlab.com/gitlab-org/cloud-native/mirror/images/busybox
       tag: latest
+      # pullPolicy: IfNotPresent
+      # pullSecrets: []
 
   ## https://docs.gitlab.com/charts/charts/globals#service-accounts
   serviceAccount:
@@ -674,6 +684,8 @@ upgradeCheck:
   image: {}
     # repository:
     # tag:
+    # pullPolicy: IfNotPresent
+    # pullSecrets: []    
   securityContext:
     # in alpine/debian/busybox based images, this is `nobody:nogroup`
     runAsUser: 65534
@@ -935,13 +947,14 @@ shared-secrets:
     create: true
   selfsign:
     image:
+      # pullPolicy: IfNotPresent
+      # pullSecrets: []
       repository: registry.gitlab.com/gitlab-org/build/cng/cfssl-self-sign
       tag: 1.2
     keyAlgorithm: "rsa"
     keySize: "4096"
     expiry: "3650d"
     caSubject: "GitLab Helm Chart"
-    pullSecrets: []
   env: production
   serviceAccount:
     enabled: true
