@@ -1,6 +1,7 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Changed]: Bumped argocd-applicationset to 0.2.0"
+    - "[Fixed]: Use new image repository"
+    - "[Changed]: Updated ApplicationSet CRD"
 apiVersion: v2
 appVersion: v0.2.0
 description: A Helm chart for installing ArgoCD ApplicationSet
@@ -14,4 +15,4 @@ maintainers:
 - name: maruina
 name: argocd-applicationset
 type: application
-version: 1.2.0
+version: 1.3.0
