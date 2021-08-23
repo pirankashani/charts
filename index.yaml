@@ -1227,6 +1227,35 @@ entries:
   argo-cd:
   - annotations:
       artifacthub.io/changes: |
+        - "[Fixed]: Updated README.md for ArgoCD"
+    apiVersion: v2
+    appVersion: 2.1.0
+    created: "2021-08-23T13:23:48.973942495Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.12.17
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: aed1f463d6e5e3ee8a3afde6e7a6b5bb8e8b0a7b9ace9bf638ac700ae83b22e1
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argoproj.github.io/argo-cd/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: seanson
+    name: argo-cd
+    urls:
+    - argo-cd-3.13.1.tgz
+    version: 3.13.1
+  - annotations:
+      artifacthub.io/changes: |
         - "[Fixed]: Remove ArgoCD Repo Server entrypoint file from command block. Defers to entrypoint defined in the Dockerfile"
         - "[Fixed]: Remove deprecated static assets flag"
     apiVersion: v2
@@ -3192,6 +3221,28 @@ entries:
     - argo-workflows-0.1.2.tgz
     version: 0.1.2
   argocd-applicationset:
+  - annotations:
+      artifacthub.io/changes: |
+        - "[Fixed]: Use new image repository"
+        - "[Changed]: Updated ApplicationSet CRD"
+    apiVersion: v2
+    appVersion: v0.2.0
+    created: "2021-08-23T13:23:48.976942614Z"
+    description: A Helm chart for installing ArgoCD ApplicationSet
+    digest: d05d89d25d9d9aad8b93d2c68a21924db48ca3294dfdaa5636ff60344819fd1f
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argocd-applicationset.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - appset
+    - gitops
+    maintainers:
+    - name: maruina
+    name: argocd-applicationset
+    type: application
+    urls:
+    - argocd-applicationset-1.3.0.tgz
+    version: 1.3.0
   - annotations:
       artifacthub.io/changes: |
         - "[Changed]: Bumped argocd-applicationset to 0.2.0"
@@ -21142,4 +21193,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-23T12:58:16.328858724Z"
+generated: "2021-08-23T13:23:48.964389333Z"
