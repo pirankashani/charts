@@ -1227,6 +1227,36 @@ entries:
   argo-cd:
   - annotations:
       artifacthub.io/changes: |
+        - "[Fixed]: Remove ArgoCD Repo Server entrypoint file from command block. Defers to entrypoint defined in the Dockerfile"
+        - "[Fixed]: Remove deprecated static assets flag"
+    apiVersion: v2
+    appVersion: 2.1.0
+    created: "2021-08-23T12:58:16.339867474Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.12.17
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 455273723dfc84b0a6225b8ac579cea12a18449a41f33c5742740e97e9ebb03a
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argoproj.github.io/argo-cd/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: seanson
+    name: argo-cd
+    urls:
+    - argo-cd-3.13.0.tgz
+    version: 3.13.0
+  - annotations:
+      artifacthub.io/changes: |
         - "[Fixed]: redis-ha.nameOverride / redis-ha.fullnameOverride breaks the ArgoCD helm chart"
     apiVersion: v2
     appVersion: 2.0.5
@@ -3162,6 +3192,27 @@ entries:
     - argo-workflows-0.1.2.tgz
     version: 0.1.2
   argocd-applicationset:
+  - annotations:
+      artifacthub.io/changes: |
+        - "[Changed]: Bumped argocd-applicationset to 0.2.0"
+    apiVersion: v2
+    appVersion: v0.2.0
+    created: "2021-08-23T12:58:16.34103889Z"
+    description: A Helm chart for installing ArgoCD ApplicationSet
+    digest: cb20478d2f149cc2f8d4b6de1d016d549f45b3e327f6f1230607ca32ca30c32b
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argocd-applicationset.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - appset
+    - gitops
+    maintainers:
+    - name: maruina
+    name: argocd-applicationset
+    type: application
+    urls:
+    - argocd-applicationset-1.2.0.tgz
+    version: 1.2.0
   - annotations:
       artifacthub.io/changes: |
         - "[Added]: /tmp is an emptyDir now (enables users to use readOnlyRootFilesystem)"
@@ -21091,4 +21142,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-23T11:35:51.523780708Z"
+generated: "2021-08-23T12:58:16.328858724Z"
