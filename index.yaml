@@ -1227,6 +1227,35 @@ entries:
   argo-cd:
   - annotations:
       artifacthub.io/changes: |
+        - "[Changed]: Parameterized dex service port names for istio-ingress 403 error"
+    apiVersion: v2
+    appVersion: 2.1.0
+    created: "2021-08-23T17:39:20.004368922Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.12.17
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 05ad2b19598a67877df91ea573ef8d0df4294bd1e4dc820dafa3560496bffbe3
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argoproj.github.io/argo-cd/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: seanson
+    name: argo-cd
+    urls:
+    - argo-cd-3.13.2.tgz
+    version: 3.13.2
+  - annotations:
+      artifacthub.io/changes: |
         - "[Fixed]: Updated README.md for ArgoCD"
     apiVersion: v2
     appVersion: 2.1.0
@@ -16122,6 +16151,23 @@ entries:
   prometheus-mysql-exporter:
   - apiVersion: v1
     appVersion: v0.12.1
+    created: "2021-08-23T17:39:20.005521036Z"
+    description: A Helm chart for prometheus mysql exporter with cloudsqlproxy
+    digest: e3874e52aac8695073070a421f2caf0eedf54dcf8c98c259da13210f2a39c67e
+    home: https://github.com/prometheus/mysqld_exporter
+    maintainers:
+    - email: juan.chimienti@gmail.com
+      name: juanchimienti
+    - email: monotek23@gmail.com
+      name: monotek
+    name: prometheus-mysql-exporter
+    sources:
+    - https://github.com/prometheus/mysqld_exporter
+    urls:
+    - prometheus-mysql-exporter-1.2.2.tgz
+    version: 1.2.2
+  - apiVersion: v1
+    appVersion: v0.12.1
     created: "2021-06-29T09:15:34.3500332Z"
     description: A Helm chart for prometheus mysql exporter with cloudsqlproxy
     digest: 0d807b6ee4176ab507c5fb7b7cd12786491b3c3f3c0396a1765f92b442119b45
@@ -21218,4 +21264,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-23T16:59:54.494535439Z"
+generated: "2021-08-23T17:39:19.994512704Z"
