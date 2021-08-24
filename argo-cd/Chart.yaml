@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Changed]: Parameterized dex service port names for istio-ingress 403 error"
+    - "[Added]: Global configuration for pod annotations and labels"
 apiVersion: v2
 appVersion: 2.1.0
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.13.2
+version: 3.15.0
