@@ -3476,6 +3476,28 @@ entries:
   argocd-notifications:
   - annotations:
       artifacthub.io/changes: |
+        - "[Fixed]: Use correct names for ConfigMap and Secret"
+    apiVersion: v2
+    appVersion: 1.1.1
+    created: "2021-08-25T12:58:04.731676966Z"
+    description: A Helm chart for ArgoCD notifications, an add-on to ArgoCD.
+    digest: b71ee9ab491aa8d2d7754ce39c28ac14de6eea58356d1d4870a8b8b8b9586592
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argocd-notifications.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - argocd-notifications
+    maintainers:
+    - name: alexmt
+    - name: andyfeller
+    name: argocd-notifications
+    type: application
+    urls:
+    - argocd-notifications-1.4.4.tgz
+    version: 1.4.4
+  - annotations:
+      artifacthub.io/changes: |
         - "[Fixed]: Use correct chart icon url"
     apiVersion: v2
     appVersion: 1.1.1
@@ -21595,4 +21617,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-25T10:16:28.046239981Z"
+generated: "2021-08-25T12:58:04.730459048Z"
