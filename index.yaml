@@ -6971,6 +6971,32 @@ entries:
   grafana:
   - apiVersion: v2
     appVersion: 8.1.2
+    created: "2021-08-25T09:14:16.813964174Z"
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 18394b8133fce16f58de2c49da2bfc49c231b3085ea5ed54063c1615ab43e6b3
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    type: application
+    urls:
+    - grafana-6.16.2.tgz
+    version: 6.16.2
+  - apiVersion: v2
+    appVersion: 8.1.2
     created: "2021-08-25T08:16:09.833171339Z"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: 7898e8f6a9d730004292ed8ad59522e36d4f0ccd1bc65947c53afa411f06b50f
@@ -13223,6 +13249,42 @@ entries:
     - longhorn-1.0.0.tgz
     version: 1.0.0
   metallb:
+  - annotations:
+      category: Infrastructure
+    apiVersion: v2
+    appVersion: 0.10.2
+    created: "2021-08-25T09:14:16.817584188Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    description: The Metal LB for Kubernetes
+    digest: 45dcce7cd6193b55d72556a01f7768dc295c4d6c024ba9594668c920f7d9b30d
+    home: https://github.com/bitnami/charts/tree/master/bitnami/metallb
+    icon: https://bitnami.com/assets/stacks/metallb-speaker/img/metallb-speaker-stack-220x234.png
+    keywords:
+    - load-balancer
+    - balancer
+    - lb
+    - bgp
+    - arp
+    - vrrp
+    - vip
+    maintainers:
+    - email: cellebyte@gmail.com
+      name: cellebyte
+    - email: containers@bitnami.com
+      name: Bitnami
+    name: metallb
+    sources:
+    - https://github.com/metallb/metallb
+    - https://github.com/bitnami/bitnami-docker-metallb
+    - https://metallb.universe.tf
+    urls:
+    - metallb-2.5.3.tgz
+    version: 2.5.3
   - annotations:
       category: Infrastructure
     apiVersion: v2
@@ -21500,4 +21562,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-25T08:16:09.830145543Z"
+generated: "2021-08-25T09:14:16.810858776Z"
