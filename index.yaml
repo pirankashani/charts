@@ -3666,6 +3666,28 @@ entries:
   argocd-notifications:
   - annotations:
       artifacthub.io/changes: |
+        - "[Added]: Configuration for Pod labels"
+    apiVersion: v2
+    appVersion: 1.1.1
+    created: "2021-08-27T13:38:31.43884851Z"
+    description: A Helm chart for ArgoCD notifications, an add-on to ArgoCD.
+    digest: 6be3b3bec75944cc4422ed21b169c0ca196c655f3613e1fa974f2076e51e3118
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argocd-notifications.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - argocd-notifications
+    maintainers:
+    - name: alexmt
+    - name: andyfeller
+    name: argocd-notifications
+    type: application
+    urls:
+    - argocd-notifications-1.5.0.tgz
+    version: 1.5.0
+  - annotations:
+      artifacthub.io/changes: |
         - "[Fixed]: Use correct names for ConfigMap and Secret"
     apiVersion: v2
     appVersion: 1.1.1
@@ -22114,4 +22136,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-27T13:23:18.671243979Z"
+generated: "2021-08-27T13:38:31.437972904Z"
