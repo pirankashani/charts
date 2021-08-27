@@ -3048,6 +3048,28 @@ entries:
   argo-workflows:
   - annotations:
       artifacthub.io/changes: |
+        - "[Added]: Add controller namespaceParallelism param to configmap"
+    apiVersion: v2
+    appVersion: v3.1.8
+    created: "2021-08-27T13:23:18.673101895Z"
+    description: A Helm chart for Argo Workflows
+    digest: c5ba98e505e98e008ccb4293e56c8d256ea6095a7ed72dad5db0801bb3a75046
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo-workflows/master/docs/assets/argo.png
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: benjaminws
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - argo-workflows-0.5.0.tgz
+    version: 0.5.0
+  - annotations:
+      artifacthub.io/changes: |
         - "[Changed]: Bump appVersion to 3.1.8"
     apiVersion: v2
     appVersion: v3.1.8
@@ -16391,6 +16413,28 @@ entries:
     version: 2.2.0
   postgres-operator:
   - apiVersion: v1
+    appVersion: 1.7.0
+    created: "2021-08-27T13:23:18.677768036Z"
+    description: Postgres Operator creates and manages PostgreSQL clusters running
+      in Kubernetes
+    digest: d94abbf0bf80001b3ca81bfe9ef7911e3f1a790c0c3609092636878a81e693ae
+    home: https://github.com/zalando/postgres-operator
+    keywords:
+    - postgres
+    - operator
+    - cloud-native
+    - patroni
+    - spilo
+    maintainers:
+    - email: opensource@zalando.de
+      name: Zalando
+    name: postgres-operator
+    sources:
+    - https://github.com/zalando/postgres-operator
+    urls:
+    - postgres-operator-1.7.0.tgz
+    version: 1.7.0
+  - apiVersion: v1
     appVersion: 1.6.3
     created: "2021-06-05T12:09:22.181494136Z"
     description: Postgres Operator creates and manages PostgreSQL clusters running
@@ -16457,6 +16501,29 @@ entries:
     - postgres-operator-1.6.1.tgz
     version: 1.6.1
   postgres-operator-ui:
+  - apiVersion: v1
+    appVersion: 1.7.0
+    created: "2021-08-27T13:23:18.67928815Z"
+    description: Postgres Operator UI provides a graphical interface for a convenient
+      database-as-a-service user experience
+    digest: 961ae4dde6b551a3e6caaa71467053859d5862722ded4728c8bb89f4f23aff66
+    home: https://github.com/zalando/postgres-operator
+    keywords:
+    - postgres
+    - operator
+    - ui
+    - cloud-native
+    - patroni
+    - spilo
+    maintainers:
+    - email: opensource@zalando.de
+      name: Zalando
+    name: postgres-operator-ui
+    sources:
+    - https://github.com/zalando/postgres-operator
+    urls:
+    - postgres-operator-ui-1.7.0.tgz
+    version: 1.7.0
   - apiVersion: v1
     appVersion: 1.6.3
     created: "2021-06-05T12:09:22.183836873Z"
@@ -22047,4 +22114,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-27T12:57:59.207958973Z"
+generated: "2021-08-27T13:23:18.671243979Z"
