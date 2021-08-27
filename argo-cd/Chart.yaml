@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Fixed]: use $ as context for repository secret labels"
+    - "[Changed]: Upgrade dex server to 2.30.0"
 apiVersion: v2
 appVersion: 2.1.1
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.17.3
+version: 3.17.4
