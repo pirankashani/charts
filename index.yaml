@@ -3456,6 +3456,27 @@ entries:
   argocd-applicationset:
   - annotations:
       artifacthub.io/changes: |
+        - "[Added]: Configuration for Pod labels"
+    apiVersion: v2
+    appVersion: v0.2.0
+    created: "2021-08-27T12:57:59.21154882Z"
+    description: A Helm chart for installing ArgoCD ApplicationSet
+    digest: c6c155d8c24ed861c00378a7011dc6d912d0e6b6c36d91671a2a8199248ebf1f
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argocd-applicationset.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - appset
+    - gitops
+    maintainers:
+    - name: maruina
+    name: argocd-applicationset
+    type: application
+    urls:
+    - argocd-applicationset-1.4.0.tgz
+    version: 1.4.0
+  - annotations:
+      artifacthub.io/changes: |
         - "[Changed]: Update README and convert it to helm-docs"
     apiVersion: v2
     appVersion: v0.2.0
@@ -22026,4 +22047,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-27T12:22:18.161319624Z"
+generated: "2021-08-27T12:57:59.207958973Z"
