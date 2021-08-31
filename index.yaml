@@ -15090,6 +15090,27 @@ entries:
     version: 1.0.0
   minio-operator:
   - apiVersion: v2
+    appVersion: v4.2.3
+    created: "2021-08-31T19:11:21.582802349Z"
+    description: A Helm chart for MinIO Operator
+    digest: de24ad85a5c682dd1007da3a37a30f40387c1deea582288f98e465db29c4cb97
+    home: https://min.io
+    icon: https://min.io/resources/img/logo/MINIO_wordmark.png
+    keywords:
+    - storage
+    - object-storage
+    - S3
+    maintainers:
+    - email: dev@minio.io
+      name: MinIO, Inc
+    name: minio-operator
+    sources:
+    - https://github.com/minio/operator
+    type: application
+    urls:
+    - minio-operator-4.2.3.tgz
+    version: 4.2.3
+  - apiVersion: v2
     appVersion: v4.2.0
     created: "2021-08-22T20:14:13.447292152Z"
     description: A Helm chart for MinIO Operator
@@ -20776,9 +20797,9 @@ entries:
   seaweedfs:
   - apiVersion: v1
     appVersion: "2.65"
-    created: "2021-08-31T18:44:38.852242852Z"
+    created: "2021-08-31T19:11:21.584470214Z"
     description: SeaweedFS
-    digest: 86c8ee256a930922482c3abbfae1934dfc7c7fdc903879d8135c2baf484b8121
+    digest: ba4eb21437a54250c56c9c9ae301c0480ba639422791ddf503a94a3b2ba1b740
     name: seaweedfs
     urls:
     - seaweedfs-2.65.tgz
@@ -22373,4 +22394,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-31T18:44:38.849781321Z"
+generated: "2021-08-31T19:11:21.579807833Z"
