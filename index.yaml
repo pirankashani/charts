@@ -13514,6 +13514,39 @@ entries:
     version: 0.25.0
   longhorn:
   - apiVersion: v1
+    appVersion: v1.2.0
+    created: "2021-08-31T17:00:51.773030518Z"
+    description: Longhorn is a distributed block storage system for Kubernetes.
+    digest: f4ba34e44d25897400cc1adf84bad9db7d07df7bfe1f51aaa5c64d54b2c8ff3b
+    home: https://github.com/longhorn/longhorn
+    icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/longhorn/icon/color/longhorn-icon-color.png
+    keywords:
+    - longhorn
+    - storage
+    - distributed
+    - block
+    - device
+    - iscsi
+    - nfs
+    kubeVersion: '>=v1.18.0'
+    maintainers:
+    - email: maintainers@longhorn.io
+      name: Longhorn maintainers
+    name: longhorn
+    sources:
+    - https://github.com/longhorn/longhorn
+    - https://github.com/longhorn/longhorn-engine
+    - https://github.com/longhorn/longhorn-instance-manager
+    - https://github.com/longhorn/longhorn-share-manager
+    - https://github.com/longhorn/backing-image-manager
+    - https://github.com/longhorn/longhorn-manager
+    - https://github.com/longhorn/longhorn-ui
+    - https://github.com/longhorn/longhorn-tests
+    - https://github.com/longhorn/backing-image-manager
+    urls:
+    - longhorn-1.2.0.tgz
+    version: 1.2.0
+  - apiVersion: v1
     appVersion: v1.1.2
     created: "2021-07-07T05:35:35.305352773Z"
     description: Longhorn is a distributed block storage system for Kubernetes.
@@ -20683,9 +20716,9 @@ entries:
   seaweedfs:
   - apiVersion: v1
     appVersion: "2.65"
-    created: "2021-08-31T16:21:04.746833623Z"
+    created: "2021-08-31T17:00:51.775104495Z"
     description: SeaweedFS
-    digest: 1f05a3db6961e193810f61dc7a17dbf6090c3668abee393dcf42803c7542d392
+    digest: aefdaf65fdfe35a210cd2faa559a6517053bb4a591c87988c46790b86604c33f
     name: seaweedfs
     urls:
     - seaweedfs-2.65.tgz
@@ -22280,4 +22313,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-08-31T16:21:04.744070762Z"
+generated: "2021-08-31T17:00:51.769888854Z"
