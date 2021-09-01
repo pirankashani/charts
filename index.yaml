@@ -6671,6 +6671,66 @@ entries:
     version: 2.0.3
   gitlab:
   - apiVersion: v1
+    appVersion: 14.2.3
+    created: "2021-09-01T15:15:06.520372311Z"
+    dependencies:
+    - name: gitlab
+      repository: ""
+      version: '*.*.*'
+    - name: certmanager-issuer
+      repository: ""
+      version: '*.*.*'
+    - name: minio
+      repository: ""
+      version: '*.*.*'
+    - name: registry
+      repository: ""
+      version: '*.*.*'
+    - alias: certmanager
+      condition: certmanager.install
+      name: cert-manager
+      repository: https://charts.jetstack.io/
+      version: 1.2.0
+    - condition: prometheus.install
+      name: prometheus
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 11.16.9
+    - condition: postgresql.install
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.9.4
+    - condition: gitlab-runner.install
+      name: gitlab-runner
+      repository: https://charts.gitlab.io/
+      version: 0.32.0
+    - condition: global.grafana.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 6.9.1
+    - condition: redis.install
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.3.4
+    - condition: nginx-ingress.enabled
+      name: nginx-ingress
+      repository: ""
+      version: '*.*.*'
+    description: Web-based Git-repository manager with wiki and issue-tracking features.
+    digest: 7b1369a0442b9affc2500f1efb1f2dd94d88b92f223ff2ed6ba74daf32fe1003
+    home: https://about.gitlab.com/
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    keywords:
+    - gitlab
+    maintainers:
+    - email: support@gitlab.com
+      name: GitLab Inc.
+    name: gitlab
+    sources:
+    - https://gitlab.com/gitlab-org/charts/gitlab
+    urls:
+    - gitlab-5.2.3.tgz
+    version: 5.2.3
+  - apiVersion: v1
     appVersion: 14.2.2
     created: "2021-08-31T18:16:24.07229979Z"
     dependencies:
@@ -20856,9 +20916,9 @@ entries:
   seaweedfs:
   - apiVersion: v1
     appVersion: "2.65"
-    created: "2021-09-01T14:37:14.213592385Z"
+    created: "2021-09-01T15:15:06.522170939Z"
     description: SeaweedFS
-    digest: 066bac2ef3e4c0fff7df532d8b83c3b8514bb15d0f5498785724fed421d8a5f6
+    digest: 08e4bbfd10bc3f5fd79d7c1ec952d38a6f178f5b75bf89c051ec01c1443d7e2b
     name: seaweedfs
     urls:
     - seaweedfs-2.65.tgz
@@ -22453,4 +22513,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-09-01T14:37:14.205740429Z"
+generated: "2021-09-01T15:15:06.445366747Z"
