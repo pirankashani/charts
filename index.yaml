@@ -22439,6 +22439,19 @@ entries:
     urls:
     - verdaccio-1.2.0.tgz
     version: 1.2.0
+  victoria-metrics-operator:
+  - apiVersion: v1
+    appVersion: 0.18.1
+    created: "2021-09-02T19:29:57.587629382Z"
+    description: Victoria Metrics Operator
+    digest: 47e95cc90ef8eb4b7648538d969a3a8d54fa71b0c8ad7273e5f86c035c7f9546
+    home: https://github.com/VictoriaMetrics/operator
+    name: victoria-metrics-operator
+    sources:
+    - https://github.com/VictoriaMetrics/operator
+    urls:
+    - victoria-metrics-operator-0.2.2.tgz
+    version: 0.2.2
   wiki:
   - apiVersion: v2
     appVersion: latest
@@ -22664,4 +22677,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-09-02T17:43:18.516587179Z"
+generated: "2021-09-02T19:29:57.578036148Z"
