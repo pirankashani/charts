@@ -1,0 +1,62 @@
+apiVersion: v2
+appVersion: stable-latest
+dependencies:
+- condition: meshery-istio.enabled
+  name: meshery-istio
+  repository: ""
+  version: 2.1.2
+- condition: meshery-linkerd.enabled
+  name: meshery-linkerd
+  repository: ""
+  version: 2.1.2
+- condition: meshery-consul.enabled
+  name: meshery-consul
+  repository: ""
+  version: 2.1.2
+- condition: meshery-kuma.enabled
+  name: meshery-kuma
+  repository: ""
+  version: 2.1.2
+- condition: meshery-osm.enabled
+  name: meshery-osm
+  repository: ""
+  version: 2.1.2
+- condition: meshery-nsm.enabled
+  name: meshery-nsm
+  repository: ""
+  version: 2.1.2
+- condition: meshery-traefik-mesh.enabled
+  name: meshery-traefik-mesh
+  repository: ""
+  version: 2.1.2
+- condition: meshery-cpx.enabled
+  name: meshery-cpx
+  repository: ""
+  version: 2.1.2
+- condition: meshery-operator.enabled
+  name: meshery-operator
+  repository: ""
+  version: 2.1.2
+description: Meshery chart for deploying Meshery and Meshery's adapters.
+icon: https://meshery.io/images/logos/meshery-logo.png
+keywords:
+- meshery
+- meshery-istio
+- meshery-linkerd
+- meshery-consul
+- meshery-kuma
+- meshery-osm
+- meshery-nsm
+- meshery-traefik-mesh
+- meshery-cpx
+- meshery-operator
+maintainers:
+- email: community@layer5.io
+  name: Layer5 Authors
+- email: urakiny@gmail.com
+  name: aisuko
+- email: lee.calcote@layer5.io
+  name: leecalcote
+name: meshery
+type: application
+version: v0.5.52

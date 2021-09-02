@@ -1,0 +1,13 @@
+apiVersion: v2
+appVersion: stable-latest
+description: Meshery Adapter for Kuma.
+maintainers:
+- email: community@layer5.io
+  name: Layer5 Authors
+- email: urakiny@gmail.com
+  name: aisuko
+- email: lee.calcote@layer5.io
+  name: leecalcote
+name: meshery-kuma
+type: application
+version: 2.1.2

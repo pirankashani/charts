@@ -1,0 +1,11 @@
+apiVersion: v2
+appVersion: stable-latest
+description: Meshery Adapter for Istio chart.
+maintainers:
+- email: urakiny@gmail.com
+  name: aisuko
+- email: leecalcote@gmail.com
+  name: leecalcote
+name: meshery-istio
+type: application
+version: 2.1.2
