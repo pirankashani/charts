@@ -15304,6 +15304,27 @@ entries:
     version: 1.0.0
   minio-operator:
   - apiVersion: v2
+    appVersion: v4.2.4
+    created: "2021-09-03T09:39:26.655583732Z"
+    description: A Helm chart for MinIO Operator
+    digest: e037ba8814dd5eb50c5f5e299110e868a827ba24cc359fe5b0d80100c1f03779
+    home: https://min.io
+    icon: https://min.io/resources/img/logo/MINIO_wordmark.png
+    keywords:
+    - storage
+    - object-storage
+    - S3
+    maintainers:
+    - email: dev@minio.io
+      name: MinIO, Inc
+    name: minio-operator
+    sources:
+    - https://github.com/minio/operator
+    type: application
+    urls:
+    - minio-operator-4.2.4.tgz
+    version: 4.2.4
+  - apiVersion: v2
     appVersion: v4.2.3
     created: "2021-08-31T19:11:21.582802349Z"
     description: A Helm chart for MinIO Operator
@@ -22739,4 +22760,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-09-03T09:14:07.115047954Z"
+generated: "2021-09-03T09:39:26.652602576Z"
