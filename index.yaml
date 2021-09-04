@@ -7415,6 +7415,32 @@ entries:
   grafana:
   - apiVersion: v2
     appVersion: 8.1.2
+    created: "2021-09-04T16:59:40.553840196Z"
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: cdcf392403141ff094e80c4cd006f1a908dcb96d827b20acd06443dd25c9a90e
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    type: application
+    urls:
+    - grafana-6.16.4.tgz
+    version: 6.16.4
+  - apiVersion: v2
+    appVersion: 8.1.2
     created: "2021-09-01T02:00:30.508500942Z"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: 55b03c6b01239a6454d4cc2eb1ca2fcc9c9a5fc405a24973cc975502244933da
@@ -13361,6 +13387,24 @@ entries:
   loki-distributed:
   - apiVersion: v2
     appVersion: 2.3.0
+    created: "2021-09-04T16:59:40.557684523Z"
+    description: Helm chart for Grafana Loki in microservices mode
+    digest: 60297b2c441d161f287a7442378571db84ba41acda6e840288c5f61eaa0b862e
+    home: https://grafana.github.io/helm-charts
+    icon: https://grafana.com/docs/loki/latest/logo_and_name.png
+    maintainers:
+    - name: unguiculus
+    name: loki-distributed
+    sources:
+    - https://github.com/grafana/loki
+    - https://grafana.com/oss/loki/
+    - https://grafana.com/docs/loki/latest/
+    type: application
+    urls:
+    - loki-distributed-0.37.0.tgz
+    version: 0.37.0
+  - apiVersion: v2
+    appVersion: 2.3.0
     created: "2021-08-06T17:42:46.145903699Z"
     description: Helm chart for Grafana Loki in microservices mode
     digest: aadfe1a28349388248ed73b1212bdc7f0db0734f9196f34a5e6417323f9c2e6f
@@ -15303,6 +15347,27 @@ entries:
     - wener/minio-console-1.0.0.tgz
     version: 1.0.0
   minio-operator:
+  - apiVersion: v2
+    appVersion: v4.2.5
+    created: "2021-09-04T16:59:40.560595744Z"
+    description: A Helm chart for MinIO Operator
+    digest: 2efd1dbda7263cbead33c62d363b91dfe7d6d670f34a3297adb6352857125456
+    home: https://min.io
+    icon: https://min.io/resources/img/logo/MINIO_wordmark.png
+    keywords:
+    - storage
+    - object-storage
+    - S3
+    maintainers:
+    - email: dev@minio.io
+      name: MinIO, Inc
+    name: minio-operator
+    sources:
+    - https://github.com/minio/operator
+    type: application
+    urls:
+    - minio-operator-4.2.5.tgz
+    version: 4.2.5
   - apiVersion: v2
     appVersion: v4.2.4
     created: "2021-09-03T09:39:26.655583732Z"
@@ -22812,4 +22877,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-09-03T13:39:06.442745311Z"
+generated: "2021-09-04T16:59:40.551301578Z"
