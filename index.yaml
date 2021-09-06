@@ -13387,6 +13387,24 @@ entries:
   loki-distributed:
   - apiVersion: v2
     appVersion: 2.3.0
+    created: "2021-09-06T11:12:18.635584607Z"
+    description: Helm chart for Grafana Loki in microservices mode
+    digest: f3d5efbeea4d30685afc3fa225a3c4c4b4594ad3539dc16d3f0c9aa9029639fc
+    home: https://grafana.github.io/helm-charts
+    icon: https://grafana.com/docs/loki/latest/logo_and_name.png
+    maintainers:
+    - name: unguiculus
+    name: loki-distributed
+    sources:
+    - https://github.com/grafana/loki
+    - https://grafana.com/oss/loki/
+    - https://grafana.com/docs/loki/latest/
+    type: application
+    urls:
+    - loki-distributed-0.37.2.tgz
+    version: 0.37.2
+  - apiVersion: v2
+    appVersion: 2.3.0
     created: "2021-09-06T08:16:14.534283517Z"
     description: Helm chart for Grafana Loki in microservices mode
     digest: c57229fa9697efc2c00fddfa87673723af30b96707d9d4721521d1e6b220643d
@@ -22904,4 +22922,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-09-06T08:16:14.52992766Z"
+generated: "2021-09-06T11:12:18.630300168Z"
