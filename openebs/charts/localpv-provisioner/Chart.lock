@@ -3,4 +3,4 @@ dependencies:
   repository: https://openebs.github.io/node-disk-manager
   version: 1.6.1
 digest: sha256:5fba9ff2b7afe67f8ece8f6915ec1396e07933dcec253e58b8f85a20d74f78f2
-generated: "2021-08-18T09:56:25.633453004Z"
+generated: "2021-09-07T07:22:48.526538186Z"

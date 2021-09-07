@@ -4,7 +4,7 @@ dependencies:
   version: 1.6.1
 - name: localpv-provisioner
   repository: https://openebs.github.io/dynamic-localpv-provisioner
-  version: 2.12.0
+  version: 2.12.1
 - name: cstor
   repository: https://openebs.github.io/cstor-operators
   version: 2.12.1
@@ -20,5 +20,5 @@ dependencies:
 - name: nfs-provisioner
   repository: https://openebs.github.io/dynamic-nfs-provisioner
   version: 0.6.1
-digest: sha256:f448b70a66fe4baf971f4bd017c8fc9a61b48449da9c1b26251a4be8c1b343f6
-generated: "2021-09-03T13:30:02.683501127Z"
+digest: sha256:38e8b1bd71c84aaaa8a903c2402debc46cf88d2e4b628d7271d87a2eeb532352
+generated: "2021-09-07T07:29:14.147652914Z"
