@@ -18066,6 +18066,27 @@ entries:
   prometheus-redis-exporter:
   - apiVersion: v2
     appVersion: 1.27.0
+    created: "2021-09-09T08:16:35.91888871Z"
+    description: Prometheus exporter for Redis metrics
+    digest: df0929ad926b8a04b6cb513adc4a94fb7d1bf7c5fb6f396cc7fcfa22a9dfd71e
+    home: https://github.com/oliver006/redis_exporter
+    keywords:
+    - prometheus
+    - redis
+    maintainers:
+    - email: arcadie.condrat@gmail.com
+      name: acondrat
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    name: prometheus-redis-exporter
+    sources:
+    - https://github.com/oliver006/redis_exporter
+    type: application
+    urls:
+    - prometheus-redis-exporter-4.5.0.tgz
+    version: 4.5.0
+  - apiVersion: v2
+    appVersion: 1.27.0
     created: "2021-09-07T05:35:51.273575029Z"
     description: Prometheus exporter for Redis metrics
     digest: a94d974a8aa22ea99d58aec60042905ad51f0d8f7ee721ed7d90d27ff9088443
@@ -23267,4 +23288,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-09-08T20:38:56.429881962Z"
+generated: "2021-09-09T08:16:35.917447242Z"
