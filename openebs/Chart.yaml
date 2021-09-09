@@ -45,4 +45,4 @@ maintainers:
 name: openebs
 sources:
 - https://github.com/openebs/openebs
-version: 2.12.4
+version: 2.12.5
