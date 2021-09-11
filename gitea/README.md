@@ -483,7 +483,7 @@ Annotations can be added to the Gitea pod.
 | Parameter           | Description                       | Default                      |
 |---------------------|-----------------------------------|------------------------------|
 |image.repository| Image to start for this pod | gitea/gitea |
-|image.tag| [Image tag](https://hub.docker.com/r/gitea/gitea/tags?page=1&ordering=last_updated) | 1.14.6 |
+|image.tag| [Image tag](https://hub.docker.com/r/gitea/gitea/tags?page=1&ordering=last_updated) | 1.15.0 |
 |image.pullPolicy| Image pull policy | Always |
 |image.rootless | Wether or not to pull the rootless version of gitea, only works on gitea 1.14.x or higher | false |
 
@@ -508,7 +508,8 @@ Annotations can be added to the Gitea pod.
 |ingress.hosts[0].host | add hosts for ingress | git.example.com |
 |ingress.hosts[0].paths[0].path | add path for each ingress host | / |
 |ingress.hosts[0].paths[0].pathType | add ingress path type | Prefix |
-|ingress.tls|add ingress tls settings|[]|
+|ingress.tls| add ingress tls settings|[]|
+|ingress.className| add ingress class name. Only used in k8s 1.19+ | |
 
 ### Service
 
