@@ -3135,6 +3135,28 @@ entries:
   argo-workflows:
   - annotations:
       artifacthub.io/changes: |
+        - "[Added]: Add controller initialDelay param to configmap"
+    apiVersion: v2
+    appVersion: v3.1.8
+    created: "2021-09-15T22:38:57.172034645Z"
+    description: A Helm chart for Argo Workflows
+    digest: a921c45b85a0b65a0c9ff3475b9a83e753440fd563d1dbc3d879b47d5f0cbc06
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo-workflows/master/docs/assets/argo.png
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: benjaminws
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - argo-workflows-0.5.2.tgz
+    version: 0.5.2
+  - annotations:
+      artifacthub.io/changes: |
         - "[Added]: Add controller containerRuntimeExecutors param to configmap"
     apiVersion: v2
     appVersion: v3.1.8
@@ -23900,4 +23922,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-09-15T11:11:58.882591498Z"
+generated: "2021-09-15T22:38:57.170227662Z"
