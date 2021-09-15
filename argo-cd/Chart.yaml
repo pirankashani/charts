@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Changed]: Upgrade argocd to 2.1.2"
+    - "[Fixed]: global podLabels/podAnnotations object unexpected merge"
 apiVersion: v2
 appVersion: 2.1.2
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.17.6
+version: 3.17.7
