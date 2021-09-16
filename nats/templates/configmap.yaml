@@ -51,6 +51,10 @@ data:
       max_mem: {{ .Values.nats.jetstream.memStorage.size }}
       {{- end }}
 
+      {{- if .Values.nats.jetstream.domain }}
+      domain: {{ .Values.nats.jetstream.domain }}
+      {{- end }}
+
       {{- if .Values.nats.jetstream.fileStorage.enabled }}
       store_dir: {{ .Values.nats.jetstream.fileStorage.storageDirectory }}
 
@@ -245,6 +249,10 @@ data:
       name: {{ .Values.gateway.name }}
       port: 7522
 
+      {{- if .Values.gateway.advertise }}
+      advertise: {{ .Values.gateway.advertise }} 
+      {{- end }}
+
       {{- if and .Values.nats.advertise .Values.nats.externalAccess }}
       include "advertise/gateway_advertise.conf"
       {{- end }}
@@ -350,6 +358,10 @@ data:
       {{- else }}
       no_tls: {{ .Values.websocket.noTLS }}
       {{- end }}
+      same_origin: {{ .Values.websocket.sameOrigin }}
+      {{- with .Values.websocket.allowedOrigins }}
+      allowed_origins: {{ toRawJson . }}
+      {{- end }}
     }
     {{- end }}
 
@@ -405,13 +417,25 @@ data:
     {{- with .Values.auth.systemAccount }}
     system_account: {{ . }}
     {{- end }}
-    
+
     {{- with .Values.auth.token }}
     authorization {
       token: "{{ . }}"
     }
     {{- end }}
-    
+
+    {{- with .Values.auth.nkeys }}
+    {{- with .users }}
+    authorization {
+      users: [
+      {{- range . }}
+      {{- toRawJson . | nindent 4 }},
+      {{- end }}
+      ]
+    }
+    {{- end }}
+    {{- end }}
+
     {{- with .Values.auth.basic }}
 
     {{- with .noAuthUser }}

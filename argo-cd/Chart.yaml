@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Fixed]: global podLabels/podAnnotations object unexpected merge"
+    - "[Added]: extraContainers values were added to pods besides server"
 apiVersion: v2
 appVersion: 2.1.2
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.17.7
+version: 3.18.0
