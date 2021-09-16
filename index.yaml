@@ -1255,6 +1255,35 @@ entries:
   argo-cd:
   - annotations:
       artifacthub.io/changes: |
+        - "[Added]: extraContainers values were added to pods besides server"
+    apiVersion: v2
+    appVersion: 2.1.2
+    created: "2021-09-16T18:16:15.493899406Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.12.17
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 3ec07ac7352fdb58a90bf4f14d1fb2cbd493a714ed3c66dd1e13248030b2be77
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argoproj.github.io/argo-cd/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: seanson
+    name: argo-cd
+    urls:
+    - argo-cd-3.18.0.tgz
+    version: 3.18.0
+  - annotations:
+      artifacthub.io/changes: |
         - "[Fixed]: global podLabels/podAnnotations object unexpected merge"
     apiVersion: v2
     appVersion: 2.1.2
@@ -16342,6 +16371,32 @@ entries:
     version: 1.0.0
   nats:
   - apiVersion: v2
+    appVersion: 2.5.0
+    created: "2021-09-16T18:16:15.495455486Z"
+    description: A Helm chart for the NATS.io High Speed Cloud Native Distributed
+      Communications Technology.
+    digest: fb3736077fa514bc827864697e51b41ffb6285c114a12bfbc66e4128b933f729
+    home: http://github.com/nats-io/k8s
+    icon: https://nats.io/img/nats-icon-color.png
+    keywords:
+    - nats
+    - messaging
+    - cncf
+    maintainers:
+    - email: wally@nats.io
+      name: Waldemar Quevedo
+      url: https://github.com/wallyqs
+    - email: colin@nats.io
+      name: Colin Sullivan
+      url: https://github.com/ColinSullivan1
+    - email: jaime@nats.io
+      name: Jaime Piña
+      url: https://github.com/variadico
+    name: nats
+    urls:
+    - nats-0.8.9.tgz
+    version: 0.8.9
+  - apiVersion: v2
     appVersion: 2.3.4
     created: "2021-08-19T17:01:06.399182244Z"
     description: A Helm chart for the NATS.io High Speed Cloud Native Distributed
@@ -23173,6 +23228,31 @@ entries:
     version: 8.8.1
   vault:
   - apiVersion: v2
+    appVersion: 1.8.2
+    created: "2021-09-16T18:16:15.498653345Z"
+    description: Official HashiCorp Vault Chart
+    digest: 092a45b9649cbe10b7bdae6e4289a7182e933be2c40a7a9c47a68a5e29cf966d
+    home: https://www.vaultproject.io
+    icon: https://github.com/hashicorp/vault/raw/f22d202cde2018f9455dec755118a9b84586e082/Vault_PrimaryLogo_Black.png
+    keywords:
+    - vault
+    - security
+    - encryption
+    - secrets
+    - management
+    - automation
+    - infrastructure
+    kubeVersion: '>= 1.14.0-0'
+    name: vault
+    sources:
+    - https://github.com/hashicorp/vault
+    - https://github.com/hashicorp/vault-helm
+    - https://github.com/hashicorp/vault-k8s
+    - https://github.com/hashicorp/vault-csi-provider
+    urls:
+    - vault-0.16.0.tgz
+    version: 0.16.0
+  - apiVersion: v2
     appVersion: 1.8.1
     created: "2021-08-23T16:59:54.4978838Z"
     description: Official HashiCorp Vault Chart
@@ -24004,4 +24084,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-09-16T16:58:37.746219718Z"
+generated: "2021-09-16T18:16:15.48186126Z"
