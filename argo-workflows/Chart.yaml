@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Added]: Add controller initialDelay param to configmap"
+    - "[Added]: Add controller metricsConfig.portName parameter"
 apiVersion: v2
 appVersion: v3.1.8
 description: A Helm chart for Argo Workflows
@@ -15,4 +15,4 @@ name: argo-workflows
 sources:
 - https://github.com/argoproj/argo-workflows
 type: application
-version: 0.5.2
+version: 0.6.0
