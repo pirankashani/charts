@@ -1255,6 +1255,35 @@ entries:
   argo-cd:
   - annotations:
       artifacthub.io/changes: |
+        - "[Added]: Add support for topologySpreadConstraints"
+    apiVersion: v2
+    appVersion: 2.1.2
+    created: "2021-09-17T14:13:08.311255811Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.12.17
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: d6b9df3060425b8cf230abe5673dbb483c832e617d009542a6d1e0f7138fa5b0
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argoproj.github.io/argo-cd/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: seanson
+    name: argo-cd
+    urls:
+    - argo-cd-3.19.0.tgz
+    version: 3.19.0
+  - annotations:
+      artifacthub.io/changes: |
         - "[Added]: extraContainers values were added to pods besides server"
     apiVersion: v2
     appVersion: 2.1.2
@@ -6933,6 +6962,66 @@ entries:
     - gitea-2.0.3.tgz
     version: 2.0.3
   gitlab:
+  - apiVersion: v1
+    appVersion: 14.2.4
+    created: "2021-09-17T14:13:08.379015415Z"
+    dependencies:
+    - name: gitlab
+      repository: ""
+      version: '*.*.*'
+    - name: certmanager-issuer
+      repository: ""
+      version: '*.*.*'
+    - name: minio
+      repository: ""
+      version: '*.*.*'
+    - name: registry
+      repository: ""
+      version: '*.*.*'
+    - alias: certmanager
+      condition: certmanager.install
+      name: cert-manager
+      repository: https://charts.jetstack.io/
+      version: 1.2.0
+    - condition: prometheus.install
+      name: prometheus
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 11.16.9
+    - condition: postgresql.install
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.9.4
+    - condition: gitlab-runner.install
+      name: gitlab-runner
+      repository: https://charts.gitlab.io/
+      version: 0.32.0
+    - condition: global.grafana.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 6.9.1
+    - condition: redis.install
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.3.4
+    - condition: nginx-ingress.enabled
+      name: nginx-ingress
+      repository: ""
+      version: '*.*.*'
+    description: Web-based Git-repository manager with wiki and issue-tracking features.
+    digest: ce83c4773e78ec94a1ed4c722bfa09b80b8bf77ed641f022efaafed15982d186
+    home: https://about.gitlab.com/
+    icon: https://gitlab.com/gitlab-com/gitlab-artwork/raw/master/logo/logo-square.png
+    keywords:
+    - gitlab
+    maintainers:
+    - email: support@gitlab.com
+      name: GitLab Inc.
+    name: gitlab
+    sources:
+    - https://gitlab.com/gitlab-org/charts/gitlab
+    urls:
+    - gitlab-5.2.4.tgz
+    version: 5.2.4
   - apiVersion: v1
     appVersion: 14.2.3
     created: "2021-09-01T15:15:06.520372311Z"
@@ -24105,4 +24194,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-09-17T02:03:47.905910058Z"
+generated: "2021-09-17T14:13:08.302133876Z"
