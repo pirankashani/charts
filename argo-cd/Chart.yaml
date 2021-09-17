@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Added]: Add support for topologySpreadConstraints"
+    - "[Added]: Ability to scrape redis metrics"
 apiVersion: v2
 appVersion: 2.1.2
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.19.0
+version: 3.20.0
