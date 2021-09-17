@@ -1255,6 +1255,35 @@ entries:
   argo-cd:
   - annotations:
       artifacthub.io/changes: |
+        - "[Added]: Ability to scrape redis metrics"
+    apiVersion: v2
+    appVersion: 2.1.2
+    created: "2021-09-17T18:15:56.988543152Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.12.17
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: b79d6b726bfb0cf12df499862128321f040bbef741746d2d313977855086bee2
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argoproj.github.io/argo-cd/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: seanson
+    name: argo-cd
+    urls:
+    - argo-cd-3.20.0.tgz
+    version: 3.20.0
+  - annotations:
+      artifacthub.io/changes: |
         - "[Added]: Add support for topologySpreadConstraints"
     apiVersion: v2
     appVersion: 2.1.2
@@ -24194,4 +24223,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-09-17T14:13:08.302133876Z"
+generated: "2021-09-17T18:15:56.97717925Z"
