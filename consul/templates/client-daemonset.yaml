@@ -1,5 +1,7 @@
 {{- if (or (and (ne (.Values.client.enabled | toString) "-") .Values.client.enabled) (and (eq (.Values.client.enabled | toString) "-") .Values.global.enabled)) }}
 {{- if (and (and .Values.global.tls.enabled .Values.global.tls.httpsOnly) (and .Values.global.metrics.enabled .Values.global.metrics.enableAgentMetrics))}}{{ fail "global.metrics.enableAgentMetrics cannot be enabled if TLS (HTTPS only) is enabled" }}{{ end -}}
+{{- $serverEnabled := (or (and (ne (.Values.server.enabled | toString) "-") .Values.server.enabled) (and (eq (.Values.server.enabled | toString) "-") .Values.global.enabled)) -}}
+{{- if (and .Values.global.adminPartitions.enabled $serverEnabled (ne .Values.global.adminPartitions.name "default"))}}{{ fail "global.adminPartitions.name has to be \"default\" in the server cluster" }}{{ end -}}
 # DaemonSet to run the Consul clients on every node.
 apiVersion: apps/v1
 kind: DaemonSet
@@ -233,6 +235,9 @@ spec:
                 {{- if (and .Values.global.metrics.enabled .Values.global.metrics.enableAgentMetrics) }}
                 -hcl='telemetry { prometheus_retention_time = "{{ .Values.global.metrics.agentMetricsRetentionTime }}" }' \
                 {{- end }}
+                {{- if .Values.global.adminPartitions.enabled }}
+                -hcl='partition = "{{ .Values.global.adminPartitions.name }}"' \
+                {{- end }}
                 -config-dir=/consul/config \
                 {{- if .Values.global.acls.manageSystemACLs }}
                 -config-dir=/consul/aclconfig \
@@ -353,6 +358,10 @@ spec:
             {{- toYaml .Values.client.resources | nindent 12 }}
             {{- end }}
           {{- end }}
+          {{- if not .Values.global.openshift.enabled }}
+          securityContext:
+            {{- toYaml .Values.client.containerSecurityContext.client | nindent 12 }}
+          {{- end }}
       {{- if (or .Values.global.acls.manageSystemACLs (and .Values.global.tls.enabled (not .Values.global.tls.enableAutoEncrypt))) }}
       initContainers:
       {{- if .Values.global.acls.manageSystemACLs }}
@@ -376,6 +385,10 @@ spec:
           limits:
             memory: "25Mi"
             cpu: "50m"
+        {{- if not .Values.global.openshift.enabled }}
+        securityContext:
+          {{- toYaml .Values.client.containerSecurityContext.aclInit | nindent 10 }}
+        {{- end }}
       {{- end }}
       {{- if and .Values.global.tls.enabled (not .Values.global.tls.enableAutoEncrypt) }}
       - name: client-tls-init
@@ -419,6 +432,10 @@ spec:
           limits:
             memory: "50Mi"
             cpu: "50m"
+        {{- if not .Values.global.openshift.enabled }}
+        securityContext:
+          {{- toYaml .Values.client.containerSecurityContext.tlsInit | nindent 10 }}
+        {{- end }}
       {{- end }}
       {{- end }}
       {{- if .Values.client.nodeSelector }}

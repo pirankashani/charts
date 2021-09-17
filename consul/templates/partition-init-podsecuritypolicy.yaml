@@ -1,30 +1,28 @@
-{{- if and (or .Values.controller.enabled .Values.connectInject.enabled) .Values.global.enablePodSecurityPolicies }}
+{{- $serverEnabled := (or (and (ne (.Values.server.enabled | toString) "-") .Values.server.enabled) (and (eq (.Values.server.enabled | toString) "-") .Values.global.enabled)) -}}
+{{- if (and .Values.global.adminPartitions.enabled (not $serverEnabled)) }}
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
 metadata:
-  name: {{ template "consul.fullname" . }}-webhook-cert-manager
+  name: {{ template "consul.fullname" . }}-partition-init
   namespace: {{ .Release.Namespace }}
   labels:
     app: {{ template "consul.name" . }}
     chart: {{ template "consul.chart" . }}
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
-    component: webhook-cert-manager
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-delete-policy": before-hook-creation
 spec:
   privileged: false
-  # Required to prevent escalations to root.
+  # Allow core volume types.
+  volumes:
+    - 'secret'
   allowPrivilegeEscalation: false
   # This is redundant with non-root + disallow privilege escalation,
   # but we can provide it for defense in depth.
   requiredDropCapabilities:
     - ALL
-  # Allow core volume types.
-  volumes:
-    - 'configMap'
-    - 'emptyDir'
-    - 'projected'
-    - 'secret'
-    - 'downwardAPI'
   hostNetwork: false
   hostIPC: false
   hostPID: false
