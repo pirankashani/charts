@@ -10031,6 +10031,32 @@ entries:
   ingress-nginx:
   - annotations:
       artifacthub.io/changes: |
+        - Downgrade NGINX to v1.19.9
+        - Update Base Image to alpine 3.14.2
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 1.0.1
+    created: "2021-09-22T12:23:10.02886496Z"
+    description: Ingress controller for Kubernetes using NGINX as a reverse proxy
+      and load balancer
+    digest: fd5634fedaa0cabb901022eaa00605a3412ab35d6713d640c3e4151092461550
+    home: https://github.com/kubernetes/ingress-nginx
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
+    keywords:
+    - ingress
+    - nginx
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - name: ChiefAlexander
+    name: ingress-nginx
+    sources:
+    - https://github.com/kubernetes/ingress-nginx
+    type: application
+    urls:
+    - ingress-nginx-4.0.2.tgz
+    version: 4.0.2
+  - annotations:
+      artifacthub.io/changes: |
         - Support for Ingress object v1 and drop support for v1beta1
         - Update to go 1.17
         - Fix some bugs
@@ -24546,4 +24572,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-09-21T22:39:06.117574269Z"
+generated: "2021-09-22T12:23:10.02548402Z"
