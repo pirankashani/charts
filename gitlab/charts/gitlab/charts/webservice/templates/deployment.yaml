@@ -32,7 +32,8 @@ spec:
   {{- if $.Values.global.operator.enabled }}
   paused: true
   {{- end }}
-  replicas: {{ .hpa.minReplicas }}
+  # Don't provide replicas when HPA are present
+  # replicas: {{ .hpa.minReplicas }}
   selector:
     matchLabels:
       {{- include "gitlab.selectorLabels" $ | nindent 6 }}
@@ -213,12 +214,18 @@ spec:
             - name: SHUTDOWN_BLACKOUT_SECONDS
               value: "{{ .shutdown.blackoutSeconds }}"
             {{- include "gitlab.tracing.env" $ | nindent 12 }}
+            {{- if $.Values.global.tracing.urlTemplate }}
             - name: GITLAB_TRACING_URL
               value: {{ $.Values.global.tracing.urlTemplate | quote }}
+            {{- end }}
             - name: WORKHORSE_ARCHIVE_CACHE_DISABLED
               value: "true"
             {{- include "webservice.extraEnv" (dict "global" $.Values.global "local" .) | nindent 12 }}
           volumeMounts:
+            {{- if .sshHostKeys.mount }}
+            - name: {{ .sshHostKeys.mountName }}
+              mountPath: /etc/ssh
+            {{- end }}
             {{- if $.Values.metrics.enabled }}
             - name: webservice-metrics
               mountPath: '/metrics'
@@ -341,6 +348,9 @@ spec:
       terminationGracePeriodSeconds: {{ .deployment.terminationGracePeriodSeconds | int }}
       {{- end }}
       volumes:
+      {{- if .sshHostKeys.mount }}
+      {{- include "webservice.sshHostKeys.volume" (dict "local" . "Release" $.Release "Values" $.Values) | nindent 6 }}
+      {{- end }}
       {{- include "gitlab.extraVolumes" $ | nindent 6 }}
       {{- include "gitlab.psql.ssl.volume" $ | nindent 6 }}
       {{- include "gitlab.geo.psql.ssl.volume" $ | nindent 6 }}
