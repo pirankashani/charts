@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: 2.12.1
+appVersion: 2.12.2
 dependencies:
 - condition: openebs-ndm.enabled
   name: openebs-ndm
@@ -50,4 +50,4 @@ maintainers:
 name: openebs
 sources:
 - https://github.com/openebs/openebs
-version: 2.12.8
+version: 2.12.9
