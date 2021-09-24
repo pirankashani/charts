@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 release:
-  version: "2.12.2"
+  version: "3.0.0"
 
 
 # If false, openebs localpv sub-chart will not be installed
@@ -25,12 +25,17 @@ jivaOperator:
     image:
       registry:
       repository: openebs/jiva
-      tag: 2.12.2
+      tag: 3.0.0
   replica:
     image:
       registry:
       repository: openebs/jiva
-      tag: 2.12.2
+      tag: 3.0.0
+  exporter:
+    image:
+      registry:
+      repository: openebs/m-exporter
+      tag: 3.0.0
   image:
     # Make sure that registry name end with a '/'.
     # For example : quay.io/ is a correct value here and quay.io is incorrect
@@ -38,7 +43,7 @@ jivaOperator:
     repository: openebs/jiva-operator
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: 2.12.2
+    tag: 3.0.0
   annotations: {}
   resyncInterval: "30"
   podAnnotations: {}
@@ -53,6 +58,7 @@ csiController:
   priorityClass:
     create: true
     name: jiva-csi-controller-critical
+    value: 900000000
   componentName: "openebs-jiva-csi-controller"
   attacher:
     name: "csi-attacher"
@@ -111,13 +117,14 @@ jivaCSIPlugin:
     repository: openebs/jiva-csi
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: 2.12.2
+    tag: 3.0.0
   remount: "true"
 
 csiNode:
   priorityClass:
     create: true
     name: jiva-csi-node-critical
+    value: 900001000
   componentName: "openebs-jiva-csi-node"
   driverRegistrar:
     name: "csi-node-driver-registrar"

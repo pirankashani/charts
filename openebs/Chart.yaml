@@ -1,22 +1,22 @@
 apiVersion: v2
-appVersion: 2.12.2
+appVersion: 3.0.0
 dependencies:
 - condition: openebs-ndm.enabled
   name: openebs-ndm
   repository: https://openebs.github.io/node-disk-manager
-  version: 1.6.1
+  version: 1.7.1
 - condition: localpv-provisioner.enabled
   name: localpv-provisioner
   repository: https://openebs.github.io/dynamic-localpv-provisioner
-  version: 2.12.1
+  version: 3.0.1
 - condition: cstor.enabled
   name: cstor
   repository: https://openebs.github.io/cstor-operators
-  version: 2.12.1
+  version: 3.0.1
 - condition: jiva.enabled
   name: jiva
   repository: https://openebs.github.io/jiva-operator
-  version: 2.12.2
+  version: 3.0.1
 - condition: zfs-localpv.enabled
   name: zfs-localpv
   repository: https://openebs.github.io/zfs-localpv
@@ -24,7 +24,7 @@ dependencies:
 - condition: lvm-localpv.enabled
   name: lvm-localpv
   repository: https://openebs.github.io/lvm-localpv
-  version: 0.8.4
+  version: 0.8.5
 - condition: nfs-provisioner.enabled
   name: nfs-provisioner
   repository: https://openebs.github.io/dynamic-nfs-provisioner
@@ -50,4 +50,4 @@ maintainers:
 name: openebs
 sources:
 - https://github.com/openebs/openebs
-version: 2.12.9
+version: 3.0.0
