@@ -15221,6 +15221,42 @@ entries:
       category: Infrastructure
     apiVersion: v2
     appVersion: 0.10.2
+    created: "2021-09-25T10:39:57.513149574Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    description: The Metal LB for Kubernetes
+    digest: 1a02e9550c2eb26c7bb8d3cbd9b23d7883aeb4b66b53ec36a8bbd485dea2880c
+    home: https://github.com/bitnami/charts/tree/master/bitnami/metallb
+    icon: https://bitnami.com/assets/stacks/metallb-speaker/img/metallb-speaker-stack-220x234.png
+    keywords:
+    - load-balancer
+    - balancer
+    - lb
+    - bgp
+    - arp
+    - vrrp
+    - vip
+    maintainers:
+    - email: cellebyte@gmail.com
+      name: cellebyte
+    - email: containers@bitnami.com
+      name: Bitnami
+    name: metallb
+    sources:
+    - https://github.com/metallb/metallb
+    - https://github.com/bitnami/bitnami-docker-metallb
+    - https://metallb.universe.tf
+    urls:
+    - metallb-2.5.5.tgz
+    version: 2.5.5
+  - annotations:
+      category: Infrastructure
+    apiVersion: v2
+    appVersion: 0.10.2
     created: "2021-08-26T10:40:23.685300704Z"
     dependencies:
     - name: common
@@ -24880,4 +24916,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-09-25T00:45:16.802626395Z"
+generated: "2021-09-25T10:39:57.509286671Z"
