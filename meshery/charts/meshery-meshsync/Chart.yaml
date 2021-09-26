@@ -1,0 +1,13 @@
+apiVersion: v2
+appVersion: stable-latest
+description: Meshery MeshSync CR Chart
+maintainers:
+- email: community@layer5.io
+  name: Layer5 Authors
+- email: panyuenlau@gmail.com
+  name: darrenlau
+- email: lee.calcote@layer5.io
+  name: leecalcote
+name: meshery-meshsync
+type: application
+version: 0.1.0

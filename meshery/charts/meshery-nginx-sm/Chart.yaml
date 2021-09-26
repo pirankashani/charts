@@ -1,0 +1,13 @@
+apiVersion: v2
+appVersion: stable-latest
+description: Meshery Adapter for NGINX Service Mesh.
+maintainers:
+- email: community@layer5.io
+  name: Layer5 Authors
+- email: panyuenlau@gmail.com
+  name: darrenlau
+- email: lee.calcote@layer5.io
+  name: leecalcote
+name: meshery-nginx-sm
+type: application
+version: 2.1.2

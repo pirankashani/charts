@@ -33,10 +33,22 @@ dependencies:
   name: meshery-cpx
   repository: ""
   version: 2.1.2
+- condition: meshery-nginx-sm.enabled
+  name: meshery-nginx-sm
+  repository: ""
+  version: 2.1.2
 - condition: meshery-operator.enabled
   name: meshery-operator
   repository: ""
   version: 2.1.2
+- condition: meshery-broker.enabled
+  name: meshery-broker
+  repository: ""
+  version: 0.1.0
+- condition: meshery-meshsync.enabled
+  name: meshery-meshsync
+  repository: ""
+  version: 0.1.0
 description: Meshery chart for deploying Meshery and Meshery's adapters.
 icon: https://meshery.io/images/logos/meshery-logo.png
 keywords:
@@ -49,7 +61,10 @@ keywords:
 - meshery-nsm
 - meshery-traefik-mesh
 - meshery-cpx
+- meshery-nginx-sm
 - meshery-operator
+- meshery-broker
+- meshery-meshsync
 maintainers:
 - email: community@layer5.io
   name: Layer5 Authors
@@ -57,6 +72,8 @@ maintainers:
   name: aisuko
 - email: lee.calcote@layer5.io
   name: leecalcote
+- email: panyuenlau@gmail.com
+  name: darrenlau
 name: meshery
 type: application
-version: v0.5.58
+version: v0.5.59

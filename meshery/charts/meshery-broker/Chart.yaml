@@ -1,0 +1,13 @@
+apiVersion: v2
+appVersion: stable-latest
+description: Meshery Broker CR Chart
+maintainers:
+- email: community@layer5.io
+  name: Layer5 Authors
+- email: panyuenlau@gmail.com
+  name: darrenlau
+- email: lee.calcote@layer5.io
+  name: leecalcote
+name: meshery-broker
+type: application
+version: 0.1.0

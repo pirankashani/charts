@@ -23,8 +23,17 @@ dependencies:
 - name: meshery-cpx
   repository: ""
   version: 2.1.2
+- name: meshery-nginx-sm
+  repository: ""
+  version: 2.1.2
 - name: meshery-operator
   repository: ""
   version: 2.1.2
-digest: sha256:895dc2e0d81f1f24f6d0a73d5d9d6906cfb46d14f6c57df57c4d8381d44321df
-generated: "2021-06-02T12:54:54.354866+05:30"
+- name: meshery-broker
+  repository: ""
+  version: 0.1.0
+- name: meshery-meshsync
+  repository: ""
+  version: 0.1.0
+digest: sha256:9c2a92c0ec537935a118ba3fa2d240c335cf2868f1c07843daaebae592fbbea6
+generated: "2021-09-26T05:28:07.712524606Z"
