@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Fixed]: Dex deployment now also supports hostAliases"
+    - "[Added]: Support for server.additionalApplications[].info"
 apiVersion: v2
 appVersion: 2.1.2
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.21.1
+version: 3.22.0
