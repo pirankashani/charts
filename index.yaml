@@ -10187,6 +10187,33 @@ entries:
   ingress-nginx:
   - annotations:
       artifacthub.io/changes: |
+        - Upgrade lua-resty-balancer to v0.0.4 to stop coredumps
+        - Add canary backend name in metrics
+        - Add build info in metrics
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 1.0.2
+    created: "2021-09-27T03:40:14.056647155Z"
+    description: Ingress controller for Kubernetes using NGINX as a reverse proxy
+      and load balancer
+    digest: 5dbfc2d0b281915717b451d1f8352de81bba3cc0af51fc5d5d620e165b590fa3
+    home: https://github.com/kubernetes/ingress-nginx
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
+    keywords:
+    - ingress
+    - nginx
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - name: ChiefAlexander
+    name: ingress-nginx
+    sources:
+    - https://github.com/kubernetes/ingress-nginx
+    type: application
+    urls:
+    - ingress-nginx-4.0.3.tgz
+    version: 4.0.3
+  - annotations:
+      artifacthub.io/changes: |
         - Downgrade NGINX to v1.19.9
         - Update Base Image to alpine 3.14.2
       artifacthub.io/prerelease: "false"
@@ -25162,4 +25189,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-09-27T00:46:47.336946283Z"
+generated: "2021-09-27T03:40:14.052710204Z"
