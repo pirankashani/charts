@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Added]: Add server.serviceNodePort parameter"
+    - "[Added]: Also test with default values"
 apiVersion: v2
 appVersion: v3.1.8
 description: A Helm chart for Argo Workflows
@@ -15,4 +15,4 @@ name: argo-workflows
 sources:
 - https://github.com/argoproj/argo-workflows
 type: application
-version: 0.7.0
+version: 0.7.1
