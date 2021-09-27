@@ -3280,6 +3280,28 @@ entries:
   argo-workflows:
   - annotations:
       artifacthub.io/changes: |
+        - "[Added]: Also test with default values"
+    apiVersion: v2
+    appVersion: v3.1.8
+    created: "2021-09-27T15:39:41.099444807Z"
+    description: A Helm chart for Argo Workflows
+    digest: 56ac02c27d9c255757d6387a2877d2a121c0aa378e6af572135f20a94ebec21d
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo-workflows/master/docs/assets/argo.png
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: benjaminws
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - argo-workflows-0.7.1.tgz
+    version: 0.7.1
+  - annotations:
+      artifacthub.io/changes: |
         - "[Added]: Add server.serviceNodePort parameter"
     apiVersion: v2
     appVersion: v3.1.8
@@ -25336,4 +25358,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-09-27T15:15:11.995867912Z"
+generated: "2021-09-27T15:39:41.096747788Z"
