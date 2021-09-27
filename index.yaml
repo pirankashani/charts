@@ -3798,6 +3798,27 @@ entries:
   argocd-applicationset:
   - annotations:
       artifacthub.io/changes: |
+        - "[Added]: Add extraArgs to define additional CLI parameters"
+    apiVersion: v2
+    appVersion: v0.2.0
+    created: "2021-09-27T12:23:15.202890873Z"
+    description: A Helm chart for installing ArgoCD ApplicationSet
+    digest: 6c2f39365a8144e6848a09688d7c7ab6987f1d2386c097c516af0e66be428afc
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argocd-applicationset.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - appset
+    - gitops
+    maintainers:
+    - name: maruina
+    name: argocd-applicationset
+    type: application
+    urls:
+    - argocd-applicationset-1.5.0.tgz
+    version: 1.5.0
+  - annotations:
+      artifacthub.io/changes: |
         - "[Added]: Configuration for Pod labels"
     apiVersion: v2
     appVersion: v0.2.0
@@ -9695,6 +9716,33 @@ entries:
     - harbor-1.4.2.tgz
     version: 1.4.2
   hazelcast:
+  - apiVersion: v1
+    appVersion: "5.0"
+    created: "2021-09-27T12:23:15.2046835Z"
+    description: Hazelcast IMDG is the most widely used in-memory data grid with hundreds
+      of thousands of installed clusters around the world. It offers caching solutions
+      ensuring that data is in the right place when it’s needed for optimal performance.
+    digest: c476acf408d7d708a4cd51de0b61240f35628dcfc64b4d02908b03516bbcfac0
+    home: http://hazelcast.org/
+    icon: http://hazelcast.com/images/logos/Hazelcast-IMDG-Logo-Orange_Dark_Icon_200px.png
+    keywords:
+    - hazelcast
+    - keyvalue
+    - in-memory
+    - database
+    - caching
+    kubeVersion: '>=1.14.0-0'
+    maintainers:
+    - email: rafal@hazelcast.com
+      name: leszko
+    - email: hasan@hazelcast.com
+      name: hasancelik
+    name: hazelcast
+    sources:
+    - https://github.com/hazelcast/hazelcast
+    urls:
+    - hazelcast-5.0.0.tgz
+    version: 5.0.0
   - apiVersion: v1
     appVersion: 4.2.1
     created: "2021-09-09T14:36:57.989207366Z"
@@ -25240,4 +25288,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-09-27T10:15:45.538803241Z"
+generated: "2021-09-27T12:23:15.199486032Z"
