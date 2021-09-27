@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Added]: Configuration for Pod labels"
+    - "[Added]: Add extraArgs to define additional CLI parameters"
 apiVersion: v2
 appVersion: v0.2.0
 description: A Helm chart for installing ArgoCD ApplicationSet
@@ -14,4 +14,4 @@ maintainers:
 - name: maruina
 name: argocd-applicationset
 type: application
-version: 1.4.0
+version: 1.5.0

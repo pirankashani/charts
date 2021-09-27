@@ -5,7 +5,7 @@ image:
   # repository is the Hazelcast image name
   repository: "hazelcast/hazelcast"
   # tag is the Hazelcast image tag
-  tag: "4.2.1"
+  tag: "5.0"
   # pullPolicy is the Docker image pull policy
   # It's recommended to change this to 'Always' if the image tag is 'latest'
   # ref: http://kubernetes.io/docs/user-guide/images/#updating-images
@@ -37,17 +37,14 @@ hazelcast:
     hazelcast:
       network:
         join:
-          multicast:
-            enabled: false
           kubernetes:
             enabled: true
             service-name: ${serviceName}
             namespace: ${namespace}
         rest-api:
           enabled: true
-          endpoint-groups:
-            HEALTH_CHECK:
-              enabled: true
+      jet:
+        enabled: ${hz.jet.enabled}
   # configurationFiles are any additional Hazelcast configuration files
   # configurationFiles:
 
@@ -232,6 +229,11 @@ env: []
   #       key: db-username
   #       name: servicename-db-creds
 
+# Hazelcast Jet Engine
+jet:
+  # enabled is a flag to enabled Jet engine
+  enabled: true
+
 # Hazelcast Management Center application properties
 mancenter:
   # enabled is a flag to enable Management Center application
@@ -243,7 +245,7 @@ mancenter:
     # repository is the Hazelcast Management Center image name
     repository: "hazelcast/management-center"
     # tag is the Hazelcast Management Center image tag
-    tag: "4.2021.06"
+    tag: "5.0"
     # pullPolicy is the Docker image pull policy
     # It's recommended to change this to 'Always' if the image tag is 'latest'
     # ref: http://kubernetes.io/docs/user-guide/images/#updating-images
@@ -254,6 +256,11 @@ mancenter:
     # ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
     # pullSecrets:
     # - myRegistryKeySecretName
+
+  # Dev mode is for the Hazelcast clusters running on your local for development
+  # or evaluation purposes and it provides quick access to the Management Center without requiring any security credentials
+  devMode:
+    enabled: false
 
   # ingress configuration for mancenter
   ingress:
