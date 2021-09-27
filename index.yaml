@@ -3798,6 +3798,27 @@ entries:
   argocd-applicationset:
   - annotations:
       artifacthub.io/changes: |
+        - "[Removed]: Duplicated default values during chart testing"
+    apiVersion: v2
+    appVersion: v0.2.0
+    created: "2021-09-27T14:13:53.468553583Z"
+    description: A Helm chart for installing ArgoCD ApplicationSet
+    digest: 5dafe674f151278b6312cc540978187320837a6de05bdf7a89b38bf3c05d89db
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argocd-applicationset.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - appset
+    - gitops
+    maintainers:
+    - name: maruina
+    name: argocd-applicationset
+    type: application
+    urls:
+    - argocd-applicationset-1.5.1.tgz
+    version: 1.5.1
+  - annotations:
+      artifacthub.io/changes: |
         - "[Added]: Add extraArgs to define additional CLI parameters"
     apiVersion: v2
     appVersion: v0.2.0
@@ -25288,4 +25309,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-09-27T12:23:15.199486032Z"
+generated: "2021-09-27T14:13:53.465070257Z"
