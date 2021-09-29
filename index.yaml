@@ -1255,6 +1255,35 @@ entries:
   argo-cd:
   - annotations:
       artifacthub.io/changes: |
+        - "[Fixed]: repoServer.extraContainers unused"
+    apiVersion: v2
+    appVersion: 2.1.2
+    created: "2021-09-29T09:38:55.570509557Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.12.17
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 7a006605db1d4df506b4a4de9fa9ac3b051d0bfce7d5a15b2982adb35975714e
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argoproj.github.io/argo-cd/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: seanson
+    name: argo-cd
+    urls:
+    - argo-cd-3.22.1.tgz
+    version: 3.22.1
+  - annotations:
+      artifacthub.io/changes: |
         - "[Added]: Support for server.additionalApplications[].info"
     apiVersion: v2
     appVersion: 2.1.2
@@ -25385,6 +25414,18 @@ entries:
     version: 1.2.0
   victoria-metrics-operator:
   - apiVersion: v1
+    appVersion: 0.19.1
+    created: "2021-09-29T09:38:55.579648814Z"
+    description: Victoria Metrics Operator
+    digest: 5bf5878269af1b84f0289593e922c7a429e888ee26dbacf598e815a9308448af
+    home: https://github.com/VictoriaMetrics/operator
+    name: victoria-metrics-operator
+    sources:
+    - https://github.com/VictoriaMetrics/operator
+    urls:
+    - victoria-metrics-operator-0.3.1.tgz
+    version: 0.3.1
+  - apiVersion: v1
     appVersion: 0.19.0
     created: "2021-09-25T17:18:56.181023994Z"
     description: Victoria Metrics Operator
@@ -25678,4 +25719,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-09-29T03:40:17.263758343Z"
+generated: "2021-09-29T09:38:55.56058916Z"
