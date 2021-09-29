@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Added]: Support for server.additionalApplications[].info"
+    - "[Fixed]: repoServer.extraContainers unused"
 apiVersion: v2
 appVersion: 2.1.2
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.22.0
+version: 3.22.1
