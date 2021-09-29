@@ -4108,6 +4108,28 @@ entries:
   argocd-notifications:
   - annotations:
       artifacthub.io/changes: |
+        - "[Added]: Support annotations on secret objects"
+    apiVersion: v2
+    appVersion: 1.1.1
+    created: "2021-09-29T15:42:15.13580373Z"
+    description: A Helm chart for ArgoCD notifications, an add-on to ArgoCD.
+    digest: d89545ba6302b29da3065e01aed622834fe683ddf0ebdb3a56c074dab291e1a4
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argocd-notifications.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - argocd-notifications
+    maintainers:
+    - name: alexmt
+    - name: andyfeller
+    name: argocd-notifications
+    type: application
+    urls:
+    - argocd-notifications-1.5.1.tgz
+    version: 1.5.1
+  - annotations:
+      artifacthub.io/changes: |
         - "[Added]: Configuration for Pod labels"
     apiVersion: v2
     appVersion: 1.1.1
@@ -25755,4 +25777,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-09-29T12:57:06.972093985Z"
+generated: "2021-09-29T15:42:15.134452779Z"
