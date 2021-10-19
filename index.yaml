@@ -3423,6 +3423,28 @@ entries:
   argo-workflows:
   - annotations:
       artifacthub.io/changes: |
+        - "[Added]: Workflow Controller ConfigMap Executor ImagePullPolicy"
+    apiVersion: v2
+    appVersion: v3.2.0
+    created: "2021-10-19T15:42:26.693185592Z"
+    description: A Helm chart for Argo Workflows
+    digest: bb432e05f36646c813e111c500c369c3bb5e75da55cb0a4a3a5dd5dc8a570361
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo-workflows/master/docs/assets/argo.png
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: benjaminws
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - argo-workflows-0.8.0.tgz
+    version: 0.8.0
+  - annotations:
+      artifacthub.io/changes: |
         - "[Changed]: Bump appVersion to 3.2.0. Synced CRDs."
         - "[Added]: WorkflowTaskSet CRD"
     apiVersion: v2
@@ -26793,4 +26815,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-10-19T12:37:41.897847279Z"
+generated: "2021-10-19T15:42:26.690205484Z"
