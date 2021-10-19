@@ -141,7 +141,7 @@ NAME: my-release
 |-----|------|---------|
 | global.image.imagePullPolicy | If defined, a imagePullPolicy applied to all ArgoCD deployments. | `"IfNotPresent"` |
 | global.image.repository | If defined, a repository applied to all ArgoCD deployments. | `"argoproj/argocd"` |
-| global.image.tag | If defined, a tag applied to all ArgoCD deployments. | `"v2.1.2"` |
+| global.image.tag | If defined, a tag applied to all ArgoCD deployments. | `"v2.1.3"` |
 | global.podAnnotations | Annotations for the all deployed pods |
 | global.podLabels | Labels for the all deployed pods |
 | global.securityContext | Toggle and define securityContext | See [values.yaml](values.yaml) |
@@ -445,6 +445,8 @@ NAME: my-release
 | dex.tolerations | [Tolerations for use with node taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/) | `[]` |
 | dex.volumeMounts | Dex volume mounts | `"/shared"` |
 | dex.volumes | Dex volumes | `{}` |
+| dex.extraVolumeMounts | Extra dex volume mounts | `[]` |
+| dex.extraVolumes | Extra dex volumes | `[]` |
 
 ## Redis
 
@@ -475,6 +477,8 @@ through `xxx.extraArgs`
 | redis.resources | Resource limits and requests for redis | `{}` |
 | redis.securityContext | Redis Pod Security Context | See [values.yaml](values.yaml) |
 | redis.servicePort | Redis service port | `6379` |
+| redis.service.annotations | Redis service annotations | `{}` |
+| redis.service.labels | Additional redis service labels | `{}` |
 | redis.tolerations | [Tolerations for use with node taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/) | `[]` |
 | redis.metrics.enabled | Deploy metrics service and redis-exporter sidecar | `false` |
 | redis.metrics.image.repository | redis-exporter image repository | `quay.io/bitnami/redis-exporter` |
