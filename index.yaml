@@ -1311,6 +1311,35 @@ entries:
   argo-cd:
   - annotations:
       artifacthub.io/changes: |
+        - "[Added]: Ability to add finalizers to AppProject"
+    apiVersion: v2
+    appVersion: 2.1.3
+    created: "2021-10-19T17:25:19.388176407Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.12.17
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: b715a2a31a4fd59eb038880c57eee25a459b7f3a98da51fb099c620a777d2118
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: seanson
+    name: argo-cd
+    urls:
+    - argo-cd-3.26.0.tgz
+    version: 3.26.0
+  - annotations:
+      artifacthub.io/changes: |
         - "[Added]: Chart testing for HA setups"
     apiVersion: v2
     appVersion: 2.1.3
@@ -26901,4 +26930,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-10-19T16:58:58.185876182Z"
+generated: "2021-10-19T17:25:19.377869588Z"
