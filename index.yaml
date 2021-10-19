@@ -5493,6 +5493,41 @@ entries:
   - annotations:
       artifacthub.io/images: |
         - name: consul
+          image: hashicorp/consul:1.10.3
+        - name: consul-k8s-control-plane
+          image: hashicorp/consul-k8s-control-plane:0.35.0
+        - name: envoy
+          image: envoyproxy/envoy-alpine:v1.18.4
+      artifacthub.io/license: MPL-2.0
+      artifacthub.io/links: |
+        - name: Documentation
+          url: https://www.consul.io/docs/k8s
+        - name: hashicorp/consul
+          url: https://github.com/hashicorp/consul
+        - name: hashicorp/consul-k8s
+          url: https://github.com/hashicorp/consul-k8s
+      artifacthub.io/prerelease: "false"
+      artifacthub.io/signKey: |
+        fingerprint: C874011F0AB405110D02105534365D9472D7468F
+        url: https://keybase.io/hashicorp/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.10.3
+    created: "2021-10-19T19:36:43.259358968Z"
+    description: Official HashiCorp Consul Chart
+    digest: f2794baee856c0c7ae138895327c7d42166e3a49fa48d81f6ef9773054cefc8b
+    home: https://www.consul.io
+    icon: https://raw.githubusercontent.com/hashicorp/consul-k8s/main/assets/icon.png
+    kubeVersion: '>=1.17.0-0'
+    name: consul
+    sources:
+    - https://github.com/hashicorp/consul
+    - https://github.com/hashicorp/consul-k8s
+    urls:
+    - consul-0.35.0.tgz
+    version: 0.35.0
+  - annotations:
+      artifacthub.io/images: |
+        - name: consul
           image: hashicorp/consul:1.10.2
         - name: consul-k8s-control-plane
           image: hashicorp/consul-k8s-control-plane:0.34.1
@@ -26930,4 +26965,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-10-19T17:25:19.377869588Z"
+generated: "2021-10-19T19:36:43.252112923Z"
