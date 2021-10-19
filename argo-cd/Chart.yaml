@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Changed]: Reorganize some files in repo, move applications.yaml and projects.yaml into argocd-configs."
+    - "[Added]: Chart testing for HA setups"
 apiVersion: v2
 appVersion: 2.1.3
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.25.2
+version: 3.25.3
