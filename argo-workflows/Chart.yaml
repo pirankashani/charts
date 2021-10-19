@@ -1,7 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Changed]: Bump appVersion to 3.2.0. Synced CRDs."
-    - "[Added]: WorkflowTaskSet CRD"
+    - "[Added]: Workflow Controller ConfigMap Executor ImagePullPolicy"
 apiVersion: v2
 appVersion: v3.2.0
 description: A Helm chart for Argo Workflows
@@ -16,4 +15,4 @@ name: argo-workflows
 sources:
 - https://github.com/argoproj/argo-workflows
 type: application
-version: 0.7.3
+version: 0.8.0
