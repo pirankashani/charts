@@ -16,4 +16,4 @@ maintainers:
 name: prometheus-statsd-exporter
 sources:
 - https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-statsd-exporter
-version: 0.4.0
+version: 0.4.1

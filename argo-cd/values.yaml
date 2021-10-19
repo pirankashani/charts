@@ -8,7 +8,7 @@ kubeVersionOverride: ""
 global:
   image:
     repository: quay.io/argoproj/argocd
-    tag: v2.1.2
+    tag: v2.1.3
     imagePullPolicy: IfNotPresent
   ## Annotations applied to all pods
   podAnnotations: {}
@@ -314,6 +314,12 @@ dex:
     - name: static-files
       emptyDir: {}
 
+  ## Extra volumes to the controller pod.
+  extraVolumes: []
+
+  ## Extra volumeMounts to the controller pod.
+  extraVolumeMounts: []
+
   ## Dex deployment container ports
   containerPortHttp: 5556
   servicePortHttp: 5556
@@ -450,6 +456,10 @@ redis:
 
   ## Additional containers to be added to the redis pod.
   extraContainers: []
+
+  service:
+    annotations: {}
+    labels: {}
 
   metrics:
     enabled: false

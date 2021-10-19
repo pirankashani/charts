@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: stable-latest
+appVersion: v0.6.0
 dependencies:
 - condition: meshery-istio.enabled
   name: meshery-istio
@@ -37,6 +37,10 @@ dependencies:
   name: meshery-nginx-sm
   repository: ""
   version: 2.1.2
+- condition: meshery-app-mesh.enabled
+  name: meshery-app-mesh
+  repository: ""
+  version: 2.1.2
 - condition: meshery-operator.enabled
   name: meshery-operator
   repository: ""
@@ -62,6 +66,7 @@ keywords:
 - meshery-traefik-mesh
 - meshery-cpx
 - meshery-nginx-sm
+- meshery-app-mesh
 - meshery-operator
 - meshery-broker
 - meshery-meshsync
@@ -76,4 +81,4 @@ maintainers:
   name: darrenlau
 name: meshery
 type: application
-version: v0.5.62
+version: v0.5.67

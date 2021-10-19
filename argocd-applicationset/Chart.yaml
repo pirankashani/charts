@@ -1,6 +1,7 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Removed]: Duplicated default values during chart testing"
+    - "[Added]: Install the chart into a kind cluster during the chart testing process"
+    - "[Changed]: Parameter 'args.namespace' now defaults to the namespace where you install the chart to"
 apiVersion: v2
 appVersion: v0.2.0
 description: A Helm chart for installing ArgoCD ApplicationSet
@@ -14,4 +15,4 @@ maintainers:
 - name: maruina
 name: argocd-applicationset
 type: application
-version: 1.5.1
+version: 1.6.0

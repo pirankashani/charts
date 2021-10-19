@@ -20,7 +20,7 @@
 image:
   ## Repository for container
   repository: kubernetesui/dashboard
-  tag: v2.3.1
+  tag: v2.4.0
   pullPolicy: IfNotPresent
   pullSecrets: []
 
@@ -221,7 +221,7 @@ metricsScraper:
   enabled: false
   image:
     repository: kubernetesui/metrics-scraper
-    tag: v1.0.6
+    tag: v1.0.7
   resources: {}
   ## SecurityContext for the kubernetes dashboard metrics scraper container
   containerSecurityContext:
@@ -234,7 +234,7 @@ metricsScraper:
 #    - --logtostderr=true
 
 ## Optional Metrics Server sub-chart
-## Enable this is you don't already have metrics-server enabled on your cluster and
+## Enable this if you don't already have metrics-server enabled on your cluster and
 ## want to use it with dashboard metrics-scraper
 ## refs:
 ##  - https://hub.helm.sh/charts/stable/metrics-server
