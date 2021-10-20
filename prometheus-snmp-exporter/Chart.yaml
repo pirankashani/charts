@@ -12,4 +12,4 @@ maintainers:
 name: prometheus-snmp-exporter
 sources:
 - https://github.com/prometheus/snmp_exporter
-version: 0.1.4
+version: 0.1.5
