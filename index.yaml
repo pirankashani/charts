@@ -21516,6 +21516,25 @@ entries:
   prometheus-snmp-exporter:
   - apiVersion: v1
     appVersion: 0.19.0
+    created: "2021-10-20T09:14:26.135070896Z"
+    description: Prometheus SNMP Exporter
+    digest: 0a9fccd10f091a98579bc97be3cd8f10a651f1224cde6f25844f32edac1a7532
+    home: https://github.com/prometheus/snmp_exporter
+    keywords:
+    - prometheus
+    - snmp
+    - monitoring
+    maintainers:
+    - email: maxime@root314.com
+      name: miouge1
+    name: prometheus-snmp-exporter
+    sources:
+    - https://github.com/prometheus/snmp_exporter
+    urls:
+    - prometheus-snmp-exporter-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v1
+    appVersion: 0.19.0
     created: "2021-08-16T06:48:15.35837513Z"
     description: Prometheus SNMP Exporter
     digest: 5cd85fc35ad702e7d8d428af17a3740155b690f6c38229f2ef111afed5a42542
@@ -27047,4 +27066,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-10-20T06:46:00.481686006Z"
+generated: "2021-10-20T09:14:26.134178679Z"
