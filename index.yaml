@@ -1311,6 +1311,35 @@ entries:
   argo-cd:
   - annotations:
       artifacthub.io/changes: |
+        - "[Changed]: Use helm-docs to generate README.md"
+    apiVersion: v2
+    appVersion: 2.1.4
+    created: "2021-10-21T12:23:17.526200539Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.12.17
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: d8752a5ef2f71412c074bcb9b218411a6963d42681c6610909f08b39f459c2ec
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: seanson
+    name: argo-cd
+    urls:
+    - argo-cd-3.26.2.tgz
+    version: 3.26.2
+  - annotations:
+      artifacthub.io/changes: |
         - "[Changed]: Upgrade argocd to v2.1.4"
     apiVersion: v2
     appVersion: 2.1.4
@@ -27141,4 +27170,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-10-21T08:17:00.044214742Z"
+generated: "2021-10-21T12:23:17.512583502Z"
