@@ -8795,6 +8795,32 @@ entries:
   grafana:
   - apiVersion: v2
     appVersion: 8.2.1
+    created: "2021-10-23T00:51:05.016711039Z"
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 936e7c960803df1215be9c7b4506ca4b8c5c135d90975a34c5d643f49f37226b
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    type: application
+    urls:
+    - grafana-6.17.3.tgz
+    version: 6.17.3
+  - apiVersion: v2
+    appVersion: 8.2.1
     created: "2021-10-19T12:37:41.991878985Z"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: 9c7dd136ef187f306949aa469c2ccebea65f5daeea1c7cd6c1be4fee13856d7c
@@ -18319,6 +18345,27 @@ entries:
     version: 1.0.0
   minio-operator:
   - apiVersion: v2
+    appVersion: v4.3.2
+    created: "2021-10-23T00:51:05.018619653Z"
+    description: A Helm chart for MinIO Operator
+    digest: e288f013a54a6006a9f12691075e07187e46ea021d5300f8150b33dac9b4485a
+    home: https://min.io
+    icon: https://min.io/resources/img/logo/MINIO_wordmark.png
+    keywords:
+    - storage
+    - object-storage
+    - S3
+    maintainers:
+    - email: dev@minio.io
+      name: MinIO, Inc
+    name: minio-operator
+    sources:
+    - https://github.com/minio/operator
+    type: application
+    urls:
+    - minio-operator-4.3.2.tgz
+    version: 4.3.2
+  - apiVersion: v2
     appVersion: v4.3.1
     created: "2021-10-21T07:36:41.267862704Z"
     description: A Helm chart for MinIO Operator
@@ -27447,4 +27494,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-10-22T22:39:37.575560405Z"
+generated: "2021-10-23T00:51:05.013480814Z"
