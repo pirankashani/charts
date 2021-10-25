@@ -5034,6 +5034,22 @@ entries:
   cockroachdb:
   - apiVersion: v1
     appVersion: 21.1.11
+    created: "2021-10-25T16:21:55.886376432Z"
+    description: CockroachDB is a scalable, survivable, strongly-consistent SQL database.
+    digest: b5ad6400b867dcba2d7781818f08bf69c4a8cb6e794e727979bc1fe8ff8ac097
+    home: https://www.cockroachlabs.com
+    icon: https://raw.githubusercontent.com/cockroachdb/cockroach/master/docs/media/cockroach_db.png
+    maintainers:
+    - email: helm-charts@cockroachlabs.com
+      name: cockroachlabs
+    name: cockroachdb
+    sources:
+    - https://github.com/cockroachdb/cockroach
+    urls:
+    - cockroachdb-6.2.6.tgz
+    version: 6.2.6
+  - apiVersion: v1
+    appVersion: 21.1.11
     created: "2021-10-19T12:37:41.918419812Z"
     description: CockroachDB is a scalable, survivable, strongly-consistent SQL database.
     digest: be958414b0eb4a50f0a50704a48cf8051854896cecc99aa4a6cf8dc1a34878da
@@ -8672,6 +8688,26 @@ entries:
     - gitlab-5.0.5.tgz
     version: 5.0.5
   gitlab-runner:
+  - apiVersion: v1
+    appVersion: 14.4.0
+    created: "2021-10-25T16:21:55.887740977Z"
+    description: GitLab Runner
+    digest: 55ed20f5025ddacdaa169c828aa38bcaf0ea9a01fd85b523f5530e349856e09e
+    icon: https://gitlab.com/uploads/-/system/project/avatar/250833/runner_logo.png
+    keywords:
+    - git
+    - ci
+    - deploy
+    maintainers:
+    - email: support@gitlab.com
+      name: GitLab Inc.
+    name: gitlab-runner
+    sources:
+    - https://hub.docker.com/r/gitlab/gitlab-runner/
+    - https://docs.gitlab.com/runner/
+    urls:
+    - gitlab-runner-0.34.0.tgz
+    version: 0.34.0
   - apiVersion: v1
     appVersion: 14.3.2
     created: "2021-10-19T12:37:41.989092167Z"
@@ -27528,4 +27564,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-10-25T02:00:33.951872357Z"
+generated: "2021-10-25T16:21:55.883530038Z"
