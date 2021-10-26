@@ -1,6 +1,14 @@
 ## Unreleased
 
+## 0.17.1 (October 25th, 2021)
+
+Improvements:
+  * Add option for Ingress PathType [GH-634](https://github.com/hashicorp/vault-helm/pull/634)
+
 ## 0.17.0 (October 21st, 2021)
+
+KNOWN ISSUES:
+* The chart will fail to deploy on Kubernetes 1.19+ with `server.ingress.enabled=true` because no `pathType` is set
 
 CHANGES:
 * Vault image default 1.8.4
