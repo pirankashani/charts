@@ -17068,6 +17068,42 @@ entries:
       category: Infrastructure
     apiVersion: v2
     appVersion: 0.10.3
+    created: "2021-10-27T08:42:29.840127578Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    description: The Metal LB for Kubernetes
+    digest: af71e593dda132aa7aa93f5fbea7ba5d478cc37310fcfa9ee718701042c004ed
+    home: https://github.com/bitnami/charts/tree/master/bitnami/metallb
+    icon: https://bitnami.com/assets/stacks/metallb-speaker/img/metallb-speaker-stack-220x234.png
+    keywords:
+    - load-balancer
+    - balancer
+    - lb
+    - bgp
+    - arp
+    - vrrp
+    - vip
+    maintainers:
+    - email: cellebyte@gmail.com
+      name: cellebyte
+    - email: containers@bitnami.com
+      name: Bitnami
+    name: metallb
+    sources:
+    - https://github.com/metallb/metallb
+    - https://github.com/bitnami/bitnami-docker-metallb
+    - https://metallb.universe.tf
+    urls:
+    - metallb-2.5.8.tgz
+    version: 2.5.8
+  - annotations:
+      category: Infrastructure
+    apiVersion: v2
+    appVersion: 0.10.3
     created: "2021-10-22T15:42:36.468418247Z"
     dependencies:
     - name: common
@@ -25542,6 +25578,31 @@ entries:
     version: 10.7.9
   reflector:
   - apiVersion: v2
+    appVersion: 6.0.21
+    created: "2021-10-27T08:42:29.840737682Z"
+    description: A Helm chart to deploy Reflector
+    digest: c82927942dbccb7ab600be39853b9343d78e946c3da6a6f7691de0b6795f6eeb
+    home: https://github.com/emberstack/kubernetes-reflector
+    icon: https://raw.githubusercontent.com/emberstack/CDN/master/Projects/ES.FX/es.fx.1.0.0.0.png
+    keywords:
+    - reflector
+    - controller
+    - copy
+    - secrets
+    - configmaps
+    - cert-manager
+    - certificates
+    maintainers:
+    - email: helm-charts@emberstack.com
+      name: winromulus
+    name: reflector
+    sources:
+    - https://github.com/emberstack/kubernetes-reflector
+    type: application
+    urls:
+    - reflector-6.0.21.tgz
+    version: 6.0.21
+  - apiVersion: v2
     appVersion: 6.0.19
     created: "2021-10-23T11:36:18.908201203Z"
     description: A Helm chart to deploy Reflector
@@ -27848,4 +27909,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-10-27T07:14:44.105784887Z"
+generated: "2021-10-27T08:42:29.836711356Z"
