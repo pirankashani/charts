@@ -4,8 +4,12 @@
 #                             #
 ###############################
 nats:
-  image: nats:2.6.1-alpine
+  image: nats:2.6.3-alpine
   pullPolicy: IfNotPresent
+
+  # The servers name prefix, must be used for example when we want a NATS cluster
+  # spanning multiple Kubernetes clusters.
+  serverNamePrefix: ""
 
   # Toggle profiling.
   # This enables nats-server pprof (profiling) port, so you can see goroutines
@@ -242,6 +246,11 @@ cluster:
   enabled: false
   replicas: 3
   noAdvertise: false
+
+  # Explicitly set routes for clustering.
+  # When JetStream is enabled, the serverName must be unique in the cluster.
+  extraRoutes: []
+
   # authorization:
   #   user: foo
   #   password: pwd
@@ -332,7 +341,7 @@ bootconfig:
 #
 natsbox:
   enabled: true
-  image: natsio/nats-box:0.6.0
+  image: natsio/nats-box:0.7.0
   pullPolicy: IfNotPresent
   securityContext: {}
 
