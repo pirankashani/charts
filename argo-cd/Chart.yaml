@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Changed]: Update to app version 2.1.6"
+    - "[Changed]: README update to reflect correct helm install syntax"
 apiVersion: v2
 appVersion: v2.1.6
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.26.4
+version: 3.26.5
