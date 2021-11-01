@@ -3626,6 +3626,28 @@ entries:
   argo-workflows:
   - annotations:
       artifacthub.io/changes: |
+        - "[Changed]: Restore RBAC permissions and clarify namespace settings."
+    apiVersion: v2
+    appVersion: v3.2.0
+    created: "2021-11-01T18:45:17.646985387Z"
+    description: A Helm chart for Argo Workflows
+    digest: 10745ab8237bce8cf9f495611c616346d0e43482350985ecff96faa129bca133
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo-workflows/master/docs/assets/argo.png
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: benjaminws
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - argo-workflows-0.8.1.tgz
+    version: 0.8.1
+  - annotations:
+      artifacthub.io/changes: |
         - "[Added]: Workflow Controller ConfigMap Executor ImagePullPolicy"
     apiVersion: v2
     appVersion: v3.2.0
@@ -28391,4 +28413,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-11-01T14:37:53.016633965Z"
+generated: "2021-11-01T18:45:17.64501405Z"
