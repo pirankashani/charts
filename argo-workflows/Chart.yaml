@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Added]: Workflow Controller ConfigMap Executor ImagePullPolicy"
+    - "[Changed]: Restore RBAC permissions and clarify namespace settings."
 apiVersion: v2
 appVersion: v3.2.0
 description: A Helm chart for Argo Workflows
@@ -15,4 +15,4 @@ name: argo-workflows
 sources:
 - https://github.com/argoproj/argo-workflows
 type: application
-version: 0.8.0
+version: 0.8.1
