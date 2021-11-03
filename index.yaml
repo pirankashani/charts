@@ -21748,6 +21748,28 @@ entries:
     version: 2.2.0
   postgres-operator:
   - apiVersion: v1
+    appVersion: 1.7.1
+    created: "2021-11-03T18:16:54.85396061Z"
+    description: Postgres Operator creates and manages PostgreSQL clusters running
+      in Kubernetes
+    digest: 07983b5ad80cd8ac6a229dd984fac49a3c193b4a1a741ef16e1246c3a4b72827
+    home: https://github.com/zalando/postgres-operator
+    keywords:
+    - postgres
+    - operator
+    - cloud-native
+    - patroni
+    - spilo
+    maintainers:
+    - email: opensource@zalando.de
+      name: Zalando
+    name: postgres-operator
+    sources:
+    - https://github.com/zalando/postgres-operator
+    urls:
+    - postgres-operator-1.7.1.tgz
+    version: 1.7.1
+  - apiVersion: v1
     appVersion: 1.7.0
     created: "2021-08-27T13:23:18.677768036Z"
     description: Postgres Operator creates and manages PostgreSQL clusters running
@@ -21836,6 +21858,29 @@ entries:
     - postgres-operator-1.6.1.tgz
     version: 1.6.1
   postgres-operator-ui:
+  - apiVersion: v1
+    appVersion: 1.7.1
+    created: "2021-11-03T18:16:54.856106212Z"
+    description: Postgres Operator UI provides a graphical interface for a convenient
+      database-as-a-service user experience
+    digest: f5949cd20a5f374fc619997b7504fddb8e9155bfd8a6cd291e45da22282772d7
+    home: https://github.com/zalando/postgres-operator
+    keywords:
+    - postgres
+    - operator
+    - ui
+    - cloud-native
+    - patroni
+    - spilo
+    maintainers:
+    - email: opensource@zalando.de
+      name: Zalando
+    name: postgres-operator-ui
+    sources:
+    - https://github.com/zalando/postgres-operator
+    urls:
+    - postgres-operator-ui-1.7.1.tgz
+    version: 1.7.1
   - apiVersion: v1
     appVersion: 1.7.0
     created: "2021-08-27T13:23:18.67928815Z"
@@ -28790,4 +28835,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-11-03T07:37:03.598569073Z"
+generated: "2021-11-03T18:16:54.847514506Z"
