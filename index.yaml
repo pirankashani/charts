@@ -10952,6 +10952,33 @@ entries:
   hazelcast:
   - apiVersion: v1
     appVersion: "5.0"
+    created: "2021-11-08T12:58:11.076154639Z"
+    description: Hazelcast IMDG is the most widely used in-memory data grid with hundreds
+      of thousands of installed clusters around the world. It offers caching solutions
+      ensuring that data is in the right place when it’s needed for optimal performance.
+    digest: bca95270e4fed7fbf4ec7034a2df298ca8ad7091291a4859368b6a09d22a94fa
+    home: http://hazelcast.org/
+    icon: http://hazelcast.com/images/logos/Hazelcast-IMDG-Logo-Orange_Dark_Icon_200px.png
+    keywords:
+    - hazelcast
+    - keyvalue
+    - in-memory
+    - database
+    - caching
+    kubeVersion: '>=1.14.0-0'
+    maintainers:
+    - email: rafal@hazelcast.com
+      name: leszko
+    - email: hasan@hazelcast.com
+      name: hasancelik
+    name: hazelcast
+    sources:
+    - https://github.com/hazelcast/hazelcast
+    urls:
+    - hazelcast-5.2.0.tgz
+    version: 5.2.0
+  - apiVersion: v1
+    appVersion: "5.0"
     created: "2021-10-22T15:15:25.373418476Z"
     description: Hazelcast IMDG is the most widely used in-memory data grid with hundreds
       of thousands of installed clusters around the world. It offers caching solutions
@@ -29056,4 +29083,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-11-07T22:14:09.543760335Z"
+generated: "2021-11-08T12:58:11.073015142Z"
