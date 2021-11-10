@@ -28971,6 +28971,18 @@ entries:
     version: 1.2.0
   victoria-metrics-operator:
   - apiVersion: v1
+    appVersion: 0.20.3
+    created: "2021-11-10T05:36:58.085174206Z"
+    description: Victoria Metrics Operator
+    digest: 27fb0d7e6dda403b773eb0c16e0ca8074caa6cac1cf6150725c72ff246daf489
+    home: https://github.com/VictoriaMetrics/operator
+    name: victoria-metrics-operator
+    sources:
+    - https://github.com/VictoriaMetrics/operator
+    urls:
+    - victoria-metrics-operator-0.4.2.tgz
+    version: 0.4.2
+  - apiVersion: v1
     appVersion: 0.20.1
     created: "2021-10-28T17:25:15.286027624Z"
     description: Victoria Metrics Operator
@@ -29319,4 +29331,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-11-09T20:39:12.552656775Z"
+generated: "2021-11-10T05:36:58.074558045Z"
