@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Changed]: README update to reflect correct helm install syntax"
+    - "[Fixed]: Added Openshift Route values that were previously included in Route.yaml directives."
 apiVersion: v2
 appVersion: v2.1.6
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.26.5
+version: 3.26.7
