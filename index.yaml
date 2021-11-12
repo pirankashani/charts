@@ -4543,6 +4543,28 @@ entries:
   argocd-notifications:
   - annotations:
       artifacthub.io/changes: |
+        - "[Changed]: Use helm-docs to generate README.md"
+    apiVersion: v2
+    appVersion: v1.1.1
+    created: "2021-11-12T09:40:25.877403677Z"
+    description: A Helm chart for ArgoCD notifications, an add-on to ArgoCD.
+    digest: 8a34a9e5087936b3ebe660157c74d87f40b7cc9c459a91f0ec4e74d158f91be1
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argocd-notifications.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - argocd-notifications
+    maintainers:
+    - name: alexmt
+    - name: andyfeller
+    name: argocd-notifications
+    type: application
+    urls:
+    - argocd-notifications-1.5.2.tgz
+    version: 1.5.2
+  - annotations:
+      artifacthub.io/changes: |
         - "[Added]: Support annotations on secret objects"
     apiVersion: v2
     appVersion: 1.1.1
@@ -23820,6 +23842,39 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 6.2.6
+    created: "2021-11-12T09:40:25.884929355Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    description: Open source, advanced key-value store. It is often referred to as
+      a data structure server since keys can contain strings, hashes, lists, sets
+      and sorted sets.
+    digest: 13eaec76daf7ed9dcc45afca8caee8010805361390b51568f78f1f2fc6886a7b
+    home: https://github.com/bitnami/charts/tree/master/bitnami/redis
+    icon: https://bitnami.com/assets/stacks/redis/img/redis-stack-220x234.png
+    keywords:
+    - redis
+    - keyvalue
+    - database
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    name: redis
+    sources:
+    - https://github.com/bitnami/bitnami-docker-redis
+    - http://redis.io/
+    urls:
+    - redis-15.5.5.tgz
+    version: 15.5.5
+  - annotations:
+      category: Database
+    apiVersion: v2
+    appVersion: 6.2.6
     created: "2021-11-02T15:15:45.851086216Z"
     dependencies:
     - name: common
@@ -29425,4 +29480,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-11-11T22:40:13.991125536Z"
+generated: "2021-11-12T09:40:25.875500556Z"
