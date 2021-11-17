@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Added]: Signature keys for GPG in additionalProjects"
+    - "[Changed]: Update github ssh key fingerprint"
 apiVersion: v2
 appVersion: v2.1.6
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.26.8
+version: 3.26.9
