@@ -37,16 +37,6 @@ injector:
   # so that only one injector attempts to create TLS certificates.
   leaderElector:
     enabled: true
-    # Note: The deployment of the leader-elector container will soon be removed
-    # from this chart since vault-k8s now uses an internal mechanism to
-    # determine leadership.
-    # To enable the deployment of the leader-elector container for use with
-    # vault-k8s 0.12.0 and earlier, set `useContainer=true`
-    useContainer: false
-    image:
-      repository: "gcr.io/google_containers/leader-elector"
-      tag: "0.4"
-    ttl: 60s
 
   # If true, will enable a node exporter metrics endpoint at /metrics.
   metrics:
@@ -59,7 +49,7 @@ injector:
   # image sets the repo and tag of the vault-k8s image to use for the injector.
   image:
     repository: "hashicorp/vault-k8s"
-    tag: "0.14.0"
+    tag: "0.14.1"
     pullPolicy: IfNotPresent
 
   # agentImage sets the repo and tag of the Vault image to use for the Vault Agent
@@ -67,7 +57,7 @@ injector:
   # required.
   agentImage:
     repository: "hashicorp/vault"
-    tag: "1.8.4"
+    tag: "1.9.0"
 
   # The default values for the injected Vault Agent containers.
   agentDefaults:
@@ -85,6 +75,7 @@ injector:
     # Default values within Agent's template_config stanza.
     templateConfig:
       exitOnRetryFailure: true
+      staticSecretRenderInterval: ""
 
   # Mount Path of the Vault Kubernetes Auth Method.
   authPath: "auth/kubernetes"
@@ -230,7 +221,7 @@ server:
 
   image:
     repository: "hashicorp/vault"
-    tag: "1.8.4"
+    tag: "1.9.0"
     # Overrides the default Image Pull Policy
     pullPolicy: IfNotPresent
 
