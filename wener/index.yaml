@@ -13,6 +13,16 @@ entries:
     version: 1.0.0
   frpc:
   - apiVersion: v2
+    appVersion: v0.37.0
+    created: "2021-11-18T17:24:56.291748905Z"
+    description: A Helm chart for frp client
+    digest: 23285234b54d261579a1b175d40426ac7dd06719385eb2b37f7d2297d3d1c48a
+    name: frpc
+    type: application
+    urls:
+    - frpc-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
     created: "2021-06-05T12:09:19.617495018Z"
     description: A Helm chart for frp client
     digest: de06afde32bd8c0df97b820ae7027f45ea2e4af13662d9a79f79c2d4c9d87573
@@ -22,6 +32,16 @@ entries:
     - frpc-1.0.0.tgz
     version: 1.0.0
   frps:
+  - apiVersion: v2
+    appVersion: v0.37.0
+    created: "2021-11-18T17:24:56.292527654Z"
+    description: A Helm chart for frp server
+    digest: c5fe53219a25b8d069a778a442bb411671e39f44d820687a2ace0f13a33b26da
+    name: frps
+    type: application
+    urls:
+    - frps-1.0.1.tgz
+    version: 1.0.1
   - apiVersion: v2
     created: "2021-06-05T12:09:19.618032826Z"
     description: A Helm chart for frp server
@@ -165,4 +185,4 @@ entries:
     urls:
     - samba-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-21T10:21:13.513833178Z"
+generated: "2021-11-18T17:24:56.290257012Z"
