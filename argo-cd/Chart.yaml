@@ -1,8 +1,8 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Changed]: Update github ssh key fingerprint"
+    - "[Changed]: Update to app version 2.1.7"
 apiVersion: v2
-appVersion: v2.1.6
+appVersion: v2.1.7
 dependencies:
 - condition: redis-ha.enabled
   name: redis-ha
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.26.9
+version: 3.26.10
