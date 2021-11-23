@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Changed]: Changed default GCP keyFormat"
+    - "[Fixed]: Added missing WorkflowTaskSets RBAC to controller"
 apiVersion: v2
 appVersion: v3.2.4
 description: A Helm chart for Argo Workflows
@@ -15,4 +15,4 @@ name: argo-workflows
 sources:
 - https://github.com/argoproj/argo-workflows
 type: application
-version: 0.9.1
+version: 0.9.2
