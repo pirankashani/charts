@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Changed]: Update to app version 2.1.7"
+    - "[Changed]: add flag and labels for application labels"
 apiVersion: v2
 appVersion: v2.1.7
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.26.10
+version: 3.26.11
