@@ -4718,6 +4718,28 @@ entries:
   argocd-notifications:
   - annotations:
       artifacthub.io/changes: |
+        - "[Changed]: Update to app version v1.2.0"
+    apiVersion: v2
+    appVersion: v1.2.0
+    created: "2021-11-25T17:45:03.698893564Z"
+    description: A Helm chart for ArgoCD notifications, an add-on to ArgoCD.
+    digest: d2761a3cd2eee35c108fa43e1af89ce5a74b4c1c91d9e1269aad06c1fe5d7e0b
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argocd-notifications.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - argocd-notifications
+    maintainers:
+    - name: alexmt
+    - name: andyfeller
+    name: argocd-notifications
+    type: application
+    urls:
+    - argocd-notifications-1.6.0.tgz
+    version: 1.6.0
+  - annotations:
+      artifacthub.io/changes: |
         - "[Changed]: Use helm-docs to generate README.md"
     apiVersion: v2
     appVersion: v1.1.1
@@ -30437,4 +30459,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-11-24T17:01:26.968284927Z"
+generated: "2021-11-25T17:45:03.696905806Z"
