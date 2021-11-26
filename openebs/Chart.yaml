@@ -12,11 +12,11 @@ dependencies:
 - condition: cstor.enabled
   name: cstor
   repository: https://openebs.github.io/cstor-operators
-  version: 3.0.1
+  version: 3.0.2
 - condition: jiva.enabled
   name: jiva
   repository: https://openebs.github.io/jiva-operator
-  version: 3.0.1
+  version: 3.0.5
 - condition: zfs-localpv.enabled
   name: zfs-localpv
   repository: https://openebs.github.io/zfs-localpv
@@ -50,4 +50,4 @@ maintainers:
 name: openebs
 sources:
 - https://github.com/openebs/openebs
-version: 3.0.4
+version: 3.0.5

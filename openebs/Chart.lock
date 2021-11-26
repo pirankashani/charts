@@ -7,10 +7,10 @@ dependencies:
   version: 3.0.1
 - name: cstor
   repository: https://openebs.github.io/cstor-operators
-  version: 3.0.1
+  version: 3.0.2
 - name: jiva
   repository: https://openebs.github.io/jiva-operator
-  version: 3.0.1
+  version: 3.0.5
 - name: zfs-localpv
   repository: https://openebs.github.io/zfs-localpv
   version: 1.9.8
@@ -20,5 +20,5 @@ dependencies:
 - name: nfs-provisioner
   repository: https://openebs.github.io/dynamic-nfs-provisioner
   version: 0.8.0
-digest: sha256:c8dd26c3928f4b611249f528867e29d5cf6449ec11866b69944b55ec73b1d4a0
-generated: "2021-11-26T11:58:15.669462778Z"
+digest: sha256:5d07221421b0b9624d154b42e3485a15bd0df3fcc6ad7d4321b656858b81e06f
+generated: "2021-11-26T13:04:55.286831133Z"

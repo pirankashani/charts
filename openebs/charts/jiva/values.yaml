@@ -60,6 +60,7 @@ csiController:
     name: jiva-csi-controller-critical
     value: 900000000
   componentName: "openebs-jiva-csi-controller"
+  logLevel: "5"
   attacher:
     name: "csi-attacher"
     image:
@@ -126,6 +127,7 @@ csiNode:
     name: jiva-csi-node-critical
     value: 900001000
   componentName: "openebs-jiva-csi-node"
+  logLevel: "5"
   driverRegistrar:
     name: "csi-node-driver-registrar"
     image:
