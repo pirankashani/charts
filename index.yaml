@@ -12300,6 +12300,31 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: 1.1.0
+    created: "2021-11-29T11:36:31.582701393Z"
+    description: Ingress controller for Kubernetes using NGINX as a reverse proxy
+      and load balancer
+    digest: 3496760d6994f018a15fbfb23c2b8e5b0075c0ddba85875ec8cfd00fc5f05105
+    home: https://github.com/kubernetes/ingress-nginx
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
+    keywords:
+    - ingress
+    - nginx
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - name: ChiefAlexander
+    name: ingress-nginx
+    sources:
+    - https://github.com/kubernetes/ingress-nginx
+    type: application
+    urls:
+    - ingress-nginx-4.0.12.tgz
+    version: 4.0.12
+  - annotations:
+      artifacthub.io/changes: |
+        - use controller v1.1.0
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 1.1.0
     created: "2021-11-26T10:41:32.618173619Z"
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
@@ -24907,6 +24932,39 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 6.2.6
+    created: "2021-11-29T11:36:31.589492236Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    description: Open source, advanced key-value store. It is often referred to as
+      a data structure server since keys can contain strings, hashes, lists, sets
+      and sorted sets.
+    digest: 6775176a590e25b8923dea428d292ed5c85c3089cf799b5d9e48fdce1d27ab6b
+    home: https://github.com/bitnami/charts/tree/master/bitnami/redis
+    icon: https://bitnami.com/assets/stacks/redis/img/redis-stack-220x234.png
+    keywords:
+    - redis
+    - keyvalue
+    - database
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    name: redis
+    sources:
+    - https://github.com/bitnami/bitnami-docker-redis
+    - http://redis.io/
+    urls:
+    - redis-15.6.2.tgz
+    version: 15.6.2
+  - annotations:
+      category: Database
+    apiVersion: v2
+    appVersion: 6.2.6
     created: "2021-11-25T19:36:33.912814094Z"
     dependencies:
     - name: common
@@ -30757,4 +30815,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-11-29T11:13:05.458587427Z"
+generated: "2021-11-29T11:36:31.578978969Z"
