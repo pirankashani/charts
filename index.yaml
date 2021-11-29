@@ -17011,6 +17011,24 @@ entries:
   loki-distributed:
   - apiVersion: v2
     appVersion: 2.4.1
+    created: "2021-11-29T12:24:01.302416793Z"
+    description: Helm chart for Grafana Loki in microservices mode
+    digest: c1142aafa0a58ab2f1135ebd6e148bff843fc9e998270b65b4792589210ea944
+    home: https://grafana.github.io/helm-charts
+    icon: https://grafana.com/docs/loki/latest/logo_and_name.png
+    maintainers:
+    - name: unguiculus
+    name: loki-distributed
+    sources:
+    - https://github.com/grafana/loki
+    - https://grafana.com/oss/loki/
+    - https://grafana.com/docs/loki/latest/
+    type: application
+    urls:
+    - loki-distributed-0.39.3.tgz
+    version: 0.39.3
+  - apiVersion: v2
+    appVersion: 2.4.1
     created: "2021-11-08T16:22:45.895221158Z"
     description: Helm chart for Grafana Loki in microservices mode
     digest: 3c87f0999edc94bc7a54ef015777fa80ee7b455536a801540f9014108e08b7e0
@@ -19061,6 +19079,42 @@ entries:
     - meshery-v0.5.52.tgz
     version: v0.5.52
   metallb:
+  - annotations:
+      category: Infrastructure
+    apiVersion: v2
+    appVersion: 0.11.0
+    created: "2021-11-29T12:24:01.306258238Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    description: The Metal LB for Kubernetes
+    digest: 81aede93c1f1f75ad8bec3c4a503ff8458a173141abd01f9c76f1f14c67fac42
+    home: https://github.com/bitnami/charts/tree/master/bitnami/metallb
+    icon: https://bitnami.com/assets/stacks/metallb-speaker/img/metallb-speaker-stack-220x234.png
+    keywords:
+    - load-balancer
+    - balancer
+    - lb
+    - bgp
+    - arp
+    - vrrp
+    - vip
+    maintainers:
+    - email: cellebyte@gmail.com
+      name: cellebyte
+    - email: containers@bitnami.com
+      name: Bitnami
+    name: metallb
+    sources:
+    - https://github.com/metallb/metallb
+    - https://github.com/bitnami/bitnami-docker-metallb
+    - https://metallb.universe.tf
+    urls:
+    - metallb-2.5.13.tgz
+    version: 2.5.13
   - annotations:
       category: Infrastructure
     apiVersion: v2
@@ -30815,4 +30869,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-11-29T11:36:31.578978969Z"
+generated: "2021-11-29T12:24:01.297710338Z"
