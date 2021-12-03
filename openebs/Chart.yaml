@@ -50,4 +50,4 @@ maintainers:
 name: openebs
 sources:
 - https://github.com/openebs/openebs
-version: 3.0.5
+version: 3.0.6

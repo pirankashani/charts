@@ -21,4 +21,4 @@ dependencies:
   repository: https://openebs.github.io/dynamic-nfs-provisioner
   version: 0.8.0
 digest: sha256:5d07221421b0b9624d154b42e3485a15bd0df3fcc6ad7d4321b656858b81e06f
-generated: "2021-11-26T13:04:55.286831133Z"
+generated: "2021-12-03T16:05:06.720144329Z"
