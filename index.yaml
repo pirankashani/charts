@@ -3858,6 +3858,28 @@ entries:
   argo-workflows:
   - annotations:
       artifacthub.io/changes: |
+        - "[Added]: Added documentation and (default disabled) settings for dev-mode or delegated server authentication"
+    apiVersion: v2
+    appVersion: v3.2.4
+    created: "2021-12-06T10:16:42.402395601Z"
+    description: A Helm chart for Argo Workflows
+    digest: 9ab3212229856de777d88369049b1f98e47b5bba75dbeb1fc1fb7c5210712aaf
+    home: https://github.com/argoproj/argo-helm
+    icon: https://raw.githubusercontent.com/argoproj/argo-workflows/master/docs/assets/argo.png
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: benjaminws
+    name: argo-workflows
+    sources:
+    - https://github.com/argoproj/argo-workflows
+    type: application
+    urls:
+    - argo-workflows-0.9.3.tgz
+    version: 0.9.3
+  - annotations:
+      artifacthub.io/changes: |
         - "[Fixed]: Added missing WorkflowTaskSets RBAC to controller"
     apiVersion: v2
     appVersion: v3.2.4
@@ -31315,4 +31337,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-12-06T02:52:46.372391782Z"
+generated: "2021-12-06T10:16:42.399024583Z"
