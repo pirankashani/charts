@@ -6,7 +6,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.6.0
   creationTimestamp: null
-  name: partitionexports.consul.hashicorp.com
+  name: exportedservices.consul.hashicorp.com
   labels:
     app: {{ template "consul.name" . }}
     chart: {{ template "consul.chart" . }}
@@ -16,10 +16,10 @@ metadata:
 spec:
   group: consul.hashicorp.com
   names:
-    kind: PartitionExports
-    listKind: PartitionExportsList
-    plural: partitionexports
-    singular: partitionexports
+    kind: ExportedServices
+    listKind: ExportedServicesList
+    plural: exportedservices
+    singular: exportedservices
   scope: Namespaced
   versions:
   - additionalPrinterColumns:
@@ -38,7 +38,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: PartitionExports is the Schema for the partitionexports API
+        description: ExportedServices is the Schema for the exportedservices API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -53,7 +53,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: PartitionExportsSpec defines the desired state of PartitionExports
+            description: ExportedServicesSpec defines the desired state of ExportedServices
             properties:
               services:
                 description: Services is a list of services to be exported and the
