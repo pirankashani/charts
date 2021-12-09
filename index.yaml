@@ -4575,6 +4575,27 @@ entries:
   argocd-applicationset:
   - annotations:
       artifacthub.io/changes: |
+        - "[Added]: Add resources metrics-service and servicemonitor, not enabled by default."
+    apiVersion: v2
+    appVersion: v0.2.0
+    created: "2021-12-09T15:16:24.046538171Z"
+    description: A Helm chart for installing ArgoCD ApplicationSet
+    digest: b992b98909c0387e06732e8ed540240bd38d432d789f7d520f115ba79274a92c
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argocd-applicationset.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - appset
+    - gitops
+    maintainers:
+    - name: maruina
+    name: argocd-applicationset
+    type: application
+    urls:
+    - argocd-applicationset-1.7.0.tgz
+    version: 1.7.0
+  - annotations:
+      artifacthub.io/changes: |
         - "[Added]: Install the chart into a kind cluster during the chart testing process"
         - "[Changed]: Parameter 'args.namespace' now defaults to the namespace where you install the chart to"
     apiVersion: v2
@@ -31582,4 +31603,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-12-09T14:14:21.725415043Z"
+generated: "2021-12-09T15:16:24.04161051Z"
