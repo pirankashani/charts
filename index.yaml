@@ -9783,6 +9783,26 @@ entries:
   gitlab-runner:
   - apiVersion: v1
     appVersion: 14.5.2
+    created: "2021-12-13T02:00:45.864294927Z"
+    description: GitLab Runner
+    digest: e688b8d180382d5cb8af3a315af3fbfce95933018936206c13d91ef7758a56f4
+    icon: https://gitlab.com/uploads/-/system/project/avatar/250833/runner_logo.png
+    keywords:
+    - git
+    - ci
+    - deploy
+    maintainers:
+    - email: support@gitlab.com
+      name: GitLab Inc.
+    name: gitlab-runner
+    sources:
+    - https://hub.docker.com/r/gitlab/gitlab-runner/
+    - https://docs.gitlab.com/runner/
+    urls:
+    - gitlab-runner-0.35.3.tgz
+    version: 0.35.3
+  - apiVersion: v1
+    appVersion: 14.5.2
     created: "2021-12-10T22:15:12.819544611Z"
     description: GitLab Runner
     digest: cd255e658ed1f95bd971b730414b19a60d732187dca26f75a091e986edf6a177
@@ -31707,4 +31727,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-12-11T19:36:32.208140849Z"
+generated: "2021-12-13T02:00:45.862538304Z"
