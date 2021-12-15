@@ -2,7 +2,7 @@ annotations:
   artifacthub.io/changes: |
     - "[Added]: add argocd-extensions resources support"
 apiVersion: v2
-appVersion: v2.1.7
+appVersion: v2.2.0
 dependencies:
 - condition: redis-ha.enabled
   name: redis-ha
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.28.1
+version: 3.29.0
