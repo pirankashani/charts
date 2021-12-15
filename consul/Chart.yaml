@@ -1,11 +1,11 @@
 annotations:
   artifacthub.io/images: |
     - name: consul
-      image: hashicorp/consul:1.10.4
+      image: hashicorp/consul:1.11.1
     - name: consul-k8s-control-plane
-      image: hashicorp/consul-k8s-control-plane:0.38.0
+      image: hashicorp/consul-k8s-control-plane:0.39.0
     - name: envoy
-      image: envoyproxy/envoy-alpine:v1.18.4
+      image: envoyproxy/envoy-alpine:v1.20.0
   artifacthub.io/license: MPL-2.0
   artifacthub.io/links: |
     - name: Documentation
@@ -19,13 +19,13 @@ annotations:
     fingerprint: C874011F0AB405110D02105534365D9472D7468F
     url: https://keybase.io/hashicorp/pgp_keys.asc
 apiVersion: v2
-appVersion: 1.10.4
+appVersion: 1.11.1
 description: Official HashiCorp Consul Chart
 home: https://www.consul.io
 icon: https://raw.githubusercontent.com/hashicorp/consul-k8s/main/assets/icon.png
-kubeVersion: '>=1.17.0-0'
+kubeVersion: '>=1.18.0-0'
 name: consul
 sources:
 - https://github.com/hashicorp/consul
 - https://github.com/hashicorp/consul-k8s
-version: 0.38.0
+version: 0.39.0
