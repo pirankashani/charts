@@ -6958,6 +6958,36 @@ entries:
     version: 1.0.0
   emissary-ingress:
   - apiVersion: v1
+    appVersion: 2.1.0
+    created: "2021-12-16T17:44:45.829921902Z"
+    description: A Helm chart for Emissary Ingress
+    digest: b4a2525d354e17bb7635a38f950c9e919501002d8d350e795c46e92d506d0964
+    home: https://www.getambassador.io/
+    icon: https://www.getambassador.io/images/logo.png
+    keywords:
+    - api gateway
+    - ambassador
+    - datawire
+    - envoy
+    - emissary
+    - emissary ingress
+    maintainers:
+    - email: markus@maga.se
+      name: flydiverny
+    - email: flynn@datawire.io
+      name: kflynn
+    - email: nkrause@datawire.io
+      name: nbkrause
+    - email: lukeshu@datawire.io
+      name: lukeshu
+    name: emissary-ingress
+    sources:
+    - https://github.com/datawire/ambassador
+    - https://github.com/prometheus/statsd_exporter
+    urls:
+    - emissary-ingress-7.2.0.tgz
+    version: 7.2.0
+  - apiVersion: v1
     appVersion: 2.0.5
     created: "2021-11-18T16:09:09.313083151Z"
     description: A Helm chart for Emissary Ingress
@@ -30126,6 +30156,29 @@ entries:
       category: DeveloperTools
     apiVersion: v2
     appVersion: v0.17.1
+    created: "2021-12-16T17:44:45.831096055Z"
+    description: Helm chart for the sealed-secrets controller.
+    digest: 12db59df94d744a5c543539e2245d48f37c88dc586ad3f1d22120a3eda48b066
+    home: https://github.com/bitnami-labs/sealed-secrets
+    icon: https://bitnami.com/assets/stacks/sealed-secrets/img/sealed-secrets-stack-220x234.png
+    keywords:
+    - secrets
+    - sealed-secrets
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    - email: mmikulicic@gmail.com
+      name: mkmik
+    name: sealed-secrets
+    type: application
+    urls:
+    - sealed-secrets-2.0.1.tgz
+    version: 2.0.1
+  - annotations:
+      category: DeveloperTools
+    apiVersion: v2
+    appVersion: v0.17.1
     created: "2021-12-16T15:15:59.819015425Z"
     description: Helm chart for the sealed-secrets controller.
     digest: 25818421c39d176a2d65439c6a46989739ed2e2ba3ab4ac7a66d8b6857bc0ff8
@@ -32313,4 +32366,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-12-16T15:43:51.535156627Z"
+generated: "2021-12-16T17:44:45.827053615Z"
