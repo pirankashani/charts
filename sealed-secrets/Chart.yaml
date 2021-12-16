@@ -16,4 +16,4 @@ maintainers:
   name: mkmik
 name: sealed-secrets
 type: application
-version: 2.0.0
+version: 2.0.1
