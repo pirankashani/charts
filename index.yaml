@@ -31817,6 +31817,25 @@ entries:
     version: 2.1.0
   yugabyte:
   - apiVersion: v1
+    appVersion: 2.11.1.0-b305
+    created: "2021-12-16T02:00:02.518638231Z"
+    description: YugabyteDB is the high-performance distributed SQL database for building
+      global, internet-scale apps.
+    digest: a30e54011ef7f9a1106b1fac90b1b1a99709297e99127f75ce90cebc587e177c
+    home: https://www.yugabyte.com
+    icon: https://avatars0.githubusercontent.com/u/17074854?s=200&v=4
+    maintainers:
+    - email: ram@yugabyte.com
+      name: Ram Sri
+    - email: arnav@yugabyte.com
+      name: Arnav Agarwal
+    name: yugabyte
+    sources:
+    - https://github.com/yugabyte/yugabyte-db
+    urls:
+    - yugabyte-2.11.1.tgz
+    version: 2.11.1
+  - apiVersion: v1
     appVersion: 2.11.0.0-b7
     created: "2021-11-22T20:15:42.206402462Z"
     description: YugabyteDB is the high-performance distributed SQL database for building
@@ -32044,4 +32063,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-12-15T23:15:43.855848987Z"
+generated: "2021-12-16T02:00:02.516693816Z"
