@@ -10070,6 +10070,32 @@ entries:
   grafana:
   - apiVersion: v2
     appVersion: 8.3.3
+    created: "2021-12-16T14:14:44.389521267Z"
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 2c2ddb588d5db006f9e1fbec590d6433bffb920dc5ae508ae6344248967f82bd
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    type: application
+    urls:
+    - grafana-6.20.0.tgz
+    version: 6.20.0
+  - apiVersion: v2
+    appVersion: 8.3.3
     created: "2021-12-16T08:18:59.28483011Z"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: bb14322e1fa147d15fa91649a5ede42b01c506838653ad6dde5f715e4d3ca858
@@ -14147,6 +14173,48 @@ entries:
       category: Analytics
     apiVersion: v2
     appVersion: 0.52.1
+    created: "2021-12-16T14:14:44.411756949Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    - condition: exporters.enabled,exporters.node-exporter.enabled
+      name: node-exporter
+      repository: https://charts.bitnami.com/bitnami
+      version: 2.x.x
+    - condition: exporters.enabled,exporters.kube-state-metrics.enabled
+      name: kube-state-metrics
+      repository: https://charts.bitnami.com/bitnami
+      version: 2.x.x
+    description: kube-prometheus collects Kubernetes manifests to provide easy to
+      operate end-to-end Kubernetes cluster monitoring with Prometheus using the Prometheus
+      Operator.
+    digest: 72e3cf5f7ce377e5b7fc53e4a1b5861ffc73a0bb582ee531431c08999884cd2c
+    home: https://github.com/bitnami/charts/tree/master/bitnami/kube-prometheus
+    icon: https://bitnami.com/assets/stacks/prometheus-operator/img/prometheus-operator-stack-220x234.png
+    keywords:
+    - prometheus
+    - alertmanager
+    - operator
+    - monitoring
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    name: kube-prometheus
+    sources:
+    - https://github.com/bitnami/bitnami-docker-prometheus-operator
+    - https://github.com/bitnami/bitnami-docker-prometheus
+    - https://github.com/bitnami/bitnami-docker-alertmanager
+    - https://github.com/prometheus-operator/kube-prometheus
+    urls:
+    - kube-prometheus-6.5.1.tgz
+    version: 6.5.1
+  - annotations:
+      category: Analytics
+    apiVersion: v2
+    appVersion: 0.52.1
     created: "2021-12-01T17:45:40.745548507Z"
     dependencies:
     - name: common
@@ -17646,6 +17714,23 @@ entries:
     - linkerd2-cni-2.8.1.tgz
     version: 2.8.1
   loki:
+  - apiVersion: v1
+    appVersion: v2.4.1
+    created: "2021-12-16T14:14:44.412838268Z"
+    description: 'Loki: like Prometheus, but for logs.'
+    digest: 0a43bcd474c9b982accadf40e37ff11160695f8fae257fd333add6eaa67714e6
+    home: https://grafana.com/loki
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    kubeVersion: ^1.10.0-0
+    maintainers:
+    - email: lokiproject@googlegroups.com
+      name: Loki Maintainers
+    name: loki
+    sources:
+    - https://github.com/grafana/loki
+    urls:
+    - loki-2.8.3.tgz
+    version: 2.8.3
   - apiVersion: v1
     appVersion: v2.4.1
     created: "2021-12-15T18:18:34.654764664Z"
@@ -32143,4 +32228,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-12-16T12:24:24.601299561Z"
+generated: "2021-12-16T14:14:44.386279511Z"
