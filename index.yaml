@@ -20008,6 +20008,42 @@ entries:
       category: Infrastructure
     apiVersion: v2
     appVersion: 0.11.0
+    created: "2021-12-16T15:15:59.817618811Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    description: The Metal LB for Kubernetes
+    digest: 96642a53550305f0cd3bdf63366f36a5123eec94ff7bc8cf727325d82491cfda
+    home: https://github.com/bitnami/charts/tree/master/bitnami/metallb
+    icon: https://bitnami.com/assets/stacks/metallb-speaker/img/metallb-speaker-stack-220x234.png
+    keywords:
+    - load-balancer
+    - balancer
+    - lb
+    - bgp
+    - arp
+    - vrrp
+    - vip
+    maintainers:
+    - email: cellebyte@gmail.com
+      name: cellebyte
+    - email: containers@bitnami.com
+      name: Bitnami
+    name: metallb
+    sources:
+    - https://github.com/metallb/metallb
+    - https://github.com/bitnami/bitnami-docker-metallb
+    - https://metallb.universe.tf
+    urls:
+    - metallb-2.5.15.tgz
+    version: 2.5.15
+  - annotations:
+      category: Infrastructure
+    apiVersion: v2
+    appVersion: 0.11.0
     created: "2021-12-09T13:29:20.955973317Z"
     dependencies:
     - name: common
@@ -30060,6 +30096,29 @@ entries:
     - wener/samba-1.0.0.tgz
     version: 1.0.0
   sealed-secrets:
+  - annotations:
+      category: DeveloperTools
+    apiVersion: v2
+    appVersion: v0.17.1
+    created: "2021-12-16T15:15:59.819015425Z"
+    description: Helm chart for the sealed-secrets controller.
+    digest: 25818421c39d176a2d65439c6a46989739ed2e2ba3ab4ac7a66d8b6857bc0ff8
+    home: https://github.com/bitnami-labs/sealed-secrets
+    icon: https://bitnami.com/assets/stacks/sealed-secrets/img/sealed-secrets-stack-220x234.png
+    keywords:
+    - secrets
+    - sealed-secrets
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    - email: mmikulicic@gmail.com
+      name: mkmik
+    name: sealed-secrets
+    type: application
+    urls:
+    - sealed-secrets-2.0.0.tgz
+    version: 2.0.0
   - apiVersion: v2
     appVersion: v0.16.0
     created: "2021-06-05T12:09:22.492570264Z"
@@ -32228,4 +32287,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-12-16T14:14:44.386279511Z"
+generated: "2021-12-16T15:15:59.813837771Z"
