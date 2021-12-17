@@ -1311,6 +1311,35 @@ entries:
   argo-cd:
   - annotations:
       artifacthub.io/changes: |
+        - "[Fix]: repo-server: merge initContainer to one section"
+    apiVersion: v2
+    appVersion: v2.2.1
+    created: "2021-12-17T18:44:33.421717437Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://dandydeveloper.github.io/charts/
+      version: 4.12.17
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: f35b3ef1e946a7502489664011c0eead9ba31ffca8b9de5d751598338f2798d3
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    maintainers:
+    - name: alexec
+    - name: alexmt
+    - name: jessesuen
+    - name: seanson
+    name: argo-cd
+    urls:
+    - argo-cd-3.29.2.tgz
+    version: 3.29.2
+  - annotations:
+      artifacthub.io/changes: |
         - "[Changed]: Update to app version 2.2.1"
     apiVersion: v2
     appVersion: v2.2.1
@@ -32521,4 +32550,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-12-17T16:59:50.690980708Z"
+generated: "2021-12-17T18:44:33.411444075Z"
