@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Changed]: Update to app version 2.2.1"
+    - "[Fix]: repo-server: merge initContainer to one section"
 apiVersion: v2
 appVersion: v2.2.1
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.29.1
+version: 3.29.2
