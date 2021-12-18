@@ -1,6 +1,6 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Fix]: repo-server: merge initContainer to one section"
+    - "[Fixed]: repo-server: revert initContainer copyutil param"
 apiVersion: v2
 appVersion: v2.2.1
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.29.2
+version: 3.29.3
