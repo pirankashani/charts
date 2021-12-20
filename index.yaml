@@ -5073,6 +5073,28 @@ entries:
   argocd-notifications:
   - annotations:
       artifacthub.io/changes: |
+        - "[Added]: Support for dynamic Secret and ConfigMap names"
+    apiVersion: v2
+    appVersion: v1.2.1
+    created: "2021-12-20T18:46:21.977768937Z"
+    description: A Helm chart for ArgoCD notifications, an add-on to ArgoCD.
+    digest: 835e97c7f1bca33633790c24870bf245d6e188ceb797447a7e15179a8afff906
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argocd-notifications.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - argocd-notifications
+    maintainers:
+    - name: alexmt
+    - name: andyfeller
+    name: argocd-notifications
+    type: application
+    urls:
+    - argocd-notifications-1.7.0.tgz
+    version: 1.7.0
+  - annotations:
+      artifacthub.io/changes: |
         - "[Changed]: Update to app version v1.2.1"
     apiVersion: v2
     appVersion: v1.2.1
@@ -32796,4 +32818,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-12-20T17:46:59.955107903Z"
+generated: "2021-12-20T18:46:21.976252124Z"
