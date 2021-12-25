@@ -30902,6 +30902,15 @@ entries:
     version: 1.13.2
   seaweedfs:
   - apiVersion: v1
+    appVersion: "2.83"
+    created: "2021-12-25T09:15:19.962446187Z"
+    description: SeaweedFS
+    digest: 322db7967544e75ec6b770e990c2c0e27a0b5bf7e6da4cad8098af688ef8a4c7
+    name: seaweedfs
+    urls:
+    - seaweedfs-2.83.tgz
+    version: "2.83"
+  - apiVersion: v1
     appVersion: "2.82"
     created: "2021-12-13T07:37:34.126865575Z"
     description: SeaweedFS
@@ -33021,4 +33030,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2021-12-23T15:16:01.691601287Z"
+generated: "2021-12-25T09:15:19.958468815Z"
