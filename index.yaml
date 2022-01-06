@@ -4829,6 +4829,27 @@ entries:
   argocd-applicationset:
   - annotations:
       artifacthub.io/changes: |
+        - "[Changed]: Bumped argocd-applicationset to 0.3.0"
+    apiVersion: v2
+    appVersion: v0.3.0
+    created: "2022-01-06T18:46:26.071649198Z"
+    description: A Helm chart for installing ArgoCD ApplicationSet
+    digest: 602cdbcfdd4a3e08e913cc565791092d7a344a2c14b7b415569be7016662650b
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argocd-applicationset.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - appset
+    - gitops
+    maintainers:
+    - name: maruina
+    name: argocd-applicationset
+    type: application
+    urls:
+    - argocd-applicationset-1.8.0.tgz
+    version: 1.8.0
+  - annotations:
+      artifacthub.io/changes: |
         - "[Added]: Add resources metrics-service and servicemonitor, not enabled by default."
     apiVersion: v2
     appVersion: v0.2.0
@@ -33582,4 +33603,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2022-01-06T13:43:19.146806144Z"
+generated: "2022-01-06T18:46:26.068307156Z"
