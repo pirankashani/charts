@@ -123,6 +123,16 @@ entries:
     version: 13.0.1
   minio-console:
   - apiVersion: v2
+    appVersion: v0.13.2
+    created: "2022-01-06T14:14:39.912520148Z"
+    description: A Helm chart for MinIO console
+    digest: 48fc94d4d92ad9296d26fab6f322b263c30a6702c82653ad4eba8907f4d3503c
+    name: minio-console
+    type: application
+    urls:
+    - minio-console-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v2
     appVersion: v0.7.1
     created: "2021-08-11T17:29:36.597987564Z"
     description: A Helm chart for MinIO console
@@ -144,6 +154,16 @@ entries:
     version: 1.0.1
   minio-standalone:
   - apiVersion: v2
+    appVersion: RELEASE.2022-01-04T07-41-07Z
+    created: "2022-01-06T14:14:39.913004054Z"
+    description: A Helm chart for MinIO standalone
+    digest: 5d9cdc8879e1303e3a069f25b3fe0594c1b61f31b8b9fad4d17895e70fa15d2e
+    name: minio-standalone
+    type: application
+    urls:
+    - minio-standalone-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
     appVersion: RELEASE.2021-04-06T23-11-00Z.hotfix.f3cd60697
     created: "2021-06-05T12:09:19.619223645Z"
     description: A Helm chart for MinIO standalone
@@ -154,6 +174,16 @@ entries:
     - minio-standalone-1.0.1.tgz
     version: 1.0.1
   oauth2-proxy:
+  - apiVersion: v2
+    appVersion: v7.2.1
+    created: "2022-01-06T14:14:39.913424159Z"
+    description: OAuth2 Proxy
+    digest: 844817b87cc240d458c9c929318a28c91c8e73fa20b0d5c7235e7ffda46430e9
+    name: oauth2-proxy
+    type: application
+    urls:
+    - oauth2-proxy-1.0.2.tgz
+    version: 1.0.2
   - apiVersion: v2
     appVersion: v7.1.3
     created: "2021-08-01T10:25:56.775546447Z"
@@ -195,4 +225,4 @@ entries:
     urls:
     - samba-1.0.0.tgz
     version: 1.0.0
-generated: "2021-12-27T08:45:32.029530811Z"
+generated: "2022-01-06T14:14:39.911445034Z"
