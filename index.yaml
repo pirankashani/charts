@@ -4829,6 +4829,27 @@ entries:
   argocd-applicationset:
   - annotations:
       artifacthub.io/changes: |
+        - "[Added]: Add ingress for webhook, not enabled by default."
+    apiVersion: v2
+    appVersion: v0.3.0
+    created: "2022-01-09T18:17:36.921517294Z"
+    description: A Helm chart for installing ArgoCD ApplicationSet
+    digest: 7ef4ccc8d4adf54bd615e5560b8d4f18fada7c6d30151cfc45c9791b6da8151c
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argocd-applicationset.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - appset
+    - gitops
+    maintainers:
+    - name: maruina
+    name: argocd-applicationset
+    type: application
+    urls:
+    - argocd-applicationset-1.9.0.tgz
+    version: 1.9.0
+  - annotations:
+      artifacthub.io/changes: |
         - "[Changed]: Bumped argocd-applicationset to 0.3.0"
     apiVersion: v2
     appVersion: v0.3.0
@@ -33696,4 +33717,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2022-01-09T15:15:33.957995211Z"
+generated: "2022-01-09T18:17:36.917718357Z"
