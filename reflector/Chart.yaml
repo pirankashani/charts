@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: 6.1.20
+appVersion: 6.1.23
 description: A Helm chart to deploy Reflector
 home: https://github.com/emberstack/kubernetes-reflector
 icon: https://raw.githubusercontent.com/emberstack/CDN/master/Projects/ES.FX/es.fx.1.0.0.0.png
@@ -18,4 +18,4 @@ name: reflector
 sources:
 - https://github.com/emberstack/kubernetes-reflector
 type: application
-version: 6.1.20
+version: 6.1.23
