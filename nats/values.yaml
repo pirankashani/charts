@@ -55,7 +55,7 @@ nats:
     writeDeadline:
     maxPending:
     maxPings:
-    
+
     # How many seconds should pass before sending a PING
     # to a client that has no activity.
     pingInterval:
@@ -77,11 +77,31 @@ nats:
   # of the NATS Server.
   # NOTE: For this to work the name of the configuration has to be
   # called `nats.conf`.
-  # 
+  #
   # e.g. kubectl create secret generic custom-nats-conf --from-file nats.conf
-  # 
+  #
   # customConfigSecret:
   #  name:
+  #
+  # Alternately, the generated config can be extended with extra imports using the below syntax.
+  # The benefit of this is that cluster settings can be built up via helm values, but external
+  # secrets can be referenced and imported alongside it.
+  #
+  # config:
+  #   <name-of-config-item>:
+  #     <configMap|secret>
+  #       name: "<configMap|secret name>"
+  #
+  # e.g:
+  #
+  #  config:
+  #    - name: ssh-key
+  #      secret:
+  #        secretName: ssh-key
+  #    - name: config-vol
+  #      configMap:
+  #        name: log-config
+
 
   jetstream:
     enabled: false
@@ -242,6 +262,15 @@ statefulSetPodLabels: {}
 # Annotations to add to the NATS Service
 serviceAnnotations: {}
 
+# additionalContainers are the sidecar containers to add to the NATS StatefulSet
+additionalContainers: []
+
+# additionalVolumes are the additional volumes to add to the NATS StatefulSet
+additionalVolumes: []
+
+# additionalVolumeMounts are the additional volume mounts to add to the nats-server and nats-server-config-reloader containers
+additionalVolumeMounts: []
+
 cluster:
   enabled: false
   replicas: 3
@@ -334,7 +363,7 @@ bootconfig:
   image: natsio/nats-boot-config:0.5.4
   pullPolicy: IfNotPresent
   securityContext: {}
-  
+
 # NATS Box
 #
 # https://github.com/nats-io/nats-box
@@ -392,6 +421,7 @@ reloader:
   image: natsio/nats-server-config-reloader:0.6.2
   pullPolicy: IfNotPresent
   securityContext: {}
+  extraConfigs: []
 
 # Prometheus NATS Exporter configuration.
 exporter:

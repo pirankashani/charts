@@ -71,7 +71,7 @@ spec:
         labelSelector:
           matchLabels:
             {{- include "nats.selectorLabels" $ | nindent 12 }}
-      {{- end}}
+      {{- end }}
       {{- end }}
 {{- end }}
 {{- if .Values.priorityClassName }}
@@ -88,6 +88,14 @@ spec:
           name: {{ include "nats.fullname" . }}-config
         {{ end }}
 
+      {{/* User extended config volumes*/}}
+      {{- if .Values.nats.config }}
+      # User extended config volumes
+      {{- with .Values.nats.config }}
+        {{- . | toYaml | nindent 6 }}
+      {{- end }}
+      {{- end }}
+  
       # Local volume shared with the reloader.
       - name: pid
         emptyDir: {}
@@ -143,10 +151,12 @@ spec:
           secretName: {{ $secretName }}
       {{- end }}
       {{- with .Values.leafnodes.tls }}
+      {{- if not .custom }}
       {{ $secretName := tpl .secret.name $ }}
       - name: {{ $secretName }}-leafnodes-volume
         secret:
           secretName: {{ $secretName }}
+      {{- end }}
       {{- end }}
       {{- with .Values.gateway.tls }}
       {{ $secretName := tpl .secret.name $ }}
@@ -176,6 +186,10 @@ spec:
           secretName: {{ .secret.name }}
       {{- end }}
       {{- end }}
+      {{- end }}
+
+      {{- if .Values.additionalVolumes }}
+      {{- toYaml .Values.additionalVolumes | nindent 6 }}
       {{- end }}
 
       {{ if and .Values.nats.externalAccess .Values.nats.advertise }}
@@ -324,6 +338,14 @@ spec:
             subPath: advertise
           {{- end }}
 
+          {{/* User extended config volumes*/}}
+          {{- range .Values.nats.config }}
+          # User extended config volumes
+          - name: {{ .name }}
+            mountPath: /etc/nats-config/{{ .name }}
+          {{- end }}
+
+
           {{- if and .Values.auth.enabled .Values.auth.resolver }}
           {{- if eq .Values.auth.resolver.type "memory" }}
           - name: resolver-volume
@@ -368,14 +390,18 @@ spec:
             mountPath: /etc/nats-certs/mqtt/{{ $secretName }}
           {{- end }}
           {{- with .Values.cluster.tls }}
+          {{- if not .custom }}
           {{ $secretName := tpl .secret.name $ }}
           - name: {{ $secretName }}-cluster-volume
             mountPath: /etc/nats-certs/cluster/{{ $secretName }}
           {{- end }}
+          {{- end }}
           {{- with .Values.leafnodes.tls }}
+          {{- if not .custom }}
           {{ $secretName := tpl .secret.name $ }}
           - name: {{ $secretName }}-leafnodes-volume
             mountPath: /etc/nats-certs/leafnodes/{{ $secretName }}
+          {{- end }}
           {{- end }}
           {{- with .Values.gateway.tls }}
           {{ $secretName := tpl .secret.name $ }}
@@ -403,6 +429,10 @@ spec:
             mountPath: /etc/nats-certs/leafnodes/{{ .secret.name }}
           {{- end }}
           {{- end }}
+          {{- end }}
+
+          {{- if .Values.additionalVolumeMounts }}
+          {{- toYaml .Values.additionalVolumeMounts | nindent 10 }}
           {{- end }}
 
         # Liveness/Readiness probes against the monitoring.
@@ -455,11 +485,18 @@ spec:
          - "/var/run/nats/nats.pid"
          - "-config"
          - "/etc/nats-config/nats.conf"
+        {{- range .Values.reloader.extraConfigs }}
+         - "-config"
+         - {{ . | quote }}
+        {{- end }}
         volumeMounts:
           - name: config-volume
             mountPath: /etc/nats-config
           - name: pid
             mountPath: /var/run/nats
+          {{- if .Values.additionalVolumeMounts }}
+          {{- toYaml .Values.additionalVolumeMounts | nindent 10 }}
+          {{- end }}
       {{ end }}
 
       ##############################
@@ -495,6 +532,10 @@ spec:
         - containerPort: 7777
           name: metrics
       {{ end }}
+
+      {{- if .Values.additionalContainers }}
+        {{- toYaml .Values.additionalContainers | nindent 6 }}
+      {{- end }}
 
   volumeClaimTemplates:
   {{- if eq .Values.auth.resolver.type "full" }}
