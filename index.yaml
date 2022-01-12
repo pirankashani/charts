@@ -18552,6 +18552,23 @@ entries:
   loki:
   - apiVersion: v1
     appVersion: v2.4.1
+    created: "2022-01-12T16:24:22.588431183Z"
+    description: 'Loki: like Prometheus, but for logs.'
+    digest: 74e244eb587cc42f06b6675bb6ea52ec74a71f67cf875c5b7e936641ce8f5654
+    home: https://grafana.com/loki
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    kubeVersion: ^1.10.0-0
+    maintainers:
+    - email: lokiproject@googlegroups.com
+      name: Loki Maintainers
+    name: loki
+    sources:
+    - https://github.com/grafana/loki
+    urls:
+    - loki-2.8.6.tgz
+    version: 2.8.6
+  - apiVersion: v1
+    appVersion: v2.4.1
     created: "2022-01-07T06:49:13.52683799Z"
     description: 'Loki: like Prometheus, but for logs.'
     digest: d0da341fa8550a34bd986952e61e407a95fd23864af9cfa95546b1813c9cfcc6
@@ -33914,4 +33931,4 @@ entries:
     urls:
     - yugabyte-2.3.0.tgz
     version: 2.3.0
-generated: "2022-01-12T06:19:24.773776355Z"
+generated: "2022-01-12T16:24:22.586439969Z"
