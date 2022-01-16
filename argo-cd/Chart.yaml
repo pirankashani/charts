@@ -1,6 +1,7 @@
 annotations:
   artifacthub.io/changes: |
-    - "[Changed]: Update to app version 2.2.2"
+    - "[Added]: Add support for Google ManagedCertificate on GKE
+    - "[Added]: Add support for Google FrontendConfig on GKE
 apiVersion: v2
 appVersion: v2.2.2
 dependencies:
@@ -22,4 +23,4 @@ maintainers:
 - name: jessesuen
 - name: seanson
 name: argo-cd
-version: 3.29.5
+version: 3.30.0
