@@ -1,34 +1,34 @@
 apiVersion: v2
-appVersion: 3.0.1
+appVersion: 3.1.0
 dependencies:
 - condition: openebs-ndm.enabled
   name: openebs-ndm
   repository: https://openebs.github.io/node-disk-manager
-  version: 1.7.1
+  version: 1.8.0
 - condition: localpv-provisioner.enabled
   name: localpv-provisioner
   repository: https://openebs.github.io/dynamic-localpv-provisioner
-  version: 3.0.1
+  version: 3.1.0
 - condition: cstor.enabled
   name: cstor
   repository: https://openebs.github.io/cstor-operators
-  version: 3.0.2
+  version: 3.1.0
 - condition: jiva.enabled
   name: jiva
   repository: https://openebs.github.io/jiva-operator
-  version: 3.0.5
+  version: 3.1.0
 - condition: zfs-localpv.enabled
   name: zfs-localpv
   repository: https://openebs.github.io/zfs-localpv
-  version: 1.9.8
+  version: 2.0.0
 - condition: lvm-localpv.enabled
   name: lvm-localpv
   repository: https://openebs.github.io/lvm-localpv
-  version: 0.8.5
+  version: 0.8.6
 - condition: nfs-provisioner.enabled
   name: nfs-provisioner
   repository: https://openebs.github.io/dynamic-nfs-provisioner
-  version: 0.8.0
+  version: 0.9.0
 description: Containerized Attached Storage for Kubernetes
 home: http://www.openebs.io/
 icon: https://raw.githubusercontent.com/cncf/artwork/HEAD/projects/openebs/icon/color/openebs-icon-color.png
@@ -50,4 +50,4 @@ maintainers:
 name: openebs
 sources:
 - https://github.com/openebs/openebs
-version: 3.0.6
+version: 3.1.0

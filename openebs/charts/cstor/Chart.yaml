@@ -1,10 +1,10 @@
 apiVersion: v2
-appVersion: 3.0.0
+appVersion: 3.1.0
 dependencies:
 - condition: openebsNDM.enabled
   name: openebs-ndm
   repository: https://openebs.github.io/node-disk-manager
-  version: 1.7.1
+  version: 1.8.0
 description: CStor-Operator helm chart for Kubernetes
 home: http://www.openebs.io/
 icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/openebs/icon/color/openebs-icon-color.png
@@ -26,4 +26,4 @@ name: cstor
 sources:
 - https://github.com/openebs/cstor-operators
 type: application
-version: 3.0.2
+version: 3.1.0
