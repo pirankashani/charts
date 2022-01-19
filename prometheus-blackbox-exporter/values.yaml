@@ -233,7 +233,7 @@ serviceMonitor:
 prometheusRule:
   enabled: false
   additionalLabels: {}
-  namespace: ""
+  namespace: "monitoring"
   rules: []
 
 ## Network policy for chart
